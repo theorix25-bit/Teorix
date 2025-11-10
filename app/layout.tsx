@@ -15,7 +15,7 @@ const defaultUrl = process.env.VERCEL_URL
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
   title: "THEORIX",
-  description: "Aprende la teoria ya!!",
+  description: "Vamos con Theo !!",
 };
 
 const geistSans = Geist({

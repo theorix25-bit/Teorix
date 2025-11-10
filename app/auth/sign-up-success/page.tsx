@@ -1,30 +1,23 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-
-export default function Page() {
+export default function GraciasRegistro() {
   return (
-    <div className="flex min-h-svh w-full items-center justify-center p-6 md:p-10">
-      <div className="w-full max-w-sm">
-        <div className="flex flex-col gap-6">
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-2xl">
-                Thank you for signing up!
-              </CardTitle>
-              <CardDescription>Check your email to confirm</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground">
-                You&apos;ve successfully signed up. Please check your email to
-                confirm your account before signing in.
-              </p>
-            </CardContent>
-          </Card>
+    <div className="d-flex align-items-center justify-content-center min-vh-100 p-4">
+      <div className="w-100" style={{ maxWidth: "400px" }}>
+        <div className="card shadow-sm border-0">
+          <div className="card-header bg-white border-0">
+            <h2 className="h4 mb-1 text-center fw-bold text-lime">
+              ¡Gracias por registrarte!
+            </h2>
+            <p className="text-white text-center mb-0">
+              Revisa tu correo para confirmar tu cuenta
+            </p>
+          </div>
+
+          <div className="card-body">
+            <p className="text-white text-center">
+              Tu registro fue exitoso. Por favor, verifica tu bandeja de entrada
+              para confirmar tu cuenta antes de iniciar sesión.
+            </p>
+          </div>
         </div>
       </div>
     </div>
