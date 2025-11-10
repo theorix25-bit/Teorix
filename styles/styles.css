@@ -1,0 +1,156 @@
+/* custom-bootstrap.css */
+@import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.grandstander {
+    font-family: "Grandstander", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Bebas Neue", sans-serif;
+}
+
+a,
+p,
+strong,
+button {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+
+}
+
+:root {
+    --color-lima-50: #a3d34a;
+    /* Colores base de tu paleta */
+    --color-lima: #C6FF5B;
+    --color-hoodie: #E6392D;
+    --color-carbon: #111111;
+    --color-marino: #0E2633;
+    --color-hielo: #F8F9FB;
+
+    /* 1. Asignación del Color Principal (Primary) */
+    /* Se usa para botones principales, enlaces, barras de navegación, etc. */
+    --bs-primary: var(--color-lima);
+
+    /* 2. Asignación del Color Secundario (Secondary) */
+    /* Usaremos el color marino o hoodie para un contraste */
+    --bs-secondary: var(--color-marino);
+
+    /* 3. Colores de Estado de Bootstrap */
+    /* Info (informativo) */
+    --bs-info: var(--color-marino);
+    /* Danger (peligro/error) */
+    --bs-danger: var(--color-hoodie);
+    /* Success (éxito/positivo) - Puedes usar lima */
+    --bs-success: var(--color-lima);
+    /* Warning (advertencia) */
+    --bs-warning: #FFC107;
+    /* Se mantiene un amarillo estándar para advertencia */
+
+    /* 4. Colores de Fondo y Texto */
+    /* Light (claro) - Se usa para tarjetas, fondos claros, etc. */
+    --bs-light: var(--color-hielo);
+    /* Dark (oscuro) - Se usa para barras de navegación oscuras, texto oscuro, etc. */
+    --bs-dark: var(--color-carbon);
+    --bs-body-bg: var(--color-carbon);
+    --bs-body-color: var(--color-hielo);
+}
+
+/* Opcional: Ajuste para enlaces en fondo oscuro */
+a {
+    color: var(--bs-primary);
+    /* Los enlaces usarán el color lima */
+}
+
+/* Opcional: Clase de utilidad para el fondo carbon (si se necesita en un elemento) */
+.bg-carbon {
+    background-color: var(--color-carbon) !important;
+}
+.bg-lima{
+    background-color: var(--color-lima);
+}
+
+/* Opcional: Clase de utilidad para el color lima como texto */
+.text-lima {
+    color: var(--color-lima) !important;
+}
+
+
+.btn-theorix {
+    /* --bs-btn-color: var(--color-carbon) !important; */
+    /* --bs-btn-bg: var(--color-lima) !important; */
+    background-color: var(--color-lima) !important;
+    color: var(--color-carbon);
+
+    &:hover {
+        color: var(--color-carbon);
+    }
+
+    &:active {
+        color: var(--color-carbon)
+    }
+}
+.btn-outline-theorix{
+    color: var(--color-lima);
+    border: 1px solid var(--color-lima);
+}
+
+
+/* Navegacion y links */
+.nav-link {
+    color: var(--color-white);
+}
+
+.nav-link:hover {
+    color: var(--color-lima);
+}
+
+.nav-link::checkmark {
+    color: white;
+}
+
+.nav-link:focus {
+    color: var(--color-lima);
+}
+
+.active {
+    color: var(--color-lima);
+}
+
+.border-lima {
+    border-color: transparent !important;
+    box-shadow: inset 1px 0px 11px 0px var(--color-lima);
+}
+
+.form-control:focus {
+    border-color: var(--color-lima);
+    box-shadow: 0 0 0 0.08rem var(--color-lima);
+}
+
+.form-control::placeholder {
+    color: #f8f9fb71;
+    /* el color que quieras */
+    opacity: 1;
+    /* asegúrate de que no sea semitransparente */
+}
+
+.login, .sign-up{
+    max-width: 400px;
+    width: 100%;
+}
+
+.blog-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
