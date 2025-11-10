@@ -107,7 +107,7 @@ export function SignUpForm() {
                 className="form-label fw-bold text-lima">
                   Repetir contraseña
                 </label>
-                <input type="email"
+                <input type="password"
                 className="form-control"
                 id="repeat-password"
                 placeholder="*******"
