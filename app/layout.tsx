@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import BoostrapJs from "@/components/BoostrapJs";
 import Navbar from "@/components/Navbar";
 
+
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
@@ -30,7 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning >
+      
       <body
         className={`${geistSans.className} antialiased`}
         suppressHydrationWarning

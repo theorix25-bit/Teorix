@@ -11,7 +11,7 @@ export function LogoutButton() {
   };
 
   return (
-    <button className="nav-link" onClick={logout}>
+    <button className="nav-link btn-outline-theorix rounded " onClick={logout}>
       Cerrar Sesión
     </button>
   );

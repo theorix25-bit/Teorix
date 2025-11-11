@@ -19,7 +19,7 @@ export default async function Header() {
               THEORIX
             </a>
             <button
-              className="navbar-toggler"
+              className="navbar-toggler border-lima"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarNavAltMarkup"
@@ -27,7 +27,8 @@ export default async function Header() {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span className="navbar-toggler-icon"></span>
+              {/* <span className="navbar-toggler-icon text-lima"></span> */}
+              <i className="bi bi-list text-lima fs-1"></i>
             </button>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav ms-auto d-flex">
@@ -45,10 +46,10 @@ export default async function Header() {
                   </>
                 ) : (
                   <>
-                    <Link href={"/auth/login"} className=" nav-link">
+                    <Link href={"/auth/login"} className=" m-1 rounded text-center nav-link  btn-theorix btn-lg text-black ">
                       Ingresar
                     </Link>
-                    <Link href={"/auth/sign-up"} className="nav-link">
+                    <Link href={"/auth/sign-up"} className=" m-1 rounded text-center nav-link  btn-outline-theorix btn-lg">
                       Registrarse
                       
                     </Link>
