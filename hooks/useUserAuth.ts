@@ -1,5 +1,4 @@
 import { createClient } from "@/lib/supabase/server";
-import { use } from "react";
 
 // Este componente sigue siendo asíncrono y se ejecuta SOLO en el servidor.
 export default async function AuthButtonServer() {
@@ -8,6 +7,7 @@ export default async function AuthButtonServer() {
   // Obtener la información del usuario en el servidor (usando cookies).
   const { data } = await supabase.auth.getClaims();
   const user = data?.claims;
+  
 
   return {user};
 }

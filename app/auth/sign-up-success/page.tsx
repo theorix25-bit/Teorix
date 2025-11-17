@@ -1,21 +1,14 @@
 export default function GraciasRegistro() {
   return (
-    <div className="d-flex align-items-center justify-content-center min-vh-100 p-4">
+    <div className="d-flex align-items-top justify-content-center min-vh-100 p-4">
       <div className="w-100" style={{ maxWidth: "400px" }}>
-        <div className="card shadow-sm border-0">
-          <div className="card-header bg-white border-0">
-            <h2 className="h4 mb-1 text-center fw-bold text-lime">
+        <div className="card border border-lima p-4 ">
+          <div className="card-header  border-0">
+            <h2 className="fs-2 mb-1 text-center fw-bold text-lima">
               ¡Gracias por registrarte!
             </h2>
-            <p className="text-white text-center mb-0">
-              Revisa tu correo para confirmar tu cuenta
-            </p>
-          </div>
-
-          <div className="card-body">
-            <p className="text-white text-center">
-              Tu registro fue exitoso. Por favor, verifica tu bandeja de entrada
-              para confirmar tu cuenta antes de iniciar sesión.
+            <p className="text-white lead text-center mb-0">
+              Revisa tu correo para confirmar tu cuenta antes de iniciar sesión.
             </p>
           </div>
         </div>

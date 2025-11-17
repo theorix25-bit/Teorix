@@ -35,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+, "app/api/precios.js", "app/api/page.tsx", "app/api/checkout/route.ts"  ],
   "exclude": [
     "node_modules"
   ]
