@@ -27,6 +27,8 @@ export async function getLinkCheckOut(plan: PlanDB,userId:string) {
       "content-type": "application/json",
     },
   });
+  console.log(res)
   const { url } = await res.json();
+
   window.location.href = url;
 }

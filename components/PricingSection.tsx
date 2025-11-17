@@ -4,17 +4,20 @@ import Stripe from "stripe";
 import ButtonCheckout from "./ButtonCheckout";
 import Link from "next/link";
 import { getPlansDB } from "@/hooks/useSupabase";
-
+import { getAllPlans } from "@/hooks/useStripe";
 
 // HOLA MIGUEL PARA EL LUNES DEBES CONTINUAR CON LO SIGUIENTE:
 /*
   MUY IMPORTANTE ESTA PENDIENTE QUE AL REALIZAR EL PAGO PODAMOS SABER QUE USUARIO REALIZO EL PAGO PARA HACER LOS CAMBIOS EN LA BASE DE DATOS 
   HASTA AHORA TENGO PENSADO USAR EL HOOK DE STRIPE, LA WEB LO ESCUCHE Y ACTUALICE LOS DATOS DEL USUARIO 
 */
-
+const pl =  await getAllPlans();
+console.log(pl);
 export const PricingSection = async () => {
   const plans = await getPlansDB();
-  {if(plans === undefined) return null;}
+  {
+    if (plans === undefined) return null;
+  }
   return (
     <section className=" container-fluid " id="planes">
       {/* Background glow */}
@@ -31,7 +34,7 @@ export const PricingSection = async () => {
         </div>
 
         {/* Pricing cards */}
-        
+
         <div className="row g-3 px-5 ">
           {plans?.map((plan, index) => (
             <div
@@ -65,7 +68,7 @@ export const PricingSection = async () => {
 
               {/* Features */}
               <ul className="space-y-4 mb-8 list-unstyled px-3">
-                {plan.caracteristicas.map((feature:string, idx:number) => (
+                {plan.caracteristicas.map((feature: string, idx: number) => (
                   <li key={idx} className="flex items-start gap-3">
                     <Check
                       className={`w-5 h-5 mt-0.5 ${
@@ -81,10 +84,7 @@ export const PricingSection = async () => {
               </ul>
 
               {/* CTA */}
-              <Link
-                className="text-black"
-                href={`plan/${plan.link}`}
-              >
+              <Link className="text-black" href={`plan/${plan.link}`}>
                 <Button className="btn w-100 btn-theorix ">{plan.cta}</Button>
               </Link>
 
