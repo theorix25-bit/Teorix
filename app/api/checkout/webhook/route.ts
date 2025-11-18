@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
 
     const userId = session.metadata?.userId;
-    const subscription_id = session.metadata?.plan;
+    const subscription_id = session.metadata?.planId;
     const subscriptionId = session.subscription;
     console.log(subscriptionId);
     console.log("Pago confirmado de:", userId);

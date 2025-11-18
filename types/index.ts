@@ -7,7 +7,7 @@ type User = {
 
 type UserAuthId = {
   userId: string | null | undefined;
-  email?: string | null | undefined
+  email?: string | null | undefined;
 };
 
 type ErrorLog = {
@@ -61,5 +61,6 @@ interface PlanDetails {
 
 type CheckoutBody = {
   userId: string;
-  plan: PlanDB;
+  planId: number;
+  stripeId: string;
 };

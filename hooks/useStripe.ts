@@ -3,7 +3,7 @@ const stripe = createClienteStripe();
 
 export async function getAllPlans() {
   const planes = await stripe.prices.list();
-  
+
   const sortedPlanes = planes.data.sort(
     (a, b) => a.unit_amount! - b.unit_amount!
   );
@@ -15,18 +15,19 @@ export async function getPlanById(id: string) {
   return plan;
 }
 
-export async function getLinkCheckOut(plan: number,userId:string) {
+export async function getLinkCheckOut(plan: PlanDB, userId: string) {
   const res = await fetch("/api/checkout", {
     method: "POST",
     body: JSON.stringify({
-      userId,
-      plan
-      
+      userId: userId,
+      planId: plan.id,
+      stripeId: plan.id_producto_stripe,
     }),
     headers: {
       "content-type": "application/json",
     },
   });
+  console.log(res);
   const { url } = await res.json();
 
   window.location.href = url;

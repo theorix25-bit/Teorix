@@ -203,7 +203,7 @@ function page() {
                     </div>
 
                     {/* CTA Principal */}
-                    <ButtonCheckout userId={userId} plan={p.id}>
+                    <ButtonCheckout userId={userId} plan={p}>
                       {" "}
                       {p.cta}
                     </ButtonCheckout>
@@ -269,7 +269,7 @@ function page() {
                     >
                       {p.cta}
                     </button> */}
-                    <ButtonCheckout userId={userId} plan={p.id}> Comprar</ButtonCheckout>
+                    <ButtonCheckout userId={userId} plan={p}> Comprar</ButtonCheckout>
                     <p className="small text-secondary mt-3">
                       Garantía de satisfacción 100% • Sin permanencia
                     </p>
