@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { createClienteStripe } from "@/lib/stripe/client";
+import { updatePlanUser } from "@/hooks/useSupabase";
 
 const stripe = createClienteStripe();
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -25,13 +26,13 @@ export async function POST(req: Request) {
     const session = event.data.object as Stripe.Checkout.Session;
 
     const userId = session.metadata?.userId;
+    const subscription_id = session.metadata?.plan;
     const subscriptionId = session.subscription;
-
+    console.log(subscriptionId);
     console.log("Pago confirmado de:", userId);
     console.log("Subscription ID:", subscriptionId);
 
-    // 🔥  Aquí actualizas tus permisos en Supabase
-    // await supabase.from("users").update({ role: "premium" }).eq("id", userId)
+    updatePlanUser(userId, subscription_id);
   }
 
   return NextResponse.json({ received: true });

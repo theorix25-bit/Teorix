@@ -11,7 +11,6 @@ export const HeroSection = () => {
           <span className="d-block text-foreground">Estudia menos.</span>
           <span className="d-block text-lima ">Aprueba más.</span>
           <i className="bi bi-eye fs-3"></i>
-          <h1>Theorix</h1>
         </h1>
 
         <p className="fs-4 fs-md-3 text-muted-foreground max-w-500px mx-auto mb-5 fw-medium">
