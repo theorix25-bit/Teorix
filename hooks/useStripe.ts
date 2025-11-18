@@ -15,12 +15,12 @@ export async function getPlanById(id: string) {
   return plan;
 }
 
-export async function getLinkCheckOut(plan: PlanDB,userId:string) {
+export async function getLinkCheckOut(plan: number,userId:string) {
   const res = await fetch("/api/checkout", {
     method: "POST",
     body: JSON.stringify({
       userId,
-      plan: plan.id
+      plan
       
     }),
     headers: {

@@ -18,7 +18,6 @@ const PageClases = () => {
     const fetchUsuario = async () => {
       const authId = await getUserAuthId();
       const data = await getUserDBForId(authId || "");
-      // await updatePlanUser(authId);
       setUsuario(data.usuarios ? data.usuarios[0] : null);
       setAuthId(authId);
       setLoading(false);
