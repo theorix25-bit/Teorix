@@ -12,29 +12,28 @@ export async function POST(req: Request) {
   const sig = headersList.get("stripe-signature")!;
   console.log("webhook recibido");
 
-  // let event: Stripe.Event;
+  let event: Stripe.Event;
 
-  // try {
-  //   event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
-  // } catch (err: any) {
-  //   console.error("❌ Error verificando webhook", err.message);
-  //   return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
-  // }
+  try {
+    event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
+  } catch (err: any) {
+    console.error("❌ Error verificando webhook", err.message);
+    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
+  }
 
-  // // 👇 Evento principal: pago confirmado del Checkout
-  // if (event.type === "checkout.session.completed") {
-  //   const session = event.data.object as Stripe.Checkout.Session;
+  // 👇 Evento principal: pago confirmado del Checkout
+  if (event.type === "checkout.session.completed") {
+    const session = event.data.object as Stripe.Checkout.Session;
 
-  //   const userId = session.metadata?.userId;
-  //   const subscription_id = session.metadata?.planId;
-  //   const subscriptionId = session.subscription;
-  //   console.log(subscriptionId);
-  //   console.log("Pago confirmado de:", userId);
-  //   console.log("Subscription ID:", subscriptionId);
+    const userId = session.metadata?.userId;
+    const subscription_id = session.metadata?.planId;
+    const subscriptionId = session.subscription;
+    console.log(subscriptionId);
+    console.log("Pago confirmado de:", userId);
+    console.log("Subscription ID:", subscriptionId);
 
-  //   updatePlanUser(userId, subscription_id);
-  // }
+    updatePlanUser(userId, subscription_id);
+  }
 
-  // return NextResponse.json({ received: true });
-  return NextResponse.json("recibido");
+  return NextResponse.json({ received: true });
 }
