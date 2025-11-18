@@ -47,7 +47,7 @@ export async function upDateSusUser(
     .update({ suscripcion_id: plan })
     .eq("id", id)
     .select();
-
+  console.log(data);
   return data;
 }
 
