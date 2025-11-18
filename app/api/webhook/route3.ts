@@ -2,7 +2,9 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { createClienteStripe } from "@/lib/stripe/client";
-import { updatePlanUser } from "@/hooks/useSupabase";
+import { supabaseAdmin } from "@/lib/supabase/admin";
+
+export const runtime = "nodejs"; 
 
 const stripe = createClienteStripe();
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
@@ -21,18 +23,23 @@ export async function POST(req: Request) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  // 👇 Evento principal: pago confirmado del Checkout
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
 
     const userId = session.metadata?.userId;
-    const subscription_id = session.metadata?.planId;
+    const planId = session.metadata?.planId;
     const subscriptionId = session.subscription;
-    console.log(subscriptionId);
-    console.log("Pago confirmado de:", userId);
-    console.log("Subscription ID:", subscriptionId);
 
-    updatePlanUser(userId, subscription_id);
+    console.log("🟢 Pago confirmado", { userId, planId, subscriptionId });
+
+    // UPDATE EN BASE DE DATOS USANDO SUPABASE ADMIN
+    await supabaseAdmin
+      .from("users")
+      .update({
+        plan: planId,
+        subscription_id: subscriptionId,
+      })
+      .eq("id", userId);
   }
 
   return NextResponse.json({ received: true });

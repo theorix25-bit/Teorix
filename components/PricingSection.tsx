@@ -11,8 +11,8 @@ import { getAllPlans } from "@/hooks/useStripe";
   MUY IMPORTANTE ESTA PENDIENTE QUE AL REALIZAR EL PAGO PODAMOS SABER QUE USUARIO REALIZO EL PAGO PARA HACER LOS CAMBIOS EN LA BASE DE DATOS 
   HASTA AHORA TENGO PENSADO USAR EL HOOK DE STRIPE, LA WEB LO ESCUCHE Y ACTUALICE LOS DATOS DEL USUARIO 
 */
-const pl =  await getAllPlans();
-console.log(pl);
+// const pl =  await getAllPlans();
+// console.log(pl);
 export const PricingSection = async () => {
   const plans = await getPlansDB();
   {
