@@ -2,7 +2,7 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { createClienteStripe } from "@/lib/stripe/client";
-import { updatePlanUser } from "@/hooks/useSupabase";
+import { updatePlanUser } from "@/lib/supabase";
 
 export async function POST(req: Request) {
   const stripe = createClienteStripe();
