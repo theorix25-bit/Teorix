@@ -10,7 +10,7 @@ export function SignUpForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const emailRedirectTo = `${window.location.origin}/clases`;
+  const emailRedirectTo = `${process.env.NEXT_PUBLIC_URL}/clases`;
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
