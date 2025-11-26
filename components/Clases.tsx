@@ -1,126 +1,78 @@
-import { Car, Bike, Truck, Bus } from "lucide-react";
-import { useRouter } from "next/navigation";
+"use client";
 
-function Clases() {
-  const router = useRouter();
-  // DAtos de ejemplo para los tipos de carnet EN DURO
-  const licenseTypes = [
-    {
-      id: "b",
-      name: "Carnet B",
-      description: "Automóviles y furgonetas hasta 3.500 kg",
-      icon: Car,
-      color: "from-primary to-accent",
-    },
-    {
-      id: "a",
-      name: "Carnet A",
-      description: "Motocicletas sin limitaciones",
-      icon: Bike,
-      color: "from-secondary to-red-600",
-    },
-    {
-      id: "a2",
-      name: "Carnet A2",
-      description: "Motocicletas hasta 35 kW",
-      icon: Bike,
-      color: "from-accent to-primary",
-    },
-    {
-      id: "c",
-      name: "Carnet C",
-      description: "Camiones de más de 3.500 kg",
-      icon: Truck,
-      color: "from-muted to-card",
-    },
-    {
-      id: "d",
-      name: "Carnet D",
-      description: "Autobuses y transporte de pasajeros",
-      icon: Bus,
-      color: "from-card to-muted",
-    },
-  ];
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+
+export default function CourseView() {
+  const [filter, setFilter] = useState("");
+
+  const topics = Array.from({ length: 12 }).map((_, i) => ({
+    id: i,
+    title: "Título Tema",
+    img: "/placeholder.png",
+  }));
+
   return (
-    <>
-      <div className="min-vh-100 ">
-        <main className="container py-5">
-          {/* Título principal */}
-          <div className="text-center mb-5">
-            <h2 className="fw-bold display-5 mb-3">ELIGE TU CARNET</h2>
-            <p className=" fs-5 mx-auto" style={{ maxWidth: "600px" }}>
-              Selecciona el tipo de carnet que deseas obtener y accede a las
-              lecciones exclusivas de Theo.
-            </p>
-          </div>
+    <div className="max-w-5xl mx-auto p-4 ">
+      <div className="flex flex-col lg:flex-row gap-4">
+        <div className="w-full lg:w-1/2 bg-gray-300 h-48 lg:h-64 rounded-lg flex items-center justify-center">
+          {/* <Image src="" width={120} height={120} alt="imagen" /> */}
+          {/* <img src="" alt="" /> */}
+        </div>
 
-          {/* Grid de tarjetas */}
-          <div className="row g-4 justify-content-center">
-            {licenseTypes.map((license) => {
-              const Icon = license.icon;
-              return (
-                <div
-                  key={license.id}
-                  className="col-12 col-md-6 col-lg-4"
-                  onClick={() => router.push(`/clases/${license.id}`)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <div className="card h-100 border-lima rounded-4">
-                    <div className="card-body p-4">
-                      <div className="d-flex align-items-center mb-3">
-                        <div
-                          className={`d-flex align-items-center justify-content-center ${license.color} bg-opacity-25 rounded p-3 me-3`}
-                        >
-                          <Icon size={60} className=" text-lima" />
-                        </div>
-                        <h5 className="card-title mb-0 fw-semibold">
-                          {license.name}
-                        </h5>
-                      </div>
-                      <p className="card-text text-white">
-                        {license.description}
-                      </p>
-                      <button className="btn btn-theorix w-100 mt-3">
-                        Ver lecciones
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Banner informativo */}
-          <div className="mt-5 border border-primary-subtle rounded p-4 ">
-            <div className="d-flex align-items-start gap-3">
-              {/* <img
-              src="/src/assets/theo-eye.png"
-              alt="Theo"
-              className="rounded-circle"
-              style={{
-                width: "50px",
-                height: "50px",
-                animation: "pulse 2s infinite",
-              }}
-            /> */}
-              <div>
-                <h4 className="fw-bold text-lima mb-2">
-                  ¡PREPARACIÓN COMPLETA CON THEO!
-                </h4>
-                <p className="text-white mb-0">
-                  Cada tipo de carnet incluye lecciones teóricas en video, tests
-                  prácticos interactivos y el apoyo personalizado de Theo, tu
-                  tutor virtual.
-                </p>
-              </div>
-            </div>
-          </div>
-        </main>
-
-        {/* Animación suave para la imagen */}
+        <div className="lg:w-1/2">
+          <h2 className="text-2xl text-lima font-bold mb-2">Carnet B</h2>
+          <p className="text-sm text-white">
+            Descripción completa Lorem ipsum dolor sit amet, consectetur
+            adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+          </p>
+        </div>
       </div>
-    </>
+
+      {/* Filtro */}
+      <div className="flex justify-between items-center mt-4">
+        <p className="font-semibold">Temas</p>
+
+        <select
+          className="border text-black rounded px-2 py-1 text-sm"
+          onChange={(e) => setFilter(e.target.value)}
+        >
+          <option value="">Filtro</option>
+          <option value="a">Tema 1</option>
+          <option value="z">Tema 2</option>
+        </select>
+      </div>
+
+      {/* GRID responsive */}
+      <div
+        className="
+          mt-3 grid 
+          grid-cols-1 
+          sm:grid-cols-2 
+          lg:grid-cols-4 
+          gap-3
+        "
+      >
+        {topics.map((topic) => (
+          <Link
+            href={"/clases/tema"}
+            key={topic.id}
+            className="flex items-center gap-3 border rounded-lg p-2"
+          >
+            <div className="w-10 h-10 bg-gray-400 rounded flex items-center justify-center">
+              {/* <Image
+                src="/placeholder.png"
+                alt="tema"
+                width={20}
+                height={20}
+              /> */}
+              {/* <img src="#" alt="" /> */}
+            </div>
+            <p className="font-semibold text-sm text-lima ">{topic.title}</p>
+          </Link>
+        ))}
+      </div>
+    </div>
   );
 }
-
-export default Clases;

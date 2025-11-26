@@ -2,7 +2,7 @@
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { setErrorLog } from "@/hooks/useSupabase";
+import { setErrorLog } from "@/lib/supabase";
 
 export function RegistroCompletoUsuario({ userId }: UserAuthId) {
   const supabase = createClient();
@@ -16,6 +16,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
     e.preventDefault();
     setIsLoading(true);
     setError(null);
+
     try {
       const { error } = await supabase.rpc("crear_usuario_y_relaciones", {
         p_auth_id: userId,
@@ -24,6 +25,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
         p_codigo_postal: zipcode,
         p_rol: "alumno",
       });
+
       if (error) {
         await setErrorLog({
           authId: userId,
@@ -32,6 +34,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
           origin: "Registro completo del usuario",
         });
       }
+
       window.location.reload();
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "Se produjo un error");
@@ -41,86 +44,75 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
   };
 
   return (
-    <>
-      <div className="min-vh-100 d-flex justify-content-center align-items-center">
-        <div className="p-4 rounded-4">
-          <div className="text-center">
-            <h2 className="fw-bold text-lima mb-3">Completa tu registro</h2>
-            <p className="mb-4">
-              Para acceder a las lecciones, por favor completa tu registro.
-            </p>
-          </div>
-          <div className="container my-5 d-flex justify-content-center">
-            <div className="sign-up border-lima p-2 p-md-5 rounded-4 border">
-              <p className="mb-2 fs-4">Datos del usuario</p>
-
-              <form onSubmit={handleSignUp} className="w-100">
-                <div className="mb-2">
-                  <label
-                    htmlFor="inputName"
-                    className="form-label fw-bold text-lima"
-                  >
-                    Nombre
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="inputName"
-                    placeholder="Tu nombre"
-                    onChange={(e) => {
-                      setName(e.target.value);
-                    }}
-                  />
-                </div>
-
-                <div className="mb-2">
-                  <label
-                    htmlFor="lastName"
-                    className="form-label fw-bold text-lima"
-                  >
-                    Apellido
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="lastName"
-                    placeholder="Tu apellido"
-                    onChange={(e) => {
-                      setLastName(e.target.value);
-                    }}
-                  />
-                </div>
-                <div className="mb-2">
-                  <label
-                    htmlFor="zipcode"
-                    className="form-label fw-bold text-lima"
-                  >
-                    código postal
-                  </label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="zipcode"
-                    placeholder="Tu código postal"
-                    onChange={(e) => {
-                      setZipcode(e.target.value);
-                    }}
-                  />
-                </div>
-
-                {error && <p className="text-sm text-red-500">{error}</p>}
-                <Button
-                  type="submit"
-                  className="btn btn-theorix w-100 btn-lg mt-3"
-                  disabled={isLoading}
-                >
-                  {isLoading ? "Completando registro..." : "Completar Registro"}
-                </Button>
-              </form>
-            </div>
-          </div>
+    <div className=" flex justify-center items-top bg-carbon px-4">
+      <div className="w-86 max-w-md bg-carbon p-6 rounded-2xl shadow-xl border border-lima">
+        <div className="text-center mb-4">
+          <h2 className="text-2xl font-bold text-lima">Completa tu registro</h2>
+          <p className="text-white mt-2">
+            Para acceder a las lecciones, por favor completa tu registro.
+          </p>
         </div>
+
+        <form onSubmit={handleSignUp} className="space-y-4">
+          <div>
+            <label
+              htmlFor="inputName"
+              className="block text-sm font-semibold text-lima mb-1"
+            >
+              Nombre
+            </label>
+            <input
+              id="inputName"
+              type="text"
+              placeholder="Tu nombre"
+              className="w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="lastName"
+              className="block text-sm font-semibold text-lima mb-1"
+            >
+              Apellido
+            </label>
+            <input
+              id="lastName"
+              type="text"
+              placeholder="Tu apellido"
+              className="w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="zipcode"
+              className="block text-sm font-semibold text-lima mb-1"
+            >
+              Código postal
+            </label>
+            <input
+              id="zipcode"
+              type="text"
+              placeholder="Tu código postal"
+              className="w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              onChange={(e) => setZipcode(e.target.value)}
+            />
+          </div>
+
+          {error && <p className="text-sm text-red-500">{error}</p>}
+
+          <Button
+            type="submit"
+            className="w-full bg-lima text-carbon font-semibold py-3 rounded-lg hover:bg-lima-50 transition"
+            disabled={isLoading}
+          >
+            {isLoading ? "Completando registro..." : "Completar Registro"}
+          </Button>
+        </form>
       </div>
-    </>
+    </div>
   );
 }

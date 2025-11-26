@@ -1,22 +1,23 @@
+// TYPE PARA EL USUARIO DE LA BASE DE DATOS
 type User = {
   id: string;
   name: string;
   lastName: string;
   zipcode: string;
 };
-
+// TYPE PARA EL USUARIO EN SESIÓN AUTENTICADO
 type UserAuthId = {
   userId: string | null | undefined;
   email?: string | null | undefined;
 };
-
+// TYPE PARA LOS ERRORES QUE SE ENVÍAN A LA BASE DE DATOS
 type ErrorLog = {
   mensaje: string;
   origin: string;
   details: string;
   authId?: string | null | undefined;
 };
-
+// TYPE PARA LOS PLANES DE LA BASE DE DATOS
 type PlanDB = {
   actualizado_en: string;
   caracteristicas: string[];
@@ -32,20 +33,20 @@ type PlanDB = {
   precio: number;
 };
 
-// Definición de tipos para mayor claridad (aunque en JSX no son estrictamente necesarios)
-interface TestimonialPlanDetails {
+//
+type TestimonialPlanDetails = {
   text: string;
   author: string;
   result: string;
-}
+};
 
-interface BenefitPlanDetails {
+type BenefitPlanDetails = {
   icon: any; // Usaremos 'any' para el componente de icono de Lucide
   title: string;
   description: string;
-}
+};
 
-interface PlanDetails {
+type PlanDetails = {
   name: string;
   price: string;
   period: string;
@@ -57,10 +58,39 @@ interface PlanDetails {
   cta: string;
   ctaVariant: "outline" | "default";
   highlight?: boolean;
-}
+};
 
 type CheckoutBody = {
   userId: string;
   planId: number;
   stripeId: string;
+};
+
+type optionsSingUp = {
+  data: { name: string };
+  emailRedirectTo: string;
+};
+
+type TypeSignUp = {
+  email: string;
+  password: string;
+  options: optionsSingUp;
+};
+
+type VimeoUrl =
+  | `https://vimeo.com/${string}`
+  | `https://player.vimeo.com/video/${string}`;
+
+type Video = {
+  uri: string;
+  name: string;
+  description: string;
+  type: string;
+  link: string;
+  player_embed_url: VimeoUrl;
+  duration: number;
+  width: number;
+  language: string;
+  height: number;
+  embed: {};
 };

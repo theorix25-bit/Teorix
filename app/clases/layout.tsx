@@ -1,20 +1,30 @@
+import Link from "next/link";
 
-
-export default function ProtectedLayout({
+export default async function ProtectedLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    // <main className="min-h-screen flex flex-col items-center">
-    //   <div className="flex-1 w-full flex flex-col gap-20 items-center">
-    //     <div className="flex-1 flex flex-col gap-20 max-w-5xl p-5">
-    //       {children}
-    //     </div>
-    //   </div>
-    // </main>
     <>
-      {children}
+      <div className=" max-w-6xl flex justify-end gap-3 text-white p-2 ">
+        <span className="nav-item hover:text-lima">
+          <Link href={"/clases/examen"} className="nav-link">
+            Test
+          </Link>
+        </span>
+        <span className="nav-item hover:text-lima">
+          <Link href={"/clases/documentos"} className="nav-link">
+            Documentos
+          </Link>
+        </span>
+        <span className="nav-item hover:text-lima ">
+          <Link href={"/clases/videos"} className="nav-link">
+            Videos
+          </Link>
+        </span>
+      </div>
+      <div className="bg-carbon text-white">{children}</div>
     </>
   );
 }

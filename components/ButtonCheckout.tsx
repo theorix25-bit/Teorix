@@ -1,6 +1,7 @@
 "use client";
 
-import { getLinkCheckOut } from "@/hooks/useStripe";
+import { getLinkCheckOut } from "@/lib/stripe";
+
 
 function ButtonCheckout({
   userId,

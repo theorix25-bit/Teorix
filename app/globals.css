@@ -1,17 +1,6 @@
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
-
-/* THEORIX Design System - All colors MUST be HSL */
+@tailwind utilities;
 
 @layer base {
   :root {
@@ -108,136 +97,58 @@
     --ring: 73 100% 67%;
   }
 
-  * {
-    @apply border-border;
+  @layer utilities {
+
+    /* Neon effects */
+    .neon-glow {
+      text-shadow: 0 0 10px hsl(var(--neon-glow)), 0 0 20px hsl(var(--neon-glow) / 0.5);
+    }
+
+    .neon-glow-red {
+      text-shadow: 0 0 10px hsl(var(--neon-red)), 0 0 20px hsl(var(--neon-red) / 0.5);
+    }
+
+    /* Animations */
+    .animate-pulse-glow {
+      animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .animate-float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-spin-slow {
+      animation: spin 8s linear infinite;
+    }
+
+    .animate-blink {
+      animation: blink 3s ease-in-out infinite;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: var(--gradient-neon);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Hover effects */
+    .hover-lift {
+      transition: var(--transition-smooth);
+    }
+
+    .hover-lift:hover {
+      transform: translateY(-4px);
+    }
+
+    .hover-brutal {
+      transition: var(--transition-smooth);
+    }
+
+    .hover-brutal:hover {
+      box-shadow: var(--shadow-brutal);
+      transform: translate(-4px, -4px);
+    }
   }
-
-  body {
-    @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Orbitron', 'Inter', sans-serif;
-    font-weight: 900;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-  }
-}
-
-@layer utilities {
-
-  /* Neon effects */
-  .neon-glow {
-    text-shadow: 0 0 10px hsl(var(--neon-glow)), 0 0 20px hsl(var(--neon-glow) / 0.5);
-  }
-
-  .neon-glow-red {
-    text-shadow: 0 0 10px hsl(var(--neon-red)), 0 0 20px hsl(var(--neon-red) / 0.5);
-  }
-
-  /* Animations */
-  .animate-pulse-glow {
-    animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  .animate-spin-slow {
-    animation: spin 8s linear infinite;
-  }
-
-  .animate-blink {
-    animation: blink 3s ease-in-out infinite;
-  }
-
-  /* Gradient text */
-  .gradient-text {
-    background: var(--gradient-neon);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /* Hover effects */
-  .hover-lift {
-    transition: var(--transition-smooth);
-  }
-
-  .hover-lift:hover {
-    transform: translateY(-4px);
-  }
-
-  .hover-brutal {
-    transition: var(--transition-smooth);
-  }
-
-  .hover-brutal:hover {
-    box-shadow: var(--shadow-brutal);
-    transform: translate(-4px, -4px);
-  }
-}
-
-/* @keyframes pulse-glow {
-  0%, 100% {
-    opacity: 1;
-    filter: drop-shadow(0 0 10px hsl(var(--neon-glow))) drop-shadow(0 0 20px hsl(var(--neon-glow) / 0.5));
-  }
-  50% {
-    opacity: 0.8;
-    filter: drop-shadow(0 0 20px hsl(var(--neon-glow))) drop-shadow(0 0 40px hsl(var(--neon-glow) / 0.7));
-  }
-} */
-
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
-@keyframes blink {
-
-  0%,
-  45%,
-  55%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.3;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fadeIn {
-  animation: fadeIn 0.2s ease-out forwards;
-}
-
-summary::-webkit-details-marker {
-  display: none;
 }

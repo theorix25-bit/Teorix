@@ -1,10 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import {
-  getUserDBForId,
-  getUserAuthId,
-  updatePlanUser,
-} from "@/hooks/useSupabase";
+import { getUserDBForId, getUserAuthId } from "@/lib/supabase";
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
 import Clases from "@/components/Clases";
 
@@ -17,7 +13,7 @@ const PageClases = () => {
   useEffect(() => {
     const fetchUsuario = async () => {
       const authId = await getUserAuthId();
-      const data = await getUserDBForId(authId || "");
+      const data = await getUserDBForId(authId);
       setUsuario(data.usuarios ? data.usuarios[0] : null);
       setAuthId(authId);
       setLoading(false);
@@ -26,9 +22,9 @@ const PageClases = () => {
   }, []);
   if (loading) return <div className="text-center py-5">Cargando...</div>;
   {
-    !usuario ? <RegistroCompletoUsuario userId={authId} /> : <Clases />;
+    return !usuario ? <RegistroCompletoUsuario userId={authId} /> : <Clases />;
   }
-  return <Clases />;
+
 };
 
 export default PageClases;

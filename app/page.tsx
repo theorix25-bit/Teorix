@@ -6,10 +6,10 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 export default async function Home() {
   return (
     <>
-      <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <div className=" text-white">
         <HeroSection />
         <MethodSection />
-        <TestimonialsSection />
+        <TestimonialsSection /> 
         <PricingSection />
         <CommunitySection />
       </div>

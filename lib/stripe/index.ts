@@ -31,3 +31,5 @@ export async function getLinkCheckOut(plan: PlanDB, userId: string) {
 
   window.location.href = url;
 }
+
+

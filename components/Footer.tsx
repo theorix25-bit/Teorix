@@ -1,39 +1,30 @@
-import { Instagram, Youtube } from "lucide-react";
 import Link from "next/link";
 
 export const Footer = () => {
   return (
-    <footer className="bg-background border-top border-border py-5 py-md-5 px-3 px-md-4">
-      <div className="container mx-auto">
-        <div className="row row-cols-1 row-cols-md-4 g-5 mb-5 mb-lg-5">
-          <div className="col-md-6">
-            <h3 className="fs-2 fw-black text-foreground mb-3">
-              THEORIX<span className="text-lima">*</span>
+    <footer className=" text-white border-t border-gray-700/60">
+      <div className="">
+        <div className=" flex flex-row justify-between items-top px-9 py-7">
+          <div className="col">
+            <h3 className="text-3xl font-bold mb-3">
+              THEORIX<span className="text-lima"> *</span>
             </h3>
-            <p className="text-muted-foreground mb-4 max-w-sm">
+            <p className=" mb-4">
               No enseñamos más. Enseñamos mejor.
             </p>
 
             <div className="d-flex gap-3">
-              <Link
-                href="#"
-                className=""
-              >
+              <Link href="#" className="">
                 <i className="bi bi-instagram fs-5 text-lima"></i>
               </Link>
 
-              <Link
-                href="#"
-                className=""
-              >
+              <Link href="#" className="">
                 <i className="bi bi-youtube fs-5"></i>
               </Link>
-
-
             </div>
           </div>
 
-          <div className="col-6 col-md-3">
+          <div className="col">
             <h4 className="text-foreground fw-bold mb-3 text-uppercase tracking-wider small">
               Producto
             </h4>
@@ -61,7 +52,7 @@ export const Footer = () => {
             </ul>
           </div>
 
-          <div className="col-6 col-md-3">
+          <div className="col">
             <h4 className="text-foreground fw-bold mb-3 text-uppercase tracking-wider small">
               Soporte
             </h4>
@@ -90,17 +81,10 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-4 border-top border-border d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
-          <p className="small text-muted-foreground mb-0">
+        <div className="flex flex-col justify-between items-center gap-3">
+          <p className="text-xs p-1">
             © 2025 THEORIX. Modo speedrun activado.
           </p>
-
-          <div className="d-flex align-items-center gap-2">
-            <div className="custom-status-dot bg-primary animate-pulse"></div>
-            <span className="custom-text-xs text-muted-foreground text-uppercase tracking-wider fw-medium">
-              Sistema operativo
-            </span>
-          </div>
         </div>
       </div>
     </footer>

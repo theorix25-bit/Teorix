@@ -1,25 +1,25 @@
-"use client";
-import { useEffect, useState } from "react"; // ¡Corregido! Se añadió la coma
+"use client"
+import { useEffect, useState } from "react";
 
 const testimonials = [
   {
     name: "Laura M.",
     age: 19,
-    result: "APTO",
+    result: "APTO ✅",
     text: "Aprobé a la primera sin estudiar mil páginas. El método es brutal.",
     streak: "Racha x5",
   },
   {
     name: "Carlos R.",
     age: 21,
-    result: "APTO",
+    result: "APTO ✅",
     text: "Mi tutor me salvó. Llevaba 3 suspensos y con THEORIX aprobé directo.",
     streak: "Boss final ✓",
   },
   {
     name: "Ana S.",
     age: 18,
-    result: "APTO",
+    result: "APTO ✅",
     text: "Estudiar con vídeos es otro nivel. Nada que ver con leer PDFs aburridos.",
     streak: "Speedrun mode",
   },
@@ -51,86 +51,81 @@ export const TestimonialsSection = () => {
   }, []);
 
   return (
-    <>
-      <div className="py-3 py-md-5 position-relative overflow-hidden ">
-        <div className="position-absolute w-100 h-100 top-0 start-0 opacity-5">
-          <div className="position-absolute top-10 start-10 fs-0 text-primary">
-            *
+    <section className="py-24 px-6 bg-card/30 relative overflow-hidden">
+      {/* Background patterns */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-10 left-10 text-9xl text-primary">*</div>
+        <div className="absolute bottom-10 right-10 text-9xl text-secondary">X</div>
+      </div>
+
+      <div className="container mx-auto relative z-10">
+        {/* Stats hero */}
+        <div className="text-center mb-20">
+          <div className="inline-flex items-baseline gap-3 mb-6">
+            <span className="text-8xl md:text-9xl font-black text-primary neon-glow">
+              +{approvalRate}%
+            </span>
           </div>
-          <div className="position-absolute bottom-10 end-10 fs-0 text-secondary">
-            X
-          </div>
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
+            de alumnos aprueban a la primera
+          </h2>
+          <p className="text-xl text-muted-foreground">
+            Y tú serás el siguiente. Sin drama. <span className="text-primary">✓</span>
+          </p>
         </div>
 
-        <div className="container position-relative z-index-1">
-          <div className="text-center mb-5 mb-lg-5">
-            <div className="d-inline-flex align-items-baseline gap-3 mb-3">
-              <span className="display-1 fw-bold fw-black text-lima neon-glow">
-                +98%
-              </span>
-            </div>
-            <h2 className="display-6 fs-md-2 fw-black text-foreground mb-3">
-              de alumnos aprueban a la primera
-            </h2>
-            <p className=" text-muted-foreground">
-              Y tú serás el siguiente. Sin drama.{" "}
-              <span className="text-lima">✓</span>
-            </p>
-          </div>
-
-          <div className="row row-cols-1 row-cols-md-3 g-4 max-w-1000px mx-auto">
-            {testimonials.map((item,index) => (
-              <div className="col" key={index} >
-                <div className="testimonios rounded-4 p-4 p-md-5 border border-2 position-relative ">
-                
-                  <div className="d-flex align-items-start justify-content-between mb-4">
-                    <div>
-                      <h4 className="fs-5 fw-bold text-foreground">
-                        {item.name}
-                      </h4>
-                      <p className="text-muted-foreground small">{item.age}</p>
-                    </div>
-                    <div className="px-3 py-1 rounded-pill bg-lima text-black fw-bold small">
-                      {item.result}
-                    </div>
-                  </div>
-
-                  <blockquote className="text-foreground-90 lh-base mb-4 fst-italic">
-                    {item.text}
-                  </blockquote>
-
-                  <div className="d-flex align-items-center gap-2">
-                    <div className="flex-grow-1 custom-h-px bg-border"></div>
-                    <span className="small fw-bold text-secondary text-uppercase tracking-wider">
-                      {item.streak}
-                    </span>
-                  </div>
-
-                  <div className="position-absolute top-4 end-4 fs-1 opacity-0 custom-hover-check text-primary">
-                    ✓
-                  </div>
+        {/* Testimonials grid */}
+        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {testimonials.map((testimonial, index) => (
+            <div
+              key={index}
+              className="bg-background rounded-3xl p-8 border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--neon-glow)/0.2)] hover:-translate-y-1 group"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h4 className="text-lg font-bold text-foreground">
+                    {testimonial.name}
+                  </h4>
+                  <p className="text-sm text-muted-foreground">{testimonial.age} años</p>
+                </div>
+                <div className="px-3 py-1 rounded-full bg-primary text-primary-foreground text-sm font-black">
+                  {testimonial.result}
                 </div>
               </div>
-            ))}
-          </div>
 
-          <div className="text-center mt-5 mt-lg-5">
-            <div className="d-inline-flex align-items-center gap-3 px-4 py-3 rounded-4 border-lima">
-              <span className="fs-2">🎯</span>
-              <div className="text-start">
-                <p className="small fw-bold text-lima text-uppercase tracking-wider">
-                  Achievement Unlocked
-                </p>
-                <p className="text-foreground fw-semibold lh-sm">
-                  Tu APTO está más cerca de lo que piensas
-                </p>
+              {/* Quote */}
+              <blockquote className="text-foreground/90 leading-relaxed mb-4 italic">
+                "{testimonial.text}"
+              </blockquote>
+
+              {/* Badge */}
+              <div className="flex items-center gap-2">
+                <div className="h-px flex-1 bg-border"></div>
+                <span className="text-xs font-bold text-secondary uppercase tracking-wider">
+                  {testimonial.streak}
+                </span>
               </div>
+
+              {/* Hover decoration */}
+              <div className="absolute top-4 right-4 text-6xl opacity-0 group-hover:opacity-10 transition-opacity text-primary">
+                ✓
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom CTA */}
+        <div className="text-center mt-16">
+          <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-muted/50 border border-border">
+            <span className="text-4xl">🎯</span>
+            <div className="text-left">
+              <p className="text-sm font-bold text-primary uppercase tracking-wider">Achievement Unlocked</p>
+              <p className="text-foreground font-semibold">Tu APTO está más cerca de lo que piensas</p>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 };
-
-export default TestimonialsSection;

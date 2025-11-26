@@ -1,6 +1,6 @@
 "use client";
 import ButtonCheckout from "@/components/ButtonCheckout";
-import { getPlanDBForId, getUserAuthId } from "@/hooks/useSupabase";
+import { getPlanDBForId, getUserAuthId } from "@/lib/supabase";
 import {
   ArrowLeft,
   Check,

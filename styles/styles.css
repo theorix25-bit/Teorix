@@ -1,14 +1,14 @@
-/* custom-bootstrap.css */
 @import url('https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
 .grandstander {
     font-family: "Grandstander", cursive;
     font-optical-sizing: auto;
     font-style: normal;
 }
-*{
+
+* {
     box-sizing: border-box;
 }
 
@@ -30,142 +30,219 @@ button {
 
 }
 
-:root {
-    --color-lima-50: #a3d34a;
-    /* Colores base de tu paleta */
-    --color-lima: #C6FF5B;
-    --color-hoodie: #E6392D;
-    --color-carbon: #111111;
-    --color-marino: #0E2633;
-    --color-hielo: #F8F9FB;
+/* THEORIX Design System - All colors MUST be HSL */
 
-    /* 1. Asignación del Color Principal (Primary) */
-    /* Se usa para botones principales, enlaces, barras de navegación, etc. */
-    --bs-primary: var(--color-lima);
+@layer base {
+    :root {
+        /* THEORIX Color System */
+        --background: 0 0% 6.7%;
+        /* Carbon Black #111111 */
+        --foreground: 210 20% 98%;
+        /* Ice White #F8F9FB */
 
-    /* 2. Asignación del Color Secundario (Secondary) */
-    /* Usaremos el color marino o hoodie para un contraste */
-    --bs-secondary: var(--color-marino);
+        --card: 0 0% 10%;
+        --card-foreground: 210 20% 98%;
 
-    /* 3. Colores de Estado de Bootstrap */
-    /* Info (informativo) */
-    --bs-info: var(--color-marino);
-    /* Danger (peligro/error) */
-    --bs-danger: var(--color-hoodie);
-    /* Success (éxito/positivo) - Puedes usar lima */
-    --bs-success: var(--color-lima);
-    /* Warning (advertencia) */
-    --bs-warning: #FFC107;
-    /* Se mantiene un amarillo estándar para advertencia */
+        --popover: 0 0% 8%;
+        --popover-foreground: 210 20% 98%;
 
-    /* 4. Colores de Fondo y Texto */
-    /* Light (claro) - Se usa para tarjetas, fondos claros, etc. */
-    --bs-light: var(--color-hielo);
-    /* Dark (oscuro) - Se usa para barras de navegación oscuras, texto oscuro, etc. */
-    --bs-dark: var(--color-carbon);
-    --bs-body-bg: var(--color-carbon);
-    --bs-body-color: var(--color-hielo);
-}
+        /* Brand Colors */
+        --primary: 73 100% 67%;
+        /* Lime Neon #C6FF5B */
+        --primary-foreground: 0 0% 6.7%;
 
-/* Opcional: Ajuste para enlaces en fondo oscuro */
-a {
-    color: var(--bs-primary);
-    /* Los enlaces usarán el color lima */
-}
+        --secondary: 5 79% 55%;
+        /* Red Hoodie #E6392D */
+        --secondary-foreground: 210 20% 98%;
 
-/* Opcional: Clase de utilidad para el fondo carbon (si se necesita en un elemento) */
-.bg-carbon {
-    background-color: var(--color-carbon) !important;
-}
+        --muted: 200 70% 13%;
+        /* Dark Navy #0E2633 */
+        --muted-foreground: 210 15% 65%;
 
-.bg-lima {
-    background-color: var(--color-lima);
-}
+        --accent: 73 100% 67%;
+        /* Lime accent */
+        --accent-foreground: 0 0% 6.7%;
 
-/* Opcional: Clase de utilidad para el color lima como texto */
-.text-lima {
-    color: var(--color-lima) !important;
-}
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 20% 98%;
 
+        --border: 0 0% 15%;
+        --input: 0 0% 12%;
+        --ring: 73 100% 67%;
 
-.btn-theorix {
-    /* --bs-btn-color: var(--color-carbon) !important; */
-    /* --bs-btn-bg: var(--color-lima) !important; */
-    background-color: var(--color-lima) !important;
-    color: var(--color-carbon);
+        --radius: 1rem;
 
-    &:hover {
-        color: var(--color-carbon);
+        /* Custom THEORIX tokens */
+        --neon-glow: 73 100% 67%;
+        --neon-red: 5 79% 55%;
+        --carbon: 0 0% 6.7%;
+        --navy-deep: 200 70% 13%;
+        --ice: 210 20% 98%;
+
+        /* Gradients */
+        --gradient-hero: linear-gradient(135deg, hsl(var(--carbon)) 0%, hsl(var(--navy-deep)) 100%);
+        --gradient-neon: linear-gradient(90deg, hsl(var(--neon-glow)) 0%, hsl(var(--neon-red)) 100%);
+        --gradient-card: linear-gradient(145deg, hsl(0 0% 12%) 0%, hsl(0 0% 8%) 100%);
+
+        /* Shadows */
+        --shadow-neon: 0 0 20px hsl(var(--neon-glow) / 0.4), 0 0 40px hsl(var(--neon-glow) / 0.2);
+        --shadow-red: 0 0 20px hsl(var(--neon-red) / 0.4), 0 0 40px hsl(var(--neon-red) / 0.2);
+        --shadow-card: 0 12px 28px rgba(0, 0, 0, 0.25);
+        --shadow-brutal: 8px 8px 0px hsl(var(--neon-glow));
+
+        /* Sidebar */
+        --sidebar-background: 0 0% 8%;
+        --sidebar-foreground: 210 20% 98%;
+        --sidebar-primary: 73 100% 67%;
+        --sidebar-primary-foreground: 0 0% 6.7%;
+        --sidebar-accent: 0 0% 12%;
+        --sidebar-accent-foreground: 210 20% 98%;
+        --sidebar-border: 0 0% 15%;
+        --sidebar-ring: 73 100% 67%;
+
+        /* Animations */
+        --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    &:active {
-        color: var(--color-carbon)
+    .dark {
+        --background: 0 0% 6.7%;
+        --foreground: 210 20% 98%;
+        --card: 0 0% 10%;
+        --card-foreground: 210 20% 98%;
+        --popover: 0 0% 8%;
+        --popover-foreground: 210 20% 98%;
+        --primary: 73 100% 67%;
+        --primary-foreground: 0 0% 6.7%;
+        --secondary: 5 79% 55%;
+        --secondary-foreground: 210 20% 98%;
+        --muted: 200 70% 13%;
+        --muted-foreground: 210 15% 65%;
+        --accent: 73 100% 67%;
+        --accent-foreground: 0 0% 6.7%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 20% 98%;
+        --border: 0 0% 15%;
+        --input: 0 0% 12%;
+        --ring: 73 100% 67%;
+    }
+
+    * {
+        @apply border-border;
+    }
+
+    body {
+        @apply bg-background text-foreground font-sans antialiased;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        background-color: var(--carbon);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Orbitron', 'Inter', sans-serif;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
     }
 }
 
-.btn-outline-theorix {
-    color: var(--color-lima);
-    border: 1px solid var(--color-lima);
+@layer utilities {
+
+    /* Neon effects */
+    .neon-glow {
+        text-shadow: 0 0 10px hsl(var(--neon-glow)), 0 0 20px hsl(var(--neon-glow) / 0.5);
+    }
+
+    .neon-glow-red {
+        text-shadow: 0 0 10px hsl(var(--neon-red)), 0 0 20px hsl(var(--neon-red) / 0.5);
+    }
+
+    /* Animations */
+    .animate-pulse-glow {
+        animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+
+    .animate-spin-slow {
+        animation: spin 8s linear infinite;
+    }
+
+    .animate-blink {
+        animation: blink 3s ease-in-out infinite;
+    }
+
+    /* Gradient text */
+    .gradient-text {
+        background: var(--gradient-neon);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Hover effects */
+    .hover-lift {
+        transition: var(--transition-smooth);
+    }
+
+    .hover-lift:hover {
+        transform: translateY(-4px);
+    }
+
+    .hover-brutal {
+        transition: var(--transition-smooth);
+    }
+
+    .hover-brutal:hover {
+        box-shadow: var(--shadow-brutal);
+        transform: translate(-4px, -4px);
+    }
 }
 
+@keyframes pulse-glow {
 
-/* Navegacion y links */
-.nav-link {
-    color: var(--color-white);
-}
+    0%,
+    100% {
+        opacity: 1;
+        filter: drop-shadow(0 0 10px hsl(var(--neon-glow))) drop-shadow(0 0 20px hsl(var(--neon-glow) / 0.5));
+    }
 
-.nav-link:hover {
-    color: var(--color-lima);
-}
-
-.nav-link::checkmark {
-    color: white;
-}
-
-.nav-link:focus {
-    color: var(--color-lima);
+    50% {
+        opacity: 0.8;
+        filter: drop-shadow(0 0 20px hsl(var(--neon-glow))) drop-shadow(0 0 40px hsl(var(--neon-glow) / 0.7));
+    }
 }
 
-.active {
-    color: var(--color-lima);
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
-.border-lima {
-    border-color: transparent !important;
-    box-shadow: inset 1px 0px 11px 0px var(--color-lima);
-}
-.border-hoodie {
-    border-color: transparent !important;
-    box-shadow: inset 1px 0px 11px 0px var(--color-hoodie);
+@keyframes blink {
+
+    0%,
+    45%,
+    55%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
 }
 
-
-.form-control:focus {
-    border-color: var(--color-lima);
-    box-shadow: 0 0 0 0.08rem var(--color-lima);
-}
-
-.form-control::placeholder {
-    color: #f8f9fb71;
-    /* el color que quieras */
-    opacity: 1;
-    /* asegúrate de que no sea semitransparente */
-}
-
-.login,
-.sign-up {
-    max-width: 400px;
-    width: 100%;
-}
-
-.blog-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-.testimonios{
-    height: 100%;
-}
+@import "./asistente.css";
