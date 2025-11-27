@@ -107,6 +107,8 @@ const plans = [
       "1 microlección",
       "Acceso al método",
       "Sin tarjeta de crédito",
+      "Documentación",
+      "Videos iniciales"
     ],
     cta: "Empezar gratis",
     badge: null,
@@ -153,7 +155,7 @@ export const PricingSection = () => {
     <section className="py-10 px-6 relative overflow-hidden mt-3">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lima/5 rounded-full blur-3xl"></div>
 
-      <div className="container mx-auto relative z-10">
+      <div className="mx-auto relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-6xl font-black  mb-4">
             Elige tu <span className="text-lima">modo</span>
@@ -167,10 +169,10 @@ export const PricingSection = () => {
           {plans.map((plan, index) => (
             <div
               key={index}
-              className={`relative rounded-3xl p-8 border-2 transition-all duration-300 ${
-                plan.highlight
+              className={`relative flex flex-col justify-between rounded-3xl p-8 border-2 transition-all duration-300 ${
+                plan.highlight  
                   ? "border-hoodie bg-card shadow-[0_0_40px_hsl(var(--neon-red)/0.3)] md:-translate-y-4 md:scale-105"
-                  : "border-border bg-card/50 hover:border-lima/30"
+                  : "border bg-card/50 border-lima/50 hover:border-lima"
               }`}
             >
               {plan.badge && (
@@ -211,7 +213,7 @@ export const PricingSection = () => {
               <Link
                 href={"/"}
                 // variant={plan.highlight ? "speedrun" : plan.name === "Pro" ? "hero" : "outline"}
-                className={`w-full border px-3 rounded-md mx-auto block text-center py-2 bg-lima text-black font-extrabold `}
+                className={`w-full  px-3 rounded-md mx-auto block text-center py-2 ${plan.highlight? "bg-hoodie text-white":"bg-lima text-black "} font-extrabold `}
               >
                 {plan.cta} →
               </Link>

@@ -58,20 +58,20 @@ export const CommunitySection = () => {
         </div>
 
         {/* Posts grid (TikTok style) */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-w-5xl md:max-w-4xl mx-auto mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 max-w-5xl md:max-w-4xl mx-auto mb-12">
           {communityPosts.map((post, index) => (
             <div
               key={index}
-              className="group relative aspect-[4/5] md:aspect-square rounded-2xl bg-gradient-to-br from-muted/50 to-muted overflow-hidden border border-transparent hover:border-lima/50 transition-all duration-300 cursor-pointer hover:scale-105"
+              className="group relative w-38 md:aspect-square rounded-2xl bg-gradient-to-br from-muted/50 to-muted overflow-hidden border border-transparent hover:border-lima/50 transition-all duration-300 cursor-pointer hover:scale-105"
             >
               {/* Background pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/80 to-slate-800/40 backdrop-blur-sm"></div>
 
               {/* Content */}
-              <div className="relative h-full p-6 flex flex-col justify-between">
+              <div className="relative h-full p-2 md:p-6 flex flex-col justify-between">
                 {/* Category badge */}
                 <div className="self-start">
-                  <span className="px-3 py-1 rounded-full bg-lima/20 text-lima text-xs font-bold uppercase tracking-wider">
+                  <span className="rounded-full bg-lima/20 text-lima text-[10px] font-bold uppercase tracking-wider">
                     {post.category}
                   </span>
                 </div>
@@ -79,17 +79,17 @@ export const CommunitySection = () => {
                 {/* Bottom content */}
                 <div>
                   {/* Emoji */}
-                  <div className="text-5xl md:text-8xl mb-3 group-hover:scale-125 transition-transform">
+                  <div className="text-3xl md:text-8xl mb-3 group-hover:scale-125 text-center transition-transform">
                     {post.emoji}
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-foreground font-bold text-lg leading-tight mb-2 group-hover:text-lima transition-colors">
+                  <h3 className="text-foreground font-bold text-sm md:text-lg leading-tight mb-2 group-hover:text-lima transition-colors">
                     {post.title}
                   </h3>
 
                   {/* Views */}
-                  <p className="text-muted-foreground text-sm">
+                  <p className="text-muted-foreground text-[12px]">
                     👁️ {post.views} views
                   </p>
                 </div>

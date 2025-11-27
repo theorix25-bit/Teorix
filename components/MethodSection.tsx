@@ -95,7 +95,7 @@ export const MethodSection = () => {
         <div className="text-center mt-16">
           <Link
             href={"/clases"}
-            className="border px-4 py-3 text-lg md:text-2xl text-lima border-lima rounded-xl hover:bg-lima hover:text-black transition-colors duration-200"
+            className="border px-4 py-3 text-md md:text-2xl text-lima border-lima rounded-xl hover:bg-lima hover:text-black transition-colors duration-200"
           >
             Ver cómo funciona en detalle
           </Link>

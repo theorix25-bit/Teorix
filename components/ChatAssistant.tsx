@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import teo from "@/assets/teo.jpg";
+import teo from "@/assets/teo.png";
 import Image from "next/image";
 
 export default function ChatAssistant({
@@ -40,13 +40,13 @@ export default function ChatAssistant({
         alt=""
         src={teo}
         onClick={toggleChat}
-        className="fixed bottom-5 p-1 bg-white left-5 rounded-full w-14 cursor-pointer z-[100] transition-transform active:scale-90"
+        className="fixed bottom-5 left-0 w-20 md:w-28 cursor-pointer z-[100] transition-transform active:scale-80"
       />
 
       {open && (
         <div
           className={`fixed  ${
-            fullscreen ? "bottom-2 left-3" : "left-5 bottom-20"
+            fullscreen ? "bottom-2 left-3" : "left-5 bottom-24 md:bottom-32"
           } bg-white rounded-xl shadow-xl overflow-hidden z-[1500] transition-all
             ${
               fullscreen
