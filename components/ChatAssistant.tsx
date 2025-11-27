@@ -2,8 +2,14 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import teo from "@/assets/teo.jpg";
+import Image from "next/image";
 
-export default function ChatAssistant({urlAsistente}:{urlAsistente:string}) {
+export default function ChatAssistant({
+  urlAsistente,
+}: {
+  urlAsistente: string;
+}) {
   const [token, setToken] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
@@ -30,16 +36,23 @@ export default function ChatAssistant({urlAsistente}:{urlAsistente:string}) {
   return (
     <>
       {/* Botón flotante */}
-      <img
-        src="https://icons.veryicon.com/png/o/miscellaneous/jinfeng-information-technology/chat-118.png"
+      <Image
+        alt=""
+        src={teo}
         onClick={toggleChat}
-        className="fixed bottom-5 bg-lima rounded-full p-2 left-5 w-10 cursor-pointer z-[1001] transition-transform active:scale-90"
+        className="fixed bottom-5 p-1 bg-white left-5 rounded-full w-14 cursor-pointer z-[100] transition-transform active:scale-90"
       />
 
       {open && (
         <div
-          className={`fixed  ${fullscreen? "bottom-2 left-3": "left-5 bottom-20"} bg-white rounded-xl shadow-xl overflow-hidden z-[1500] transition-all
-            ${fullscreen ? "w-[97vw] h-[98vh] " : " w-[90vw] h-[80vh] lg:w-[30vw] lg:h-[75vh]"}`}
+          className={`fixed  ${
+            fullscreen ? "bottom-2 left-3" : "left-5 bottom-20"
+          } bg-white rounded-xl shadow-xl overflow-hidden z-[1500] transition-all
+            ${
+              fullscreen
+                ? "w-[97vw] h-[98vh] "
+                : " w-[90vw] h-[80vh] lg:w-[30vw] lg:h-[75vh]"
+            }`}
         >
           {token && (
             <div className="absolute top-2 right-2 flex gap-2 z-[1100]">
@@ -59,25 +72,36 @@ export default function ChatAssistant({urlAsistente}:{urlAsistente:string}) {
           )}
 
           {!token ? (
-            <div className="p-5 flex flex-col justify-between h-full">
+            <div className="p-5 pb-2 flex flex-col justify-between h-full">
               <div>
                 <h3 className="text-2xl font-bold mb-3">Hola Bienvenido</h3>
-                Inicia Sesión para usar el Asistente
+                <p className="text-md">
+                  Inicia Sesión y adquiere un plan para usar el Asistente
+                </p>
               </div>
-              <div className="flex gap-3 justify-center">
+              <div className="">
+                <div className="flex gap-3 justify-center">
+                  <Link
+                    href={"/auth/login"}
+                    onClick={() => setOpen(false)}
+                    className="border px-3 py-2 rounded-lg w-1/2 text-center"
+                  >
+                    Ingresar
+                  </Link>
+                  <Link
+                    href={"/auth/sign-up"}
+                    onClick={() => setOpen(false)}
+                    className="border px-3 py-2 rounded-lg w-1/2 text-center"
+                  >
+                    Registrarse
+                  </Link>
+                </div>
                 <Link
-                  href={"/auth/login"}
+                  href={"/#planes"}
+                  className=" float-end underline"
                   onClick={() => setOpen(false)}
-                  className="border px-3 py-2 rounded-lg w-1/2 text-center"
                 >
-                  Ingresar
-                </Link>
-                <Link
-                  href={"/auth/sign-up"}
-                  onClick={() => setOpen(false)}
-                  className="border px-3 py-2 rounded-lg w-1/2 text-center"
-                >
-                  Registrarse
+                  Ver planes
                 </Link>
               </div>
             </div>

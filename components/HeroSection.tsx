@@ -1,25 +1,19 @@
 import { Eye } from "lucide-react";
-// import heroBg from "@/assets/hero-bg.jpg";
+import heroBg from "@/assets/hero-bg.jpg";
 import Link from "next/link";
+import Image from "next/image";
 
 export const HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div
-        className="absolute inset-0 bg-cover bg-center"
-        // style={{ backgroundImage: `url(${heroBg})` }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-b from-background/95 via-background/80 to-background"></div>
-      </div>
-
-      <div className=" text-lima absolute top-20 left-10 text-6xl text-primary animate-spin-slow opacity-20">
+      <div className="absolute top-20 left-10 text-6xl text-lima animate-spin-slow opacity-20">
         *
       </div>
-      <div className=" text-white absolute top-40 right-20 text-8xl text-secondary animate-spin-slow opacity-20">
+      <div className="absolute top-40 right-2 md:right-20 text-8xl text-hoodie animate-spin-slow opacity-20">
         *
       </div>
-      <div className=" text-lima absolute bottom-32 left-1/4 text-5xl text-primary animate-pulse-glow opacity-30">
-        X
+      <div className="absolute bottom-32 left-5 text-8xl md:bottom-24 md:left-1/4 md:text-9xl text-lima animate-pulse-glow opacity-30">
+        *
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center">
@@ -42,38 +36,38 @@ export const HeroSection = () => {
 
         <p className="text-xl md:text-2xl text-white text-muted-foreground max-w-2xl mx-auto mb-12 font-medium">
           El teórico en modo{" "}
-          <span className="text-secondary font-bold">speedrun</span>. Tutor
-          real, método probado y cero drama.
+          <span className="text-hoodie font-bold">speedrun</span>. Tutor real,
+          método probado y cero drama.
         </p>
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link href={"/clases"} className="border border-lima rounded-xl px-2 py-3 text-white">
+          <Link
+            href={"/clases"}
+            className="border bg-lima border-lima rounded-xl px-2 py-3 text-black font-bold"
+          >
             Ver lecciones disponibles
-            <span className="ml-2 group-hover:animate-pulse">🔥</span>
           </Link>
           <Link
             href={"/clases"}
-            className=" bg-lima px-2 py-3 rounded-xl text-black"
+            className=" bg-hoodie px-2 py-3 rounded-xl text-white font-bold"
           >
             Quiero mi cheatcode
-            
-            <span className="ml-2 group-hover:animate-bounce">🚗</span>
           </Link>
         </div>
 
         {/* Social proof badge */}
-        <div className="mt-16 inline-flex items-center gap-2 px-4 py-3 rounded-full bg-card/50 backdrop-blur-sm border border-primary/20">
+        <div className="mt-16 inline-flex items-center gap-2 px-4 py-3 rounded-full bg-card/50 backdrop-blur-sm border border-lima/50">
           <div className="flex -space-x-2">
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-secondary border-2 border-background"
+                className="w-8 h-8 rounded-full bg-gradient-to-br from-lima to-hoodie border-2 border-black"
               ></div>
             ))}
           </div>
           <span className="text-sm font-semibold text-foreground">
-            +12.847 aprobados este año
+            +12.847 aprobados este año <span className="text-lima text-xl ml-2">✓</span>
           </span>
         </div>
       </div>

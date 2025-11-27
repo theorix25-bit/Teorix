@@ -9,7 +9,7 @@ export async function getUserDBForId(id: string) {
     .from("usuarios")
     .select("*")
     .eq("auth_id", id);
-  return { usuarios };
+  return usuarios || [];
   // NOTA REFACTORIZAR ESTA FUNCTION PARA QUE SOLO DEVUELVA USUARIOS SIN LOS {}
 }
 
@@ -42,6 +42,16 @@ export async function getPlansDB() {
   return sortedSuscripciones;
 }
 
+// FUNCIÓN PARA BUSCAR EL PLAN DE UN USUARIO
+export async function searchSusUser(sub: string): Promise<Subscription[]> {
+  const usuarios = await getUserDBForId(sub);
+  const id = usuarios[0].id;
+  const { data } = await supabase
+    .from("usuarios_suscripciones")
+    .select("*")
+    .eq("id", id);
+  return data ?? [];
+}
 // FUNCIÓN PARA ACTUALIZAR LA TABLA DE SUSCRIPCIONES EN LA BASE DE DATOS
 export async function upDateSusUser(
   id: String | undefined,
@@ -91,7 +101,7 @@ export async function updatePlanUser(
 ) {
   const usuario = await getUserDBForId(id!);
 
-  const idSubscription = usuario.usuarios && usuario.usuarios[0].id;
+  const idSubscription = usuario && usuario[0].id;
   const sus = await upDateSusUser(idSubscription, idPlan);
 }
 
@@ -269,7 +279,7 @@ export async function getBlogs() {
 
   return data;
 }
-export async function getBlog(slug:string) {
+export async function getBlog(slug: string) {
   const { data } = await supabase
     .from("blogs")
     .select("*")
@@ -278,4 +288,3 @@ export async function getBlog(slug:string) {
 
   return data;
 }
-

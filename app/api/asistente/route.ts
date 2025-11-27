@@ -1,17 +1,19 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import crypto from "crypto";
+import { searchSusUser } from "@/lib/supabase";
 
 export async function GET() {
 
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
-  const user = data?.claims;
+  const user = data?.claims!;
 
-  if (!user) {
-    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  const plan = await searchSusUser(user.sub)
+  const PlanPro = plan[0].suscripcion_id > 1
+  if (!user || !PlanPro) {
+    return NextResponse.json({ error: "Unauthenticated or unauthorized" }, { status: 401 });
   }
-
   const SECRET = process.env.NEXT_IFRAME_TOKEN_SECRET!;
   const payload = {
     userId: user.sub,
