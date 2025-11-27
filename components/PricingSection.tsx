@@ -22,7 +22,6 @@
 //           </p>
 //         </div>
 
-
 //         <div className="row g-3 px-5 ">
 //           {plans?.map((plan, index) => (
 //             <div
@@ -73,7 +72,7 @@
 //               </Link>
 
 //               {plan.highlight && (
-//                 <div className="absolute -bottom-2 -right-2 text-6xl opacity-10 text-secondary">
+//                 <div className="absolute -bottom-2 -right-2 text-6xl opacity-10 text-hoodie">
 //                   {/* ⚡ */}
 //                 </div>
 //               )}
@@ -117,7 +116,7 @@ const plans = [
     name: "Speedrun",
     price: "29€",
     description: "El más popular",
-    color: "secondary",
+    color: "hoodie",
     features: [
       "Acceso completo ilimitado",
       "Tutor personal asignado",
@@ -135,7 +134,7 @@ const plans = [
     name: "Pro",
     price: "49€",
     description: "Máximo acompañamiento",
-    color: "primary",
+    color: "lima",
     features: [
       "Todo de Speedrun +",
       "Sesiones 1-a-1 con tutor",
@@ -150,17 +149,16 @@ const plans = [
 ];
 
 export const PricingSection = () => {
-
   return (
-    <section className="py-24 px-6 bg-background relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl"></div>
+    <section className="py-10 px-6 relative overflow-hidden mt-3">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lima/5 rounded-full blur-3xl"></div>
 
       <div className="container mx-auto relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4">
-            Elige tu <span className="text-primary">modo</span>
+          <h2 className="text-4xl md:text-6xl font-black  mb-4">
+            Elige tu <span className="text-lima">modo</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl max-w-2xl mx-auto">
             Todos los planes incluyen el método THEORIX. Sin permanencia.
           </p>
         </div>
@@ -171,29 +169,23 @@ export const PricingSection = () => {
               key={index}
               className={`relative rounded-3xl p-8 border-2 transition-all duration-300 ${
                 plan.highlight
-                  ? "border-secondary bg-card shadow-[0_0_40px_hsl(var(--neon-red)/0.3)] md:-translate-y-4 md:scale-105"
-                  : "border-border bg-card/50 hover:border-primary/30"
+                  ? "border-hoodie bg-card shadow-[0_0_40px_hsl(var(--neon-red)/0.3)] md:-translate-y-4 md:scale-105"
+                  : "border-border bg-card/50 hover:border-lima/30"
               }`}
             >
               {plan.badge && (
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <div className="px-4 py-2 rounded-full bg-gradient-to-r from-secondary to-primary text-primary-foreground text-sm font-black uppercase tracking-wider shadow-lg">
+                  <div className="px-4 py-2 rounded-full bg-gradient-to-r from-hoodie to-lima text-lima-foreground text-sm font-black uppercase tracking-wider shadow-lg">
                     {plan.badge}
                   </div>
                 </div>
               )}
 
               <div className="text-center mb-8">
-                <h3 className="text-2xl font-black text-foreground mb-2">
-                  {plan.name}
-                </h3>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {plan.description}
-                </p>
+                <h3 className="text-2xl font-black mb-2">{plan.name}</h3>
+                <p className="text-sm mb-4">{plan.description}</p>
                 <div className="flex items-baseline justify-center gap-1">
-                  <span className="text-5xl font-black text-foreground">
-                    {plan.price}
-                  </span>
+                  <span className="text-5xl font-black ">{plan.price}</span>
                   {plan.price !== "0€" && (
                     <span className="text-muted-foreground">/mes</span>
                   )}
@@ -203,9 +195,12 @@ export const PricingSection = () => {
               <ul className="space-y-4 mb-8">
                 {plan.features.map((feature, idx) => (
                   <li key={idx} className="flex items-start gap-3">
-                    <Check className={`w-5 h-5 mt-0.5 ${
-                      plan.highlight ? "text-secondary" : "text-primary"
-                    }`} strokeWidth={3} />
+                    <Check
+                      className={`w-5 h-5 mt-0.5 ${
+                        plan.highlight ? "text-hoodie" : "text-lima"
+                      }`}
+                      strokeWidth={3}
+                    />
                     <span className="text-foreground/90 text-sm leading-tight">
                       {feature}
                     </span>
@@ -214,15 +209,15 @@ export const PricingSection = () => {
               </ul>
 
               <Link
-              href={"/"}
+                href={"/"}
                 // variant={plan.highlight ? "speedrun" : plan.name === "Pro" ? "hero" : "outline"}
-                className="w-full border px-3 rounded-md mx-auto block text-center py-2"
+                className={`w-full border px-3 rounded-md mx-auto block text-center py-2 bg-lima text-black font-extrabold `}
               >
                 {plan.cta} →
               </Link>
 
               {plan.highlight && (
-                <div className="absolute -bottom-2 -right-2 text-6xl opacity-10 text-secondary">
+                <div className="absolute -bottom-2 -right-2 text-6xl opacity-10 text-hoodie">
                   ⚡
                 </div>
               )}
@@ -232,7 +227,8 @@ export const PricingSection = () => {
 
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
-            Garantía de devolución 14 días • Cancela cuando quieras • Pago seguro 🔒
+            Garantía de devolución 14 días • Cancela cuando quieras • Pago
+            seguro 🔒
           </p>
         </div>
       </div>

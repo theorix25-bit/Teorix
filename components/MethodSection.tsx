@@ -33,10 +33,10 @@ export const MethodSection = () => {
   return (
     <section className="py-24 px-6 bg-background relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-lima/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-hoodie/5 rounded-full blur-3xl"></div>
 
-      <div className="container mx-auto relative z-10">
+      <div className=" px-2 mx-auto relative z-10">
         {/* Section header */}
         <div className="text-center mb-16">
           <div className="inline-block px-4 py-2 rounded-full bg-lima/10 border border-lima mb-4">
@@ -61,7 +61,7 @@ export const MethodSection = () => {
               className="group relative bg-zinc-900 rounded-3xl p-8 border border-transparent hover:border-lima/50 transition-all duration-300 hover:-translate-y-2"
             >
               {/* Step number */}
-              <div className="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-lima to-hoodie rounded-xl flex items-center justify-center text-2xl font-extrabold text-black shadow-lg">
+              <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-lima to-hoodie rounded-xl flex items-center justify-center text-2xl font-extrabold text-black shadow-lg">
                 {step.number}
               </div>
 
@@ -98,7 +98,6 @@ export const MethodSection = () => {
             className="border px-4 py-3 text-lg md:text-2xl text-lima border-lima rounded-xl hover:bg-lima hover:text-black transition-colors duration-200"
           >
             Ver cómo funciona en detalle
-            
           </Link>
         </div>
       </div>

@@ -39,39 +39,39 @@ const communityPosts = [
 
 export const CommunitySection = () => {
   return (
-    <section className="py-24 px-6 bg-card/20 relative overflow-hidden">
-      <div className="container mx-auto">
+    <section className="py-10 px-6 bg-card/20 relative overflow-hidden">
+      <div className=" mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-block px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-4">
-            <span className="text-secondary font-bold text-sm uppercase tracking-wider">
+          <div className="inline-block px-4 py-2 rounded-full bg-hoodie/10 border border-hoodie/20 mb-4">
+            <span className="text-hoodie font-bold text-sm uppercase tracking-wider">
               Comunidad & Tips
             </span>
           </div>
           <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4">
-            Examen <span className="text-primary">ON</span>. Drama{" "}
-            <span className="text-secondary">OFF</span>.
+            Examen <span className="text-lima">ON</span>. <br /> Drama{" "}
+            <span className="text-hoodie">OFF</span>.
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl max-w-2xl mx-auto">
             Trucos, consejos y contenido que realmente ayuda
           </p>
         </div>
 
         {/* Posts grid (TikTok style) */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl mx-auto mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-w-5xl md:max-w-4xl mx-auto mb-12">
           {communityPosts.map((post, index) => (
             <div
               key={index}
-              className="group relative aspect-[4/5] rounded-2xl bg-gradient-to-br from-muted/50 to-muted overflow-hidden border border-border hover:border-primary/50 transition-all duration-300 cursor-pointer hover:scale-105"
+              className="group relative aspect-[4/5] md:aspect-square rounded-2xl bg-gradient-to-br from-muted/50 to-muted overflow-hidden border border-transparent hover:border-lima/50 transition-all duration-300 cursor-pointer hover:scale-105"
             >
               {/* Background pattern */}
-              <div className="absolute inset-0 bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-sm"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/80 to-slate-800/40 backdrop-blur-sm"></div>
 
               {/* Content */}
               <div className="relative h-full p-6 flex flex-col justify-between">
                 {/* Category badge */}
                 <div className="self-start">
-                  <span className="px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-bold uppercase tracking-wider">
+                  <span className="px-3 py-1 rounded-full bg-lima/20 text-lima text-xs font-bold uppercase tracking-wider">
                     {post.category}
                   </span>
                 </div>
@@ -79,12 +79,12 @@ export const CommunitySection = () => {
                 {/* Bottom content */}
                 <div>
                   {/* Emoji */}
-                  <div className="text-5xl mb-3 group-hover:scale-125 transition-transform">
+                  <div className="text-5xl md:text-8xl mb-3 group-hover:scale-125 transition-transform">
                     {post.emoji}
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-foreground font-bold text-lg leading-tight mb-2 group-hover:text-primary transition-colors">
+                  <h3 className="text-foreground font-bold text-lg leading-tight mb-2 group-hover:text-lima transition-colors">
                     {post.title}
                   </h3>
 
@@ -96,19 +96,19 @@ export const CommunitySection = () => {
               </div>
 
               {/* Hover overlay */}
-              <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute inset-0 bg-lima/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
           ))}
         </div>
 
         {/* CTA */}
         <div className="text-center">
-          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-background border-2 border-primary/20 hover:border-primary/50 transition-all cursor-pointer group">
+          <div className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-background border-2 border-lima/20 hover:border-lima/50 transition-all cursor-pointer group">
             <span className="text-3xl group-hover:rotate-12 transition-transform">
               📱
             </span>
             <div className="text-left">
-              <p className="text-sm font-bold text-primary uppercase tracking-wider">
+              <p className="text-sm font-bold text-lima uppercase tracking-wider">
                 Únete al grupo
               </p>
               <p className="text-foreground font-semibold">
