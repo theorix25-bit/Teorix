@@ -2,7 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
+
   :root {
     /* THEORIX Color System */
     --background: 0 0% 6.7%;
@@ -151,4 +153,24 @@
       transform: translate(-4px, -4px);
     }
   }
+}
+
+
+.logo{
+  /* @apply font-umberto */
+  @apply font-luckiest
+}
+h1,
+h2{
+  @apply font-BOOMSTER
+  /* @apply font-monkeyboy */
+  /* @apply font-umberto */
+}
+
+p,a,li{
+  /* @apply font-tangosans */
+  /* @apply font-tommy */
+  @apply font-unageo
+  /* @apply font-tommy */
+  
 }

@@ -16,7 +16,7 @@ export default async function HeaderLayout() {
     <header className="text-white">
       <nav className="flex justify-between items-center p-4 max-w-6xl mx-auto">
         {/* Logo */}
-        <Link href="/" className="font-bold text-4xl">
+        <Link href="/" className="font-bold text-4xl logo text-lima">
           Teorix
           <span className="text-lima"> *</span>
         </Link>

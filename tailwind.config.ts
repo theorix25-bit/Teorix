@@ -26,8 +26,15 @@ export default {
         hielo: "#F8F9FB",
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Orbitron', 'Inter', 'sans-serif'],
+        luckiest: ["var(--font-luckiest)"],
+        BOOMSTER: ["var(--font-BOOMSTER)"],
+        tommy: ["var(--font-made_tommy)"],
+        umberto: ["var(--font-umberto)"],
+        tangosans: ["var(--font-tangosans)"],
+        unageo: ["var(--font-unageo)"],
+        monkeyboy: ["var(--font-monkeyboy)"]
+        
+
       },
       keyframes: {
         "accordion-down": {

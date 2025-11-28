@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
 import ChatAssistant from "@/components/ChatAssistant";
 import { searchSusUser } from "@/lib/supabase";
-
+import { fontvars } from "./fonts"; "./fonts";
 // Url
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -19,13 +18,7 @@ export const metadata: Metadata = {
   title: "THEORIX",
   description: "Vamos con Theo !!",
 };
-// Tipografía
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  display: "swap",
-  subsets: ["latin"],
-});
-
+// tipografia
 // Layout
 export default function RootLayout({
   children,
@@ -35,7 +28,8 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        className={`${geistSans.className} antialiased bg-carbon `}
+        // className={`${geistSans.className} antialiased bg-carbon `}
+        className={`$ ${fontvars} antialiased bg-carbon `}
         suppressHydrationWarning
       >
         <Header />

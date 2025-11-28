@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getUserDBForId, getUserAuthId } from "@/lib/supabase";
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
 import Clases from "@/components/Clases";
+import ClasesB from "@/components/ClasesB";
 
 const PageClases = () => {
   const [usuario, setUsuario] = useState<User | null>(null);
@@ -22,7 +23,7 @@ const PageClases = () => {
   }, []);
   if (loading) return <div className="text-center py-5">Cargando...</div>;
   {
-    return !usuario ? <RegistroCompletoUsuario userId={authId} /> : <Clases />;
+    return !usuario ? <RegistroCompletoUsuario userId={authId} /> : <ClasesB />;
   }
 
 };
