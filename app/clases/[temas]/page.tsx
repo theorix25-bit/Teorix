@@ -6,7 +6,6 @@ import { ArrowLeft, Image as ImageIcon, Menu, X } from "lucide-react";
 // import { Progress } from "@/components/ui/progress";
 import { useParams, useRouter } from "next/navigation";
 import { getDBTema, getDBTemaSlug } from "@/lib/supabase";
-import SkeletonClases from "@/components/skeleton/SkeletonClases";
 import { Progress } from "@/components/ui/progress";
 import slugify from "slugify";
 
