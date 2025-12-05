@@ -32,7 +32,7 @@ export const monkeyboy = localFont({
 });
 
 export const adumu = localFont({
-  src: [{path:"./adumu.ttf"}],
+  src: [{path:"./Adumu.ttf"}],
   variable: "--font-adumu"
 })
 
