@@ -355,7 +355,10 @@ const PageTema = () => {
       </div>
     </div>
   ) : (
-    <SkeletonClases />
+    // <SkeletonClases />
+    <>
+    
+    </>
   );
 };
 
