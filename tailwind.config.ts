@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fruity } from "./app/fonts";
 
 export default {
   darkMode: ["class"],
@@ -32,8 +33,10 @@ export default {
         umberto: ["var(--font-umberto)"],
         tangosans: ["var(--font-tangosans)"],
         unageo: ["var(--font-unageo)"],
-        monkeyboy: ["var(--font-monkeyboy)"]
-        
+        monkeyboy: ["var(--font-monkeyboy)"],
+        adumu: ["var(--font-adumu)"],
+        fruity:["var(--font-fruity)"],
+        kinder: ["var(--font-kinder)"]
 
       },
       keyframes: {

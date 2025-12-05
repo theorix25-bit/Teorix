@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+  import localFont from "next/font/local";
 
 export const luckiest = localFont({
   src: [{ path: "./LuckiestGuy-Regular.ttf", style: "italic", weight: " 900" }],
@@ -31,6 +31,19 @@ export const monkeyboy = localFont({
   variable: "--font-monkeyboy",
 });
 
+export const adumu = localFont({
+  src: [{path:"./adumu.ttf"}],
+  variable: "--font-adumu"
+})
+
+export const fruity = localFont({
+  src:[{path:"./Fruity Smoothie Font/Fruity Smoothie Font.otf"}],
+  variable:"--font-fruity"
+})
+export const kinder = localFont({
+  src:[{path:"./Kindergarten Krayon Font/KindergartenKrayon.otf"}],
+  variable:"--font-kinder"
+})
 export const fuentes = {
   tangosans,
   made_tommy,
@@ -38,7 +51,10 @@ export const fuentes = {
   BOOMSTER,
   umberto,
   unageo,
-  monkeyboy
+  monkeyboy,
+  adumu,
+  fruity,
+  kinder
 };
 
 export const fontvars = Object.values(fuentes)

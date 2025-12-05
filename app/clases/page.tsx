@@ -4,6 +4,7 @@ import { getUserDBForId, getUserAuthId } from "@/lib/supabase";
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
 import Clases from "@/components/Clases";
 import ClasesB from "@/components/ClasesB";
+import SkeletonClases from "@/components/skeleton/SkeletonClases";
 
 const PageClases = () => {
   const [usuario, setUsuario] = useState<User | null>(null);
@@ -21,7 +22,7 @@ const PageClases = () => {
     };
     fetchUsuario();
   }, []);
-  if (loading) return <div className="text-center py-5">Cargando...</div>;
+  if (loading) return <SkeletonClases />;
   {
     return !usuario ? <RegistroCompletoUsuario userId={authId} /> : <ClasesB />;
   }

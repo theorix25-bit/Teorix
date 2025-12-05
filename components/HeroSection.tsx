@@ -2,6 +2,7 @@ import { Eye } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import Link from "next/link";
 import Image from "next/image";
+import teo from "@/assets/image-removebg-preview.png"
 
 export const HeroSection = () => {
   return (
@@ -17,17 +18,14 @@ export const HeroSection = () => {
       </div>
 
       <div className="relative z-10 container mx-auto px-6 text-center">
-        <div className="flex justify-center mb-8">
-          <div className="relative top-6">
-            <Eye
-              className="w-24 h-24 text-lima animate-blink drop-shadow-[0_0_20px_hsl(var(--neon-glow))]"
-              strokeWidth={2}
-            />
-            <div className="absolute -inset-4 bg-lima/20 rounded-full blur-xl animate-pulse-glow"></div>
+        <div className="flex justify-center mb-0">
+          <div className="relative top-0">
+            <img src={teo.src} alt="" className="w-24 md:w-24" />
+            <div className="absolute -inset-4 rounded-full blur-xl "></div>
           </div>
         </div>
 
-        <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight font-titulo">
+        <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight">
           <span className="block text-foreground text-white">
             Estudia menos.
           </span>

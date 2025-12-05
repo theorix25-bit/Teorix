@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
 import ChatAssistant from "@/components/ChatAssistant";
 import { searchSusUser } from "@/lib/supabase";
@@ -10,7 +9,6 @@ const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
 
-const urlAsistente = process.env.NEXT_URL_ASISTENTE!;
 
 // Meta datos
 export const metadata: Metadata = {
@@ -34,8 +32,6 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <Footer />
-        <ChatAssistant urlAsistente={urlAsistente} />
       </body>
     </html>
   );

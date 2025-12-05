@@ -1,3 +1,4 @@
+import ChatAssistant from "@/components/ChatAssistant";
 import Link from "next/link";
 
 export default async function ProtectedLayout({
@@ -5,6 +6,7 @@ export default async function ProtectedLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const urlAsistente = process.env.NEXT_URL_ASISTENTE!;
   return (
     <>
       <div className=" max-w-6xl flex justify-end gap-3 text-white p-2 ">
@@ -25,6 +27,9 @@ export default async function ProtectedLayout({
         </span>
       </div>
       <div className="bg-carbon text-white">{children}</div>
+      <ChatAssistant urlAsistente={urlAsistente} />
+      
+
     </>
   );
 }

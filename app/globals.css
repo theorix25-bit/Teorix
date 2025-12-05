@@ -157,20 +157,29 @@
 
 
 .logo{
-  /* @apply font-umberto */
-  @apply font-luckiest
+  /* @apply font-adumu tracking-wider */
+  /* @apply font-fruity */
+  @apply font-sans
+  
+
 }
 h1,
-h2{
-  @apply font-BOOMSTER
-  /* @apply font-monkeyboy */
-  /* @apply font-umberto */
+h2,h3,h4,h5,h6{
+  /* @apply font-kinder */
+  @apply font-fruity
+  /* @apply font-adumu tracking-wider */
+
+
+
 }
 
-p,a,li{
-  /* @apply font-tangosans */
+body{
+  /* @apply font-fruity */
+  /* @apply font-kinder  */
+  @apply font-tangosans
   /* @apply font-tommy */
-  @apply font-unageo
-  /* @apply font-tommy */
+  /* @apply font-unageo tracking-wider
+   */
+
   
 }

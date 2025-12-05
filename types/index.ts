@@ -87,6 +87,13 @@ type TypeSignUp = {
   options: optionsSingUp;
 };
 
+type ViewType = "temas" | "usuarios" | "planes" | "videos" | "archivos" | "blogs";
+
+type NavItem = {
+  id: ViewType;
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  label: string;
+};
 type VimeoUrl =
   | `https://vimeo.com/${string}`
   | `https://player.vimeo.com/video/${string}`;
@@ -103,4 +110,38 @@ type Video = {
   language: string;
   height: number;
   embed: {};
+};
+
+type Clases_b = {
+  id: number;
+  titulo: String;
+  descripcion: string;
+  slug:string;
+  temas: Temas[];
+};
+
+type Temas = {
+  id: number;
+  clase_id: number;
+  titulo: string;
+  descripcion: string;
+  temas: SubTemas[];
+  completed: boolean
+  locked: boolean,
+  slug:string
+};
+
+type SubTemas = {
+  id: number;
+  titulo: String;
+  descripcion: string;
+  subtemas: string[];
+  preguntas: Preguntas[]
+};
+
+type Preguntas = {
+  id: number;
+  question: string;
+  yesCount: number;
+  noCount: number;
 };

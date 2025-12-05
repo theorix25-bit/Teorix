@@ -4,13 +4,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { sigUpUser } from "@/lib/supabase";
 
 export function SignUpForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const emailRedirectTo = `${process.env.NEXT_PUBLIC_URL}/clases`;
+  const emailRedirectTo = `${process.env.NEXT_PUBLIC_URL}clases`;
   const [repeatPassword, setRepeatPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -29,9 +28,17 @@ export function SignUpForm() {
       email,
       options: { data: { name }, emailRedirectTo },
       password,
+      makeAdmin: false
     };
     try {
-      const error = await sigUpUser(datosIngreso);
+      // const error = await sigUpUser(datosIngreso);
+      const res = await fetch("/api/create-user", {
+        method: "POST",
+        body: JSON.stringify(datosIngreso),
+      })
+      const data = await res.json()
+      console.log(data)
+
       if (error) throw error;
       router.push("/auth/sign-up-success");
     } catch (error: unknown) {
@@ -68,10 +75,7 @@ export function SignUpForm() {
 
             {/* Email */}
             <div className="mb-2">
-              <label
-                htmlFor="inputCorreo"
-                className="text-xl text-lima"
-              >
+              <label htmlFor="inputCorreo" className="text-xl text-lima">
                 Correo
               </label>
               <input
@@ -86,10 +90,7 @@ export function SignUpForm() {
             </div>
             {/* Contraseña */}
             <div className="mb-2">
-              <label
-                htmlFor="password"
-                className="text-xl text-lima"
-              >
+              <label htmlFor="password" className="text-xl text-lima">
                 Contraseña
               </label>
               <input
@@ -103,10 +104,7 @@ export function SignUpForm() {
               />
             </div>
             <div className="mb-3">
-              <label
-                htmlFor="repeat-password"
-                className="text-xl text-lima"
-              >
+              <label htmlFor="repeat-password" className="text-xl text-lima">
                 Repetir contraseña
               </label>
               <input

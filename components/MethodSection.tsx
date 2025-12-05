@@ -47,10 +47,10 @@ export const MethodSection = () => {
           <h2 className="text-4xl md:text-6xl font-black text-foreground mb-4">
             Cómo funciona
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h3 className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Tres pasos simples para tu{" "}
             <span className="text-lima font-bold">APTO</span>
-          </p>
+          </h3>
         </div>
 
         {/* Steps grid */}
@@ -78,9 +78,9 @@ export const MethodSection = () => {
               </div>
 
               {/* Content */}
-              <h3 className="text-2xl font-bold text-foreground mb-3 leading-tight">
+              <p className="text-2xl font-bold text-foreground mb-3 leading-tight">
                 {step.title}
-              </h3>
+              </p>
               <p className="text-muted-foreground leading-relaxed">
                 {step.description}
               </p>

@@ -52,7 +52,7 @@ export const CommunitySection = () => {
             Examen <span className="text-lima">ON</span>. <br /> Drama{" "}
             <span className="text-hoodie">OFF</span>.
           </h2>
-          <p className="text-xl max-w-2xl mx-auto">
+          <p className="text-xl max-w-2xl mx-auto font-adumu">
             Trucos, consejos y contenido que realmente ayuda
           </p>
         </div>
@@ -84,9 +84,9 @@ export const CommunitySection = () => {
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-foreground font-bold text-sm md:text-lg leading-tight mb-2 group-hover:text-lima transition-colors">
+                  <p className="text-foreground font-bold text-sm md:text-lg leading-tight mb-2 group-hover:text-lima transition-colors">
                     {post.title}
-                  </h3>
+                  </p>
 
                   {/* Views */}
                   <p className="text-muted-foreground text-[12px]">

@@ -1,4 +1,5 @@
 import { createClienteStripe } from "@/lib/stripe/client";
+import Stripe from "stripe";
 const stripe = createClienteStripe();
 
 export async function getAllPlans() {
@@ -32,4 +33,24 @@ export async function getLinkCheckOut(plan: PlanDB, userId: string) {
   window.location.href = url;
 }
 
+export async function updateProduct(priceId: string) {
+  return stripe.prices.update(priceId, {
+    active: false,
+  }); 
+}
+export async function updatePrice(
+  productId: string,
+  name: string,
+  price: number
+) {
+  
+  const newPrice = await stripe.prices.create({
+    product: productId,
+    unit_amount: price,
+    currency: "eur",
+    nickname: name,
+    recurring: { interval: "month" },
+  });
 
+  return newPrice;
+}

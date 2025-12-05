@@ -37,9 +37,10 @@ export default function ChatAssistant({
     <>
       {/* Botón flotante */}
       <Image
-        alt=""
+        alt="Teo"
         src={teo}
         onClick={toggleChat}
+        id="ChatTeo"
         className="fixed bottom-5 left-0 w-20 md:w-28 cursor-pointer z-[100] transition-transform active:scale-80"
       />
 

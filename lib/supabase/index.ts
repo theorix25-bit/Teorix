@@ -1,7 +1,17 @@
 import { createClient } from "@/lib/supabase/client";
 import { ParamValue } from "next/dist/server/request/params";
-import Stripe from "stripe";
+import { supabaseAdmin } from "./admin";
 const supabase = createClient();
+
+/**
+ * Traer todos los usuarios
+ */
+export async function getAllUser(): Promise<User[]> {
+  let { data: usuarios, error } = await supabase.from("usuarios").select("*");
+  console.log(usuarios)
+
+  return (usuarios || [])
+}
 
 // FUNCIÓN PARA TRAER LOS DATOS DE UN USUARIO DE LA BASE DE DATOS POR ID
 export async function getUserDBForId(id: string) {
@@ -114,7 +124,7 @@ export async function sigUpUser({
   },
   password,
 }: TypeSignUp) {
-  const { error } = await supabase.auth.signUp({
+  const { error, data } = await supabaseAdmin.auth.signUp({
     email,
     password,
     options: {
@@ -124,8 +134,23 @@ export async function sigUpUser({
       emailRedirectTo,
     },
   });
-  return error;
+
+  return { error, data };
 }
+
+export async function setAdminRole(userId: string) {
+  const { data, error } = await supabaseAdmin.auth.admin.updateUserById(
+    userId,
+    {
+      app_metadata: {
+        role: "admin",
+      },
+    }
+  );
+
+  return { data, error };
+}
+
 // FUNCIÓN PARA ELIMINAR TOTALMENTE EL USUARIO DE LA BASE DE DATOS
 export async function deleteUserInAuth(id: string) {
   const result = await supabase.auth.admin.deleteUser(id);
@@ -142,6 +167,67 @@ export async function uploadFileStorage(filePath: string, file: any) {
     .from("documents")
     .upload(filePath, file);
   return { data, error };
+}
+
+export async function getDBCarnetB<T>(): Promise<T[]> {
+  const { data, error } = await supabase.from("clases").select("*");
+  if (error || !data) {
+    console.error("Error al obtener carnet B:", error);
+    return [] as T[];
+  }
+  return (data || []) as T[];
+}
+export async function getDBTema<T>(claseId: number): Promise<T[]> {
+  const { data, error } = await supabase
+    .from("temas")
+    .select("*")
+    .eq("clase_id", claseId)
+    .order("id");
+
+  if (error || !data) {
+    console.error("Error al obtener carnet B:", error);
+    return [];
+  }
+  return data;
+}
+export async function getDBSubTema<T>(temaId: number): Promise<T[]> {
+  const { data, error } = await supabase
+    .from("subtemas")
+    .select("*")
+    .eq("tema_id", temaId)
+    .order("id");
+
+  if (error || !data) {
+    console.error("Error al obtener el sub Tema:", error);
+    return [];
+  }
+  return data;
+}
+export async function getDBTemaSlug<T>(slug: string): Promise<T> {
+  const { data, error } = await supabase
+    .from("clases")
+    .select("*, temas(*)")
+    .eq("slug", slug)
+    .single();
+
+  if (error || !data) {
+    console.error("Error al obtener el slug:", error);
+    // return [];
+  }
+  return data;
+}
+export async function getDBSubTemaSlug<T>(slug: string): Promise<T[]> {
+  let { data, error } = await supabase
+    .from("temas")
+    .select("*")
+    .eq("slug", slug);
+
+  if (error) {
+    console.error("Error al obtener el slug:", error);
+    return [] as T[];
+  }
+
+  return (data ?? []) as T[];
 }
 
 /* 

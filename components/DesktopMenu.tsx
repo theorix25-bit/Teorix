@@ -13,7 +13,7 @@ function DesktopMenu({
     <>
       <div className="hidden lg:flex items-center gap-6">
         {navigation.map((item) => (
-          <Link className="hover:text-lima" key={item.name} href={item.href}>
+          <Link className="hover:text-lima " key={item.name} href={item.href}>
             {item.name}
           </Link>
         ))}

@@ -62,14 +62,14 @@ export const TestimonialsSection = () => {
         {/* Stats hero */}
         <div className="text-center mb-20">
           <div className="inline-flex items-baseline gap-3 mb-6">
-            <span className="text-8xl md:text-9xl font-extrabold text-lima neon-glow">
+            <span className="text-8xl md:text-9xl font-extrabold text-lima neon-glow font-adumu tracking-widest">
               +{approvalRate}%
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
             de alumnos aprueban a la primera
           </h2>
-          <p className="text-xl text-muted-foreground">
+          <p className="text-xl text-muted-foreground font-adumu">
             Y tú serás el siguiente. Sin drama. <span className="text-lima">✓</span>
           </p>
         </div>
@@ -84,9 +84,9 @@ export const TestimonialsSection = () => {
               {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div>
-                  <h4 className="text-lg font-bold">
+                  <p className="text-lg font-bold">
                     {testimonial.name}
-                  </h4>
+                  </p>
                   <p className="text-sm text-muted-foreground">{testimonial.age} años</p>
                 </div>
                 <div className="px-3 py-1 rounded-full bg-lima text-carbon text-sm font-black">
