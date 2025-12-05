@@ -4,7 +4,7 @@ import { getUserDBForId, getUserAuthId } from "@/lib/supabase";
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
 import Clases from "@/components/Clases";
 import ClasesB from "@/components/ClasesB";
-import SkeletonClases from "@/components/skeleton/SkeletonClases";
+import SkeletonClases from "@/components/skeleton/skeletonClases";
 
 const PageClases = () => {
   const [usuario, setUsuario] = useState<User | null>(null);
