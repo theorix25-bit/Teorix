@@ -21,11 +21,15 @@ export default function UploadFile() {
     }
 
     // 2. Guardar en la tabla
-    const { error: errorDoc } = await updateTableDB("documents", {
-      title,
-      file_path: filePath,
-      is_public: isPublic,
-    });
+    const { error: errorDoc } = await updateTableDB(
+      "documents",
+      {
+        title,
+        file_path: filePath,
+        is_public: isPublic,
+      },
+      /* Parametro a corregir */ 2
+    );
 
     if (errorDoc) {
       console.log("Error al subir archivo");
