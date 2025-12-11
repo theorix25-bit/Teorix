@@ -3,8 +3,8 @@
  *  Tipado para los usuarios de la base de datos Supabase */ 
 type User = {
   id: number;
-  name: string;
-  lastName: string;
+  nombre: string;
+  apellido: string;
   zipcode: string;
   app_metadata:Role;
 };

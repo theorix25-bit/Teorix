@@ -43,7 +43,7 @@ const CardUser = ({ user, callback }: { user: User; callback: () => void }) => {
   const [loading, setLoading] = useState(true);
 
   const fetchUsers = async () => {
-    const res = await getUserDBForId(user.id);
+    const res = await getUserDBForId("16");
     console.log(res);
   };
 
