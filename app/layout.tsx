@@ -19,40 +19,39 @@ export const metadata: Metadata = {
   authors: [{ name: "Yvo", url: "https://theorix.vercel.app" }],
   creator: "THEORIX Team",
   publisher: "THEORIX",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      maxImagePreview: "large",
-      maxSnippet: -1,
-    }
-  },
-  openGraph: {
-  title: "THEORIX",
-  description: "Vamos con Theo!!",
-  url: "https://tu-dominio.com",
-  siteName: "THEORIX",
-  images: [
-    { url: "/og-image.png", width: 1200, height: 630 }
-  ],
-  locale: "es_AR",
-  type: "website",
-},
-twitter: {
-  card: "summary_large_image",
-  title: "THEORIX",
-  description: "Vamos con Theo!!",
-  images: ["/og-image.png"],
-  creator: "@tucuenta",
-},
-  icons: {
-    icon: [{ url: "/teo.png", type: "image/png", sizes: "32x32" }],
-  },
+
+//   robots: {
+//     index: true,
+//     follow: true,
+//     googleBot: {
+//       index: true,
+//       follow: true,
+//       maxImagePreview: "large",
+//       maxSnippet: -1,
+//     }
+//   },
+//   openGraph: {
+//   title: "THEORIX",
+//   description: "Vamos con Theo!!",
+//   url: "https://tu-dominio.com",
+//   siteName: "THEORIX",
+//   images: [
+//     { url: "/og-image.png", width: 1200, height: 630 }
+//   ],
+//   locale: "es_AR",
+//   type: "website",
+// },
+// twitter: {
+//   card: "summary_large_image",
+//   title: "THEORIX",
+//   description: "Vamos con Theo!!",
+//   images: ["/og-image.png"],
+//   creator: "@tucuenta",
+// },
+//   icons: {
+//     icon: [{ url: "/teo.png", type: "image/png", sizes: "32x32" }],
+//   },
 };
-// tipografia
-// Layout
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -61,7 +60,6 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        // className={`${geistSans.className} antialiased bg-carbon `}
         className={`$ ${fontvars} antialiased bg-carbon `}
         suppressHydrationWarning
       >
