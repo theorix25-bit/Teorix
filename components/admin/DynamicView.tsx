@@ -3,13 +3,13 @@ import Planes from "./views/Planes";
 import Videos from "./views/Videos";
 import Archivos from "./views/Archivos";
 import Blogs from "./views/Blogs";
-import Temas from "./views/Temas";
+import Temas from "./views/temas";
 import { JSX } from "react";
 
 
-export default function DynamicView({ view }: { view: ViewType }) {
-  const views: Record<ViewType, JSX.Element> = {
-    temas: <Temas />,
+export default function DynamicView({ view }: { view: ViewTypeAdmin }) {
+  const views: Record<ViewTypeAdmin, JSX.Element> = {
+    clases: <Temas />,
     usuarios: <Usuarios />,
     planes: <Planes />,
     videos: <Videos />,

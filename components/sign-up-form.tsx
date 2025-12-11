@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { setAdminRole } from "@/lib/supabase";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -14,6 +15,8 @@ export function SignUpForm() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+
+
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,13 +34,11 @@ export function SignUpForm() {
       makeAdmin: false
     };
     try {
-      // const error = await sigUpUser(datosIngreso);
       const res = await fetch("/api/create-user", {
         method: "POST",
         body: JSON.stringify(datosIngreso),
       })
       const data = await res.json()
-      console.log(data)
 
       if (error) throw error;
       router.push("/auth/sign-up-success");

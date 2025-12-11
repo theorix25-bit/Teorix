@@ -7,10 +7,10 @@ import Link from "next/link";
 import { useState } from "react";
 
 function page() {
-  const [activeView, setActiveView] = useState<ViewType>("temas");
+  const [activeView, setActiveView] = useState<ViewTypeAdmin>("clases");
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col h-[100dvh] ">
       <Header />
       <div className="flex-1 overflow-y-auto">
         <DynamicView view={activeView} />

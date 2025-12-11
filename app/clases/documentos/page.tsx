@@ -26,8 +26,16 @@ export default function page() {
   return (
     <>
       <div className="">
-        <img style={{ width: "250px" }} src={data} alt="" />
+        {/* <img style={{ width: "250px" }} src={data} alt="" /> */}
         {/* <iframe src={data} width="100%" height="690px"></iframe> */}
+
+        {/* <iframe
+          src="https://gamma.app/embed/j51hma66vuvskt3"
+          style={{ width: "100vw", maxWidth: "100%", height: "450px" }}
+          allow="fullscreen"
+          title="El Algoritmo"
+          className="px-4"
+        ></iframe> */}
       </div>
     </>
   );

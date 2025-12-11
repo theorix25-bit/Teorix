@@ -3,97 +3,11 @@ import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Image as ImageIcon, Menu, X } from "lucide-react";
-// import { Progress } from "@/components/ui/progress";
 import { useParams, useRouter } from "next/navigation";
 import { getDBTema, getDBTemaSlug } from "@/lib/supabase";
 import { Progress } from "@/components/ui/progress";
 import slugify from "slugify";
 
-// Mock data - esto se reemplazará con datos de Supabase
-// const topicsByType: Record<string, any> = {
-//   b: {
-//     name: "Carnet B",
-//     topics: [
-//       {
-//         id: 1,
-//         title: "temas 1",
-//         description:
-//           "Descripción completa Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-//         progress: 50,
-//         currentQuestion: 1,
-//         totalQuestions: 10,
-//         subTemas: [
-//           {
-//             id: 1,
-//             title: "Señales de Tráfico Fundamentales",
-//             description:
-//               "Aprende a identificar y comprender las señales básicas de tráfico",
-//             duration: "15 min",
-//             videoUrl: "https://www.youtube.com/watch?v=example1",
-//             completed: true,
-//             locked: false,
-//           },
-//           {
-//             id: 2,
-//             title: "Normas de Circulación Básicas",
-//             description: "Reglas fundamentales para circular con seguridad",
-//             duration: "20 min",
-//             videoUrl: "https://www.youtube.com/watch?v=example2",
-//             completed: true,
-//             locked: false,
-//           },
-//           {
-//             id: 3,
-//             title: "Prioridades y Cruces",
-//             description:
-//               "Cómo determinar quién tiene prioridad en diferentes situaciones",
-//             duration: "18 min",
-//             videoUrl: "https://www.youtube.com/watch?v=example3",
-//             completed: false,
-//             locked: false,
-//           },
-//           {
-//             id: 4,
-//             title: "Estacionamiento y Parada",
-//             description:
-//               "Reglas para estacionar correctamente y situaciones prohibidas",
-//             duration: "12 min",
-//             videoUrl: "https://www.youtube.com/watch?v=example4",
-//             completed: false,
-//             locked: true,
-//           },
-//           {
-//             id: 5,
-//             title: "Conducción Nocturna y Condiciones Adversas",
-//             description: "Técnicas para conducir de noche y con mal tiempo",
-//             duration: "22 min",
-//             videoUrl: "https://www.youtube.com/watch?v=example5",
-//             completed: false,
-//             locked: true,
-//           },
-//         ],
-//       },
-//       {
-//         id: 2,
-//         title: "temas 2",
-//         description: "Descripción del temas 2",
-//         progress: 30,
-//         currentQuestion: 1,
-//         totalQuestions: 10,
-//         subTemas: [],
-//       },
-//       {
-//         id: 3,
-//         title: "temas 3",
-//         description: "Descripción del temas 3",
-//         progress: 0,
-//         currentQuestion: 1,
-//         totalQuestions: 10,
-//         subTemas: [],
-//       },
-//     ],
-//   },
-// }
 
 const PageTema = () => {
   const { temas: slug } = useParams<{ temas: string }>();
@@ -116,7 +30,7 @@ const PageTema = () => {
     fetchData();
   }, []);
 
-  if (temas == undefined) {
+  if (!temas) {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center space-y-4">
@@ -362,3 +276,4 @@ const PageTema = () => {
 };
 
 export default PageTema;
+  

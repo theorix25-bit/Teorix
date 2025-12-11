@@ -15,7 +15,6 @@ export async function POST(req: Request) {
   let event: Stripe.Event;
 
   try {
-    console.log(endpointSecret);
     event = stripe.webhooks.constructEvent(body, sig, endpointSecret);
   } catch (err: any) {
     console.error("❌ Error verificando webhook", err.message);
@@ -28,6 +27,7 @@ export async function POST(req: Request) {
       const userId = session.metadata?.userId;
       const subscription_id = session.metadata?.planId;
       await updatePlanUser(userId, subscription_id);
+      console.log(`✅ Checkout session completed for user ${userId}`);
       break;
 
     default:

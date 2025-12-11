@@ -8,9 +8,10 @@ const supabase = createClient();
  */
 export async function getAllUser(): Promise<User[]> {
   let { data: usuarios, error } = await supabase.from("usuarios").select("*");
-  console.log(usuarios)
-
-  return (usuarios || [])
+  if (error) {
+    throw error;
+  }
+  return usuarios || [];
 }
 
 // FUNCIÓN PARA TRAER LOS DATOS DE UN USUARIO DE LA BASE DE DATOS POR ID
@@ -19,8 +20,9 @@ export async function getUserDBForId(id: string) {
     .from("usuarios")
     .select("*")
     .eq("auth_id", id);
+
+  if (error) throw error;
   return usuarios || [];
-  // NOTA REFACTORIZAR ESTA FUNCTION PARA QUE SOLO DEVUELVA USUARIOS SIN LOS {}
 }
 
 // FUNCIÓN PARA TRAER LOS DATOS DEL USUARIO EN SESIÓN ACTIVA
@@ -39,8 +41,103 @@ export async function getPlanDBForId(Name: ParamValue) {
   return suscripciones;
 }
 
+/**
+ * Traer todo el contenido
+ */
+export async function getAllContent() {
+  const { data: contenido, error: contenidoError } = await supabase
+    .from("contenido")
+    .select("*")
+    .order("orden", { ascending: true });
+
+  if (contenidoError) {
+    console.error("Error cargando contenido:", contenidoError);
+    throw contenidoError;
+  }
+  return contenido;
+}
+
+export async function getContentClases(): Promise<Clases_b[]> {
+  let { data, error } = await supabase
+    .from("contenido")
+    .select("*")
+    .eq("tipo", "clase");
+  if (error) return [];
+  return data || [];
+}
+
+/**
+ * traer el progreso del usuario
+ */
+export async function getUserProgress(userId: number) {
+  // 2. Traer el progreso del usuario SOLO para subtemas
+  const { data: progreso, error: progresoError } = await supabase
+    .from("progreso")
+    .select("*")
+    .eq("usuario_id", userId);
+
+  if (progresoError) {
+    console.error("Error cargando progreso:", progresoError);
+    throw progresoError;
+  }
+  return progreso || [];
+}
+
+/**
+ * Trae el progreso del usuario de filtrado por etapa
+ *  */
+
+export async function getProgress(userId: number) {
+  const contenido = await getAllContent();
+  const progreso = await getUserProgress(userId);
+  // Convertir progreso en un mapa para lookup rápido
+  const progresoMap = {} as any;
+  progreso.forEach((p) => {
+    progresoMap[p.contenido_id] = p;
+  });
+
+  // 3. Armar jerarquía: clases → temas → subtemas
+  const clases = contenido.filter((c) => c.tipo === "clase");
+
+  const result = clases.map((clase) => {
+    const temas = contenido.filter(
+      (t) => t.tipo === "tema" && t.padre_id === clase.id
+    );
+
+    const temasConProgreso = temas.map((tema) => {
+      const subtemas = contenido.filter(
+        (s) => s.tipo === "subtema" && s.padre_id === tema.id
+      );
+
+      const subtemasConProgreso = subtemas.map((sub) => ({
+        ...sub,
+        progreso: progresoMap[sub.id] || {
+          completado: false,
+          completado_en: null,
+        }, // si no existe, progreso = false
+      }));
+
+      return {
+        ...tema,
+        subtemas: subtemasConProgreso,
+        completado: subtemasConProgreso.every(
+          (s) => s.progreso.completado === true
+        ),
+      };
+    });
+
+    return {
+      ...clase,
+      temas: temasConProgreso,
+      completado: temasConProgreso.every((t) => t.completado === true),
+    };
+  });
+
+  return result;
+}
+
 // FUNCIÓN PARA TRAER TODOS LOS PLANES DE LA BASE DE DATOS
-export async function getPlansDB() {
+export async function getPlansDB() :Promise<PlanDetails[]> {
   let { data: suscripciones, error } = await supabase
     .from("suscripciones")
     .select("*");
@@ -49,17 +146,19 @@ export async function getPlansDB() {
     if (a.precio > b.precio) return 1;
     return 0;
   });
-  return sortedSuscripciones;
+  return sortedSuscripciones || [];
 }
 
 // FUNCIÓN PARA BUSCAR EL PLAN DE UN USUARIO
 export async function searchSusUser(sub: string): Promise<Subscription[]> {
   const usuarios = await getUserDBForId(sub);
+
   const id = usuarios[0].id;
   const { data } = await supabase
     .from("usuarios_suscripciones")
     .select("*")
     .eq("id", id);
+
   return data ?? [];
 }
 // FUNCIÓN PARA ACTUALIZAR LA TABLA DE SUSCRIPCIONES EN LA BASE DE DATOS
@@ -157,9 +256,16 @@ export async function deleteUserInAuth(id: string) {
   return result;
 }
 
-export async function updateTableDB(table: string, update: {}) {
-  const { error } = await supabase.from(table).insert(update);
-  return { error };
+export async function updateTableDB(table: string, update: {}, id: number) {
+  const { data, error } = await supabase
+    .from(table)
+    .update(update)
+    .eq("id", id);
+
+  if (error) {
+    return { error };
+  }
+  return { data };
 }
 // FUNCIÓN PARA SUBIR ARCHIVOS AL STORAGE
 export async function uploadFileStorage(filePath: string, file: any) {
@@ -170,6 +276,7 @@ export async function uploadFileStorage(filePath: string, file: any) {
 }
 
 export async function getDBCarnetB<T>(): Promise<T[]> {
+  // Debería recibir un id
   const { data, error } = await supabase.from("clases").select("*");
   if (error || !data) {
     console.error("Error al obtener carnet B:", error);

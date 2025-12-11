@@ -1,32 +1,37 @@
 "use client";
 import { useEffect, useState } from "react";
-import { getUserDBForId, getUserAuthId } from "@/lib/supabase";
+import {
+  getUserDBForId,
+  getUserAuthId,
+  getUserProgress,
+  getContentClases,
+} from "@/lib/supabase";
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
-import Clases from "@/components/Clases";
 import ClasesB from "@/components/ClasesB";
 import SkeletonClases from "@/components/skeleton/skeletonClases";
+import { useUser } from "@/hooks/useUser";
+import { useProgress } from "@/hooks/useProgress";
 
 const PageClases = () => {
-  const [usuario, setUsuario] = useState<User | null>(null);
-  const [authId, setAuthId] = useState<string | null | undefined>(null);
+  const { setUser, user, authId } = useUser();
+  const {setProgreso} = useProgress()
   const [loading, setLoading] = useState(true);
 
   // fetch data
+  const fetchUsuario = async () => {
+    setUser();
+    setLoading(false);
+    // setProgreso
+  };
   useEffect(() => {
-    const fetchUsuario = async () => {
-      const authId = await getUserAuthId();
-      const data = await getUserDBForId(authId);
-      setUsuario(data ? data[0] : null);
-      setAuthId(authId);
-      setLoading(false);
-    };
     fetchUsuario();
   }, []);
+
+  console.log("User in page clases:", user);
   if (loading) return <SkeletonClases />;
   {
-    return !usuario ? <RegistroCompletoUsuario userId={authId} /> : <ClasesB />;
+    return user.length == 0 ? <RegistroCompletoUsuario userId={authId} /> : <ClasesB />;
   }
-
 };
 
 export default PageClases;

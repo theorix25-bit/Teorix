@@ -156,30 +156,15 @@
 }
 
 
-.logo{
-  /* @apply font-adumu tracking-wider */
-  /* @apply font-fruity */
+.logo {
   @apply font-sans
-  
-
 }
+
 h1,
-h2,h3,h4,h5,h6{
-  /* @apply font-kinder */
+h2, h3, h4, h5, h6 {
   @apply font-fruity
-  /* @apply font-adumu tracking-wider */
-
-
-
 }
 
-body{
-  /* @apply font-fruity */
-  /* @apply font-kinder  */
+body {
   @apply font-tangosans
-  /* @apply font-tommy */
-  /* @apply font-unageo tracking-wider
-   */
-
-  
 }

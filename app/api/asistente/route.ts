@@ -8,8 +8,9 @@ export async function GET() {
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
   const user = data?.claims!;
-
+  
   const plan = await searchSusUser(user.sub)
+
   const PlanPro = plan[0].suscripcion_id > 1
   if (!user || !PlanPro) {
     return NextResponse.json({ error: "Unauthenticated or unauthorized" }, { status: 401 });

@@ -65,7 +65,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
               id="inputName"
               type="text"
               placeholder="Tu nombre"
-              className="w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              className=" text-black w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -81,7 +81,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
               id="lastName"
               type="text"
               placeholder="Tu apellido"
-              className="w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              className="text-black w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
@@ -97,7 +97,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
               id="zipcode"
               type="text"
               placeholder="Tu código postal"
-              className="w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              className=" text-black w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
               onChange={(e) => setZipcode(e.target.value)}
             />
           </div>

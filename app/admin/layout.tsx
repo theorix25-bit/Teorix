@@ -12,7 +12,7 @@ const menuAdmin = [
 function layoutAdmin({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <div className="text-white">
+      <div className="text-white flex flex-col h-[100dvh]">
         {children}
       </div>
       

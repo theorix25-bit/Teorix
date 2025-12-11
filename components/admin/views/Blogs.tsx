@@ -26,6 +26,9 @@ function SkeletonBlogs() {
           </div>
         </div>
 
+      
+      
+
         <div className="h-96 bg-zinc-800 animate-pulse"></div>
 
         <div className="flex justify-between">

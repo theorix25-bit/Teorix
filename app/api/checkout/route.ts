@@ -8,6 +8,7 @@ export async function POST(request: Request) {
   const { userId, stripeId, planId } = body;
   const stripe = createClienteStripe();
 
+  console.log(userId, stripeId, planId);
   const sesion = await stripe.checkout.sessions.create({
     mode: "subscription",
     payment_method_types: ["card"],
@@ -17,5 +18,6 @@ export async function POST(request: Request) {
     cancel_url: url,
   });
   console.log(sesion);
+  // return NextResponse.json({ url: "#" });
   return NextResponse.json({ url: sesion.url });
 }

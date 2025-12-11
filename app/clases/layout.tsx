@@ -7,6 +7,8 @@ export default async function ProtectedLayout({
   children: React.ReactNode;
 }) {
   const urlAsistente = process.env.NEXT_URL_ASISTENTE!;
+
+
   return (
     <>
       <div className=" max-w-6xl flex justify-end gap-3 text-white p-2 ">

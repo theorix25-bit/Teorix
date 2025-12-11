@@ -18,7 +18,7 @@ function ButtonCheckout({
     <>
       <button
         onClick={() => getLinkCheckOut(plan, userId)}
-        className="btn btn-theorix  btn-lg fw-bold px-5 py-3"
+        className=" text-md border rounded-md px-5 py-3 text-lima border-lima"
       >
         {children}
       </button>

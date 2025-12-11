@@ -1,7 +1,7 @@
 import { Home, Users, Play, Video, Archive, BookOpen } from "lucide-react";
 
 const items: NavItem[] = [
-  { id: "temas", icon: Home, label: "Temas" },
+  { id: "clases", icon: Home, label: "Clases" },
   { id: "usuarios", icon: Users, label: "Usuarios" },
   { id: "planes", icon: Play, label: "Planes" },
   { id: "videos", icon: Video, label: "Videos" },
@@ -9,9 +9,9 @@ const items: NavItem[] = [
   { id: "blogs", icon: BookOpen, label: "Blogs" }
 ];
 
-export default function BottomNav({ active, onChange }:{active:string,onChange:(id:ViewType)=> void}) {
+export default function BottomNav({ active, onChange }:{active:string,onChange:(id:ViewTypeAdmin)=> void}) {
   return (
-    <nav className="flex justify-around p-3 border-t bg-zinc-900">
+    <nav className="flex justify-around p-3  bg-zinc-900 sticky bottom-0 w-full">
       {items.map(({ id, icon: Icon, label }) => (
         <button
           key={id}

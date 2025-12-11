@@ -20,13 +20,13 @@ function page() {
   return (
     <>
       <div>
-        <p className="text-center">Pregunta N°{numero}</p>
-        <p className="fw-bold fs-5 text-center">{pregunta}</p>
-        <div className="row px-2 g-2">
+        <p className="">N°{numero}</p>
+        <p className="text-2xl text-center">{pregunta}</p>
+        <div className="flex gap-3 flex-wrap mt-4">
           {opciones.map((o, i) => (
             <button
               key={i}
-              className=" btn btn-theorix p-2"
+              className="w-full py-2 border border-lima rounded-md text-sm hover:bg-zinc-900 "
               onClick={() => evaluarRespuesta(i, correcta)}
               disabled={!stateExp}
             >
@@ -40,20 +40,26 @@ function page() {
             </button>
           ))}
         </div>
-        <button
-          disabled={stateExp}
-          className="btn btn-lg btn-outline-theorix mt-3 mx-auto "
-          style={{ display: stateExp ? "none" : "block" }}
-          onClick={() => setNum(num + 1)}
+        <div
+          className="flex mt-5 justify-end items-center"
+          style={{ display: stateExp ? "none" : "flex" }}
         >
-          Siguiente
-        </button>
-        <div className="p-4">
+          <p className="text-2xl text-center block w-fit ">
+            {res ? "Correcto" : "incorrecto"}
+          </p>
+
+          <button
+            disabled={stateExp}
+            className="px-3 py-2 rounded-md bg-lima text-black ml-5 "
+            onClick={() => setNum(num + 1)}
+          >
+            Siguiente
+          </button>
+        </div>
+
+        <div className="p-4 px-5">
           <div style={{ display: stateExp ? "none" : "block" }}>
-            <br />
-            <p className="display-5 text-center">
-              {res ? "Correcto" : "incorrecto"}
-            </p>
+            <p className="mb-2">Explicación:</p>
             <p>{explicacion}</p>
           </div>
         </div>

@@ -11,7 +11,7 @@ export async function getAllPlans() {
   return sortedPlanes;
 }
 
-export async function getPlanById(id: string) {
+export async function getPlanById(id: string)  {
   const plan = await stripe.prices.retrieve(id);
   return plan;
 }

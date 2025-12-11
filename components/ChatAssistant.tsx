@@ -18,7 +18,6 @@ export default function ChatAssistant({
     if (!open && !token) {
       const res = await fetch("/api/asistente");
       const data = await res.json();
-
       setToken(data.token);
     }
 
@@ -41,7 +40,7 @@ export default function ChatAssistant({
         src={teo}
         onClick={toggleChat}
         id="ChatTeo"
-        className="fixed bottom-5 left-0 w-20 md:w-28 cursor-pointer z-[100] transition-transform active:scale-80"
+        className="fixed bottom-5 left-[-20] hover:left-[-5] hover:scale-110 w-20 md:w-28 cursor-pointer z-[100] transition-all duration-100 active:scale-80"
       />
 
       {open && (
@@ -73,7 +72,7 @@ export default function ChatAssistant({
           )}
 
           {!token ? (
-            <div className="p-5 pb-2 flex flex-col justify-between h-full">
+            <div className="p-5 pb-2 flex flex-col justify-between h-full text-black">
               <div>
                 <h3 className="text-2xl font-bold mb-3">Hola Bienvenido</h3>
                 <p className="text-md">
