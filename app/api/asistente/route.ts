@@ -4,16 +4,21 @@ import crypto from "crypto";
 import { searchSusUser } from "@/lib/supabase";
 
 export async function GET() {
-
   const supabase = await createClient();
   const { data } = await supabase.auth.getClaims();
   const user = data?.claims!;
-  
-  const plan = await searchSusUser(user.sub)
 
-  const PlanPro = plan[0].suscripcion_id > 1
+  if (!user || !user.sub) {
+    return NextResponse.json({ error: "Unauthenticated" }, { status: 401 });
+  }
+  const plan = await searchSusUser(user.sub);
+
+  const PlanPro = plan[0].suscripcion_id > 1;
   if (!user || !PlanPro) {
-    return NextResponse.json({ error: "Unauthenticated or unauthorized" }, { status: 401 });
+    return NextResponse.json(
+      { error: "Unauthenticated or unauthorized" },
+      { status: 401 }
+    );
   }
   const SECRET = process.env.NEXT_IFRAME_TOKEN_SECRET!;
   const payload = {
@@ -22,9 +27,8 @@ export async function GET() {
     userMail: user.email,
     timestamp: Date.now(),
     nonce: crypto.randomBytes(16).toString("hex"),
-    domain: process.env.NEXT_PUBLIC_URL
+    domain: process.env.NEXT_PUBLIC_URL,
   };
-
 
   const header = { alg: "HS256", typ: "JWT", ver: "1.0" };
 
@@ -50,4 +54,3 @@ export async function GET() {
 
   return NextResponse.json({ token });
 }
-
