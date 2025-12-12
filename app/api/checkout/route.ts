@@ -5,7 +5,6 @@ const url = process.env.NEXT_PUBLIC_URL || "http://localhost:3000";
 
 export async function POST(request: Request) {
   const body: /* CheckoutBody */ any = await request.json();
-  console.log(body);
   const { userId, stripeId, planId, nombre, precio } = body;
   const stripe = createClienteStripe();
 
@@ -21,7 +20,7 @@ export async function POST(request: Request) {
           product_data: {
             name: nombre,
             images: [
-              "https://definicion.de/wp-content/uploads/2012/01/imagen-vectorial.png",
+              "https://theorix.vercel.app/Logo_Theorix.png",
             ],
           },
           unit_amount: precio * 100,

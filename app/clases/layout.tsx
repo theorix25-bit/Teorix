@@ -11,7 +11,7 @@ export default async function ProtectedLayout({
 
   return (
     <>
-      <div className=" max-w-6xl flex justify-end gap-3 text-white p-2 ">
+      {/* <div className=" max-w-6xl flex justify-end gap-3 text-white p-2 ">
         <span className="nav-item hover:text-lima">
           <Link href={"/clases/examen"} className="nav-link">
             Test
@@ -27,7 +27,7 @@ export default async function ProtectedLayout({
             Videos
           </Link>
         </span>
-      </div>
+      </div> */}
       <div className="bg-carbon text-white">{children}</div>
       <ChatAssistant urlAsistente={urlAsistente} />
       
