@@ -183,8 +183,8 @@ function page() {
                     <p>Volver a planes</p>
                   </Link>
 
-                  <div className="flex justify-center">
-                    <div className=" text-center">
+                  <div className="flex justify-center w-fit h-fit mx-auto">
+                    <div className=" text-center border rounded-lg p-6 border-lima ">
                       <h1 className="text-3xl font-bold mb-3 text-white">
                         Plan <span className="text-lima">{p.nombre}</span>
                       </h1>
@@ -203,25 +203,30 @@ function page() {
                       </div>
 
                       {/* CTA Principal */}
-                      {/* <ButtonCheckout userId={userId} plan={p}>
+                      <ButtonCheckout userId={userId} plan={p}>
                         {" "}
                         {p.cta}
-                      </ButtonCheckout> */}
-
+                      </ButtonCheckout>
+                      <h2 className="display-6 fw-bold mb-3 mt-3 text-white">
+                        ¿Listo para <span className="text-lima">aprobar</span>?
+                      </h2>
                       <p className="text-sm text-white mt-3">
                         Sin permanencia • Cancela cuando quieras
+                      </p>
+                      <p className="small text-secondary mt-3 text-white">
+                        Garantía de satisfacción 100% • Sin permanencia
                       </p>
                     </div>
                   </div>
                 </div>
               </section>
 
-              <section className="py-5 px-3 ">
+              {/* <section className="py-5 px-3 ">
                 <div className="container max-w-lg text-center">
                   <p className="fs-5 text-white ">{p.descripción}</p>
                 </div>
-              </section>
-              
+              </section> */}
+
               {/* <section className="py-5 py-md-5 px-3">
                 <div className="">
                   <h2 className="text-3xl font-bold text-center mb-5 text-white">
@@ -251,7 +256,7 @@ function page() {
                 </div>
               </section> */}
 
-              <section className="py-5 py-md-5 px-3 border-top">
+              {/* <section className="py-5 py-md-5 px-3 border-top">
                 <div className="container text-center">
                   <div className="row justify-content-center">
                     <div className="col-lg-8">
@@ -262,12 +267,12 @@ function page() {
                         Únete a miles de estudiantes que ya aprobaron con
                         THEORIX
                       </p>
-                      {/* <button
+                      <button
                       className={`btn btn-primary btn-lg fw-bold px-5 py-3 shadow-lg`}
                       onClick={() => console.log("Checkout Final:", p.nombre)}
                     >
                       {p.cta}
-                    </button> */}
+                    </button>
                       <ButtonCheckout userId={userId} plan={p}>
                         {" "}
                         Comprar
@@ -278,7 +283,7 @@ function page() {
                     </div>
                   </div>
                 </div>
-              </section>
+              </section> */}
             </div>
           ))}
         </ul>
