@@ -25,7 +25,8 @@ export async function POST(req: Request) {
     case "checkout.session.completed":
       const session = event.data.object as Stripe.Checkout.Session;
       const userId = session.metadata?.userId;
-      const subscription_id = session.metadata?.planId;
+      const subscription_id = Number(session.metadata?.planId);
+      console.log(userId, subscription_id);
       // await updatePlanUser(userId, subscription_id);
       console.log(`
         |

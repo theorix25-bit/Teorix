@@ -1,28 +1,25 @@
 "use client";
 import ButtonCheckout from "@/components/ButtonCheckout";
+import { useUser } from "@/hooks/useUser";
 import { getAllPlans, getPlanById } from "@/lib/stripe";
-import { getUserAuthId, getPlanDBForId } from "@/lib/supabase";
+import { getUserAuthId, searchSusUser, updatePlanUser, upDateSusUser } from "@/lib/supabase";
+import { get } from "http";
 import { useEffect, useState } from "react";
 
 function page() {
-  const [plan, setPlan] = useState<any>([]);
-  const [userId, setUserId] = useState<string>();
-
   const fetchData = async () => {
-    const plans = await getAllPlans();
-    setPlan(plans[1]);
-    const Auth = await getUserAuthId();
-    console.log(plans);
-    Auth && setUserId(Auth);
+    const userId = await getUserAuthId();
+    const sus = await searchSusUser(userId);
+    const res = await upDateSusUser(sus[0].usuario_id, 1);
+    console.log(res)
   };
 
   useEffect(() => {
     fetchData();
-    console.log(userId);
   }, []);
   return (
     <div className="text-white flex justify-center items-center mt-20 ">
-   <ButtonCheckout plan={plan} userId={userId}> Ir a pagar</ButtonCheckout>
+      <pre>hola devo</pre>
     </div>
   );
 }

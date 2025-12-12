@@ -15,7 +15,7 @@ export async function getAllUser(): Promise<User[]> {
 }
 
 // FUNCIÓN PARA TRAER LOS DATOS DE UN USUARIO DE LA BASE DE DATOS POR ID
-export async function getUserDBForId(id: string) {
+export async function getUserDBForId(id: string | undefined) {
   let { data: usuarios, error } = await supabase
     .from("usuarios")
     .select("*")
@@ -137,7 +137,7 @@ export async function getProgress(userId: number) {
 }
 
 // FUNCIÓN PARA TRAER TODOS LOS PLANES DE LA BASE DE DATOS
-export async function getPlansDB() :Promise<PlanDetails[]> {
+export async function getPlansDB(): Promise<PlanDetails[]> {
   let { data: suscripciones, error } = await supabase
     .from("suscripciones")
     .select("*");
@@ -150,28 +150,23 @@ export async function getPlansDB() :Promise<PlanDetails[]> {
 }
 
 // FUNCIÓN PARA BUSCAR EL PLAN DE UN USUARIO
-export async function searchSusUser(sub: string): Promise<Subscription[]> {
+export async function searchSusUser(sub: string | undefined): Promise<Subscription[]> {
   const usuarios = await getUserDBForId(sub);
-
   const id = usuarios[0].id;
   const { data } = await supabase
     .from("usuarios_suscripciones")
     .select("*")
-    .eq("id", id);
+    .eq("usuario_id", id);
 
   return data ?? [];
 }
 // FUNCIÓN PARA ACTUALIZAR LA TABLA DE SUSCRIPCIONES EN LA BASE DE DATOS
-export async function upDateSusUser(
-  id: String | undefined,
-  plan: number | string | undefined
-) {
+export async function upDateSusUser(usuario_id: number, numberPlan: number) {
   const { data, error } = await supabase
     .from("usuarios_suscripciones")
-    .update({ suscripcion_id: plan })
-    .eq("id", id)
+    .update({ suscripcion_id: numberPlan })
+    .eq("usuario_id", usuario_id)
     .select();
-  console.log(data);
   return data;
 }
 
@@ -204,15 +199,12 @@ export async function setErrorLog({
 }
 
 // FUNCIÓN PARA ACTUALIZAR EL PLAN DE UN USUARIO
-export async function updatePlanUser(
-  id: string | undefined,
-  idPlan: number | string | undefined
-) {
-  const usuario = await getUserDBForId(id!);
+export async function updatePlanUser(id: string | undefined , idPlan: number) {
+  // const usuario = await getUserDBForId(id);
+  // const idSubscription = usuario && usuario[0].id;
+  const usuario = await searchSusUser(id);
 
-  const idSubscription = usuario && usuario[0].id;
-  const sus = await upDateSusUser(idSubscription, idPlan);
-  
+  const sus = await upDateSusUser(usuario[0].usuario_id, idPlan);
 }
 
 // FUNCIÓN PARA AUTENTICAR NUEVOS USUARIOS
