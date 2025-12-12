@@ -26,19 +26,12 @@ export async function POST(req: Request) {
       const session = event.data.object as Stripe.Checkout.Session;
       const userId = session.metadata?.userId;
       const subscription_id = Number(session.metadata?.planId);
-      console.log(userId, subscription_id);
-      // await updatePlanUser(userId, subscription_id);
-      console.log(`
-        |
-        |
-        |
-        |
-        ✅ Checkout session completed for user ${userId}
-        |
-        |
-        |
-        |
-        `);
+      const { data ,error} = await updatePlanUser(userId, subscription_id);
+      if (error) {
+        console.log("Error updating user plan:", error);
+      } else {
+        console.log("User plan updated successfully:", data);
+      }
       break;
 
     default:

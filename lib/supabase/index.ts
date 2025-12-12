@@ -150,7 +150,9 @@ export async function getPlansDB(): Promise<PlanDetails[]> {
 }
 
 // FUNCIÓN PARA BUSCAR EL PLAN DE UN USUARIO
-export async function searchSusUser(sub: string | undefined): Promise<Subscription[]> {
+export async function searchSusUser(
+  sub: string | undefined
+): Promise<Subscription[]> {
   const usuarios = await getUserDBForId(sub);
   const id = usuarios[0].id;
   const { data } = await supabase
@@ -167,7 +169,7 @@ export async function upDateSusUser(usuario_id: number, numberPlan: number) {
     .update({ suscripcion_id: numberPlan })
     .eq("usuario_id", usuario_id)
     .select();
-  return data;
+  return { data, error };
 }
 
 // FUNCIÓN PARA ELIMINAR UN USUARIO DE LA TABLA DE USUARIOS
@@ -199,12 +201,10 @@ export async function setErrorLog({
 }
 
 // FUNCIÓN PARA ACTUALIZAR EL PLAN DE UN USUARIO
-export async function updatePlanUser(id: string | undefined , idPlan: number) {
-  // const usuario = await getUserDBForId(id);
-  // const idSubscription = usuario && usuario[0].id;
+export async function updatePlanUser(id: string | undefined, idPlan: number) {
   const usuario = await searchSusUser(id);
-
-  const sus = await upDateSusUser(usuario[0].usuario_id, idPlan);
+  const res = await upDateSusUser(usuario[0].usuario_id, idPlan);
+  return res;
 }
 
 // FUNCIÓN PARA AUTENTICAR NUEVOS USUARIOS
