@@ -212,6 +212,7 @@ export async function updatePlanUser(
 
   const idSubscription = usuario && usuario[0].id;
   const sus = await upDateSusUser(idSubscription, idPlan);
+  
 }
 
 // FUNCIÓN PARA AUTENTICAR NUEVOS USUARIOS
