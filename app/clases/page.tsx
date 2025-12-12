@@ -14,7 +14,7 @@ import { useProgress } from "@/hooks/useProgress";
 
 const PageClases = () => {
   const { setUser, user, authId } = useUser();
-  const {setProgreso} = useProgress()
+  const { setProgreso } = useProgress();
   const [loading, setLoading] = useState(true);
 
   // fetch data
@@ -27,11 +27,22 @@ const PageClases = () => {
     fetchUsuario();
   }, []);
 
-  console.log("User in page clases:", user);
   if (loading) return <SkeletonClases />;
   {
-    return user.length == 0 ? <RegistroCompletoUsuario userId={authId} /> : <ClasesB />;
+    return user.length == 0 ? (
+      <RegistroCompletoUsuario userId={authId} />
+    ) : (
+      <ClasesB />
+    );
   }
+
+  // return loading ? <SkeletonClases /> : (
+  // <>
+  //   <div>
+  //     <h1 className="text-4xl text-center font-bold mt-5">Bienvenido a Theorix tu Asisstente personal </h1>
+
+  //   </div>
+  // </>)
 };
 
 export default PageClases;

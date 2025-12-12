@@ -21,7 +21,6 @@ export async function POST(req: Request) {
         { name: title || file.name },
         (uri: string) => resolve(uri),
         (bytesUploaded: number, bytesTotal: number) => {
-          console.log(`Progreso: ${((bytesUploaded / bytesTotal) * 100).toFixed(2)}%`);
         },
         (error: any) => reject(error)
       );

@@ -17,9 +17,12 @@ export async function getPlanById(id: string)  {
 }
 
 export async function getLinkCheckOut(plan: PlanDB, userId: string) {
+  
   const res = await fetch("/api/checkout", {
     method: "POST",
     body: JSON.stringify({
+      nombre: plan.nombre,
+      precio: plan.precio,
       userId: userId,
       planId: plan.id,
       stripeId: plan.id_producto_stripe,

@@ -23,8 +23,6 @@ const PageTema = () => {
       const resTemas = await getDBTema<Temas>(resClases.id);
       setCarnet(resClases);
       setTemas(resTemas);
-      console.log("Clases", resClases);
-      console.log("Temas", resTemas);
       setLoading(true);
     };
     fetchData();

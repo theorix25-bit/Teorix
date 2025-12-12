@@ -51,7 +51,8 @@ export async function updateSession(request: NextRequest) {
   const publicRoutes = ["/", "/login", "/auth", "/success", "/blog"];
   const adminRoutes = ["/admin"];
 
-  const isPublic = publicRoutes.some((r) => path.startsWith(r));
+  // const isPublic = publicRoutes.some((r) => path.startsWith(r));
+  const isPublic = publicRoutes.some((r) => (r === "/" ? path === "/" : path.startsWith(r)));
   const idAdminRoute = adminRoutes.some((r) => path.startsWith(r));
 
   const role = data?.claims.app_metadata?.role;

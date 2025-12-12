@@ -18,7 +18,6 @@ export async function POST(req: Request) {
     },
     password,
   });
-  console.log(error);
   if (error)
     return Response.json(
       { error, message: "No se logro crear el usuario" },

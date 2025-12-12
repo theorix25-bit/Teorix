@@ -9,8 +9,8 @@ function ButtonCheckout({
   children,
 }: {
   userId?: string;
-  children: React.ReactNode;
   plan: PlanDB;
+  children: React.ReactNode;
 }) {
   if (userId == undefined) return null;
 

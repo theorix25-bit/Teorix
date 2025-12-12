@@ -17,6 +17,7 @@ const Lessons = () => {
   
   useEffect(() => {
     const fetchData = async () => {
+      
       setClases();
       setProgreso()
     };
