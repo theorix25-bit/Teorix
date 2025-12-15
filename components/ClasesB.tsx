@@ -4,22 +4,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Image as ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
-import { useUser } from "@/hooks/useUser";
 import { useContent } from "@/hooks/useContent";
 import { getAllContent } from "@/lib/supabase";
-import { useProgress } from "@/hooks/useProgress";
+import { useUserStore } from "@/hooks/useUseStore";
 
 const Lessons = () => {
   // const [temas, setTemas] = useState<any>();
-  const { user } = useUser();
+
   const { clases, temas, setClases } = useContent();
-  const { setProgreso, progress } = useProgress();
   const [state, setState] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       setClases();
-      setProgreso();
     };
     fetchData();
   }, []);

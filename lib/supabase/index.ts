@@ -32,11 +32,11 @@ export async function getUserAuthId() {
 }
 
 // FUNCIÓN PARA TRAER UN PLAN POR ID ESPECIFICO
-export async function getPlanDBForId(Name: ParamValue) {
+export async function getPlanDBForId(link: ParamValue) {
   let { data: suscripciones, error } = await supabase
     .from("suscripciones")
     .select("*")
-    .eq("link", Name);
+    .eq("link", link);
 
   return suscripciones;
 }
@@ -151,17 +151,28 @@ export async function getPlansDB(): Promise<PlanDetails[]> {
 
 // FUNCIÓN PARA BUSCAR EL PLAN DE UN USUARIO
 export async function searchSusUser(
-  sub: string | undefined
+  AuthId: string | undefined
 ): Promise<Subscription[]> {
-  const usuarios = await getUserDBForId(sub);
-  const id = usuarios[0].id;
   const { data } = await supabase
     .from("usuarios_suscripciones")
     .select("*")
-    .eq("usuario_id", id);
+    .eq("usuario_id", AuthId);
 
   return data ?? [];
 }
+
+/**
+ * FUNCIÓN PARA TRAER EL PLAN DE UN USUARIO POR SU ID DE LA TABLA usuarios_suscripciones
+ * @property {number} id
+ * @return Subscription[] 
+
+ */
+export async function getPlanUser(id:number) {
+  const { data } = await supabase.from("usuarios_suscripciones").select("*").eq("usuario_id", id);
+
+  return data ?? [];
+}
+
 // FUNCIÓN PARA ACTUALIZAR LA TABLA DE SUSCRIPCIONES EN LA BASE DE DATOS
 export async function upDateSusUser(usuario_id: number, numberPlan: number) {
   const { data, error } = await supabase

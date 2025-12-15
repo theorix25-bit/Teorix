@@ -48,7 +48,7 @@ export async function updateSession(request: NextRequest) {
   const user = data?.claims;
 
   const path = request.nextUrl.pathname;
-  const publicRoutes = ["/", "/login", "/auth", "/success", "/blog"];
+  const publicRoutes = ["/", "/login", "/auth", "/success", "/blog","/api"];
   const adminRoutes = ["/admin"];
 
   // const isPublic = publicRoutes.some((r) => path.startsWith(r));

@@ -1,9 +1,9 @@
 "use client";
-
 import Link from "next/link";
 import { useState } from "react";
 import teo from "@/assets/teo.png";
 import Image from "next/image";
+import { useUserStore } from "@/hooks/useUseStore";
 
 export default function ChatAssistant({
   urlAsistente,
@@ -13,10 +13,18 @@ export default function ChatAssistant({
   const [token, setToken] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+  const { plan, user, loading } = useUserStore();
+
+  const body = user ? { user, plan } : {};
 
   const toggleChat = async () => {
     if (!open && !token) {
-      const res = await fetch("/api/asistente");
+      const res = await fetch("/api/asistente", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
       const data = await res.json();
       setToken(data.token);
     }
@@ -32,7 +40,9 @@ export default function ChatAssistant({
     setOpen(false);
     setFullscreen(false);
   };
-  return (
+  return loading ? (
+    ""
+  ) : (
     <>
       {/* Botón flotante */}
       <Image

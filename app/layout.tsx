@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import ChatAssistant from "@/components/ChatAssistant";
 import { searchSusUser } from "@/lib/supabase";
 import { fontvars } from "./fonts";
+import { UseProviders } from "@/providers/UserProvider";
 ("./fonts");
 // Url
 const defaultUrl = process.env.VERCEL_URL
@@ -20,37 +21,37 @@ export const metadata: Metadata = {
   creator: "THEORIX Team",
   publisher: "THEORIX",
 
-//   robots: {
-//     index: true,
-//     follow: true,
-//     googleBot: {
-//       index: true,
-//       follow: true,
-//       maxImagePreview: "large",
-//       maxSnippet: -1,
-//     }
-//   },
-//   openGraph: {
-//   title: "THEORIX",
-//   description: "Vamos con Theo!!",
-//   url: "https://tu-dominio.com",
-//   siteName: "THEORIX",
-//   images: [
-//     { url: "/og-image.png", width: 1200, height: 630 }
-//   ],
-//   locale: "es_AR",
-//   type: "website",
-// },
-// twitter: {
-//   card: "summary_large_image",
-//   title: "THEORIX",
-//   description: "Vamos con Theo!!",
-//   images: ["/og-image.png"],
-//   creator: "@tucuenta",
-// },
-//   icons: {
-//     icon: [{ url: "/teo.png", type: "image/png", sizes: "32x32" }],
-//   },
+  //   robots: {
+  //     index: true,
+  //     follow: true,
+  //     googleBot: {
+  //       index: true,
+  //       follow: true,
+  //       maxImagePreview: "large",
+  //       maxSnippet: -1,
+  //     }
+  //   },
+  //   openGraph: {
+  //   title: "THEORIX",
+  //   description: "Vamos con Theo!!",
+  //   url: "https://tu-dominio.com",
+  //   siteName: "THEORIX",
+  //   images: [
+  //     { url: "/og-image.png", width: 1200, height: 630 }
+  //   ],
+  //   locale: "es_AR",
+  //   type: "website",
+  // },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: "THEORIX",
+  //   description: "Vamos con Theo!!",
+  //   images: ["/og-image.png"],
+  //   creator: "@tucuenta",
+  // },
+  //   icons: {
+  //     icon: [{ url: "/teo.png", type: "image/png", sizes: "32x32" }],
+  //   },
 };
 export default function RootLayout({
   children,
@@ -63,8 +64,10 @@ export default function RootLayout({
         className={`$ ${fontvars} antialiased bg-carbon `}
         suppressHydrationWarning
       >
-        <Header />
-        {children}
+        <UseProviders>
+          <Header />
+          {children}
+        </UseProviders>
       </body>
     </html>
   );
