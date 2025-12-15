@@ -20,34 +20,36 @@ export const useUserStore = create<UserStore>((set, get) => ({
     const { authId } = get();
     if (authId) return;
 
-    set({ loading: true });
     try {
       const auth = await getUserAuthId();
       if (!auth) {
-        set({ loading: false });
+        set({ authId: null });
         return;
       }
-      set({ authId: auth, loading: false });
+      set({ authId: auth });
     } catch (error) {
       console.error("Error fetching auth ID", error);
     }
   },
 
   fetchUser: async () => {
+    set({ loading: true });
     const { authId, fetchAuthId } = get();
     if (!authId) {
       await fetchAuthId();
     }
     const id = get().authId;
-    if (!id) return;
+    if (!id) {
+      set({ user: null, loading: false });
+      return;
+    }
 
     try {
       const user = await getUserDBForId(id);
-      if (!user) return;
-      set({ user, loading: false });
+      set({ user: user ?? null, loading: false });
     } catch (error) {
       console.error("Error fetching user", error);
-      set({ loading: false });
+      set({ user: null, loading: false });
     }
   },
 
@@ -58,15 +60,15 @@ export const useUserStore = create<UserStore>((set, get) => ({
     }
 
     const id = get().user?.[0].id;
-    if(!id) return 
+    if (!id) return;
 
     try {
       const planResponse = await getPlanUser(id);
 
-      if(!planResponse) return console.error("Plan no definido");
-      set({plan: planResponse, loading: false})
+      if (!planResponse) return console.error("Plan no definido");
+      set({ plan: planResponse });
     } catch (error) {
-      console.error("Error en la búsqueda del plan", error); 
+      console.error("Error en la búsqueda del plan", error);
     }
   },
 }));

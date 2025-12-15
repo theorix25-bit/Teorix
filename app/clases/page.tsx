@@ -1,19 +1,26 @@
 "use client";
-import { useEffect, useState } from "react";
-
-import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
-import ClasesB from "@/components/ClasesB";
-import SkeletonClases from "@/components/skeleton/skeletonClases";
+import { useEffect } from "react";
 import { useUserStore } from "@/hooks/useUseStore";
+import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
+import ClaseSkeleton from "@/components/skeleton/ClaseSkeleton";
+import Clases from "@/components/Clases";
 
 const PageClases = () => {
-  const { user, loading } = useUserStore();
-  const authId = user?.[0]?.auth_id;
-  useEffect(() => {}, []);
+  const { user, authId, loading } = useUserStore();
 
-  if (loading) return <SkeletonClases />;
+  useEffect(() => {}, [user, loading]);
 
-  return user ? <ClasesB /> : <RegistroCompletoUsuario userId={authId} />;
+  if (loading) {
+    return <ClaseSkeleton />;
+  }
+
+  const isLogged = Array.isArray(user) && user.length > 0;
+
+  if (isLogged) {
+    return <Clases />;
+  }
+
+  return <RegistroCompletoUsuario userId={authId} />;
 };
 
 export default PageClases;

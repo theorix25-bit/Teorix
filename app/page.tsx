@@ -8,6 +8,7 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { useUserStore } from "@/hooks/useUseStore";
 const urlAsistente = process.env.NEXT_URL_ASISTENTE!;
 export default async function Home() {
+  
   return (
     <>
       <div className=" text-white">
