@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/client";
 import { ParamValue } from "next/dist/server/request/params";
 import { supabaseAdmin } from "./admin";
+import { GSP_NO_RETURNED_VALUE } from "next/dist/lib/constants";
 const supabase = createClient();
 
 /**
@@ -136,6 +137,17 @@ export async function getProgress(userId: number) {
   return result;
 }
 
+export async function getContent2() {
+  const { data, error } = await supabase.from("contenido_2").select("*");
+  if (error) console.error("error al traer el contenido", error);
+  return data ?? [];
+}
+export async function getProgress2(usuario_id:number) {
+  const { data, error } = await supabase.from("progresos_2").select("*").eq("usuario_id",usuario_id);
+  if (error) console.error("Error al traer el progreso del usuario");
+  return data ?? [];
+}
+
 // FUNCIÓN PARA TRAER TODOS LOS PLANES DE LA BASE DE DATOS
 export async function getPlansDB(): Promise<PlanDetails[]> {
   let { data: suscripciones, error } = await supabase
@@ -167,8 +179,11 @@ export async function searchSusUser(
  * @return Subscription[] 
 
  */
-export async function getPlanUser(id:number) {
-  const { data } = await supabase.from("usuarios_suscripciones").select("*").eq("usuario_id", id);
+export async function getPlanUser(id: number) {
+  const { data } = await supabase
+    .from("usuarios_suscripciones")
+    .select("*")
+    .eq("usuario_id", id);
 
   return data ?? [];
 }

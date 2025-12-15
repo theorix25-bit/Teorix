@@ -1,26 +1,25 @@
 "use client";
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Image as ImageIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import slugify from "slugify";
-import { useContent } from "@/hooks/useContent";
+import Image from "next/image";
+import { useCarnetB } from "@/hooks/useCarnetB";
 
 export default function Lessons() {
-
-  const { clases, temas, setClases } = useContent();
-  const [state, setState] = useState(false);
+  const [state, setState] = useState(true);
+  const { loading, contenido, fetchDataContent } = useCarnetB();
 
   useEffect(() => {
-    const fetchData = async () => {
-      setClases();
-    };
-    fetchData();
-  }, []);
+    fetchDataContent();
+    console.log(contenido);
+  }, [loading]);
+
   const navigate = useRouter();
   const [selectedFilter, setSelectedFilter] = useState<string>("todos");
 
-  if (!temas) return null;
+  if (!contenido) return null;
 
   return state ? (
     <>
@@ -72,12 +71,11 @@ export default function Lessons() {
   ) : (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 sm:px-6 py-6 md:py-10">
-        {/* Hero Section - Two Column Layout on Desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {/* Image Placeholder */}
           <div className="relative aspect-video  bg-gradient-to-br from-lima/10 via-accent/10 to-hoodie/10 rounded-xl border border-gray-50/20 overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
-              <ImageIcon className="w-24 h-24 text-muted-foreground/30" />
+              {/* <ImageIcon className="w-24 h-24 text-muted-foreground/30" /> */}
+              <Image src="/hero_bg.jpg" fill alt="Auto con carnet b" />
             </div>
           </div>
 
@@ -92,7 +90,6 @@ export default function Lessons() {
               herramientas necesarias. Aprenderás teoría, práctica y consejos de
               expertos para aprobar tu examen a la primera.
             </p>
-            {/* <pre>{JSON.stringify(progress,null,2)}</pre> */}
           </div>
         </div>
 
@@ -104,7 +101,7 @@ export default function Lessons() {
               Temas
             </h2>
 
-            {/* <select
+            <select
               name=""
               className="text-black"
               onChange={(e) => setSelectedFilter(e.target.value)}
@@ -115,40 +112,43 @@ export default function Lessons() {
               <option value="completados">Completados</option>
               <option value="pendientes">Pendientes</option>
               <option value="bloqueados">Bloqueados</option>
-            </select> */}
+            </select>
           </div>
 
           {/* Temas Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {clases
-              // .filter((temas: Temas) => {
-              //   if (selectedFilter === "todos") return true;
-              //   if (selectedFilter === "completados") return temas.completed;
-              //   if (selectedFilter === "pendientes")
-              //     return !temas.completed && !temas.locked;
-              //   if (selectedFilter === "bloqueados") return temas.locked;
-              //   return true;
-              // })
+            {contenido
+              .filter((temas: any) => {
+                if (selectedFilter === "todos") return true;
+                if (selectedFilter === "completados")
+                  return temas.progreso?.completado;
+                if (selectedFilter === "pendientes")
+                  return !temas.completed && !temas.locked;
+                if (selectedFilter === "bloqueados")
+                  return temas.progreso?.bloqueado;
+                return true;
+              })
               .map((temas: any) => (
                 <Card
                   key={temas.id}
                   className="group cursor-pointer hover-lift overflow-hidden bg-card border-transparent transition-all hover:border-lima/50"
                   onClick={() => {
-                    // if (!temas.locked) {
-                    navigate.push(
-                      `/clases/${slugify(temas.slug, {
-                        lower: true,
-                        strict: true,
-                      })}/`
-                    );
-                    // }
+                    if (!temas.progreso?.bloqueado) {
+                      navigate.push(
+                        `/clases/${slugify(temas.slug, {
+                          lower: true,
+                          strict: true,
+                        })}/`
+                      );
+                    }
                   }}
                 >
                   <CardContent className="p-0">
                     <div className="relative aspect-video bg-gradient-to-br from-lima/20 via-accent/20 to-hoodie/20 flex items-center justify-center">
                       <ImageIcon className="w-12 h-12 text-muted-foreground/40 group-hover:text-lima/60 transition-colors" />
+                      {/* <Image > */}
 
-                      {temas.completed ? (
+                      {temas.progreso?.completado ? (
                         <div className="absolute top-2 right-2 bg-lima text-lima-foreground rounded-full p-1.5">
                           <svg
                             className="w-4 h-4"
@@ -163,7 +163,6 @@ export default function Lessons() {
                           </svg>
                         </div>
                       ) : (
-                        /* (
                         <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
                           <svg
                             className="w-8 h-8 text-muted-foreground"
@@ -179,8 +178,6 @@ export default function Lessons() {
                             />
                           </svg>
                         </div>
-                      ) */
-                        ""
                       )}
                     </div>
 
