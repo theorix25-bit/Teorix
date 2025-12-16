@@ -8,7 +8,7 @@ import Image from "next/image";
 import { useCarnetB } from "@/hooks/useCarnetB";
 
 export default function Lessons() {
-  const [state, setState] = useState(true);
+  const [state, setState] = useState(false);
   const { loading, contenido, fetchDataContent } = useCarnetB();
 
   useEffect(() => {
@@ -147,7 +147,7 @@ export default function Lessons() {
                     <div className="relative aspect-video bg-gradient-to-br from-lima/20 via-accent/20 to-hoodie/20 flex items-center justify-center">
                       <ImageIcon className="w-12 h-12 text-muted-foreground/40 group-hover:text-lima/60 transition-colors" />
                       {/* <Image > */}
-
+                      <img src={temas.imagen} alt={temas.titulo}></img>
                       {temas.progreso?.completado ? (
                         <div className="absolute top-2 right-2 bg-lima text-lima-foreground rounded-full p-1.5">
                           <svg
