@@ -6,10 +6,16 @@ import { useRouter } from "next/navigation";
 import slugify from "slugify";
 import Image from "next/image";
 import { useCarnetB } from "@/hooks/useCarnetB";
+import { useUserStore } from "@/hooks/useUseStore";
 
 export default function Lessons() {
   const [state, setState] = useState(false);
-  const { loading, contenido, fetchDataContent } = useCarnetB();
+  const {user} = useUserStore()
+  const {
+    loading,
+    progresoUsuario: contenido,
+    fetchDataContent,
+  } = useCarnetB();
 
   useEffect(() => {
     fetchDataContent();
@@ -128,7 +134,7 @@ export default function Lessons() {
                   return temas.progreso?.bloqueado;
                 return true;
               })
-              .map((temas: any) => (
+              .map((temas) => (
                 <Card
                   key={temas.id}
                   className="group cursor-pointer hover-lift overflow-hidden bg-card border-transparent transition-all hover:border-lima/50"

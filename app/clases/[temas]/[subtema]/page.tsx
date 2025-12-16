@@ -16,58 +16,33 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 // import { Switch } from "@/components/ui/switch";
 import { useParams, useRouter } from "next/navigation";
 import { Switch } from "@radix-ui/react-switch";
-import {  getDBSubTemaSlug } from "@/lib/supabase";
-
-// Mock data
-// const dataSubtemaData: Record<string, any> = {
-//   "1": {
-//     id: 1,
-//     title: "Sub Tema 1",
-//     videoUrl: "https://example.com/video.mp4",
-//     progress: 65,
-//     textAbout:
-//       "Texto sobre el contenido de este subtema. Información relevante y descripción detallada.",
-//     quickQuestions: [
-//       {
-//         id: 1,
-//         question: "Pregunta 1: Lorem ipsum medium",
-//         yesCount: 10,
-//         noCount: 5,
-//       },
-//       {
-//         id: 2,
-//         question: "Pregunta 2: Lorem ipsum medium",
-//         yesCount: 8,
-//         noCount: 12,
-//       },
-//       {
-//         id: 3,
-//         question: "Pregunta 3: Lorem ipsum medium",
-//         yesCount: 15,
-//         noCount: 3,
-//       },
-//     ],
-//   },
-// };
+import { getDBSubTemaSlug } from "@/lib/supabase";
+import { Base, Tema, useCarnetB } from "@/hooks/useCarnetB";
+import SubTemaSkeleton from "@/components/skeleton/SubTemaSkeleton";
 
 const dataSubtemaDetail = () => {
-  const { subtema: slug } = useParams<{ subtema: string; temas: string }>();
-  const [subTemas, setSubTemas] = useState<SubTemas>();
+  const { subtema: slug, temas } = useParams<{
+    subtema: string;
+    temas: string;
+  }>();
+  const contenido = useCarnetB((s) => s.contenidoCarnetB);
+  const [tema, setTema] = useState<Base | undefined>();
+  const fetchDAtaContent = useCarnetB((s) => s.fetchDataContent);
   const navigate = useRouter();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [documentExpanded, setDocumentExpanded] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState<string>("todos");
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await getDBSubTemaSlug<SubTemas>(slug);
-      setSubTemas(data[0]);
-      
-    };
-    fetchData();
-  }, []);
-  const dataSubtema = subTemas;
-  if (!dataSubtema) {
+    fetchDAtaContent();
+  }, [fetchDAtaContent]);
+  useEffect(() => {
+    if (!contenido) return;
+    const filtroTema = contenido.filter((c) => c.slug == slug);
+    console.log(filtroTema);
+    setTema(filtroTema[0]);
+  }, [contenido, slug, temas]);
+
+  if (!true) {
     return (
       <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
         <div className="text-center space-y-4">
@@ -80,7 +55,7 @@ const dataSubtemaDetail = () => {
     );
   }
 
-  return (
+  return tema? (
     <div className="min-h-screen bg-background text-foreground md:px-32">
       <div className="flex">
         <main className="flex-1 container mx-auto px-4 sm:px-6 py-6 md:py-10">
@@ -95,6 +70,8 @@ const dataSubtemaDetail = () => {
 
           <div className="mb-8 ">
             <div className="relative w-auto aspect-video bg-gradient-to-br from-lima/10 via-accent/10 to-hoodie/10 rounded-xl border-2 border-gray-50/20 overflow-hidden group">
+                  <img src={tema.imagen} className="cover" alt={tema.titulo} />
+
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-lima/90 flex items-center justify-center group-hover:scale-110 transition-transform cursor-pointer">
                   <Play
@@ -118,11 +95,11 @@ const dataSubtemaDetail = () => {
                     <Maximize className="w-4 h-4" />
                   </Button>
                 </div>
+                
               </div>
             </div>
           </div>
-            <h1 className="text-3xl mb-3">{dataSubtema.titulo}</h1>
-
+          <h1 className="text-3xl mb-3">{tema.titulo}</h1>
           <div className="mb-8">
             <Card className="bg-card border-border">
               <CardContent className="p-6">
@@ -225,7 +202,7 @@ const dataSubtemaDetail = () => {
         </main>
       </div>
     </div>
-  );
+  ): <SubTemaSkeleton />
 };
 
 export default dataSubtemaDetail;

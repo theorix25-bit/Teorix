@@ -1,14 +1,28 @@
-"use client"
+"use client";
+
+import { ReactNode, useEffect, useState } from "react";
 import { useUserStore } from "@/hooks/useUseStore";
-import { ReactNode, useEffect } from "react";
 
 export function UseProviders({ children }: { children: ReactNode }) {
-  const fetchUser = useUserStore((state) => state.fetchUser);
-  const fetchPlan = useUserStore((state) => state.fetchPlan);
-  
+  const fetchUser = useUserStore((s) => s.fetchUser);
+  const fetchPlan = useUserStore((s) => s.fetchPlan);
+  const user = useUserStore((s) => s.user);
+
+  const [ready, setReady] = useState(false);
+
   useEffect(() => {
-    fetchUser();
-    fetchPlan();
-  }, [fetchUser]);
+    const init = async () => {
+      await fetchUser();
+      await fetchPlan();
+      setReady(true);
+    };
+
+    init();
+  }, [fetchUser, fetchPlan]);
+
+  if (!ready) {
+    return null; // o <LoadingGlobal />
+  }
+
   return <>{children}</>;
 }

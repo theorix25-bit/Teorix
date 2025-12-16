@@ -4,7 +4,7 @@ import { useUserStore } from "./useUseStore";
 
 type TipoContenido = "clase" | "tema" | "subtema";
 
-interface Base {
+export interface Base {
   id: number;
   tipo: TipoContenido;
   titulo: string;
@@ -17,7 +17,7 @@ interface Base {
   updated_at: string;
 }
 
-interface BaseConProgreso extends Base {
+export interface BaseConProgreso extends Base {
   progreso: ProgresoEstado;
 }
 
@@ -34,18 +34,21 @@ interface Progreso {
 }
 interface Subtema extends BaseConProgreso {}
 
-interface Tema extends BaseConProgreso {
+export interface Tema extends BaseConProgreso {
   subtemas: Subtema[];
 }
-interface Clase extends BaseConProgreso {
+export interface Clase extends BaseConProgreso {
   temas: Tema[];
 }
 
 interface CarnetB {
   loading: boolean;
-  contenido: Base[] | null;
+  loadingContent: boolean;
+  loadingProgreso: boolean;
+  contenidoCarnetB: Base[] | null;
+  progresoUsuario: Clase[] | null;
   progreso: ProgresoEstado[] | null;
-  objeto: Record<number, Progreso>;
+  // objeto: Record<number, Progreso>;
 
   fetchContenido: () => Promise<void>;
   fetchProgreso: (usuario_id: number) => Promise<void>;
@@ -54,28 +57,32 @@ interface CarnetB {
 
 export const useCarnetB = create<CarnetB>((set, get) => ({
   loading: true,
-  contenido: null,
+  loadingContent: true,
+  loadingProgreso: true,
+  contenidoCarnetB: null,
   progreso: null,
-  clase: null,
-  clases: null,
-  objeto: {},
+  progresoUsuario: null,
+  // objeto: {},
 
   fetchContenido: async () => {
     const res = await getContent2();
-    set({ contenido: res });
+    set({ contenidoCarnetB: res, loadingContent: false });
   },
   fetchProgreso: async (usuario_id) => {
     const res = await getProgress2(usuario_id);
-    set({ progreso: res });
+    set({ progreso: res, loadingProgreso: false });
   },
   fetchDataContent: async () => {
+    set({ loading: true });
     const { fetchContenido, fetchProgreso } = get();
 
-    if (!get().contenido) await fetchContenido();
+    if (!get().contenidoCarnetB) await fetchContenido();
 
     if (!get().progreso) {
       const id = useUserStore.getState().user?.[0].id;
-      if (id) await fetchProgreso(id);
+      id == undefined
+        ? console.error("Error al obtener el id")
+        : await fetchProgreso(id);
     }
 
     const progresoMap: Record<number, ProgresoEstado> = {};
@@ -83,22 +90,10 @@ export const useCarnetB = create<CarnetB>((set, get) => ({
       progresoMap[p.contenido_id] = p;
     });
 
-    const contenidoPlano = get().contenido ?? [];
+    const contenidoPlano = get().contenidoCarnetB ?? [];
 
     const clases = contenidoPlano?.filter((c) => c.tipo === "clase");
 
-    const clasesConTemas = clases.map((clase) => {
-      const temas = contenidoPlano.filter(
-        (t) => t.tipo === "tema" && t.padre_id === clase.id
-      );
-
-      return {
-        ...clase,
-        temas,
-      };
-    });
-
-    
     const withProgreso = (id: number): Progreso => {
       return progresoMap[id]
         ? {
@@ -135,8 +130,8 @@ export const useCarnetB = create<CarnetB>((set, get) => ({
       };
     });
     set({
-      contenido: clasesFinales,
-      objeto: progresoMap,
+      progresoUsuario: clasesFinales,
+      // objeto: progresoMap,
       loading: false,
     });
   },

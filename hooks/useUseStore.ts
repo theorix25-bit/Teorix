@@ -33,7 +33,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
   },
 
   fetchUser: async () => {
-    set({ loading: true });
+    // set({ loading: true });
     const { authId, fetchAuthId } = get();
     if (!authId) {
       await fetchAuthId();

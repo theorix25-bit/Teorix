@@ -4,45 +4,47 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Image as ImageIcon, Menu, X } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
-import { getDBTema, getDBTemaSlug } from "@/lib/supabase";
 import { Progress } from "@/components/ui/progress";
-import slugify from "slugify";
-
+import { Clase, useCarnetB } from "@/hooks/useCarnetB";
+import ClaseSkeleton from "@/components/skeleton/ClaseSkeleton";
 
 const PageTema = () => {
   const { temas: slug } = useParams<{ temas: string }>();
+  const [clase, setClase] = useState<Clase | undefined>();
+
+  const contenido = useCarnetB((s) => s.progresoUsuario);
+  const fetchDataContent = useCarnetB((s) => s.fetchDataContent);
+
   const navigate = useRouter();
   const [selectedFilter, setSelectedFilter] = useState<string>("todos");
-  const [temas, setTemas] = useState<Temas[]>();
-  const [carnet, setCarnet] = useState<Clases_b>();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const resClases = await getDBTemaSlug<Clases_b>(slug);
-      const resTemas = await getDBTema<Temas>(resClases.id);
-      setCarnet(resClases);
-      setTemas(resTemas);
-      setLoading(true);
-    };
-    fetchData();
-  }, []);
+    fetchDataContent();
+  }, [fetchDataContent]);
 
-  if (!temas) {
-    return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
-        <div className="text-center space-y-4">
-          <h2 className="font-display text-3xl text-foreground">
-            temas no encontrado
-          </h2>
+  useEffect(() => {
+    if (!contenido) return;
 
-          <h1>{}</h1>
-          <Button onClick={() => navigate.back()}>Volver a temas</Button>
-        </div>
-      </div>
-    );
-  }
+    const filtroClase = contenido?.find((c) => c.slug == slug);
+    setClase(filtroClase);
+  }, [contenido, slug]);
 
+  // <>
+  // if (!temas) {
+  //   return (
+  //     <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+  //       <div className="text-center space-y-4">
+  //         <h2 className="font-display text-3xl text-foreground">
+  //           temas no encontrado
+  //         </h2>
+
+  //         <h1>{}</h1>
+  //         <Button onClick={() => navigate.back()}>Volver a temas</Button>
+  //       </div>
+  //     </div>
+  //   );
+  // }
+  // **************************************************************************
   // const SidebarContent = () => (
   //   <div className="space-y-6 p-6">
   //     {/* Back Button for Mobile */}
@@ -125,7 +127,9 @@ const PageTema = () => {
   //   </div>
   // );
 
-  return loading ? (
+  // </>
+
+  return clase ? (
     <div className="min-h-screen bg-background text-foreground">
       <div className="flex">
         <main className="flex-1 container mx-auto px-4 sm:px-6 py-6 md:py-10">
@@ -143,14 +147,15 @@ const PageTema = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <ImageIcon className="w-24 h-24 text-muted-foreground/30" />
               </div>
+              <img className="w-full" src={clase.imagen} alt={clase.titulo} />
             </div>
 
             <div className="flex flex-col justify-center space-y-6">
               <h1 className="font-display text-4xl md:text-5xl lg:text-6xl text-foreground">
-                {carnet?.titulo}
+                {clase.titulo}
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-                {carnet?.descripcion}
+                {clase.descripcion}
               </p>
 
               <div className="space-y-2">
@@ -181,33 +186,32 @@ const PageTema = () => {
                 <option value="bloqueados">Bloqueados</option>
               </select>
             </div>
-
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-              {temas
-                .filter((subTemas: Temas) => {
-                  if (selectedFilter === "todos") return true;
-                  if (selectedFilter === "completados")
-                    return subTemas.completed;
-                  if (selectedFilter === "pendientes")
-                    return !subTemas.completed && !subTemas.locked;
-                  if (selectedFilter === "bloqueados") return subTemas.locked;
-                  return true;
-                })
-                .map((tema: Temas) => (
+              {clase.temas
+                // .filter((t) => {
+                //   if (selectedFilter === "todos") return true;
+                //   if (selectedFilter === "completados") return t.completed;
+                //   if (selectedFilter === "pendientes")
+                //     return !t.completed && !t.locked;
+                //   if (selectedFilter === "bloqueados") return t.locked;
+                //   return true;
+                // })
+                .map((tema) => (
                   <Card
                     key={tema.id}
                     className="group cursor-pointer hover-lift overflow-hidden bg-card border-transparent transition-all hover:border-lima/50"
                     onClick={() => {
-                      if (!tema.locked) {
-                        navigate.push(`/clases/${slug}/${slugify(tema.slug, {lower:true,strict:true})}`);
+                      if (!tema.progreso.bloqueado) {
+                        navigate.push(`/clases/${slug}/${tema.slug}`);
                       }
                     }}
                   >
                     <CardContent className="p-0">
                       <div className="relative aspect-video bg-gradient-to-br from-lima/20 via-accent/20 to-hoodie/20 flex items-center justify-center">
                         <ImageIcon className="w-12 h-12 text-muted-foreground/40 group-hover:text-lima/60 transition-colors" />
+                        <img src={tema.imagen} alt={tema.titulo} />
 
-                        {tema.completed && (
+                        {tema.progreso.completado && (
                           <div className="absolute top-2 right-2 bg-lima text-lima-foreground rounded-full p-1.5">
                             <svg
                               className="w-4 h-4"
@@ -223,7 +227,7 @@ const PageTema = () => {
                           </div>
                         )}
 
-                        {tema.locked && (
+                        {tema.progreso.bloqueado && (
                           <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
                             <svg
                               className="w-8 h-8 text-muted-foreground"
@@ -266,12 +270,9 @@ const PageTema = () => {
       </div>
     </div>
   ) : (
-    // <SkeletonClases />
-    <>
-    
-    </>
+    <ClaseSkeleton />
   );
 };
 
 export default PageTema;
-  
+
