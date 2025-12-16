@@ -18,7 +18,7 @@ export interface Base {
 }
 
 export interface BaseConProgreso extends Base {
-  progreso: ProgresoEstado;
+  progreso: Progreso;
 }
 
 interface ProgresoEstado extends Progreso {
