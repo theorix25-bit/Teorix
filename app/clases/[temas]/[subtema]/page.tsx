@@ -16,7 +16,6 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 // import { Switch } from "@/components/ui/switch";
 import { useParams, useRouter } from "next/navigation";
 import { Switch } from "@radix-ui/react-switch";
-import { getDBSubTemaSlug } from "@/lib/supabase";
 import { Base, Tema, useCarnetB } from "@/hooks/useCarnetB";
 import SubTemaSkeleton from "@/components/skeleton/SubTemaSkeleton";
 

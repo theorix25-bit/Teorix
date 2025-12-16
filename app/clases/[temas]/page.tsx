@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, Image as ImageIcon, Menu, X } from "lucide-react";
+import { ArrowLeft, Image as ImageIcon } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
 import { Clase, useCarnetB } from "@/hooks/useCarnetB";
@@ -28,106 +28,6 @@ const PageTema = () => {
     const filtroClase = contenido?.find((c) => c.slug == slug);
     setClase(filtroClase);
   }, [contenido, slug]);
-
-  // <>
-  // if (!temas) {
-  //   return (
-  //     <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
-  //       <div className="text-center space-y-4">
-  //         <h2 className="font-display text-3xl text-foreground">
-  //           temas no encontrado
-  //         </h2>
-
-  //         <h1>{}</h1>
-  //         <Button onClick={() => navigate.back()}>Volver a temas</Button>
-  //       </div>
-  //     </div>
-  //   );
-  // }
-  // **************************************************************************
-  // const SidebarContent = () => (
-  //   <div className="space-y-6 p-6">
-  //     {/* Back Button for Mobile */}
-  //     <Button
-  //       variant="ghost"
-  //       onClick={() => navigate.push(`/topics/${type}`)}
-  //       className="lg:hidden mb-4"
-  //     >
-  //       <ArrowLeft className="w-4 h-4 mr-2" />
-  //       Volver
-  //     </Button>
-
-  //     {/* Current tema Info */}
-  //     <div className="space-y-4">
-  //       <div className="relative aspect-video bg-gradient-to-br from-lima/20 via-accent/20 to-hoodie/20 rounded-lg flex items-center justify-center border border-border/50">
-  //         <ImageIcon className="w-16 h-16 text-muted-foreground/40" />
-  //       </div>
-  //       <p className="text-sm text-muted-foreground leading-relaxed">
-  //         {dataTemas.description}
-  //       </p>
-  //     </div>
-
-  //     {/* Sub Topics Navigation */}
-  //     <div className="space-y-3">
-  //       <div className="flex items-center justify-between">
-  //         <h3 className="font-display text-lg text-foreground">Temas</h3>
-  //         <select
-  //           name=""
-  //           className="text-black"
-  //           onChange={(e) => setSelectedFilter(e.target.value)}
-  //           value={selectedFilter}
-  //           id=""
-  //         >
-  //           <option value="todos">Todos</option>
-  //           <option value="completados">Completados</option>
-  //           <option value="pendientes">Pendientes</option>
-  //           <option value="bloqueados">Bloqueados</option>
-  //         </select>
-  //       </div>
-
-  //       {/* Sub Topics List */}
-  //       <div className="space-y-2">
-  //         {dataTemas.topics.map((tema: any, index: number) => (
-  //           <div key={tema.id}>
-  //             {index > 0 && (
-  //               <div className="my-4">
-  //                 <p className="text-xs font-mono text-muted-foreground mb-2">
-  //                   Sub temas {index}
-  //                 </p>
-  //               </div>
-  //             )}
-  //             <Button
-  //               variant={tema.id === dataTemas.id ? "hoodie" : "ghost"}
-  //               className="w-full justify-start text-left h-auto py-3 px-4"
-  //               onClick={() => {
-  //                 navigate.push(`/topics/${type}/${tema.id}`);
-  //                 setIsSidebarOpen(false);
-  //               }}
-  //             >
-  //               <div className="flex items-center gap-3 w-full">
-  //                 <div className="w-12 h-12 rounded bg-muted/50 flex-shrink-0 flex items-center justify-center">
-  //                   <ImageIcon className="w-6 h-6 text-muted-foreground" />
-  //                 </div>
-  //                 <span className="font-medium text-sm">{tema.title}</span>
-  //               </div>
-  //             </Button>
-  //           </div>
-  //         ))}
-  //       </div>
-
-  //       {/* Siguiente Link */}
-  //       <Button
-  //         variant="link"
-  //         className="w-full justify-end text-sm text-lima"
-  //         onClick={() => console.log("Siguiente")}
-  //       >
-  //         Siguiente →
-  //       </Button>
-  //     </div>
-  //   </div>
-  // );
-
-  // </>
 
   return clase ? (
     <div className="min-h-screen bg-background text-foreground">
@@ -260,7 +160,7 @@ const PageTema = () => {
               <Button
                 variant="link"
                 className="text-lima font-medium"
-                onClick={() => console.log("Ver siguiente")}
+                onClick={() => alert("Botón desactivado")}
               >
                 Siguiente →
               </Button>
@@ -276,3 +176,102 @@ const PageTema = () => {
 
 export default PageTema;
 
+// <>
+// if (!temas) {
+//   return (
+//     <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+//       <div className="text-center space-y-4">
+//         <h2 className="font-display text-3xl text-foreground">
+//           temas no encontrado
+//         </h2>
+
+//         <h1>{}</h1>
+//         <Button onClick={() => navigate.back()}>Volver a temas</Button>
+//       </div>
+//     </div>
+//   );
+// }
+// **************************************************************************
+// const SidebarContent = () => (
+//   <div className="space-y-6 p-6">
+//     {/* Back Button for Mobile */}
+//     <Button
+//       variant="ghost"
+//       onClick={() => navigate.push(`/topics/${type}`)}
+//       className="lg:hidden mb-4"
+//     >
+//       <ArrowLeft className="w-4 h-4 mr-2" />
+//       Volver
+//     </Button>
+
+//     {/* Current tema Info */}
+//     <div className="space-y-4">
+//       <div className="relative aspect-video bg-gradient-to-br from-lima/20 via-accent/20 to-hoodie/20 rounded-lg flex items-center justify-center border border-border/50">
+//         <ImageIcon className="w-16 h-16 text-muted-foreground/40" />
+//       </div>
+//       <p className="text-sm text-muted-foreground leading-relaxed">
+//         {dataTemas.description}
+//       </p>
+//     </div>
+
+//     {/* Sub Topics Navigation */}
+//     <div className="space-y-3">
+//       <div className="flex items-center justify-between">
+//         <h3 className="font-display text-lg text-foreground">Temas</h3>
+//         <select
+//           name=""
+//           className="text-black"
+//           onChange={(e) => setSelectedFilter(e.target.value)}
+//           value={selectedFilter}
+//           id=""
+//         >
+//           <option value="todos">Todos</option>
+//           <option value="completados">Completados</option>
+//           <option value="pendientes">Pendientes</option>
+//           <option value="bloqueados">Bloqueados</option>
+//         </select>
+//       </div>
+
+//       {/* Sub Topics List */}
+//       <div className="space-y-2">
+//         {dataTemas.topics.map((tema: any, index: number) => (
+//           <div key={tema.id}>
+//             {index > 0 && (
+//               <div className="my-4">
+//                 <p className="text-xs font-mono text-muted-foreground mb-2">
+//                   Sub temas {index}
+//                 </p>
+//               </div>
+//             )}
+//             <Button
+//               variant={tema.id === dataTemas.id ? "hoodie" : "ghost"}
+//               className="w-full justify-start text-left h-auto py-3 px-4"
+//               onClick={() => {
+//                 navigate.push(`/topics/${type}/${tema.id}`);
+//                 setIsSidebarOpen(false);
+//               }}
+//             >
+//               <div className="flex items-center gap-3 w-full">
+//                 <div className="w-12 h-12 rounded bg-muted/50 flex-shrink-0 flex items-center justify-center">
+//                   <ImageIcon className="w-6 h-6 text-muted-foreground" />
+//                 </div>
+//                 <span className="font-medium text-sm">{tema.title}</span>
+//               </div>
+//             </Button>
+//           </div>
+//         ))}
+//       </div>
+
+//       {/* Siguiente Link */}
+//       <Button
+//         variant="link"
+//         className="w-full justify-end text-sm text-lima"
+//         onClick={() => console.log("Siguiente")}
+//       >
+//         Siguiente →
+//       </Button>
+//     </div>
+//   </div>
+// );
+
+// </>

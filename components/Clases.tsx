@@ -6,11 +6,9 @@ import { useRouter } from "next/navigation";
 import slugify from "slugify";
 import Image from "next/image";
 import { useCarnetB } from "@/hooks/useCarnetB";
-import { useUserStore } from "@/hooks/useUseStore";
 
 export default function Lessons() {
   const [state, setState] = useState(false);
-  const {user} = useUserStore()
   const {
     loading,
     progresoUsuario: contenido,
