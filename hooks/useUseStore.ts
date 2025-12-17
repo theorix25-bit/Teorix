@@ -1,7 +1,7 @@
 import { getPlanUser, getUserAuthId, getUserDBForId } from "@/lib/supabase";
 import { create } from "zustand";
 interface UserStore {
-  authId: string | null;
+  authId: string | null | undefined;
   user: User[] | null;
   plan: Subscription[] | null;
   loading: boolean;
@@ -18,17 +18,19 @@ export const useUserStore = create<UserStore>((set, get) => ({
 
   fetchAuthId: async () => {
     const { authId } = get();
-    if (authId) return;
+
+    // Si ya fue resuelto (null o string), no volver a pedirlo
+    if (authId !== undefined) return;
 
     try {
       const auth = await getUserAuthId();
-      if (!auth) {
-        set({ authId: null });
-        return;
-      }
-      set({ authId: auth });
+
+      set({
+        authId: auth ?? null,
+      });
     } catch (error) {
       console.error("Error fetching auth ID", error);
+      set({ authId: null });
     }
   },
 

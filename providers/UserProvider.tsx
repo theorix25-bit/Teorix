@@ -6,7 +6,6 @@ import { useUserStore } from "@/hooks/useUseStore";
 export function UseProviders({ children }: { children: ReactNode }) {
   const fetchUser = useUserStore((s) => s.fetchUser);
   const fetchPlan = useUserStore((s) => s.fetchPlan);
-  const user = useUserStore((s) => s.user);
 
   const [ready, setReady] = useState(false);
 

@@ -8,13 +8,13 @@ import Clases from "@/components/Clases";
 const PageClases = () => {
   const { user, authId, loading } = useUserStore();
 
-  useEffect(() => {}, [user, loading]);
-
   if (loading) {
     return <ClaseSkeleton />;
   }
 
-  const isLogged = Array.isArray(user) && user.length > 0;
+  const isLogged = user !== null ? true : false;
+  // console.log(Array.isArray(null) && user.length > 0);
+  console.log(isLogged);
 
   if (isLogged) {
     return <Clases />;

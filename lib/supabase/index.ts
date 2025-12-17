@@ -21,15 +21,17 @@ export async function getUserDBForId(id: string | undefined) {
     .from("usuarios")
     .select("*")
     .eq("auth_id", id);
-
+  if (usuarios?.length == 0)
+    console.error("problemas al buscar el usuario por auth_id");
   if (error) throw error;
   return usuarios || [];
 }
 
 // FUNCIÓN PARA TRAER LOS DATOS DEL USUARIO EN SESIÓN ACTIVA
 export async function getUserAuthId() {
-  const { data } = await supabase.auth.getClaims();
-  return data?.claims.sub!;
+  const { data, error } = await supabase.auth.getClaims();
+  if (error) console.error("error al buscar el authId");
+  return data?.claims.sub;
 }
 
 // FUNCIÓN PARA TRAER UN PLAN POR ID ESPECIFICO
@@ -142,8 +144,11 @@ export async function getContent2() {
   if (error) console.error("error al traer el contenido", error);
   return data ?? [];
 }
-export async function getProgress2(usuario_id:number) {
-  const { data, error } = await supabase.from("progresos_2").select("*").eq("usuario_id",usuario_id);
+export async function getProgress2(usuario_id: number) {
+  const { data, error } = await supabase
+    .from("progresos_2")
+    .select("*")
+    .eq("usuario_id", usuario_id);
   if (error) console.error("Error al traer el progreso del usuario");
   return data ?? [];
 }

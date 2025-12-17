@@ -17,7 +17,6 @@ export default function Lessons() {
 
   useEffect(() => {
     fetchDataContent();
-    console.log(contenido);
   }, [loading]);
 
   const navigate = useRouter();
