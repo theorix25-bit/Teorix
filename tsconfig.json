@@ -35,7 +35,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-, "app/api/precios.js", "app/api/page.tsx", "app/api/checkout2/route.ts", "app/clases/_videos/routedf.js", "hooks/useVimeo.ts", "app/api/vimeo/upload/route.ts", "components/MobileMenu.jsx"  ],
+, "app/api/precios.js", "app/api/page.tsx", "app/api/checkout2/route.ts", "app/clases/_videos/routedf.js", "hooks/useVimeo.ts", "app/api/vimeo/_upload/route.ts", "components/MobileMenu.jsx"  ],
   "exclude": [
     "node_modules"
   ]

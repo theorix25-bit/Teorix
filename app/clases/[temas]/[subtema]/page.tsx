@@ -11,13 +11,14 @@ import {
   MessageCircle,
   Menu,
 } from "lucide-react";
-import { Progress } from "@/components/ui/progress";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+// import { Progress } from "@/components/ui/progress";
+// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 // import { Switch } from "@/components/ui/switch";
 import { useParams, useRouter } from "next/navigation";
-import { Switch } from "@radix-ui/react-switch";
+// import { Switch } from "@radix-ui/react-switch";
 import { Base, Tema, useCarnetB } from "@/hooks/useCarnetB";
 import SubTemaSkeleton from "@/components/skeleton/SubTemaSkeleton";
+import VimeoPlayer from "@/components/VimeoPlayer";
 
 const dataSubtemaDetail = () => {
   const { subtema: slug, temas } = useParams<{
@@ -34,10 +35,10 @@ const dataSubtemaDetail = () => {
   useEffect(() => {
     fetchDAtaContent();
   }, [fetchDAtaContent]);
+
   useEffect(() => {
     if (!contenido) return;
     const filtroTema = contenido.filter((c) => c.slug == slug);
-    console.log(filtroTema);
     setTema(filtroTema[0]);
   }, [contenido, slug, temas]);
 
@@ -54,7 +55,7 @@ const dataSubtemaDetail = () => {
     );
   }
 
-  return tema? (
+  return tema ? (
     <div className="min-h-screen bg-background text-foreground md:px-32">
       <div className="flex">
         <main className="flex-1 container mx-auto px-4 sm:px-6 py-6 md:py-10">
@@ -68,19 +69,20 @@ const dataSubtemaDetail = () => {
           </Button>
 
           <div className="mb-8 ">
-            <div className="relative w-auto aspect-video bg-gradient-to-br from-lima/10 via-accent/10 to-hoodie/10 rounded-xl border-2 border-gray-50/20 overflow-hidden group">
-                  <img src={tema.imagen} className="cover" alt={tema.titulo} />
+            <div className="">
+              {/* <img src={tema.imagen} className="cover" alt={tema.titulo} /> */}
+              <VimeoPlayer nombre={tema.video} />
 
-              <div className="absolute inset-0 flex items-center justify-center">
+              {/* <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-lima/90 flex items-center justify-center group-hover:scale-110 transition-transform cursor-pointer">
                   <Play
                     className="w-10 h-10 text-lima-foreground ml-1"
                     fill="currentColor"
                   />
                 </div>
-              </div>
+              </div> */}
 
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 via-background/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              {/* <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-background/90 via-background/60 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
                     <Button size="icon" variant="ghost" className="h-8 w-8">
@@ -94,8 +96,7 @@ const dataSubtemaDetail = () => {
                     <Maximize className="w-4 h-4" />
                   </Button>
                 </div>
-                
-              </div>
+              </div> */}
             </div>
           </div>
           <h1 className="text-3xl mb-3">{tema.titulo}</h1>
@@ -201,7 +202,9 @@ const dataSubtemaDetail = () => {
         </main>
       </div>
     </div>
-  ): <SubTemaSkeleton />
+  ) : (
+    <SubTemaSkeleton />
+  );
 };
 
 export default dataSubtemaDetail;

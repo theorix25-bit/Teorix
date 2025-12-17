@@ -168,3 +168,8 @@ h2, h3, h4, h5, h6 {
 body {
   @apply font-tangosans
 }
+.vimeo-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
