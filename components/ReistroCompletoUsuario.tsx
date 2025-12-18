@@ -6,6 +6,7 @@ import { setErrorLog } from "@/lib/supabase";
 
 export function RegistroCompletoUsuario({ userId }: UserAuthId) {
   const supabase = createClient();
+  console.log(userId)
   
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");

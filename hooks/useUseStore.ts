@@ -20,13 +20,12 @@ export const useUserStore = create<UserStore>((set, get) => ({
     const { authId } = get();
 
     // Si ya fue resuelto (null o string), no volver a pedirlo
-    if (authId !== undefined) return;
+    if (authId !== null) return;
 
     try {
       const auth = await getUserAuthId();
-
       set({
-        authId: auth ?? null,
+        authId: auth,
       });
     } catch (error) {
       console.error("Error fetching auth ID", error);
@@ -48,7 +47,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
 
     try {
       const user = await getUserDBForId(id);
-      set({ user: user ?? null, loading: false });
+      set({ user: user, loading: false });
     } catch (error) {
       console.error("Error fetching user", error);
       set({ user: null, loading: false });
