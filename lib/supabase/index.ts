@@ -361,6 +361,47 @@ export async function getDBSubTemaSlug<T>(slug: string): Promise<T[]> {
   return (data ?? []) as T[];
 }
 
+/**
+ * Realiza una búsqueda en la base de datos filtrado por id
+ *
+ *
+ */
+export async function searchVideoForId(id: number): Promise<VideosDB> {
+  const { data, error } = await supabase
+    .from("videos")
+    .select("*")
+    .eq("id", id)
+    .single();
+  if (error) {
+    console.error("Error en la función que busca en la tabla de videos", error);
+    return {} as VideosDB;
+  }
+  if (data == null || data == undefined) {
+    console.error("Error el objeto es", data);
+    return {} as VideosDB;
+  }
+  return (data ?? {}) as VideosDB;
+}
+
+/**
+ * Función para actualizar el la tabla de progreso videos a true
+ *
+ */
+export async function changeStateVideo(usuario_id: number, video_id: number) {
+  const { error } = await supabase
+    .from("progreso_video")
+    .update({ completado: true })
+    .eq("usuario_id", usuario_id)
+    .eq("video_id", video_id)
+    .eq("completado", false)
+    .maybeSingle();
+
+  if (error) {
+    console.error("Error actualizando progreso:", error);
+    return false;
+  }
+  return true;
+}
 /* 
 **************************
 ANALIZAR CADA FUNCIONA PARA REFACTORIZAR

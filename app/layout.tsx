@@ -14,44 +14,51 @@ const defaultUrl = process.env.VERCEL_URL
 // Meta datos
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "THEORIX",
-  description: "Vamos con Theo !!",
-  keywords: ["curso", "carnet B", "clases", "THEORIX"],
+  title: "Autoescuela online para aprobar el teórico | Aprende sin drama",
+  description:
+    "Aprueba el examen teórico con vídeos, test DGT y tutores reales. Estudia desde el móvil, a tu ritmo y sin aburrirte.",
+  keywords: [
+    "autoescuela online",
+    "curso online para sacarse el carnet de coche",
+    "aprobar el examen teórico DGT",
+    "test DGT online",
+    "cómo estudiar el teórico desde casa",
+  ],
   authors: [{ name: "Yvo", url: "https://theorix.vercel.app" }],
   creator: "THEORIX Team",
   publisher: "THEORIX",
+  icons: {
+    icon: [{ url: "favicon.png", type: "image/png", sizes: "32x32" }],
+  },
 
-  //   robots: {
-  //     index: true,
-  //     follow: true,
-  //     googleBot: {
-  //       index: true,
-  //       follow: true,
-  //       maxImagePreview: "large",
-  //       maxSnippet: -1,
-  //     }
-  //   },
-  //   openGraph: {
-  //   title: "THEORIX",
-  //   description: "Vamos con Theo!!",
-  //   url: "https://tu-dominio.com",
-  //   siteName: "THEORIX",
-  //   images: [
-  //     { url: "/og-image.png", width: 1200, height: 630 }
-  //   ],
-  //   locale: "es_AR",
-  //   type: "website",
-  // },
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: "THEORIX",
-  //   description: "Vamos con Theo!!",
-  //   images: ["/og-image.png"],
-  //   creator: "@tucuenta",
-  // },
-  //   icons: {
-  //     icon: [{ url: "/teo.png", type: "image/png", sizes: "32x32" }],
-  //   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  openGraph: {
+    title: "Autoescuela online para aprobar el teórico | Aprende sin drama",
+    description:
+      "Aprueba el examen teórico con vídeos, test DGT y tutores reales. Estudia desde el móvil, a tu ritmo y sin aburrirte.",
+    url: "https://tu-dominio.com",
+    siteName: "THEORIX",
+    images: [{ url: "Logo_Theorix.png", width: 1200, height: 630 }],
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Autoescuela online para aprobar el teórico | Aprende sin drama",
+    description:
+      "Aprueba el examen teórico con vídeos, test DGT y tutores reales. Estudia desde el móvil, a tu ritmo y sin aburrirte.",
+    images: ["Logo_Theorix.png"],
+    // creator: "@tucuenta",
+  },
 };
 export default function RootLayout({
   children,

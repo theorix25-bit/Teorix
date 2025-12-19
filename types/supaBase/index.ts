@@ -9,7 +9,7 @@ type BenefitPlanDetails = {
   description: string;
 };
 
-interface  PlanDetails {
+interface PlanDetails {
   id: number;
   nombre: string;
   descripción: string;
@@ -22,9 +22,9 @@ interface  PlanDetails {
   caracteristicas: string[];
   cta: string;
   ctaVariant: "esquema" | "predeterminado";
-  resaltar?: boolean 
+  resaltar?: boolean;
   insignia: string;
-};
+}
 interface PlanDetailsDB {
   id: number;
   nombre: string;
@@ -106,4 +106,10 @@ interface SubTemaProgreso extends SubTemas {
 interface Progreso {
   completado: boolean;
   completado_en: string;
+}
+
+interface VideosDB {
+  id: number;
+  titulo: string;
+  created_at: string;
 }

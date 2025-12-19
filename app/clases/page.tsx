@@ -4,7 +4,6 @@ import { useUserStore } from "@/hooks/useUseStore";
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
 import ClaseSkeleton from "@/components/skeleton/ClaseSkeleton";
 import Clases from "@/components/Clases";
-import { convertSegmentPathToStaticExportFilename } from "next/dist/shared/lib/segment-cache/segment-value-encoding";
 
 const PageClases = () => {
   const { user, authId, loading } = useUserStore();
@@ -13,9 +12,9 @@ const PageClases = () => {
     return <ClaseSkeleton />;
   }
 
-  const isLogged = user == null
+  const isLogged = user == null;
   // console.log(Array.isArray(null) && user.length > 0);
-  console.log(user)
+  console.log(user);
 
   if (!isLogged) {
     return <Clases />;

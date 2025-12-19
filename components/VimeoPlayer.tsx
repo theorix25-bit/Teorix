@@ -1,14 +1,36 @@
 "use client";
 
+import { useUserStore } from "@/hooks/useUseStore";
 import { useEffect, useRef, useState } from "react";
-
-export default function VimeoPlayer({ nombre }: { nombre: string | null }) {
-  const [videoUrl, setVideoUrl] = useState<VimeoUrl>();
+interface TypeVimeo {
+  videoId: number;
+  duration: number;
+  name: string;
+}
+export default function VimeoPlayer({ id }: { id: number | null }) {
+  const [video, setVideo] = useState<TypeVimeo>();
   const [error, setError] = useState<string | null>(null);
 
   const videoRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<any>(null);
+  const completadoRef = useRef(false);
+  const userId = useUserStore((s) => s.user?.[0].id);
 
+  const guardar = async (videoId: number | null, userId: number) => {
+    try {
+      const res = await fetch("/api/vimeo/completar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ videoId, userId }),
+      });
+      const data = await res.json();
+      if (data.status == 200) {
+        alert("video actualizado");
+      }
+    } catch (error) {
+      console.error("Error guardando progreso del video", error);
+    }
+  };
   useEffect(() => {
     let mounted = true;
     const fetchVideo = async () => {
@@ -16,7 +38,7 @@ export default function VimeoPlayer({ nombre }: { nombre: string | null }) {
         const res = await fetch("/api/vimeo/videos", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ nombre }),
+          body: JSON.stringify({ id: id }),
           cache: "force-cache",
         });
 
@@ -24,10 +46,15 @@ export default function VimeoPlayer({ nombre }: { nombre: string | null }) {
         const data = await res.json();
 
         if (data.status == 401) {
-          setError("no se obtuvo el nombre del video");
+          setError("no se obtuvo el id del video");
         }
         if (mounted) {
-          setVideoUrl(data[0].player_embed_url);
+          const { uri, duration, name } = data[0];
+          setVideo({
+            videoId: Number(uri.split("/").pop()),
+            duration,
+            name,
+          });
         }
       } catch {
         if (mounted) setError("No se pudo cargar el video");
@@ -38,10 +65,10 @@ export default function VimeoPlayer({ nombre }: { nombre: string | null }) {
     return () => {
       mounted = false;
     };
-  }, [nombre]);
+  }, [id]);
 
   useEffect(() => {
-    if (!videoUrl || !videoRef.current) return;
+    if (!video || !videoRef.current || userId == undefined) return;
 
     let destroyed = false;
 
@@ -50,22 +77,32 @@ export default function VimeoPlayer({ nombre }: { nombre: string | null }) {
 
       if (destroyed) return;
 
-      playerRef.current = new Player(videoRef.current!, {
-        url: videoUrl,
-        controls: true,
+      const player = new Player(videoRef.current!, {
+        id: video.videoId,
         playsinline: true,
         dnt: true,
+        responsive: true,
+        autopause: true,
+        title: false,
+        byline: false,
+        portrait: false,
+      });
+      playerRef.current = player;
+
+      player.on("ended", () => {
+        if (completadoRef.current) return;
+        completadoRef.current = true;
+        guardar(id, userId);
       });
     };
-
     initPlayer();
-
+    completadoRef.current = false;
     return () => {
       destroyed = true;
       playerRef.current?.destroy();
       playerRef.current = null;
     };
-  }, [videoUrl]);
+  }, [video?.videoId]);
 
   if (error) return <p>{error}</p>;
 
@@ -76,7 +113,7 @@ export default function VimeoPlayer({ nombre }: { nombre: string | null }) {
           className=" vimeo-wrapper relative w-full max-w-[1100px] aspect-video"
           ref={videoRef}
         >
-          {!videoUrl && (
+          {!video && (
             <div className="mb-8 ">
               <div className="relative w-auto aspect-video bg-zinc-800 animate-pulse rounded-xl border-2 border-gray-50/20 overflow-hidden group">
                 <div className="absolute inset-0 flex items-center justify-center">

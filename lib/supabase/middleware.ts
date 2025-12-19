@@ -48,11 +48,23 @@ export async function updateSession(request: NextRequest) {
   const user = data?.claims;
 
   const path = request.nextUrl.pathname;
-  const publicRoutes = ["/", "/login", "/auth", "/success", "/blog","/api"];
+  const publicRoutes = [
+    "/",
+    "/login",
+    "/auth",
+    "/success",
+    "/blog",
+    "/api",
+    "/sitemap.xml",
+    "/sitemap-0.xml",
+    "/robots.txt",
+  ];
   const adminRoutes = ["/admin"];
 
   // const isPublic = publicRoutes.some((r) => path.startsWith(r));
-  const isPublic = publicRoutes.some((r) => (r === "/" ? path === "/" : path.startsWith(r)));
+  const isPublic = publicRoutes.some((r) =>
+    r === "/" ? path === "/" : path.startsWith(r)
+  );
   const idAdminRoute = adminRoutes.some((r) => path.startsWith(r));
 
   const role = data?.claims.app_metadata?.role;
@@ -71,3 +83,6 @@ export async function updateSession(request: NextRequest) {
 
   return supabaseResponse;
 }
+export const config = {
+  matcher: ["/admin/:path*", "/clases/:path*"],
+};

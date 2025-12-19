@@ -71,8 +71,13 @@ const dataSubtemaDetail = () => {
           <div className="mb-8 ">
             <div className="">
               {/* <img src={tema.imagen} className="cover" alt={tema.titulo} /> */}
-              <VimeoPlayer nombre={tema.video} />
-
+              <VimeoPlayer id={tema.video} />
+              <select name="" className="text-black" id="">
+                <option value="1">video 1</option>
+                <option value="2">video 2</option>
+                <option value="3">video 3</option>
+                <option value="4">video 4</option>
+              </select>
               {/* <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-20 h-20 rounded-full bg-lima/90 flex items-center justify-center group-hover:scale-110 transition-transform cursor-pointer">
                   <Play

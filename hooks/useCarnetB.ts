@@ -9,7 +9,7 @@ export interface Base {
   tipo: TipoContenido;
   titulo: string;
   descripcion: string;
-  video: null | string;
+  video: null | number;
   imagen: string;
   padre_id: null | number;
   slug: string;
