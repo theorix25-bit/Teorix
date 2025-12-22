@@ -1,5 +1,6 @@
 import ChatAssistant from "@/components/ChatAssistant";
 import { CommunitySection } from "@/components/CommunitySection";
+import Features from "@/components/Features";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { MethodSection } from "@/components/MethodSection";
@@ -12,7 +13,7 @@ export default async function Home() {
     <>
       <div className=" text-white">
         <HeroSection />
-        <Profesor />
+        <Features />
         <MethodSection />
         <TestimonialsSection />
         <PricingSection />

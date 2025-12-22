@@ -33,8 +33,8 @@ export const MethodSection = () => {
   return (
     <section className="py-24 px-6 bg-background relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-lima/5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-hoodie/5 rounded-full blur-3xl"></div>
+      <div className="absolute top-40 right-0 w-96 h-96 bg-lima/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-hoodie/10 rounded-full blur-3xl"></div>
 
       <div className=" px-2 mx-auto relative z-10">
         {/* Section header */}

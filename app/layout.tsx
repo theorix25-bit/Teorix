@@ -68,7 +68,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body
-        className={`$ ${fontvars} antialiased bg-carbon `}
+        className={`$ ${fontvars} antialiased `}
         suppressHydrationWarning
       >
         <UseProviders>
