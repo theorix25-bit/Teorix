@@ -10,6 +10,7 @@ export interface Base {
   titulo: string;
   descripcion: string;
   video: null | number;
+  orden: number;
   imagen: string;
   padre_id: null | number;
   slug: string;
@@ -45,7 +46,7 @@ interface CarnetB {
   loading: boolean;
   loadingContent: boolean;
   loadingProgreso: boolean;
-  contenidoCarnetB: Base[] | null;
+  contenidoCarnetB: BaseConProgreso[] | null;
   progresoUsuario: Clase[] | null;
   progreso: ProgresoEstado[] | null;
   // objeto: Record<number, Progreso>;
@@ -70,68 +71,118 @@ export const useCarnetB = create<CarnetB>((set, get) => ({
   },
   fetchProgreso: async (usuario_id) => {
     const res = await getProgress2(usuario_id);
+    console.log(res);
     set({ progreso: res, loadingProgreso: false });
   },
   fetchDataContent: async () => {
     set({ loading: true });
+
     const { fetchContenido, fetchProgreso } = get();
 
-    if (!get().contenidoCarnetB) await fetchContenido();
-
-    if (!get().progreso) {
-      const id = useUserStore.getState().user?.[0].id;
-      id == undefined
-        ? console.error("Error al obtener el id")
-        : await fetchProgreso(id);
+    if (!get().contenidoCarnetB) {
+      await fetchContenido();
     }
 
+    if (!get().progreso) {
+      const userId = useUserStore.getState().user?.[0]?.id;
+      if (!userId) {
+        console.error("Usuario sin ID");
+        set({ loading: false });
+        return;
+      }
+      await fetchProgreso(userId);
+    }
+
+    const contenidoPlano = get().contenidoCarnetB ?? [];
+    const progresoUsuario = get().progreso ?? [];
+    const usuarioNuevo = progresoUsuario.length === 0;
+
+    // Mapa de progreso
     const progresoMap: Record<number, ProgresoEstado> = {};
-    get().progreso?.forEach((p) => {
+    progresoUsuario.forEach((p) => {
       progresoMap[p.contenido_id] = p;
     });
 
-    const contenidoPlano = get().contenidoCarnetB ?? [];
+    const subtemaCompletado = (id: number) =>
+      progresoMap[id]?.completado === true;
 
-    const clases = contenidoPlano?.filter((c) => c.tipo === "clase");
+    const clasesPlano = contenidoPlano
+      .filter((c) => c.tipo === "clase")
+      .sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0));
 
-    const withProgreso = (id: number): Progreso => {
-      return progresoMap[id]
-        ? {
-            completado: progresoMap[id].completado,
-            bloqueado: progresoMap[id].bloqueado,
-          }
-        : {
-            completado: false,
-            bloqueado: true,
-          };
-    };
-    const clasesFinales = clases.map((clase) => {
-      const temas = contenidoPlano
+    let claseAnteriorCompletada = true;
+
+    const clasesFinales = clasesPlano.map((clase, claseIndex) => {
+      const temasPlano = contenidoPlano
         .filter((t) => t.tipo === "tema" && t.padre_id === clase.id)
-        .map((tema) => {
-          const subtemas = contenidoPlano
-            .filter((s) => s.tipo === "subtema" && s.padre_id === tema.id)
-            .map((subtema) => ({
-              ...subtema,
-              progreso: withProgreso(subtema.id),
-            }));
+        .sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0));
+
+      let temaAnteriorCompletado = true;
+
+      const temas = temasPlano.map((tema, temaIndex) => {
+        const subtemasPlano = contenidoPlano
+          .filter((s) => s.tipo === "subtema" && s.padre_id === tema.id)
+          .sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0));
+
+        let subtemaAnteriorCompletado = true;
+
+        const subtemas = subtemasPlano.map((subtema, subIndex) => {
+          const completado = subtemaCompletado(subtema.id);
+
+          const bloqueado = usuarioNuevo
+            ? !(claseIndex === 0 && temaIndex === 0 && subIndex === 0)
+            : !subtemaAnteriorCompletado;
+
+          subtemaAnteriorCompletado = completado;
 
           return {
-            ...tema,
-            progreso: withProgreso(tema.id),
-            subtemas,
+            ...subtema,
+            progreso: { completado, bloqueado },
           };
         });
 
+        const temaCompletado =
+          subtemas.length > 0
+            ? subtemas.every((s) => s.progreso.completado)
+            : false;
+
+        const temaBloqueado = usuarioNuevo
+          ? !(claseIndex === 0 && temaIndex === 0)
+          : !temaAnteriorCompletado;
+
+        temaAnteriorCompletado = temaCompletado;
+
+        return {
+          ...tema,
+          subtemas,
+          progreso: {
+            completado: temaCompletado,
+            bloqueado: temaBloqueado,
+          },
+        };
+      });
+
+      const claseCompletada =
+        temas.length > 0 ? temas.every((t) => t.progreso.completado) : false;
+
+      const claseBloqueada = usuarioNuevo
+        ? claseIndex !== 0
+        : !claseAnteriorCompletada;
+
+      claseAnteriorCompletada = claseCompletada;
+
       return {
         ...clase,
-        progreso: withProgreso(clase.id),
         temas,
+        progreso: {
+          completado: claseCompletada,
+          bloqueado: claseBloqueada,
+        },
       };
     });
+
     set({
       progresoUsuario: clasesFinales,
-      // objeto: progresoMap,
       loading: false,
     });
   },

@@ -17,6 +17,7 @@ export default function Lessons() {
 
   useEffect(() => {
     fetchDataContent();
+    console.log(contenido)
   }, [loading]);
 
   const navigate = useRouter();
@@ -166,7 +167,7 @@ export default function Lessons() {
                           </svg>
                         </div>
                       ) : (
-                        <div className="absolute inset-0 bg-background/80 backdrop-blur-sm flex items-center justify-center">
+                        <div className={`absolute inset-0 bg-background/80 ${temas.progreso.bloqueado && "backdrop-blur-sm"}  flex items-center justify-center`}>
                           <svg
                             className="w-8 h-8 text-muted-foreground"
                             fill="none"
