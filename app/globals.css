@@ -103,7 +103,8 @@
 
     /* Neon effects */
     .neon-glow {
-      text-shadow: 0 0 10px hsl(var(--neon-glow)), 0 0 20px hsl(var(--neon-glow) / 0.5);
+      text-shadow: 0 0 10px hsl(var(--neon-glow)), 0 0 20px hsl(var(--neon-glow) / 0.04);
+      letter-spacing: 6px;
     }
 
     .neon-glow-red {

@@ -55,8 +55,9 @@ function Features() {
 
   return (
     <>
+      {/* profesores */}
       <section className="grid grid-cols-1 md:grid-cols-2 justify-center md:w-4/5 mt-5 mx-auto relative">
-        <div className="absolute bottom-0 right-[20%] w-96 h-96 bg-hoodie/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 right-[20%] size-52 md:size-96 bg-hoodie/15 md:right-0 rounded-full blur-3xl animate-pulse"></div>
 
         <div className="flex justify-center items-start mt-14">
           <div className=" px-4">
@@ -91,9 +92,9 @@ function Features() {
           />
         </div>
       </section>
-
+      {/* origen del exito */}
       <section className="px-4 mt-12 relative">
-        <div className="absolute bottom-0 left-0 size-80  bg-lima/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 size-52 md:size-96  bg-lima/15 rounded-full blur-3xl animate-pulse"></div>
 
         <div className="px-2 md:w-2/3 mx-auto">
           <h2 className="text-4xl md:text-5xl text-center">
@@ -122,9 +123,9 @@ function Features() {
           ))}
         </div>
       </section>
-
+      {/*Metodo teorix */}
       <section className="max-w-7xl mx-auto px-6 py-24 relative">
-        <div className="absolute bottom-0 left-[20%] w-96 h-96 bg-lima/15 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-0 left-[20%] size-52 md:size-96 bg-lima/15 rounded-full blur-3xl md:hidden animate-pulse"></div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div className="h-fit lg:sticky lg:top-4">
@@ -166,20 +167,20 @@ function Features() {
           </div>
         </div>
       </section>
-
+      {/* Preguntas frecuentes */}
       <section className="px-4 md:w-[90dvw] mx-auto mt-10 relative ">
         <h2 className="text-5xl text-lima text-center mb-8">
           Preguntas frecuentes
         </h2>
 
-        <div className=" flex gap-8 w-full">
-          <div className=" md:w-1/2 rounded-md overflow-hidden">
+        <div className=" md:flex gap-8 w-full">
+          <div className=" md:w-1/2 rounded-md overflow-hidden mb-6">
             <img src="clasesTeo.webp" alt="" className="object-cover" />
           </div>
           <div className="flex justify-center items-center w-full md:w-1/2">
             <Accordion type="single" className="w-full">
               {preguntas.map((p, i) => (
-                <AccordionItem value={`${i}`}>
+                <AccordionItem value={p.pregunta}>
                   <AccordionTrigger>{p.pregunta}</AccordionTrigger>
                   <AccordionContent>{p.respuesta}</AccordionContent>
                 </AccordionItem>
