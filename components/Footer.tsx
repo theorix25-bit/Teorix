@@ -4,7 +4,7 @@ export const Footer = () => {
   return (
     <footer className=" text-white border-t border-gray-700/60">
       <div className="">
-        <div className=" flex flex-row justify-between items-top px-9 py-7">
+        <div className=" flex flex-row justify-between items-top gap-4 px-9 py-7">
           <div className="col">
             <h3 className="text-3xl font-bold mb-3">
               THEORIX<span className="text-lima"> *</span>

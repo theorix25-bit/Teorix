@@ -1,9 +1,9 @@
 import ChatAssistant from "@/components/ChatAssistant";
 import { CommunitySection } from "@/components/CommunitySection";
-import Features from "@/components/Features";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { MethodSection } from "@/components/MethodSection";
+import { Algoritmo, Datos, Exito, FAQs, Metodo, Profesor247 } from "@/components/page";
 import { PricingSection } from "@/components/PricingSection";
 import Profesor from "@/components/Profesor";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -13,11 +13,16 @@ export default async function Home() {
     <>
       <div className=" text-white">
         <HeroSection />
-        <Features />
+        <Profesor247 />
+        <Exito />
+        <Metodo />
+        <PricingSection />
+        <FAQs />
+        <CommunitySection />
+        <Datos />
+        <Algoritmo />
         <MethodSection />
         <TestimonialsSection />
-        <PricingSection />
-        <CommunitySection />
         <Footer />
         <ChatAssistant urlAsistente={urlAsistente} />
       </div>

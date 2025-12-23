@@ -102,10 +102,10 @@
   @layer utilities {
 
     /* Neon effects */
-    .neon-glow {
+    /* .neon-glow {
       text-shadow: 0 0 10px hsl(var(--neon-glow)), 0 0 20px hsl(var(--neon-glow) / 0.04);
       letter-spacing: 6px;
-    }
+    } */
 
     .neon-glow-red {
       text-shadow: 0 0 10px hsl(var(--neon-red)), 0 0 20px hsl(var(--neon-red) / 0.5);

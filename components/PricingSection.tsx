@@ -93,8 +93,8 @@ export const PricingSection = async () => {
       </section> */}
       </>
 
-      <section className="py-10 px-6 relative overflow-hidden mt-3">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lima/5 rounded-full blur-3xl"></div>
+      <section className="py-10 px-6 relative overflow-hidden mt-3" id="modo">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lima/5 rounded-full blur-3xl"></div>
 
         <div className="mx-auto relative z-10">
           <div className="text-center mb-16">
@@ -102,7 +102,7 @@ export const PricingSection = async () => {
               Elige tu <span className="text-lima">modo</span>
             </h2>
             <p className="text-xl max-w-2xl mx-auto">
-              Todos los planes incluyen el método THEORIX. Sin permanencia.
+              Todos los planes incluyen el método <span className="text-hoodie"> THEORIX</span>. Sin permanencia.
             </p>
           </div>
 

@@ -30,7 +30,7 @@ export const TestimonialsSection = () => {
 
   useEffect(() => {
     // Counter animation
-    const target = 85;
+    const target = 80;
     const duration = 2000;
     const steps = 60;
     const increment = target / steps;

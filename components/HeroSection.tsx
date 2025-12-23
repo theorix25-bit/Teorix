@@ -47,10 +47,10 @@ export const HeroSection = () => {
             Ver lecciones disponibles
           </Link>
           <Link
-            href={"/clases"}
-            className=" bg-hoodie px-2 py-3 rounded-xl text-white font-bold"
+            href={"/#modo"}
+            className=" bg-hoodie/80 px-2 py-3 rounded-xl text-white font-bold"
           >
-            Quiero mi cheatcode
+            selecciona tu modo
           </Link>
         </div>
 
