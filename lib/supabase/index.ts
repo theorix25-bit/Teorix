@@ -11,7 +11,7 @@ FUNCIONES PARA DATOS DE USUARIO
  * Traer todos los usuarios
  */
 export async function getAllUser(): Promise<User[]> {
-  let { data: usuarios, error } = await supabase.from("usuarios").select("*");
+  let { data: usuarios, error } = await supabase.from("Usuarios").select("*");
   if (error) {
     throw error;
   }
@@ -19,7 +19,7 @@ export async function getAllUser(): Promise<User[]> {
 }
 export async function getUserDBForId(id: string | undefined) {
   let { data: usuarios, error } = await supabase
-    .from("usuarios")
+    .from("Usuarios")
     .select("*")
     .eq("auth_id", id);
   if (usuarios?.length == 0)
@@ -42,7 +42,7 @@ export async function getPlanDBForId(link: ParamValue) {
 }
 export async function DeleteUser(id: string) {
   const { data, error } = await supabase
-    .from("usuarios")
+    .from("Usuarios")
     .delete()
     .eq("auth_id", id);
   return { data, error };

@@ -14,7 +14,7 @@ const defaultUrl = process.env.VERCEL_URL
 // Meta datos
 export const metadata: Metadata = {
   metadataBase: new URL(defaultUrl),
-  title: "Autoescuela online para aprobar el teórico | Aprende sin drama",
+  title: "El primer asistente virtual teórico con acompañamiento humano real",
   description:
     "Aprueba el examen teórico con vídeos, test DGT y tutores reales. Estudia desde el móvil, a tu ritmo y sin aburrirte.",
   keywords: [
