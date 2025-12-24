@@ -71,7 +71,6 @@ export const useCarnetB = create<CarnetB>((set, get) => ({
   },
   fetchProgreso: async (usuario_id) => {
     const res = await getProgress2(usuario_id);
-    console.log(res);
     set({ progreso: res, loadingProgreso: false });
   },
   fetchDataContent: async () => {

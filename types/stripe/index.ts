@@ -20,3 +20,4 @@ type CheckoutBody = {
   planId: number;
   stripeId: string;
 };
+

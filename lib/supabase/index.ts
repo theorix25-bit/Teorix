@@ -1,8 +1,8 @@
 import { createClient } from "@/lib/supabase/client";
 import { ParamValue } from "next/dist/server/request/params";
 import { supabaseAdmin } from "./admin";
+import { adapter } from "next/dist/server/web/adapter";
 const supabase = createClient();
-
 
 /* 
 FUNCIONES PARA DATOS DE USUARIO
@@ -47,7 +47,6 @@ export async function DeleteUser(id: string) {
     .eq("auth_id", id);
   return { data, error };
 }
-
 
 /* 
 FUNCIONES PARA EL CONTENIDO
@@ -141,7 +140,6 @@ export async function getDBSubTemaSlug<T>(slug: string): Promise<T[]> {
   return (data ?? []) as T[];
 }
 
-
 /* 
 FUNCIONES PARA EL PROGRESO
 */
@@ -230,7 +228,6 @@ export async function getProgress2(usuario_id: number) {
   return data ?? [];
 }
 
-
 /* 
 FUNCIONES PARA LAS SUSCRIPCIONES 
 */
@@ -311,7 +308,6 @@ export async function updateTableDB(table: string, update: {}, id: number) {
   return { data };
 }
 
-
 /* 
 FUNCIONES PARA REGISTROS Y AUTENTICACIÓN
 */
@@ -355,7 +351,6 @@ export async function deleteUserInAuth(id: string) {
   return result;
 }
 
-
 /* 
 FUNCIONES PARA STORAGE
 */
@@ -365,7 +360,6 @@ export async function uploadFileStorage(filePath: string, file: any) {
     .upload(filePath, file);
   return { data, error };
 }
-
 
 /* 
 FUNCIONES PARA LOS VIDEOS
@@ -409,4 +403,38 @@ export async function changeStateVideo(usuario_id: number, video_id: number) {
     return false;
   }
   return true;
+}
+
+/* 
+FUNCIONES ADMIN
+*/
+export async function crearContenido(objeto: {}): Promise<Contenido> {
+  const { data, error } = await supabase
+    .from("Contenido")
+    .insert([objeto
+    ])
+    .select()
+    .maybeSingle();
+  if (error) console.error("Error al enviar el contenido", error);
+  return (data ?? {}) as Contenido;
+}
+
+export async function actualizarContenido(
+  idFilter: number,
+  objeto: {}
+): Promise<Contenido> {
+  const { data, error } = await supabase
+    .from("Contenido")
+    .update(objeto)
+    .eq("id", idFilter)
+    .select()
+    .maybeSingle();
+  if (error)
+    console.error(
+      "Error al actualizar el Contenido de la base de datos",
+      error
+    );
+  console.log(objeto);
+  if (data == null) console.error("Error al actualizar al contenido", data);
+  return (data ?? {}) as Contenido;
 }

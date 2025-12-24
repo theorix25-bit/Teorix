@@ -3,7 +3,14 @@ import { CommunitySection } from "@/components/CommunitySection";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import { MethodSection } from "@/components/MethodSection";
-import { Algoritmo, Datos, Exito, FAQs, Metodo, Profesor247 } from "@/components/page";
+import {
+  Algoritmo,
+  Datos,
+  Exito,
+  FAQs,
+  Metodo,
+  Profesor247,
+} from "@/components/page";
 import { PricingSection } from "@/components/PricingSection";
 import Profesor from "@/components/Profesor";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
@@ -16,9 +23,17 @@ export default async function Home() {
         <Profesor247 />
         <Exito />
         <Metodo />
+        
         <PricingSection />
         <FAQs />
         <CommunitySection />
+        <section className=" mt-10 px-2">
+          <img
+            src="bg-3.jpg"
+            alt=""
+            className="rounded-2xl md:w-[79vw] md:h-96  md:object-cover object-bottom  mx-auto"
+          />
+        </section>
         <Datos />
         <Algoritmo />
         <MethodSection />

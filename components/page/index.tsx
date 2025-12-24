@@ -17,7 +17,7 @@ import Link from "next/link";
 export function Profesor247() {
   return (
     <>
-      <section className="grid grid-cols-1 md:grid-cols-2 justify-center md:w-4/5 -mt-8 md:mt-12 mx-auto relative">
+      <section className="grid grid-cols-1 md:grid-cols-2 justify-center md:w-6/6 md:px-8 -mt-8 md:mt-12 mx-auto relative">
         <div className="absolute bottom-0 right-[20%] size-52 md:size-96 bg-hoodie/15 md:right-0 rounded-full blur-3xl animate-pulse"></div>
 
         <div className="flex justify-center items-start mt-0 md:mt-14">
@@ -33,10 +33,16 @@ export function Profesor247() {
               50% de suspensos en España.
             </p>
             <div className="mt-4 flex gap-4 px-4 mb-6 justify-center">
-              <Link href={"/#metodo"} className="px-3 py-2 border rounded-md bg-lima text-black border-lima hover:bg-lima/95 transition-colors duration-100 font-bold  text-center">
+              <Link
+                href={"/#metodo"}
+                className="px-3 py-2 border rounded-md bg-lima text-black border-lima hover:bg-lima/95 transition-colors duration-100 font-bold  text-center"
+              >
                 Descubre nuestro método
               </Link>
-              <Link href={"/"} className="px-3 py-2 rounded-md shadow-inner shadow-lima border-lima/40  border text-white transition-colors duration-100 font-bold text-center">
+              <Link
+                href={"/"}
+                className="px-3 py-2 rounded-md shadow-inner shadow-lima border-lima/40  border text-white transition-colors duration-100 font-bold text-center"
+              >
                 Manual Gratuito
               </Link>
             </div>
@@ -45,11 +51,11 @@ export function Profesor247() {
         <div className="absolute bottom-32 left-5 text-8xl md:bottom-0 md:left-0 md:text-9xl text-lima  opacity-30">
           *
         </div>
-        <div className="flex justify-center  px-4 rounded-xl w-[85dvw] md:w-2/3 mx-auto overflow-hidden ">
+        <div className="flex justify-center w-[85dvw] md:w-full mx-auto ">
           <img
-            src="alumno_Theorix.webp"
+            src="bg-1.jpg"
             alt=""
-            className="md:w-[540px] rounded-2xl object-cover z-10 "
+            className="rounded-3xl object-cover z-10 "
           />
         </div>
       </section>
@@ -135,7 +141,10 @@ export function Metodo() {
   return (
     <>
       {/*Metodo teorix */}
-      <section className="max-w-7xl mx-auto p-6 mt-6 md:py-14  relative" id="metodo">
+      <section
+        className="max-w-7xl mx-auto p-6 mt-6 md:py-14  relative"
+        id="metodo"
+      >
         <div className="absolute bottom-0 left-[20%] size-52 md:size-96 bg-lima/15 rounded-full blur-3xl md:hidden animate-pulse"></div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -156,7 +165,7 @@ export function Metodo() {
               con un mapa del tesoro en la mano.
             </p>
             <img
-              src="./metodoTeorix.webp"
+              src="bg-2.jpg"
               alt=""
               className=" rounded-xl h-80 w-11/12 object-cover mx-auto mt-5 bg-top "
             />
@@ -292,9 +301,7 @@ export function Algoritmo() {
   return (
     <>
       <section className="px-4 md:w-[80dvw] mx-auto mt-16 relative">
-        <h2 className="text-5xl text-center text-lima">
-          El Algoritmo 80/20
-        </h2>
+        <h2 className="text-5xl text-center text-lima">El Algoritmo 80/20</h2>
         <h3 className="text-4xl text-center mt-1">
           Tu Manual <span className="text-hoodie">Gratuito</span> para Dominar
           el Examen Teórico
