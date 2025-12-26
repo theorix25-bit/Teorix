@@ -7,6 +7,7 @@ import { useParams, useRouter } from "next/navigation";
 import { Progress } from "@/components/ui/progress";
 import { Clase, useCarnetB } from "@/hooks/useCarnetB";
 import ClaseSkeleton from "@/components/skeleton/ClaseSkeleton";
+import { crearContenido, getContent2 } from "@/lib/supabase";
 
 const PageTema = () => {
   const { temas: slug } = useParams<{ temas: string }>();
@@ -41,7 +42,6 @@ const PageTema = () => {
             <ArrowLeft className="w-4 h-4 mr-2" />
             VOLVER
           </Button>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
             <div className="relative aspect-video bg-gradient-to-br from-lima/10 via-accent/10 to-hoodie/10 rounded-xl border border-gray-50/20 overflow-hidden">
               <div className="absolute inset-0 flex items-center justify-center">

@@ -1,7 +1,6 @@
 import { createClient } from "@/lib/supabase/client";
 import { ParamValue } from "next/dist/server/request/params";
 import { supabaseAdmin } from "./admin";
-import { adapter } from "next/dist/server/web/adapter";
 const supabase = createClient();
 
 /* 
@@ -411,7 +410,16 @@ FUNCIONES ADMIN
 export async function crearContenido(objeto: {}): Promise<Contenido> {
   const { data, error } = await supabase
     .from("Contenido")
-    .insert([objeto
+    .insert([
+      {
+        id: 17,
+        contenido_id: 17,
+        titulo: "Documentación del Vehículo",
+        descripcion: "Papeles necesarios del automotor.",
+        tipo: "subtema",
+        orden: 2,
+        slug: "documentacion-del-vehiculo",
+      },
     ])
     .select()
     .maybeSingle();

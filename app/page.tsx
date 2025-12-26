@@ -23,7 +23,7 @@ export default async function Home() {
         <Profesor247 />
         <Exito />
         <Metodo />
-        
+      
         <PricingSection />
         <FAQs />
         <CommunitySection />
