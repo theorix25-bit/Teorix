@@ -1,5 +1,5 @@
 "use client";
-import { getAllUser, getUserDBForId, updateTableDB } from "@/lib/supabase";
+import { getAllUser, updateTableDB } from "@/lib/supabase";
 import { useEffect, useState } from "react";
 
 function usuarios() {
@@ -43,8 +43,8 @@ const CardUser = ({ user, callback }: { user: User; callback: () => void }) => {
   const [loading, setLoading] = useState(true);
 
   const fetchUsers = async () => {
-    const res = await getUserDBForId("16");
-    console.log(res);
+    // const res = await getUserDBForId("16");
+    // console.log(res);
   };
 
   // evento de abrir

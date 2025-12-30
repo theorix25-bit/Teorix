@@ -7,13 +7,12 @@ import Clases from "@/components/Clases";
 
 const PageClases = () => {
   const { user, authId, loading } = useUserStore();
-  console.log(user)
-
+console.log(user)
   if (loading) {
     return <ClaseSkeleton />;
   }
 
-  const isLogged = user == null;
+  const isLogged = user?.length == 0;
 
   if (!isLogged) {
     return <Clases />;

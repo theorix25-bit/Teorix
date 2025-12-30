@@ -17,21 +17,19 @@ export async function getAllUser(): Promise<User[]> {
   }
   return usuarios || [];
 }
-export async function getUserDBForId(id: string | undefined) {
-  let { data: usuarios, error } = await supabase
-    .from("Usuarios")
-    .select("*")
-    .eq("auth_id", id);
-  if (usuarios?.length == 0)
-    console.error("no se encontró el usuario por auth_id");
-  if (error) throw error;
-  return usuarios || [];
-}
-export async function getUserAuthId() {
-  const { data, error } = await supabase.auth.getClaims();
-  if (error) console.error("error al buscar el authId");
-  return data?.claims.sub;
-}
+// export async function getUserDBForId(id: string | undefined) {
+//   let { data: usuarios, error } = await supabase
+//     .from("Usuarios")
+//     .select("*")
+//     .eq("auth_id", id);
+//   if (error) throw error;
+//   return usuarios || [];
+// }
+// export async function getUserAuthId() {
+//   const { data, error } = await supabase.auth.getClaims();
+//   if (error) console.error("error al buscar el authId");
+//   return data?.claims.sub;
+// }
 export async function getPlanDBForId(link: ParamValue) {
   let { data: suscripciones, error } = await supabase
     .from("suscripciones")
@@ -211,22 +209,24 @@ export async function getProgress(userId: number) {
 
   return result;
 }
-export async function getContent2() {
-  const { data, error } = await supabase
-    .from("contenido_2")
-    .select("*")
-    .order("orden", { ascending: true });
-  if (error) console.error("error al traer el contenido", error);
-  return data ?? [];
-}
-export async function getProgress2(usuario_id: number) {
-  const { data, error } = await supabase
-    .from("progresos_2")
-    .select("*")
-    .eq("usuario_id", usuario_id);
-  if (error) console.error("Error al traer el progreso del usuario");
-  return data ?? [];
-}
+
+/* Para eliminación */
+// export async function getContent2() {
+//   const { data, error } = await supabase
+//     .from("contenido_2")
+//     .select("*")
+//     .order("orden", { ascending: true });
+//   if (error) console.error("error al traer el contenido", error);
+//   return data ?? [];
+// }
+// export async function getProgress2(usuario_id: number) {
+//   const { data, error } = await supabase
+//     .from("progresos_2")
+//     .select("*")
+//     .eq("usuario_id", usuario_id);
+//   if (error) console.error("Error al traer el progreso del usuario");
+//   return data ?? [];
+// }
 
 /* 
 FUNCIONES PARA LAS SUSCRIPCIONES 
@@ -258,14 +258,14 @@ export async function searchSusUser(
  * @return Subscription[] 
 
  */
-export async function getPlanUser(id: number) {
-  const { data } = await supabase
-    .from("usuarios_suscripciones")
-    .select("*")
-    .eq("usuario_id", id);
+// export async function getPlanUser(id: number) {
+//   const { data } = await supabase
+//     .from("usuarios_suscripciones")
+//     .select("*")
+//     .eq("usuario_id", id);
 
-  return data ?? [];
-}
+//   return data ?? [];
+// }
 export async function upDateSusUser(usuario_id: number, numberPlan: number) {
   const { data, error } = await supabase
     .from("usuarios_suscripciones")
@@ -411,8 +411,7 @@ FUNCIONES ADMIN
 export async function crearContenido(objeto: {}): Promise<Contenido> {
   const { data, error } = await supabase
     .from("Contenido")
-    .insert([objeto
-    ])
+    .insert([objeto])
     .select()
     .maybeSingle();
   if (error) console.error("Error al enviar el contenido", error);

@@ -6,8 +6,7 @@ import { setErrorLog } from "@/lib/supabase";
 
 export function RegistroCompletoUsuario({ userId }: UserAuthId) {
   const supabase = createClient();
-  console.log(userId)
-  
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [zipcode, setZipcode] = useState("");
@@ -20,13 +19,32 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
     setError(null);
 
     try {
-      const { error } = await supabase.rpc("crear_usuario_y_relaciones", {
-        p_auth_id: userId,
-        p_nombre: name,
-        p_apellido: lastName,
-        p_codigo_postal: zipcode,
-        p_rol: "alumno",
-      });
+      const { data: registroUsuario, error } = await supabase
+        .from("Usuarios")
+        .insert([
+          {
+            auth_id: userId,
+            nombre: name,
+            apellido: lastName,
+            codigo_postal: zipcode,
+          },
+        ])
+        .select()
+        .maybeSingle();
+
+      const { data: registroSuscripcionUsuario } = await supabase
+        .from("usuarios_suscripciones")
+        .insert([
+          {
+            usuario_id: registroUsuario.id,
+            suscripcion_id: 1,
+            activa: true,
+            metodo_pago: "gratuito",
+            pago_stripe_id: false,
+          },
+        ])
+        .select()
+        .maybeSingle();
 
       if (error) {
         await setErrorLog({
