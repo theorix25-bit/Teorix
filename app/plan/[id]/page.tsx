@@ -1,6 +1,8 @@
 "use client";
 import ButtonCheckout from "@/components/ButtonCheckout";
-import { getPlanDBForId, getUserAuthId } from "@/lib/supabase";
+import { useUserStore } from "@/hooks/useUseStore";
+import { getPlanDBForId } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 import {
   ArrowLeft,
   Check,
@@ -15,151 +17,16 @@ import {
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-
-// const planDetails: { [key: string]: PlanDetails } = {
-//   gratuito: {
-//     name: "gratuito",
-//     price: "0€",
-//     period: "",
-//     tagline: "Descubre el método THEORIX sin compromiso",
-//     description:
-//       "Perfecto para explorar nuestra metodología y ver si es para ti. Sin tarjeta de crédito requerida.",
-//     features: [
-//       "10 preguntas gratis del test oficial",
-//       "1 microlección completa con explicaciones",
-//       "Acceso al método THEORIX básico",
-//       "Sin tarjeta de crédito necesaria",
-//       "Cancelación instantánea sin compromiso",
-//     ],
-//     benefits: [
-//       {
-//         icon: Clock,
-//         title: "Prueba sin riesgo",
-//         description: "Explora el método sin ningún compromiso financiero",
-//       },
-//       {
-//         icon: Star,
-//         title: "Calidad garantizada",
-//         description: "Mismo método que usan miles de estudiantes exitosos",
-//       },
-//     ],
-//     testimonial: {
-//       text: "Probé la versión gratuita y me convenció. El método es muy diferente a lo que había visto.",
-//       author: "María G.",
-//       result: "Aprobó en el primer intento",
-//     },
-//     cta: "Empezar gratis",
-//     ctaVariant: "outline",
-//   },
-//   normal: {
-//     name: "normal",
-//     price: "29€",
-//     period: "/mes",
-//     tagline: "Aprueba rápido con el plan más popular",
-//     description:
-//       "El plan preferido por estudiantes que quieren aprobar en el menor tiempo posible. Acceso completo al método THEORIX con todas las herramientas necesarias.",
-//     features: [
-//       "Acceso completo ilimitado a todo el contenido",
-//       "Tutor personal asignado que te guía",
-//       "Todas las microlecciones adaptativas",
-//       "Tests adaptativos con IA",
-//       "Garantía de aprobado o te devolvemos el dinero",
-//       "Soporte prioritario en menos de 2 horas",
-//       "Actualizaciones automáticas incluidas",
-//       "Sin permanencia - cancela cuando quieras",
-//     ],
-//     benefits: [
-//       {
-//         icon: Zap,
-//         title: "Resultados rápidos",
-//         description:
-//           "El 87% de nuestros estudiantes aprueban en el primer intento",
-//       },
-//       {
-//         icon: Users,
-//         title: "Acompañamiento personal",
-//         description: "Tu tutor te motiva y resuelve todas tus dudas",
-//       },
-//       {
-//         icon: Shield,
-//         title: "Garantía de aprobado",
-//         description: "Si no apruebas, te devolvemos el 100% del dinero",
-//       },
-//       {
-//         icon: Trophy,
-//         title: "Método probado",
-//         description: "Más de 10,000 estudiantes han aprobado con nosotros",
-//       },
-//     ],
-//     testimonial: {
-//       text: "Me saqué el carnet en 3 semanas con Speedrun. El tutor me ayudó muchísimo y las microlecciones son oro puro.",
-//       author: "Carlos M.",
-//       result: "Aprobó en 3 semanas",
-//     },
-//     cta: "Modo speedrun ON",
-//     ctaVariant: "default",
-//     highlight: true,
-//   },
-//   personalizado: {
-//     name: "personalizado",
-//     price: "49€",
-//     period: "/mes",
-//     tagline: "Máximo acompañamiento para aprobar seguro",
-//     description:
-//       "Para quienes quieren el máximo nivel de personalización y seguimiento. Sesiones individuales, plan personalizado y acceso de por vida.",
-//     features: [
-//       "Todo lo incluido en Speedrun PLUS:",
-//       "Sesiones 1-a-1 con tu tutor personal (2/semana)",
-//       "Plan de estudio personalizado diario",
-//       "Simulacros certificados como el examen real",
-//       "Acceso de por vida a todo el contenido",
-//       "Grupo privado de Discord exclusivo",
-//       "Revisión personalizada de tus errores",
-//       "Prioridad máxima en soporte (30 min)",
-//       "Sesión estratégica pre-examen",
-//     ],
-//     benefits: [
-//       {
-//         icon: Users,
-//         title: "Atención VIP",
-//         description: "Sesiones privadas con tu tutor dos veces por semana",
-//       },
-//       {
-//         icon: Zap,
-//         title: "Plan personalizado",
-//         description: "Cada día sabes exactamente qué estudiar y cuándo",
-//       },
-//       {
-//         icon: Trophy,
-//         title: "Tasa de aprobado 96%",
-//         description: "Los estudiantes Pro tienen la mayor tasa de éxito",
-//       },
-//       {
-//         icon: Shield,
-//         title: "Acceso de por vida",
-//         description: "Paga una vez, accede para siempre. Perfecto para repasar",
-//       },
-//     ],
-//     testimonial: {
-//       text: "Pro vale cada euro. Las sesiones 1-a-1 me dieron la confianza que necesitaba. Aprobé a la primera con todo bien.",
-//       author: "Laura P.",
-//       result: "Aprobó con 0 fallos",
-//     },
-//     cta: "Quiero Pro",
-//     ctaVariant: "default",
-//     highlight: true,
-//   },
-// };
+const supabase = createClient();
 function page() {
   const { id } = useParams();
+  const { authId } = useUserStore();
   const [plan, setPlan] = useState<PlanDB[]>([]);
   const [userId, setUserId] = useState<string>();
-
+  console.log(authId);
   const fetchData = async () => {
-    const Auth = await getUserAuthId();
-    const plan = await getPlanDBForId(id);
-
-    Auth && setUserId(Auth);
+    let { data: plan } = await supabase.from("suscripciones").select("*").eq("link", id);
+    authId && setUserId(authId);
     plan && setPlan(plan);
   };
   useEffect(() => {
