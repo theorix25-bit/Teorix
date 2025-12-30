@@ -59,7 +59,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
     if (!user) {
       await fetchUser();
     }
-
+    if(user?.length == 0) return 
     const id = get().user?.[0].id;
     if (!id) return;
 

@@ -23,7 +23,7 @@ export async function getUserDBForId(id: string | undefined) {
     .select("*")
     .eq("auth_id", id);
   if (usuarios?.length == 0)
-    console.error("problemas al buscar el usuario por auth_id");
+    console.error("no se encontró el usuario por auth_id");
   if (error) throw error;
   return usuarios || [];
 }
