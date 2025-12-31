@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { setErrorLog } from "@/lib/supabase";
 import { resumePluginState } from "next/dist/build/build-context";
+import { useUserStore } from "@/hooks/useUseStore";
 
-export function RegistroCompletoUsuario({ userId }: UserAuthId) {
+export function RegistroCompletoUsuario() {
+  const { authId: userId } = useUserStore();
   const supabase = createClient();
 
   const [name, setName] = useState("");
@@ -40,8 +42,8 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
         ])
         .select()
         .maybeSingle();
-        console.log(registroUsuario)
-        console.log(error)
+      console.log(registroUsuario);
+      console.log(error);
 
       await supabase
         .from("usuarios_suscripciones")

@@ -1,31 +1,24 @@
-"use client";
-import { useEffect, useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Image as ImageIcon } from "lucide-react";
-import { useRouter } from "next/navigation";
-import slugify from "slugify";
 import Image from "next/image";
-import { useCarnetB } from "@/hooks/useCarnetB";
+import Link from "next/link";
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
 
-export default function Lessons() {
-  const [state, setState] = useState(false);
+export default async function Lessons() {
+  const supabase = await createClient();
+  const { data: documentos, error: errorD } = await supabase
+    .from("documents")
+    .select("*");
+  if (errorD) console.error(errorD);
+  const { data: videos, error: errorV } = await supabase
+    .from("videos")
+    .select("*");
+  if (errorV) console.error(errorV);
+  const { data: gramma, error: errorG } = await supabase
+    .from("gramma")
+    .select("*");
+  if (errorG) console.error(errorG);
 
-  const {
-    loading,
-    progresoUsuario: contenido,
-    fetchDataContent,
-  } = useCarnetB();
-
-  useEffect(() => {
-    fetchDataContent();
-  }, [loading]);
-
-  const navigate = useRouter();
-  const [selectedFilter, setSelectedFilter] = useState<string>("todos");
-
-  if (!contenido) return null;
-
-  return state ? (
+  return false ? (
     <>
       <div className="  md:w-2/3  mx-auto px-8 py-10">
         <h1 className=" text-3xl my-3">
@@ -97,15 +90,13 @@ export default function Lessons() {
           </div>
         </div>
 
-        {/* Temas Section */}
         <div className="space-y-6">
-          {/* Section Header with Filter */}
           <div className="flex flex-row justify-between gap-4">
             <h2 className="font-display text-3xl md:text-4xl text-foreground">
-              Temas
+              Documentos y videos
             </h2>
 
-            <select
+            {/* <select
               name=""
               className="text-black"
               onChange={(e) => setSelectedFilter(e.target.value)}
@@ -116,87 +107,61 @@ export default function Lessons() {
               <option value="completados">Completados</option>
               <option value="pendientes">Pendientes</option>
               <option value="bloqueados">Bloqueados</option>
-            </select>
+            </select> */}
           </div>
 
-          {/* Temas Grid */}
+          <h3 className="text-2xl md:text-3xl text-foreground">Documentos</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {contenido
-              .filter((temas: any) => {
-                if (selectedFilter === "todos") return true;
-                if (selectedFilter === "completados")
-                  return temas.progreso?.completado;
-                if (selectedFilter === "pendientes")
-                  return !temas.completed && !temas.locked;
-                if (selectedFilter === "bloqueados")
-                  return temas.progreso?.bloqueado;
-                return true;
-              })
-              .map((temas) => (
-                <Card
-                  key={temas.id}
-                  className="group cursor-pointer hover-lift overflow-hidden bg-card border-transparent transition-all hover:border-lima/50"
-                  onClick={() => {
-                    if (!temas.progreso?.bloqueado) {
-                      navigate.push(
-                        `/clases/${slugify(temas.slug, {
-                          lower: true,
-                          strict: true,
-                        })}/`
-                      );
-                    }
-                  }}
-                >
-                  <CardContent className="p-0">
-                    <div className="relative aspect-video bg-gradient-to-br from-lima/20 via-accent/20 to-hoodie/20 flex items-center justify-center">
-                      <ImageIcon className="w-12 h-12 text-muted-foreground/40 group-hover:text-lima/60 transition-colors" />
-                      {/* <Image > */}
-                      <img src={temas.imagen} alt={temas.titulo}></img>
-                      {temas.progreso?.completado ? (
-                        <div className="absolute top-2 right-2 bg-lima text-lima-foreground rounded-full p-1.5">
-                          <svg
-                            className="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                              clipRule="evenodd"
-                            />
-                          </svg>
-                        </div>
-                      ) : (
-                        <div
-                          className={`absolute inset-0 bg-background/80 ${
-                            temas.progreso.bloqueado && "backdrop-blur-sm"
-                          }  flex items-center justify-center`}
-                        >
-                          <svg
-                            className="w-8 h-8 text-muted-foreground"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                            />
-                          </svg>
-                        </div>
-                      )}
-                    </div>
+            {documentos?.map((d) => (
+              <Link
+                href={{
+                  pathname: `/clases/pdf/${d.slug}`,
+                  query: {
+                    path: d.file_path,
+                  },
+                }}
+                key={d.id}
+                className="border px-3 py-2"
+              >
+                <p>{d.title}</p>
+              </Link>
+            ))}
+          </div>
 
-                    <div className="p-4">
-                      <h3 className="font-display text-lg text-foreground group-hover:text-lima transition-colors">
-                        {temas.titulo}
-                      </h3>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+          <h3 className="text-2xl md:text-3xl text-foreground">Videos</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {videos?.map((v) => (
+              <Link
+                href={{
+                  pathname: `/clases/video/${v.slug}`,
+                  query: {
+                    titulo: v.titulo,
+                  },
+                }}
+                key={v.id}
+                className="border px-3 py-2"
+              >
+                <p>{v.titulo}</p>
+              </Link>
+            ))}
+          </div>
+          
+          <h3 className="text-2xl md:text-3xl text-foreground">Contenido</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {gramma?.map((g) => (
+              <Link
+                href={{
+                  pathname: `/clases/contenido/${g.slug}`,
+                  query: {
+                    titulo: g.titulo,
+                  },
+                }}
+                key={g.id}
+                className="border px-3 py-2"
+              >
+                <p>{g.titulo}</p>
+              </Link>
+            ))}
           </div>
         </div>
       </main>

@@ -5,6 +5,7 @@ import DesktopMenu from "./DesktopMenu";
 import logo from "@/assets/Logo_Theorix.png";
 
 export default async function HeaderLayout() {
+  
   const { user } = await useUserAuth();
   const admin = user?.app_metadata?.role == "admin"
 
