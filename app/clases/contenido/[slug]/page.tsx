@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
 
 interface pageProps {
   params: { slug: string };
@@ -8,11 +9,28 @@ async function Contenido({ params, searchParams }: pageProps) {
   const supabase = await createClient();
   const { slug } = await params;
   const query = await searchParams;
-  const { data: video } = await supabase.from("gramma").select("*").eq("titulo", query.titulo).maybeSingle();
+  const { data: gamma } = await supabase
+    .from("gramma")
+    .select("*")
+    .eq("titulo", query.titulo)
+    .maybeSingle();
   return (
     <div>
-      <h1 className="text-8xl text-white">{slug}</h1>
-      <embed src={video.url} type="application/pdf" width="100%" height="800" />
+      <h1 className="text-3xl text-white text-center mb-4 px-4 mt-4">
+        {gamma.titulo}
+      </h1>
+      <div>
+        <div className="text-center">
+          <Link href={"/clases"} className="border px-3 py-2 rounded-lg ">
+            volver
+          </Link>
+        </div>
+        <embed
+          src={gamma.url}
+          className="mx-auto w-[100%] px-3 lg:w-[67%]  h-[600px] mt-3"
+          type="application/pdf"
+        />
+      </div>
     </div>
   );
 }

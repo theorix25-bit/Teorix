@@ -73,7 +73,7 @@ export const useUserStore = create<UserStore>((set, get) => ({
 
     try {
       const { data: planResponse } = await supabase
-        .from("usuarios_suscripciones")
+        .from("Planes_usuarios")
         .select("*")
         .eq("usuario_id", id);
       if (!planResponse) return console.error("Plan no definido");

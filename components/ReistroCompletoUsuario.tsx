@@ -46,14 +46,12 @@ export function RegistroCompletoUsuario() {
       console.log(error);
 
       await supabase
-        .from("usuarios_suscripciones")
+        .from("Planes_usuarios")
         .insert([
           {
             usuario_id: registroUsuario.id,
-            suscripcion_id: 1,
-            activa: true,
-            metodo_pago: "gratuito",
-            pago_stripe_id: false,
+            plan_id: 1,
+            estado: true,
           },
         ])
         .select()

@@ -4,6 +4,7 @@ import { useState } from "react";
 import teo from "@/assets/teo.png";
 import Image from "next/image";
 import { useUserStore } from "@/hooks/useUseStore";
+import { createClient } from "@/lib/supabase/client";
 
 export default function ChatAssistant({
   urlAsistente,
@@ -13,6 +14,8 @@ export default function ChatAssistant({
   const [token, setToken] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [fullscreen, setFullscreen] = useState(false);
+
+
   const { plan, user, loading } = useUserStore();
 
   const body = user ? { user, plan } : {};

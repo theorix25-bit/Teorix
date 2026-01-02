@@ -1,21 +1,41 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
-
 export default async function Lessons() {
   const supabase = await createClient();
-  const { data: documentos, error: errorD } = await supabase
-    .from("documents")
-    .select("*");
-  if (errorD) console.error(errorD);
+
+  // Datos de sesión
+  const { data: datos } = await supabase.auth.getClaims();
+  const user = datos?.claims!;
+
+  // Datos del usuario
+  const { data: usuario } = await supabase
+    .from("Usuarios")
+    .select("*")
+    .eq("auth_id", user.sub)
+    .maybeSingle();
+
+  // Datos del plan
+  const { data: plan, error } = await supabase
+    .from("Planes_usuarios")
+    .select("*")
+    .eq("usuario_id", usuario.id)
+    .maybeSingle();
+
+  if (error) console.error(error);
+  let filtroBase = plan.plan_id - 1;
+
+  if (error) console.log(error);
+
   const { data: videos, error: errorV } = await supabase
     .from("videos")
     .select("*");
   if (errorV) console.error(errorV);
   const { data: gramma, error: errorG } = await supabase
     .from("gramma")
-    .select("*");
+    .select("*")
+    .lte("fase", filtroBase);
+
   if (errorG) console.error(errorG);
 
   return false ? (
@@ -92,10 +112,6 @@ export default async function Lessons() {
 
         <div className="space-y-6">
           <div className="flex flex-row justify-between gap-4">
-            <h2 className="font-display text-3xl md:text-4xl text-foreground">
-              Documentos y videos
-            </h2>
-
             {/* <select
               name=""
               className="text-black"
@@ -112,18 +128,18 @@ export default async function Lessons() {
 
           <h3 className="text-2xl md:text-3xl text-foreground">Documentos</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {documentos?.map((d) => (
+            {gramma?.map((g) => (
               <Link
                 href={{
-                  pathname: `/clases/pdf/${d.slug}`,
+                  pathname: `/clases/contenido/${g.slug}`,
                   query: {
-                    path: d.file_path,
+                    titulo: g.titulo,
                   },
                 }}
-                key={d.id}
-                className="border px-3 py-2"
+                key={g.id}
+                className="border px-3 py-5 rounded-xl border-lima text-center text-lg flex justify-center items-center hover:bg-lima/15"
               >
-                <p>{d.title}</p>
+                <p>{g.titulo}</p>
               </Link>
             ))}
           </div>
@@ -139,27 +155,9 @@ export default async function Lessons() {
                   },
                 }}
                 key={v.id}
-                className="border px-3 py-2"
+                className="border px-3 py-5 rounded-xl border-lima text-center text-lg flex justify-center items-center hover:bg-lima/15"
               >
                 <p>{v.titulo}</p>
-              </Link>
-            ))}
-          </div>
-          
-          <h3 className="text-2xl md:text-3xl text-foreground">Contenido</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {gramma?.map((g) => (
-              <Link
-                href={{
-                  pathname: `/clases/contenido/${g.slug}`,
-                  query: {
-                    titulo: g.titulo,
-                  },
-                }}
-                key={g.id}
-                className="border px-3 py-2"
-              >
-                <p>{g.titulo}</p>
               </Link>
             ))}
           </div>
