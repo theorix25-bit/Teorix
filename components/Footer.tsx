@@ -1,4 +1,12 @@
 import Link from "next/link";
+const menu1 = [
+  {label:"FAQs",url:"/faqs"},
+  {label:"Contacto",url:"/contacto"},
+  {label:"Aviso legal",url:"/aviso-legal"},
+  {label:"Politicas de Cookies",url:"/politicas-de-cookies"},
+  {label:"Privacidad",url:"/privacidad"},
+]
+// const menu2
 
 export const Footer = () => {
   return (
@@ -63,14 +71,14 @@ export const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground custom-link-hover">
+                <Link href="/" className="text-muted-foreground custom-link-hover">
                   Contacto
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-muted-foreground custom-link-hover">
-                  Términos
-                </a>
+                <Link href="/aviso-legal" className="text-muted-foreground custom-link-hover">
+                  Aviso legal
+                </Link>
               </li>
               <li>
                 <a href="#" className="text-muted-foreground custom-link-hover">
