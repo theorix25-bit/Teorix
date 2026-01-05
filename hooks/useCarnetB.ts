@@ -1,6 +1,6 @@
-import { getContent2, getProgress2 } from "@/lib/supabase";
 import { create } from "zustand";
 import { useUserStore } from "./useUseStore";
+import { createClient } from "@/lib/supabase/client";
 
 type TipoContenido = "clase" | "tema" | "subtema";
 
@@ -56,6 +56,8 @@ interface CarnetB {
   fetchDataContent: () => Promise<void>;
 }
 
+const supabase = createClient();
+
 export const useCarnetB = create<CarnetB>((set, get) => ({
   loading: true,
   loadingContent: true,
@@ -66,11 +68,12 @@ export const useCarnetB = create<CarnetB>((set, get) => ({
   // objeto: {},
 
   fetchContenido: async () => {
-    const res = await getContent2();
+    // const res = await getContent2();
+    const { data: res } = await supabase.from("contenido_2").select("*").order("orden", { ascending: true });
     set({ contenidoCarnetB: res, loadingContent: false });
   },
   fetchProgreso: async (usuario_id) => {
-    const res = await getProgress2(usuario_id);
+    const { data:res } = await supabase.from("progresos_2").select("*").eq("usuario_id", usuario_id);
     set({ progreso: res, loadingProgreso: false });
   },
   fetchDataContent: async () => {
@@ -85,7 +88,7 @@ export const useCarnetB = create<CarnetB>((set, get) => ({
     if (!get().progreso) {
       const userId = useUserStore.getState().user?.[0]?.id;
       if (!userId) {
-        console.error("Usuario sin ID");
+        console.log("Usuario sin ID");
         set({ loading: false });
         return;
       }

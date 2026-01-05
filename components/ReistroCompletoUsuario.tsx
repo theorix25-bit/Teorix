@@ -3,16 +3,24 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { setErrorLog } from "@/lib/supabase";
+import { resumePluginState } from "next/dist/build/build-context";
+import { useUserStore } from "@/hooks/useUseStore";
 
-export function RegistroCompletoUsuario({ userId }: UserAuthId) {
+export function RegistroCompletoUsuario() {
+  const { authId: userId } = useUserStore();
   const supabase = createClient();
-  console.log(userId)
-  
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [birthdate, setBirthdate] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+
+  async function addProgressBase(base: {}) {
+    await supabase.from("Contenidos_usuarios").insert([base]).select();
+  }
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,13 +28,34 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
     setError(null);
 
     try {
-      const { error } = await supabase.rpc("crear_usuario_y_relaciones", {
-        p_auth_id: userId,
-        p_nombre: name,
-        p_apellido: lastName,
-        p_codigo_postal: zipcode,
-        p_rol: "alumno",
-      });
+      const { data: registroUsuario, error } = await supabase
+        .from("Usuarios")
+        .insert([
+          {
+            auth_id: userId,
+            nombre: name,
+            apellido: lastName,
+            telefono: phone,
+            fecha_de_nacimiento: birthdate,
+            codigo_postal: zipcode,
+          },
+        ])
+        .select()
+        .maybeSingle();
+      console.log(registroUsuario);
+      console.log(error);
+
+      await supabase
+        .from("Planes_usuarios")
+        .insert([
+          {
+            usuario_id: registroUsuario.id,
+            plan_id: 1,
+            estado: true,
+          },
+        ])
+        .select()
+        .maybeSingle();
 
       if (error) {
         await setErrorLog({
@@ -56,6 +85,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
         </div>
 
         <form onSubmit={handleSignUp} className="space-y-4">
+          {/* Nombre */}
           <div>
             <label
               htmlFor="inputName"
@@ -71,7 +101,7 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-
+          {/* Apellido */}
           <div>
             <label
               htmlFor="lastName"
@@ -87,7 +117,43 @@ export function RegistroCompletoUsuario({ userId }: UserAuthId) {
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
-
+          {/* Telefono */}
+          <div>
+            <label
+              htmlFor="phone"
+              className="block text-sm font-semibold text-lima mb-1"
+            >
+              Teléfono
+            </label>
+            <input
+              id="phone"
+              type="tel"
+              placeholder="00 000 000"
+              pattern="[0-9]{10,15}"
+              className="text-black w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              onChange={(e) => {
+                const value = e.target.value.replace(/[^0-9+]/g, "");
+                setPhone(value);
+              }}
+            />
+          </div>
+          {/* Fecha de nacimiento */}
+          <div>
+            <label
+              htmlFor="birthdate"
+              className="block text-sm font-semibold text-lima mb-1"
+            >
+              Fecha de nacimiento
+            </label>
+            <input
+              id="birthdate"
+              type="date"
+              placeholder="00/00/0000"
+              className="text-black w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
+              onChange={(e) => setBirthdate(e.target.value)}
+            />
+          </div>
+          {/* Código postal */}
           <div>
             <label
               htmlFor="zipcode"

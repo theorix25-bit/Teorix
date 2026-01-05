@@ -15,6 +15,7 @@ async function Contenido({ params, searchParams }: pageProps) {
     .eq("titulo", query.titulo)
     .maybeSingle();
   return (
+<<<<<<< HEAD
     <div>
       <h1 className="text-3xl text-white text-center mb-4 px-4 mt-4">
         {gamma.titulo}
@@ -32,6 +33,27 @@ async function Contenido({ params, searchParams }: pageProps) {
         />
       </div>
     </div>
+=======
+    gamma && (
+      <div>
+        <h1 className="text-3xl text-white text-center mb-4 px-4 mt-4">
+          {gamma.titulo}
+        </h1>
+        <div>
+          <div className="text-center">
+            <Link href={"/clases"} className="border px-3 py-2 rounded-lg ">
+              volver
+            </Link>
+          </div>
+          <embed
+            src={gamma.url}
+            className="mx-auto w-[100%] px-3 lg:w-[67%]  h-[600px] mt-3"
+            type="application/pdf"
+          />
+        </div>
+      </div>
+    )
+>>>>>>> dev
   );
 }
 

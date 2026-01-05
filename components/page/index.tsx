@@ -204,7 +204,7 @@ export function FAQs() {
   return (
     <>
       {/* Preguntas frecuentes */}
-      <section className="px-4 md:w-[90dvw] mx-auto mt-4  relative ">
+      <section className="px-4 md:w-[90dvw] mx-auto mt-4  relative " id="faqs">
         <h2 className="text-5xl text-lima text-center mb-8">
           Preguntas frecuentes
         </h2>

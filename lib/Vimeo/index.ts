@@ -48,7 +48,7 @@ export function getVideoById(id: string) {
 ✔ Ideal para paneles de administración o autocompletado
 ✔ Devuelve todos los videos cuyo título contenga el texto buscado
 */
-export function searchVideo(title: string) {
+export function searchVideo(title: string | string[] | undefined) {
   return new Promise<Video[]>((resolve, reject) => {
     client.request(
       {
@@ -110,5 +110,3 @@ export async function syncVideos() {
 
   return { success: true, total: videos.length };
 }
-
-

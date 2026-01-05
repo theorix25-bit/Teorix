@@ -1,25 +1,17 @@
-"use client";
-import { useEffect } from "react";
-import { useUserStore } from "@/hooks/useUseStore";
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
-import ClaseSkeleton from "@/components/skeleton/ClaseSkeleton";
 import Clases from "@/components/Clases";
+import { createClient } from "@/lib/supabase/server";
 
-const PageClases = () => {
-  const { user, authId, loading } = useUserStore();
-  
+export default async function PageClases() {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  const auth = data?.claims.sub;
 
-  if (loading) {
-    return <ClaseSkeleton />;
-  }
+  let { data: user } = await supabase
+    .from("Usuarios")
+    .select("*")
+    .eq("auth_id", data?.claims.sub);
+  const isLogged = user?.length == 0;
 
-  const isLogged = user == null;
-
-  if (!isLogged) {
-    return <Clases />;
-  }
-
-  return <RegistroCompletoUsuario userId={authId} />;
-};
-
-export default PageClases;
+  return !isLogged ? <Clases /> : <RegistroCompletoUsuario />;
+}

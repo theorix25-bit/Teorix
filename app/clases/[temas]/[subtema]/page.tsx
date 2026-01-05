@@ -132,64 +132,6 @@ const dataSubtemaDetail = () => {
               </CardContent>
             </Card>
           </div>
-
-          <div className="space-y-6">
-            <h2 className="font-display text-3xl text-foreground">
-              Preguntas rápidas
-            </h2>
-
-            <div className="space-y-3">
-              {/* {dataSubtema.preguntas.map((question: any, index: number) => (
-                <Card
-                  key={question.id}
-                  className="bg-card border-border hover:border-lima/50 transition-colors"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-4 flex-1">
-                        <span className="text-sm font-mono text-muted-foreground">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <p className="text-foreground font-medium">
-                          {question.question}
-                        </p>
-                      </div>
-
-                      <div className="flex items-center gap-3">
-                        <div className="flex items-center gap-2">
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-9 px-4"
-                          >
-                            <span className="mr-2">Sí</span>
-                            <span className="text-xs text-muted-foreground">
-                              {question.yesCount}
-                            </span>
-                          </Button>
-                          <Button
-                            variant="outline"
-                            size="sm"
-                            className="h-9 px-4"
-                          >
-                            <span className="mr-2">No</span>
-                            <span className="text-xs text-muted-foreground">
-                              {question.noCount}
-                            </span>
-                          </Button>
-                        </div>
-
-                        <Button size="icon" variant="ghost" className="h-9 w-9">
-                          <MessageCircle className="w-5 h-5" />
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))} */}
-            </div>
-          </div>
-
           <div className="flex items-center justify-between mt-12 pt-6 border-t border-border">
             <Button variant="outline" onClick={() => console.log("Anterior")}>
               <ArrowLeft className="w-4 h-4 mr-2" />

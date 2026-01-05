@@ -1,4 +1,4 @@
-import { getPlanUser, getUserAuthId, getUserDBForId } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/client";
 import { create } from "zustand";
 interface UserStore {
   authId: string | null | undefined;
@@ -9,6 +9,8 @@ interface UserStore {
   fetchUser: () => Promise<void>;
   fetchPlan: () => Promise<void>;
 }
+
+const supabase = createClient();
 
 export const useUserStore = create<UserStore>((set, get) => ({
   authId: null,
@@ -23,7 +25,8 @@ export const useUserStore = create<UserStore>((set, get) => ({
     if (authId !== null) return;
 
     try {
-      const auth = await getUserAuthId();
+      const { data } = await supabase.auth.getClaims();
+      const auth = data?.claims.sub;
       set({
         authId: auth,
       });
@@ -46,7 +49,10 @@ export const useUserStore = create<UserStore>((set, get) => ({
     }
 
     try {
-      const user = await getUserDBForId(id);
+      let { data: user } = await supabase
+        .from("Usuarios")
+        .select("*")
+        .eq("auth_id", id);
       set({ user: user, loading: false });
     } catch (error) {
       console.error("Error fetching user", error);
@@ -59,13 +65,17 @@ export const useUserStore = create<UserStore>((set, get) => ({
     if (!user) {
       await fetchUser();
     }
-
+    if (user?.length == 0) {
+      return set({ user: [], loading: false });
+    }
     const id = get().user?.[0].id;
     if (!id) return;
 
     try {
-      const planResponse = await getPlanUser(id);
-
+      const { data: planResponse } = await supabase
+        .from("Planes_usuarios")
+        .select("*")
+        .eq("usuario_id", id);
       if (!planResponse) return console.error("Plan no definido");
       set({ plan: planResponse });
     } catch (error) {

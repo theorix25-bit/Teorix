@@ -7,8 +7,8 @@ export async function POST(request: Request) {
     return Response.json({ error: "Usuario no autenticado" }, { status: 401 });
   }
   const { user, plan } = body;
-  const PlanesConAsistente = [2, 7];
-  const PlanPro = PlanesConAsistente.some((p) => plan[0].suscripcion_id == p);
+  const PlanesConAsistente = [2, 4];
+  const PlanPro = PlanesConAsistente.some((p) => plan[0].plan_id == p);
   if (!user || !PlanPro) {
     return NextResponse.json(
       { error: "Unauthenticated or unauthorized" },
