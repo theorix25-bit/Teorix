@@ -410,21 +410,7 @@ FUNCIONES ADMIN
 export async function crearContenido(objeto: {}): Promise<Contenido> {
   const { data, error } = await supabase
     .from("Contenido")
-<<<<<<< HEAD
-    .insert([
-      {
-        id: 17,
-        contenido_id: 17,
-        titulo: "Documentación del Vehículo",
-        descripcion: "Papeles necesarios del automotor.",
-        tipo: "subtema",
-        orden: 2,
-        slug: "documentacion-del-vehiculo",
-      },
-    ])
-=======
     .insert([objeto])
->>>>>>> dev
     .select()
     .maybeSingle();
   if (error) console.error("Error al enviar el contenido", error);
