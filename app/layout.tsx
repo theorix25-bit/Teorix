@@ -5,6 +5,8 @@ import ChatAssistant from "@/components/ChatAssistant";
 import { searchSusUser } from "@/lib/supabase";
 import { fontvars } from "./fonts";
 import { UseProviders } from "@/providers/UserProvider";
+import CookieBanner from "@/components/CookieBanner";
+import Analytics from "@/components/Analytics";
 ("./fonts");
 // Url
 const defaultUrl = process.env.VERCEL_URL
@@ -67,12 +69,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" suppressHydrationWarning>
-      <body
-        className={`$ ${fontvars} antialiased `}
-        suppressHydrationWarning
-      >
+      <body className={`$ ${fontvars} antialiased `} suppressHydrationWarning>
         <UseProviders>
           <Header />
+          <CookieBanner />
+          <Analytics />
           {children}
         </UseProviders>
       </body>

@@ -50,10 +50,10 @@ export async function updateSession(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const publicRoutes = [
     "/",
-    "avisos-legal",
-    "politica-de-cookies",
-    "politicas-de-privacidad",
-    "reembolso_devoluciones",
+    "/aviso-legal",
+    "/politicas-de-cookies",
+    "/privacidad",
+    "/devoluciones",
     "/login",
     "/auth",
     "/success",
