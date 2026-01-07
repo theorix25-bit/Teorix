@@ -1,6 +1,4 @@
 import { Footer } from "@/components/Footer";
-import React from "react";
-
 function page() {
   return (
     <>
@@ -25,8 +23,8 @@ function page() {
         <p className="mb-4">
           El titular del sitio y responsable del tratamiento de datos es
           Teorix.es , para contactar puedes utilizar la dirección de
-          correo electrónico info@Teorix.com, el teléfono _________ o
-          el correo postal a ___________ , código postal _______________.
+          correo electrónico marketing@teorix.es, el teléfono 614807662 y
+          código postal 50194.
         </p>
         <h2 className="mb-2 text-xl">FINALIDAD DEL TRATAMIENTO DE DATOS</h2>
         <p className="mb-4">

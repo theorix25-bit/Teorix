@@ -12,11 +12,10 @@ export function SignUpForm() {
   const [password, setPassword] = useState("");
   const emailRedirectTo = `${process.env.NEXT_PUBLIC_URL}clases`;
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [terminos, setTerminos] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
-
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -31,14 +30,14 @@ export function SignUpForm() {
       email,
       options: { data: { name }, emailRedirectTo },
       password,
-      makeAdmin: false
+      makeAdmin: false,
     };
     try {
       const res = await fetch("/api/create-user", {
         method: "POST",
         body: JSON.stringify(datosIngreso),
-      })
-      const data = await res.json()
+      });
+      const data = await res.json();
 
       if (error) throw error;
       router.push("/auth/sign-up-success");
@@ -71,6 +70,7 @@ export function SignUpForm() {
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
+                required
               />
             </div>
 
@@ -87,6 +87,7 @@ export function SignUpForm() {
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
+                required
               />
             </div>
             {/* Contraseña */}
@@ -102,6 +103,7 @@ export function SignUpForm() {
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
+                required
               />
             </div>
             <div className="mb-3">
@@ -114,7 +116,16 @@ export function SignUpForm() {
                 id="repeat-password"
                 placeholder="*******"
                 onChange={(e) => setRepeatPassword(e.target.value)}
+                required
               />
+            </div>
+            <div className="mb-3">
+              <label htmlFor="terminos" className="mr-1  hover:text-lima">
+                <Link href={"/politicas-de-cookies"}>
+                  Términos y condiciones
+                </Link>
+              </label>
+              <input type="checkbox" checked={terminos} onChange={(e)=> setTerminos(e.target.checked)}  name="" id="" required />
             </div>
 
             {error && <p className="text-sm text-red-500">{error}</p>}

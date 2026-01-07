@@ -1,6 +1,6 @@
 import Link from "next/link";
 const menu1 = [
-  { label: "FAQs", url: "#faqs" },
+  { label: "FAQs", url: "/#faqs" },
   { label: "Contacto", url: "#contacto" },
   { label: "Aviso legal", url: "/aviso-legal" },
   { label: "Politicas de Cookies", url: "/politicas-de-cookies" },

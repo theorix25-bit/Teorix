@@ -1,5 +1,4 @@
 import { Footer } from "@/components/Footer";
-import React from "react";
 
 function page() {
   return (
@@ -56,12 +55,12 @@ function page() {
 
           <p>
             📧
-            <a href="mailto:info@teorix.es" className="text-blue-600 underline">
-              info@Teorix.es
+            <a href="mailto:marketing@teorix.es" className="text-lima underline">
+              marketing@teorix.es
             </a>
             <br />
             🌐
-            <a href="https://teorix.es" className="text-blue-600 underline">
+            <a href="https://teorix.es" className="text-lima underline">
               Teorix.es
             </a>
           </p>

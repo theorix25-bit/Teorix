@@ -6,9 +6,6 @@ function page() {
       <main className="max-w-4xl mx-auto px-6 py-12n text-white">
         <header className="mb-10">
           <h1 className="text-3xl font-bold mb-2">Política de Cookies</h1>
-          <p className="text-sm text-gray-500">
-            Última actualización: 4 de octubre de 2024
-          </p>
         </header>
 
         <section className="space-y-6">
@@ -20,7 +17,7 @@ function page() {
           <h2 className="text-xl font-semibold">1. Introducción</h2>
           <p>
             Nuestra web,
-            <a href="https://teorix.es" className="text-blue-600 underline">
+            <a href="https://teorix.es" className="text-lima underline">
               https://teorix.es
             </a>
             , utiliza cookies y tecnologías similares (en adelante, «cookies»).
@@ -126,25 +123,18 @@ function page() {
             <br />
             Calle Marqués de la Cadena 11, Zaragoza, España
             <br />
-            Web:
-            <a
-              href="https://autoescuelas1.com"
-              className="text-blue-600 underline"
-            >
-              https://autoescuelas1.com
+            Web:{" "}
+            <a href="https://Teorix.es" className="text-lima underline">
+              https://Teorix.es
             </a>
             <br />
-            Email:
+            Email:{" "}
             <a
               href="mailto:info@autoescuelas1.com"
-              className="text-blue-600 underline"
+              className="text-lima underline"
             >
-              info@autoescuelas1.com
+              marketing@teorix.es
             </a>
-          </p>
-
-          <p className="text-sm text-gray-500 mt-8">
-            Esta política de cookies se ha sincronizado con cookiedatabase.org
           </p>
         </section>
       </main>

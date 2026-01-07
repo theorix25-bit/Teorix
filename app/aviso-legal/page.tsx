@@ -28,8 +28,8 @@ function page() {
           gestión fiscal, administrativa comercial y contable de la empresa.
         </p>
         <p className="mb-4">
-          Si lo desea, puede dirigirse a Teorix, domiciliada en ________   ___________ o enviando un mail con la palabra “BAJA” a la
-          dirección Teorix@gmail.com, con el fin de ejercer los derechos
+          Si lo desea, puede dirigirse a Teorix, domiciliada en Av. movera, 290. Zaragoza o enviando un mail con la palabra “BAJA” a la
+          dirección marketing@teorix.es, con el fin de ejercer los derechos
           de acceso, rectificación, limitación, cancelación y oposición.
         </p>
       </main>

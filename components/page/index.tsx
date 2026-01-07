@@ -195,11 +195,11 @@ export function Metodo() {
 
 export function FAQs() {
   const preguntas = [
-    { pregunta: "Pregunta", respuesta: "Respuesta" },
-    { pregunta: "Pregunta", respuesta: "Respuesta" },
-    { pregunta: "Pregunta", respuesta: "Respuesta" },
-    { pregunta: "Pregunta", respuesta: "Respuesta" },
-    { pregunta: "Pregunta", respuesta: "Respuesta" },
+    { pregunta: "Qué es Teorix?", respuesta: "Plataforma de aprendizaje con clases en vídeo, recursos descargables y comunidad para profesionales y estudiantes." },
+    { pregunta: "¿Cómo me registro?", respuesta: "Crea una cuenta con correo, acceso inmediato a contenidos gratuitos tras confirmar email" },
+    { pregunta: "Hay versión gratuita o prueba?", respuesta: "Respuesta" },
+    { pregunta: "¿Cómo me registro?", respuesta: " Sí — acceso limitado gratuito y/o periodo de prueba para evaluar la plataforma." },
+    { pregunta: "¿Hay reembolsos o cancelación?", respuesta: "Política de reembolso dentro de 14 días; puedes cancelar la suscripción en cualquier momento." },
   ];
   return (
     <>
