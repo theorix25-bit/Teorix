@@ -16,19 +16,7 @@ export async function getAllUser(): Promise<User[]> {
   }
   return usuarios || [];
 }
-// export async function getUserDBForId(id: string | undefined) {
-//   let { data: usuarios, error } = await supabase
-//     .from("Usuarios")
-//     .select("*")
-//     .eq("auth_id", id);
-//   if (error) throw error;
-//   return usuarios || [];
-// }
-// export async function getUserAuthId() {
-//   const { data, error } = await supabase.auth.getClaims();
-//   if (error) console.error("error al buscar el authId");
-//   return data?.claims.sub;
-// }
+
 export async function getPlanDBForId(link: ParamValue) {
   let { data: plan, error } = await supabase
     .from("Planes")
@@ -209,23 +197,7 @@ export async function getProgress(userId: number) {
   return result;
 }
 
-/* Para eliminación */
-// export async function getContent2() {
-//   const { data, error } = await supabase
-//     .from("contenido_2")
-//     .select("*")
-//     .order("orden", { ascending: true });
-//   if (error) console.error("error al traer el contenido", error);
-//   return data ?? [];
-// }
-// export async function getProgress2(usuario_id: number) {
-//   const { data, error } = await supabase
-//     .from("progresos_2")
-//     .select("*")
-//     .eq("usuario_id", usuario_id);
-//   if (error) console.error("Error al traer el progreso del usuario");
-//   return data ?? [];
-// }
+
 
 /* 
 FUNCIONES PARA LOS PLANES
