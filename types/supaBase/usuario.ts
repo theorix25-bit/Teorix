@@ -7,6 +7,7 @@ type User = {
     nombre: string ,
     apellido: string ,
     codigo_postal: string ,
+    telefono:string,
     rol: string ,
     creado_en: string ,
     pago_stripe: string ,

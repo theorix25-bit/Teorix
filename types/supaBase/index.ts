@@ -113,3 +113,8 @@ interface VideosDB {
   titulo: string;
   created_at: string;
 }
+
+interface TypeUsers {
+  email: string | undefined;
+  id: string | undefined;
+}
