@@ -1,7 +1,4 @@
-import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
-import Stripe from "stripe";
-import ButtonCheckout from "./ButtonCheckout";
 import Link from "next/link";
 import { getPlansDB } from "@/lib/supabase";
 export const PricingSection = async () => {
