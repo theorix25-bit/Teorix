@@ -232,7 +232,7 @@ FUNCIONES PARA LAS SUSCRIPCIONES
 */
 export async function getPlansDB(): Promise<PlanDetails[]> {
   let { data: suscripciones, error } = await supabase
-    .from("suscripciones")
+    .from("Planes")
     .select("*");
   const sortedSuscripciones = suscripciones?.sort((a, b) => {
     if (a.precio < b.precio) return -1;

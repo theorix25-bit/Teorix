@@ -18,7 +18,7 @@ interface PlanDetails {
   actualizado_en: string;
   id_producto_stripe: string;
   eslogan: string /* Agregar a la base de datos */;
-  link: string;
+  slug: string;
   caracteristicas: string[];
   cta: string;
   ctaVariant: "esquema" | "predeterminado";
