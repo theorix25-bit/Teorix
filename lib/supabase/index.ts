@@ -30,12 +30,12 @@ export async function getAllUser(): Promise<User[]> {
 //   return data?.claims.sub;
 // }
 export async function getPlanDBForId(link: ParamValue) {
-  let { data: suscripciones, error } = await supabase
-    .from("suscripciones")
+  let { data: plan, error } = await supabase
+    .from("Planes")
     .select("*")
-    .eq("link", link);
+    .eq("slug", link);
 
-  return suscripciones;
+  return plan;
 }
 export async function DeleteUser(id: string) {
   const { data, error } = await supabase
@@ -228,47 +228,34 @@ export async function getProgress(userId: number) {
 // }
 
 /* 
-FUNCIONES PARA LAS SUSCRIPCIONES 
+FUNCIONES PARA LOS PLANES
 */
 export async function getPlansDB(): Promise<PlanDetails[]> {
-  let { data: suscripciones, error } = await supabase
+  let { data: plan, error } = await supabase
     .from("Planes")
     .select("*");
-  const sortedSuscripciones = suscripciones?.sort((a, b) => {
+  const sortedPlanes = plan?.sort((a, b) => {
     if (a.precio < b.precio) return -1;
     if (a.precio > b.precio) return 1;
     return 0;
   });
-  return sortedSuscripciones || [];
+  return sortedPlanes || [];
 }
 export async function searchSusUser(
   AuthId: string | undefined
 ): Promise<Subscription[]> {
   const { data } = await supabase
-    .from("usuarios_suscripciones")
+    .from("Planes_usuarios")
     .select("*")
     .eq("usuario_id", AuthId);
 
   return data ?? [];
 }
-/**
- * FUNCIÓN PARA TRAER EL PLAN DE UN USUARIO POR SU ID DE LA TABLA usuarios_suscripciones
- * @property {number} id
- * @return Subscription[] 
 
- */
-// export async function getPlanUser(id: number) {
-//   const { data } = await supabase
-//     .from("usuarios_suscripciones")
-//     .select("*")
-//     .eq("usuario_id", id);
-
-//   return data ?? [];
-// }
 export async function upDateSusUser(usuario_id: number, numberPlan: number) {
   const { data, error } = await supabase
-    .from("usuarios_suscripciones")
-    .update({ suscripcion_id: numberPlan })
+    .from("Planes_usuarios")
+    .update({ plan_id: numberPlan })
     .eq("usuario_id", usuario_id)
     .select();
   return { data, error };
