@@ -3,7 +3,6 @@ import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { setErrorLog } from "@/lib/supabase";
-import { resumePluginState } from "next/dist/build/build-context";
 import { useUserStore } from "@/hooks/useUseStore";
 
 export function RegistroCompletoUsuario() {
@@ -18,9 +17,6 @@ export function RegistroCompletoUsuario() {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  async function addProgressBase(base: {}) {
-    await supabase.from("Contenidos_usuarios").insert([base]).select();
-  }
 
   const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -85,7 +81,6 @@ export function RegistroCompletoUsuario() {
         </div>
 
         <form onSubmit={handleSignUp} className="space-y-4">
-          {/* Nombre */}
           <div>
             <label
               htmlFor="inputName"
@@ -101,7 +96,6 @@ export function RegistroCompletoUsuario() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          {/* Apellido */}
           <div>
             <label
               htmlFor="lastName"
@@ -117,7 +111,6 @@ export function RegistroCompletoUsuario() {
               onChange={(e) => setLastName(e.target.value)}
             />
           </div>
-          {/* Telefono */}
           <div>
             <label
               htmlFor="phone"
@@ -137,7 +130,6 @@ export function RegistroCompletoUsuario() {
               }}
             />
           </div>
-          {/* Fecha de nacimiento */}
           <div>
             <label
               htmlFor="birthdate"
@@ -153,7 +145,6 @@ export function RegistroCompletoUsuario() {
               onChange={(e) => setBirthdate(e.target.value)}
             />
           </div>
-          {/* Código postal */}
           <div>
             <label
               htmlFor="zipcode"

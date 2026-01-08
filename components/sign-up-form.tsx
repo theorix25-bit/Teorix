@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { setAdminRole } from "@/lib/supabase";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -57,7 +56,6 @@ export function SignUpForm() {
           </h2>
           <p className="mb-4 text-white">Crea una cuenta nueva</p>
           <form onSubmit={handleSignUp}>
-            {/* nombre */}
             <div className="mb-2">
               <label htmlFor="inputName" className="text-xl text-lima">
                 Nombre
@@ -74,7 +72,6 @@ export function SignUpForm() {
               />
             </div>
 
-            {/* Email */}
             <div className="mb-2">
               <label htmlFor="inputCorreo" className="text-xl text-lima">
                 Correo
@@ -90,7 +87,6 @@ export function SignUpForm() {
                 required
               />
             </div>
-            {/* Contraseña */}
             <div className="mb-2">
               <label htmlFor="password" className="text-xl text-lima">
                 Contraseña

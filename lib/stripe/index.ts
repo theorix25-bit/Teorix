@@ -1,5 +1,4 @@
 import { createClienteStripe } from "@/lib/stripe/client";
-import Stripe from "stripe";
 const stripe = createClienteStripe();
 
 export async function getAllPlans() {

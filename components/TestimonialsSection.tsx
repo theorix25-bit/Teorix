@@ -29,7 +29,6 @@ export const TestimonialsSection = () => {
   const [approvalRate, setApprovalRate] = useState(0);
 
   useEffect(() => {
-    // Counter animation
     const target = 80;
     const duration = 2000;
     const steps = 60;
@@ -52,14 +51,12 @@ export const TestimonialsSection = () => {
 
   return (
     <section className="py-24 px-6 bg-card/30 relative overflow-hidden">
-      {/* Background patterns */}
       <div className="absolute inset-0 opacity-40">
         <div className="absolute top-10 left-10 md:left-52 text-9xl text-lima">*</div>
         <div className="absolute bottom-3 md:bottom-24 right-10 text-7xl text-hoodie">X</div>
       </div>
 
       <div className="mx-auto relative z-10">
-        {/* Stats hero */}
         <div className="text-center mb-20">
           <div className="inline-flex items-baseline gap-3 mb-6">
             <span className="text-8xl md:text-9xl font-extrabold text-lima neon-glow font-adumu tracking-widest">
@@ -74,14 +71,12 @@ export const TestimonialsSection = () => {
           </p>
         </div>
 
-        {/* Testimonials grid */}
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
               className="bg-background rounded-3xl p-8 border-2 border-lima/20 hover:border-hoodie/30 transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--neon-glow)/0.2)] hover:-translate-y-1 group"
             >
-              {/* Header */}
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <p className="text-lg font-bold">
@@ -94,12 +89,10 @@ export const TestimonialsSection = () => {
                 </div>
               </div>
 
-              {/* Quote */}
               <blockquote className="text-foreground/90 leading-relaxed mb-4 italic">
                 "{testimonial.text}"
               </blockquote>
 
-              {/* Badge */}
               <div className="flex items-center gap-2">
                 <div className="h-px flex-1 bg-border"></div>
                 <span className="text-xs font-bold text-hoodie uppercase tracking-wider">
@@ -107,7 +100,6 @@ export const TestimonialsSection = () => {
                 </span>
               </div>
 
-              {/* Hover decoration */}
               <div className="absolute top-4 right-4 text-6xl opacity-0 group-hover:opacity-10 transition-opacity text-lima">
                 ✓
               </div>
@@ -115,7 +107,6 @@ export const TestimonialsSection = () => {
           ))}
         </div>
 
-        {/* Bottom CTA */}
         <div className="text-center mt-16">
           <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-muted/50 border border-border">
             <span className="text-4xl">🎯</span>

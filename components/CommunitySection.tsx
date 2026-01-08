@@ -41,7 +41,6 @@ export const CommunitySection = () => {
   return (
     <section className="py-10 px-6 bg-card/20 relative overflow-hidden">
       <div className=" mx-auto">
-        {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-block px-4 py-2 rounded-full bg-hoodie/10 border border-hoodie/20 mb-4">
             <span className="text-hoodie font-bold text-sm uppercase tracking-wider">
@@ -57,51 +56,41 @@ export const CommunitySection = () => {
           </p>
         </div>
 
-        {/* Posts grid (TikTok style) */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 max-w-5xl md:max-w-4xl mx-auto mb-12">
           {communityPosts.map((post, index) => (
             <div
               key={index}
               className="group relative w-38 md:aspect-square rounded-2xl bg-gradient-to-br from-muted/50 to-muted overflow-hidden border border-transparent hover:border-lima/50 transition-all duration-300 cursor-pointer hover:scale-105"
             >
-              {/* Background pattern */}
               <div className="absolute inset-0 bg-gradient-to-br from-zinc-900/80 to-slate-800/40 backdrop-blur-sm"></div>
 
-              {/* Content */}
               <div className="relative h-full p-2 md:p-6 flex flex-col justify-between">
-                {/* Category badge */}
                 <div className="self-start">
                   <span className="rounded-full bg-lima/20 text-lima text-[10px] font-bold uppercase tracking-wider">
                     {post.category}
                   </span>
                 </div>
 
-                {/* Bottom content */}
                 <div>
-                  {/* Emoji */}
                   <div className="text-3xl md:text-8xl mb-3 group-hover:scale-125 text-center transition-transform">
                     {post.emoji}
                   </div>
 
-                  {/* Title */}
                   <p className="text-foreground font-bold text-sm md:text-lg leading-tight mb-2 group-hover:text-lima transition-colors">
                     {post.title}
                   </p>
 
-                  {/* Views */}
                   <p className="text-muted-foreground text-[12px]">
                     👁️ {post.views} views
                   </p>
                 </div>
               </div>
 
-              {/* Hover overlay */}
               <div className="absolute inset-0 bg-lima/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
         <div className="text-center">
           <div className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-background border-2 border-lima/20 hover:border-lima/50 transition-all cursor-pointer group">
             <span className="text-3xl group-hover:rotate-12 transition-transform">

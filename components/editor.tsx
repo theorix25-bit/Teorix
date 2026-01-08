@@ -12,7 +12,6 @@ interface Props {
 export default function Editor({ content, onChange }: Props) {
   const [mounted, setMounted] = useState(false);
 
-  // Evita SSR: solo se monta en el cliente
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -23,7 +22,7 @@ export default function Editor({ content, onChange }: Props) {
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },
-    immediatelyRender: false, // 👈 FIX para Next.js SSR
+    immediatelyRender: false, 
   });
 
   if (!mounted)

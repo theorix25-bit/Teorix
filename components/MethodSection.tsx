@@ -1,5 +1,4 @@
 import { Video, Target, Trophy } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const steps = [
@@ -32,12 +31,10 @@ const steps = [
 export const MethodSection = () => {
   return (
     <section className="py-24 px-6 bg-background relative overflow-hidden">
-      {/* Background decoration */}
       <div className="absolute top-40 right-0 w-96 h-96 bg-lima/10 rounded-full blur-3xl"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-hoodie/10 rounded-full blur-3xl"></div>
 
       <div className=" px-2 mx-auto relative z-10">
-        {/* Section header */}
         <div className="text-center mb-16">
           <div className="inline-block px-4 py-2 rounded-full bg-lima/10 border border-lima mb-4">
             <span className=" font-bold text-lima text-sm uppercase tracking-wider">
@@ -53,31 +50,26 @@ export const MethodSection = () => {
           </h3>
         </div>
 
-        {/* Steps grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {steps.map((step, index) => (
             <div
               key={index}
               className="group relative bg-zinc-900 rounded-3xl p-8 border border-transparent hover:border-lima/50 transition-all duration-300 hover:-translate-y-2"
             >
-              {/* Step number */}
               <div className="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-lima to-hoodie rounded-xl flex items-center justify-center text-2xl font-extrabold text-black shadow-lg">
                 {step.number}
               </div>
 
-              {/* Badge */}
               <div className="flex justify-end mb-4">
                 <span className="px-3 py-1 rounded-full bg-lima/20 text-lima text-xs font-bold uppercase tracking-wider">
                   {step.badge}
                 </span>
               </div>
 
-              {/* Icon */}
               <div className="mb-6 w-16 h-16 bg-muted/50 rounded-2xl flex items-center justify-center group-hover:bg-lima/10 transition-colors">
                 <step.icon className="w-8 h-8 text-lima" strokeWidth={2} />
               </div>
 
-              {/* Content */}
               <p className="text-2xl font-bold text-foreground mb-3 leading-tight">
                 {step.title}
               </p>
@@ -85,13 +77,11 @@ export const MethodSection = () => {
                 {step.description}
               </p>
 
-              {/* Hover effect decoration */}
               <div className="absolute bottom-0 right-0 w-24 h-24 bg-lima/5 rounded-tl-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
         <div className="text-center mt-16">
           <Link
             href={"/clases"}

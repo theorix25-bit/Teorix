@@ -76,7 +76,6 @@ export const PricingSection = async () => {
                     href={
                       plan.slug == "gratuito" ? "/clases" : `/plan/${plan.slug}`
                     }
-                    // variant={plan.highlight ? "speedrun" : plan.name === "Pro" ? "hero" : "outline"}
                     className={`w-full  px-3 rounded-md mx-auto block text-center py-2 ${
                       plan.resaltar
                         ? "bg-hoodie text-white"

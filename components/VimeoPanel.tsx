@@ -66,10 +66,8 @@ export default function VimeoPanel() {
         </button>
       </form>
 
-      {/* Loader */}
       {loading && <p>Cargando videos...</p>}
 
-      {/* Grid de videos */}
       {!loading && (
         <div className="row">
           {videos.map((v: Video) => (

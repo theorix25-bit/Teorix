@@ -12,7 +12,6 @@ export default function UploadFile() {
     const folder = isPublic ? "public" : "private";
     const filePath = `${folder}/${Date.now()}-${file.name}`;
 
-    // 1. Subir al Storage
     const { data, error } = await uploadFileStorage(filePath, file);
     if (error) {
       console.log("Error al subir archivo");

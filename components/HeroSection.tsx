@@ -1,7 +1,4 @@
-import { Eye } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 import Link from "next/link";
-import Image from "next/image";
 import teo from "@/assets/image-removebg-preview.png"
 
 export const HeroSection = () => {
@@ -38,7 +35,6 @@ export const HeroSection = () => {
           método probado y cero drama.
         </p>
 
-        {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <Link
             href={"/clases"}
@@ -54,7 +50,6 @@ export const HeroSection = () => {
           </Link>
         </div>
 
-        {/* Social proof badge */}
         <div className="mt-16 inline-flex items-center gap-2 px-4 py-3 rounded-full bg-card/50 backdrop-blur-sm border border-lima/50">
           <div className="flex -space-x-2">
             {[1, 2, 3].map((i) => (
@@ -70,7 +65,6 @@ export const HeroSection = () => {
         </div>
       </div>
 
-      {/* Bottom gradient fade */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent"></div>
     </section>
   );
