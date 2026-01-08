@@ -11,8 +11,8 @@ import {
   Metodo,
   Profesor247,
 } from "@/components/page";
+import Pasos from "@/components/Pasos";
 import { PricingSection } from "@/components/PricingSection";
-import Profesor from "@/components/Profesor";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 const urlAsistente = process.env.NEXT_URL_ASISTENTE!;
 export default async function Home() {
@@ -25,6 +25,7 @@ export default async function Home() {
         <Metodo />
       
         <PricingSection />
+        <Pasos />
         <FAQs />
         <CommunitySection />
         <section className=" mt-10 px-2">

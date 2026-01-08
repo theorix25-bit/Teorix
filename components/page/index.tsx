@@ -40,7 +40,7 @@ export function Profesor247() {
                 Descubre nuestro método
               </Link>
               <Link
-                href={"/"}
+                href={"/clases"}
                 className="px-3 py-2 rounded-md shadow-inner shadow-lima border-lima/40  border text-white transition-colors duration-100 font-bold text-center"
               >
                 Manual Gratuito
