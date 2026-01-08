@@ -18,11 +18,11 @@ export default function MobileMenu({ navigation, user }) {
       {open && (
         <div className="fixed inset-0 bg-carbon flex flex-col justify-between px-4 py-4 z-[150]">
           <div className="flex justify-between items-center">
-            <div className="font-bold text-xl">
+            <div className="font-bold text-lg">
               {user == undefined ? (
-                <span className="text-lima text-3xl">Hola extraño</span>
+                <span className="text-lima text-xl">Theorix</span>
               ) : (
-                <span className="text-lima text-3xl">Hola @usuario</span>
+                <span className="text-lima text-xl">Hola {user.email}</span>
               )}
             </div>
             <button className="px-3 rounded-lg text-lima z-50 text-4xl border-lima border" onClick={() => setOpen(false)}>

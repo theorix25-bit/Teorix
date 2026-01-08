@@ -17,9 +17,9 @@ export function LogoutButton() {
       >
         Cerrar Sesión
       </button>
-      <div className="w-10 h-10 bg-lima rounded-full flex justify-center items-center">
+      {/* <div className="w-10 h-10 bg-lima rounded-full flex justify-center items-center">
         M
-      </div>
+      </div> */}
     </>
   );
 }

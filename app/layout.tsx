@@ -7,6 +7,7 @@ import { fontvars } from "./fonts";
 import { UseProviders } from "@/providers/UserProvider";
 import CookieBanner from "@/components/CookieBanner";
 import Analytics from "@/components/Analytics";
+import { ToasterProvider } from "@/providers/ToasterProvider";
 ("./fonts");
 // Url
 const defaultUrl = process.env.VERCEL_URL
@@ -74,6 +75,7 @@ export default function RootLayout({
           <Header />
           <CookieBanner />
           <Analytics />
+          <ToasterProvider />
           {children}
         </UseProviders>
       </body>

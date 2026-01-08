@@ -1,43 +1,46 @@
 "use client";
 import { createClient } from "@/lib/supabase/client";
-import { SwissFranc } from "lucide-react";
 import { FormEvent, useEffect, useState } from "react";
-
+import toast from "react-hot-toast";
 
 interface PropPage {
   users: TypeUsers[];
 }
-function form({ users }: PropPage) {
+function Form({ users }: PropPage) {
   const supabase = createClient();
 
   const [searchUser, setSearchUser] = useState("");
   const [user, setUser] = useState<User>();
   const [plan, setPlan] = useState("");
   const [nombrePlanes, setNombrePlanes] = useState<any[]>([]);
+  const [emailEncontrado, setEmailEncontrado] = useState<string | undefined>(
+    ""
+  );
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    const authId = users.filter((e) => e.email == searchUser)[0].id;
+
+    const authId = users.filter((e) => e.email == searchUser)[0];
+
+    if (!authId) toast.error(`El Correo: ${searchUser} es incorrecto`);
 
     if (authId !== undefined) {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from("Usuarios")
         .select("*")
-        .eq("auth_id", authId)
+        .eq("auth_id", authId.id)
         .maybeSingle();
-      if (error) console.log(error);
-      console.log(data);
       setUser(data);
+      setEmailEncontrado(authId.email);
     }
   };
   async function fetchPlan() {
     if (user) {
-      const { data: planUser, error: errorPlan } = await supabase
+      const { data: planUser } = await supabase
         .from("Planes_usuarios")
         .select("*")
         .eq("usuario_id", user.id)
         .maybeSingle();
-      console.log(planUser.plan_id);
       setPlan(planUser.plan_id);
 
       const { data: nombrePlan, error: errorNombrePlan } = await supabase
@@ -47,7 +50,6 @@ function form({ users }: PropPage) {
       else {
         setNombrePlanes(nombrePlan);
       }
-      console.log(nombrePlan);
     }
   }
   const actualizarPlan = async (e: FormEvent) => {
@@ -60,7 +62,12 @@ function form({ users }: PropPage) {
         .select("*")
         .maybeSingle();
 
-      if (nuevoPlanError) console.log(nuevoPlanError);
+      if (nuevoPlanError) {
+        console.log(nuevoPlanError);
+        toast.error("Error al Actualizar el plan, vuelva a intentar");
+      } else {
+        toast.success(`Plan Actualizado`);
+      }
       console.log(nuevoPlan);
     }
   };
@@ -95,7 +102,7 @@ function form({ users }: PropPage) {
       </form>
       {user && (
         <div className="mx-auto flex flex-col items-center">
-          <h2>Usuario:{users.filter((e) => e.email == searchUser)[0].email}</h2>
+          <h2>Usuario: {emailEncontrado}</h2>
           <div>
             <p>Nombre: {user.nombre}</p>
             <p>Apellido: {user.apellido}</p>
@@ -139,38 +146,4 @@ function form({ users }: PropPage) {
   );
 }
 
-export default form;
-
-/* actualizado_en
-: 
-"2026-01-07T09:26:43.560252"
-apellido
-: 
-"fofe"
-auth_id
-: 
-"b4f7af59-d927-41c0-9428-4de6868fd133"
-codigo_postal
-: 
-"1406"
-creado_en
-: 
-"2026-01-07T09:26:43.560252+00:00"
-fecha_de_nacimiento
-: 
-"1997-04-04T00:00:00"
-id
-: 
-49
-nombre
-: 
-"Miguel eduardo"
-pago_stripe
-: 
-null
-rol
-: 
-null
-telefono
-: 
-"01167554915" */
+export default Form;
