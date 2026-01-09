@@ -121,8 +121,8 @@ export function RegistroCompletoUsuario() {
             <input
               id="phone"
               type="tel"
-              placeholder="00 000 000"
-              pattern="[0-9]{10,15}"
+              placeholder="000000000"
+              pattern="^(\+34 ?)?[6789]\d{8}$"
               className="text-black w-full rounded-lg border border-marino/20 p-2 focus:outline-none focus:ring-2 focus:ring-lima"
               onChange={(e) => {
                 const value = e.target.value.replace(/[^0-9+]/g, "");
