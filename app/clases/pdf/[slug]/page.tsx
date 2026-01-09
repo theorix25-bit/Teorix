@@ -14,8 +14,14 @@ async function Pdf({ params, searchParams }: PageProps) {
     <div>
       <h1 className="text-3xl text-white text-center mb-8">{slug}</h1>
       <div className="md:w-[90%] w-[95%] mx-auto rounded-xl">
-      <embed src={doc} type="application/pdf" width="100%" height="800" />
-
+        <iframe
+          src={doc}
+          width="100%"
+          height="800"
+          style={{ border: "none" }}
+          allow="fullscreen; clipboard-read; clipboard-write"
+          sandbox="allow-scripts allow-same-origin allow-popups"
+        ></iframe>
       </div>
     </div>
   );
