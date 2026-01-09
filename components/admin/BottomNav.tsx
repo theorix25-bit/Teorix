@@ -5,9 +5,9 @@ const items: NavItem[] = [
   // { url: "", id: "clases", icon: Home, label: "Clases" },
   { url: "/usuarios", id: "usuarios", icon: Users, label: "Usuarios" },
   // { url: "/planes", id: "planes", icon: Play, label: "Planes" },
-  { url: "/videos", id: "videos", icon: Video, label: "Videos" },
+  // { url: "/videos", id: "videos", icon: Video, label: "Videos" },
   { url: "/documentos", id: "Pdf", icon: Archive, label: "Documentos Pdf" },
-  { url: "/contenido", id: "blogs", icon: BookOpen, label: "Contenido" },
+  // { url: "/contenido", id: "blogs", icon: BookOpen, label: "Contenido" },
 ];
 
 export default function BottomNav() {
