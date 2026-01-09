@@ -1,6 +1,5 @@
 import { createClient } from "@/lib/supabase/client";
 import { ParamValue } from "next/dist/server/request/params";
-import { supabaseAdmin } from "./admin";
 const supabase = createClient();
 
 /* 
@@ -113,6 +112,7 @@ export async function sigUpUser({
   },
   password,
 }: TypeSignUp) {
+  const { supabaseAdmin } = await import("./admin");
   const { error, data } = await supabaseAdmin.auth.signUp({
     email,
     password,
@@ -128,6 +128,7 @@ export async function sigUpUser({
 }
 
 export async function setAdminRole(userId: string) {
+  const { supabaseAdmin } = await import("./admin");
   const { data, error } = await supabaseAdmin.auth.admin.updateUserById(
     userId,
     {
@@ -141,7 +142,8 @@ export async function setAdminRole(userId: string) {
 }
 
 export async function deleteUserInAuth(id: string) {
-  const result = await supabase.auth.admin.deleteUser(id);
+  const { supabaseAdmin } = await import("./admin");
+  const result = await supabaseAdmin.auth.admin.deleteUser(id);
   return result;
 }
 
