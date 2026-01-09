@@ -19,11 +19,10 @@ export default async function Videos({ params, searchParams }: PageProps) {
       <h1 className="text-3xl text-white text-center">{titulo}</h1>
       <iframe
         src={url}
-        width="100%"
-        height="800"
         frameBorder="0"
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
+        className="mx-auto mt-4 w-[90dvw] h-[250px] md:h-[90dvh]"
       ></iframe>
     </div>
   );

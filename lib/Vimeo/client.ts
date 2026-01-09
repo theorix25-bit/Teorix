@@ -9,6 +9,6 @@ export function createClientVimeo() {
   if (!ACCESS_TOKEN) throw new Error("Missing ACCESS_TOKEN");
 
   let client = new Vimeo(CLIENT_ID, CLIENT_SECRET, ACCESS_TOKEN);
-
+  
   return client;
 }
