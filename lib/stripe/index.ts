@@ -1,7 +1,6 @@
-import { createClienteStripe } from "@/lib/stripe/client";
-const stripe = createClienteStripe();
-
 export async function getAllPlans() {
+  const { createClienteStripe } = await import("@/lib/stripe/client");
+  const stripe = createClienteStripe();
   const planes = await stripe.prices.list();
 
   const sortedPlanes = planes.data.sort(
@@ -10,13 +9,15 @@ export async function getAllPlans() {
   return sortedPlanes;
 }
 
-export async function getPlanById(id: string)  {
+export async function getPlanById(id: string) {
+  const { createClienteStripe } = await import("@/lib/stripe/client");
+  const stripe = createClienteStripe();
   const plan = await stripe.prices.retrieve(id);
   return plan;
 }
 
 export async function getLinkCheckOut(plan: PlanDB, userId: string) {
-  
+
   const res = await fetch("/api/checkout", {
     method: "POST",
     body: JSON.stringify({
@@ -36,16 +37,19 @@ export async function getLinkCheckOut(plan: PlanDB, userId: string) {
 }
 
 export async function updateProduct(priceId: string) {
+  const { createClienteStripe } = await import("@/lib/stripe/client");
+  const stripe = createClienteStripe();
   return stripe.prices.update(priceId, {
     active: false,
-  }); 
+  });
 }
 export async function updatePrice(
   productId: string,
   name: string,
   price: number
 ) {
-  
+  const { createClienteStripe } = await import("@/lib/stripe/client");
+  const stripe = createClienteStripe();
   const newPrice = await stripe.prices.create({
     product: productId,
     unit_amount: price,
