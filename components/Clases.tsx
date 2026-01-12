@@ -75,6 +75,7 @@ export default async function Lessons() {
                 className="border px-3 py-5 rounded-xl border-lima text-center text-lg flex justify-center items-center hover:bg-lima/15"
               >
                 <p>{g.titulo}</p>
+                <p>{g.descripcion}</p>
               </Link>
             ))}
           </div>
