@@ -32,7 +32,6 @@ function page() {
       .select("*")
       .eq("slug", id);
     if (error) console.log(error);
-    console.log(plan);
     authId && setUserId(authId);
     plan && setPlan(plan);
   };
@@ -91,7 +90,7 @@ function page() {
           ))}
         </ul>
       </div>
-      ;
+      
     </>
   );
 }
