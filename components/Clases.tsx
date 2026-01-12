@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { PlanesComparacion } from "./PlanesComparacion";
 export default async function Lessons() {
   const supabase = await createClient();
 
@@ -37,6 +38,12 @@ export default async function Lessons() {
     .lte("fase", filtroBase);
 
   if (errorG) console.error(errorG);
+
+  const {data:planes} = await supabase.from("Planes").select("*")
+  const planActual = planes?.filter((p => p.id == plan.plan_id))[0]
+  const planSuperior = planes?.filter((p => p.orden == ((planActual.orden + 1) == 2 ? planActual.orden + 2:planActual.orden + 1)))[0]
+  console.log(planActual)
+  console.log(planSuperior)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -101,6 +108,25 @@ export default async function Lessons() {
             ))}
           </div>
         </div>
+        {/* <div>
+          {planActual && <>
+          <h2>Planes</h2>
+          <div>
+            <p>Plan Actual: {planActual.nombre}</p>
+          </div>
+          </>
+          }
+        </div>
+        <div>
+          {planSuperior && <>
+          <h2>Planes</h2>
+          <div>
+            <p>Plan Actual: {planSuperior.nombre}</p>
+          </div>
+          </>
+          }
+        </div> */}
+        <PlanesComparacion planActual={planActual} planSuperior={planSuperior} />
       </main>
     </div>
   );
