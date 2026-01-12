@@ -3,8 +3,10 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { createClienteStripe } from "@/lib/stripe/client";
 import { updatePlanUser } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 
 export async function POST(req: Request) {
+  const supabase = await createClient();
   const stripe = createClienteStripe();
 
   const body = await req.text();
@@ -25,12 +27,26 @@ export async function POST(req: Request) {
     case "checkout.session.completed":
       const session = event.data.object as Stripe.Checkout.Session;
       const userId = session.metadata?.userId;
-      const subscription_id = Number(session.metadata?.planId);
-      const { data ,error} = await updatePlanUser(userId, subscription_id);
-      if (error) {
-        console.log("Error updating user plan:", error);
+      const plan_id = Number(session.metadata?.planId);
+
+      // obtener todos datos del usuario
+      const { data: user} = await supabase
+        .from("Usuarios")
+        .select("*")
+        .eq("auth_id", userId)
+        .maybeSingle();
+
+      // cambiar el plan del usuario
+      const { data: plan, error: errorPlan } = await supabase
+        .from("Planes_usuarios")
+        .update({ plan_id: plan_id })
+        .eq("usuario_id", user?.id)
+        .select();
+
+      if (errorPlan) {
+        console.log("Error updating user plan:", errorPlan);
       } else {
-        console.log("User plan updated successfully:", data);
+        console.log("User plan updated successfully:", plan);
       }
       break;
 
