@@ -74,8 +74,11 @@ export default async function Lessons() {
                 key={g.id}
                 className="border px-3 py-5 rounded-xl border-lima text-center text-lg flex justify-center items-center hover:bg-lima/15"
               >
-                <p>{g.titulo}</p>
-                <p>{g.descripcion}</p>
+                <div>
+                <p className="text-xl">{g.titulo}</p>
+                <p className="text-sm">{g.descripcion}</p>
+
+                </div>
               </Link>
             ))}
           </div>
