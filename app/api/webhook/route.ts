@@ -2,22 +2,13 @@ import Stripe from "stripe";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { createClienteStripe } from "@/lib/stripe/client";
-import { updatePlanUser } from "@/lib/supabase";
-import { createClient } from "@/lib/supabase/server";
 import { checkoutCompleted } from "@/lib/stripe/handlers/checkoutCompleted";
 import { invoicePaymentFailed } from "@/lib/stripe/handlers/handleInvoicePaymentFailed";
 import { invoicePaymentSucceeded } from "@/lib/stripe/handlers/handleInvoicePaymentSucceeded";
 import { subscriptionDeleted } from "@/lib/stripe/handlers/subscriptionDeleted";
 import { subscriptionUpdated } from "@/lib/stripe/handlers/subscriptionUpdated";
 
-type SubscriptionStatus =
-  | "active"
-  | "past_due"
-  | "unpaid"
-  | "canceled";
-
 export async function POST(req: Request) {
-  const supabase = await createClient();
   const stripe = createClienteStripe();
 
   const body = await req.text();
@@ -34,27 +25,40 @@ export async function POST(req: Request) {
     return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 });
   }
 
-  switch (event.type) {
-  case "checkout.session.completed":
-    await checkoutCompleted(event);
-    break;
+  try {
+    switch (event.type) {
+      case "checkout.session.completed":
+        await checkoutCompleted(event);
+        break;
 
-  case "invoice.payment_succeeded":
-    await invoicePaymentSucceeded(event);
-    break;
+      case "invoice.payment_succeeded":
+        await invoicePaymentSucceeded(event);
+        break;
 
-  case "invoice.payment_failed":
-    await invoicePaymentFailed(event);
-    break;
+      case "invoice.payment_failed":
+        await invoicePaymentFailed(event);
+        break;
 
-  case "customer.subscription.updated":
-    await subscriptionUpdated(event);
-    break;
+      case "customer.subscription.updated":
+        await subscriptionUpdated(event);
+        break;
 
-  case "customer.subscription.deleted":
-    await subscriptionDeleted(event);
-    break;
-}
+      case "customer.subscription.deleted":
+        await subscriptionDeleted(event);
+        break;
+
+      default:
+        console.log("Evento no manejado:", event.type);
+    }
+  } catch (error) {
+    console.error("❌ Error procesando webhook:", {
+      event: event.type,
+      id: event.id,
+      error,
+    });
+
+    return new NextResponse("Webhook handler error", { status: 500 });
+  }
 
   // switch (event.type) {
   //   case "checkout.session.completed":
