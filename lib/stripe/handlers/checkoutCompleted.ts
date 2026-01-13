@@ -32,13 +32,13 @@ export async function checkoutCompleted(event: Stripe.Event) {
   }
 
   // ✅ INSERT SOLO SI NO EXISTE
-  await supabase.from("Planes_usuarios").insert({
+  await supabase.from("Planes_usuarios").update({
     usuario_id: usuario.id,
     plan_id: Number(session.metadata?.planId),
     estado: true,
     pago_stripe: session.subscription as string,
     inicio_periodo: new Date(),
-  });
+  }).eq("usuario_id", usuario.id);  
 
   const {data:result} = await supabase
     .from("Usuarios")
