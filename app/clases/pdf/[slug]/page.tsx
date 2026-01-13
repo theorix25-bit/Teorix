@@ -1,3 +1,4 @@
+import { AdBanner } from "@/components/ui/AdBanner";
 import { getUrlPrivate } from "@/lib/supabase/storage";
 
 interface PageProps {
@@ -13,6 +14,7 @@ async function Pdf({ params, searchParams }: PageProps) {
   return (
     <div>
       <h1 className="text-3xl text-white text-center mb-8">{slug}</h1>
+      
       <div className="md:w-[90%] w-[95%] mx-auto rounded-xl">
         <iframe
           src={doc}

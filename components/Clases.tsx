@@ -3,6 +3,7 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { PlanesComparacion } from "./PlanesComparacion";
 import { redirect } from "next/navigation";
+// import { AdBanner } from "./ui/AdBanner";
 export default async function Lessons() {
   const supabase = await createClient();
 
@@ -51,6 +52,7 @@ export default async function Lessons() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      
       <main className="container mx-auto px-4 sm:px-6 py-6 md:py-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           <div className="relative aspect-video  bg-gradient-to-br from-lima/10 via-accent/10 to-hoodie/10 rounded-xl border border-gray-50/20 overflow-hidden">
@@ -70,8 +72,8 @@ export default async function Lessons() {
             </p>
           </div>
         </div>
-
-        <div className="space-y-6">
+        {/* <AdBanner height={150} width={900} data={{title: "Publicidad",image: "https://tse3.mm.bing.net/th/id/OIP.H5uLxJxRhB_dd_6jPkK-kgHaCU?pid=Api&P=0&h=180",url: "https://empresa2.com",}}/> */}
+        <div className="space-y-6 mt-3">
           <h3 className="text-2xl md:text-3xl text-foreground">Documentos</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {gramma?.map((g) => (
@@ -93,6 +95,11 @@ export default async function Lessons() {
               </Link>
             ))}
           </div>
+          <div className="space-y-6">
+
+        {/* <AdBanner height={150 } width={900} data={{title: "Publicidad",image: "https://tse3.mm.bing.net/th/id/OIP.H5uLxJxRhB_dd_6jPkK-kgHaCU?pid=Api&P=0&h=180",url: "https://empresa2.com",}}/> */}
+            
+</div>
 
           <h3 className="text-2xl md:text-3xl text-foreground">Videos</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -112,24 +119,6 @@ export default async function Lessons() {
             ))}
           </div>
         </div>
-        {/* <div>
-          {planActual && <>
-          <h2>Planes</h2>
-          <div>
-            <p>Plan Actual: {planActual.nombre}</p>
-          </div>
-          </>
-          }
-        </div>
-        <div>
-          {planSuperior && <>
-          <h2>Planes</h2>
-          <div>
-            <p>Plan Actual: {planSuperior.nombre}</p>
-          </div>
-          </>
-          }
-        </div> */}
         <PlanesComparacion planActual={planActual} planSuperior={planSuperior} />
       </main>
     </div>
