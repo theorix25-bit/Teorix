@@ -30,9 +30,9 @@ export async function checkoutCompleted(event: Stripe.Event) {
   await supabase
     .from("Usuarios")
     .update({
-      pago_stripe: session.customer as string, // stripe_customer_id
+      stripe_customer_id: session.customer as string, // stripe_customer_id
     })
-    .eq("id", usuario.id);
+    .eq("auth_id", usuario.id);
 
     console.log("checkoutCompleted handled for user:", usuario.id);
 }

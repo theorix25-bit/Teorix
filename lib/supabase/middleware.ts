@@ -57,6 +57,7 @@ export async function updateSession(request: NextRequest) {
     "/politicas-de-cookies",
     "/privacidad",
     "/devoluciones",
+    "/pagos",
     "/login",
     "/auth",
     "/success",
