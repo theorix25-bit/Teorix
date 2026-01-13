@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { PlanesComparacion } from "./PlanesComparacion";
+import { redirect } from "next/navigation";
 export default async function Lessons() {
   const supabase = await createClient();
 
@@ -23,6 +24,9 @@ export default async function Lessons() {
     .eq("usuario_id", usuario.id)
     .maybeSingle();
 
+  if(!plan.estado){
+    redirect("/pagos/rechazado")
+  }
   if (error) console.error(error);
   let filtroBase = plan.plan_id - 1;
 

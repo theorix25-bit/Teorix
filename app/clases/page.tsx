@@ -1,7 +1,6 @@
 import { RegistroCompletoUsuario } from "@/components/ReistroCompletoUsuario";
 import Clases from "@/components/Clases";
 import { createClient } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 
 export default async function PageClases() {
   
@@ -12,7 +11,7 @@ export default async function PageClases() {
   let { data: user } = await supabase
     .from("Usuarios")
     .select("*")
-    .eq("auth_id", data?.claims.sub);
+    .eq("auth_id", auth);
   const isLogged = user?.length == 0;
   return !isLogged ? <Clases />  : <RegistroCompletoUsuario />;
 }

@@ -1,10 +1,22 @@
-"use client";
-
-import React from "react";
 import Link from "next/link";
 import { XCircle } from "lucide-react";
+import { createClienteStripe } from "@/lib/stripe/client";
+import { createClient } from "@/lib/supabase/server";
 
-export default function BillingRequiredPage() {
+
+export default async function BillingRequiredPage() {
+
+  const stripe = createClienteStripe()
+  const supabase = await createClient()
+  const {data:sub}= await supabase.auth.getClaims()
+  const auth = sub?.claims.sub
+
+  const {data} = await supabase.from("Usuarios").select("*").eq("auth_id",auth).maybeSingle()
+  const session = await stripe.billingPortal.sessions.create({
+    customer: data.stripe_customer_id,
+    return_url:"http://teorix.es/pagos/reintento"
+
+  })
   return (
     <main className="min-h-screen flex flex-col items-center justify-center px-6 text-center">
       <div className="border border-lima shadow-lg rounded-xl p-8 max-w-md w-full">
@@ -21,10 +33,10 @@ export default function BillingRequiredPage() {
 
         <div className="flex flex-col gap-3">
           <Link
-            href="/billing/update-payment"
+            href={session.url}
             className="w-full py-3 rounded-lg bg-lima text-black font-medium hover:bg-lima/70 transition"
           >
-            Actualizar método de pago
+            Actualizar pago
           </Link>
 
           <Link
