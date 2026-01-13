@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   const body = await req.text();
   const headersList = await headers();
   const sig = headersList.get("stripe-signature")!;
-  const endpointSecret = process.env.NEXT_PUBLIC_STRIPE_WEBHOOK_SECRET!;
+  const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;
 
   let event: Stripe.Event;
 
