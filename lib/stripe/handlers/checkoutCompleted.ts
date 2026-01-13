@@ -1,14 +1,12 @@
+import { supabaseAdmin } from "@/lib/supabase/admin";
 import Stripe from "stripe";
-import { createClient } from "@/lib/supabase/server";
 
 export async function checkoutCompleted(event: Stripe.Event) {
   const session = event.data.object as Stripe.Checkout.Session;
 
   if (session.mode !== "subscription") return;
 
-  const supabase = await createClient();
-
-  const { data: usuario } = await supabase
+  const { data: usuario } = await supabaseAdmin
     .from("Usuarios")
     .select("id")
     .eq("auth_id", session.metadata?.userId)
@@ -32,20 +30,23 @@ export async function checkoutCompleted(event: Stripe.Event) {
   // }
 
   // ✅ UPDATE SOLO SI NO EXISTE
-  await supabase.from("Planes_usuarios").update({
-    usuario_id: usuario.id,
-    plan_id: Number(session.metadata?.planId),
-    estado: true,
-    pago_stripe: session.subscription as string,
-    inicio_periodo: new Date(),
-  }).eq("usuario_id", usuario.id);  
-  console.log(session.customer,"Customer ID")
-  const {data:result} = await supabase
+  await supabaseAdmin
+    .from("Planes_usuarios")
+    .update({
+      usuario_id: usuario.id,
+      plan_id: Number(session.metadata?.planId),
+      estado: true,
+      pago_stripe: session.subscription as string,
+      inicio_periodo: new Date(),
+    })
+    .eq("usuario_id", usuario.id);
+  console.log(session.customer, "Customer ID");
+  const { data: result } = await supabaseAdmin
     .from("Usuarios")
     .update({
       stripe_customer_id: session.customer as string,
     })
     .eq("auth_id", session.metadata?.userId);
-  console.log("customer_id",result)
+  console.log("customer_id", result);
   console.log("checkoutCompleted handled for user:", usuario.id);
 }
