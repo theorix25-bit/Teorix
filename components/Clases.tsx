@@ -50,8 +50,6 @@ export default async function Lessons() {
   const {data:planes} = await supabase.from("Planes").select("*")
   const planActual = planes?.filter((p => p.id == plan.plan_id))[0]
   const planSuperior = planes?.filter((p => p.orden == ((planActual.orden + 1) == 2 ? planActual.orden + 2:planActual.orden + 1)))[0]
-  console.log(planActual)
-  console.log(planSuperior)
 
   return (
     <div className="min-h-screen bg-background text-foreground">
