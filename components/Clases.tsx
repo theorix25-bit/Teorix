@@ -3,6 +3,8 @@ import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { PlanesComparacion } from "./PlanesComparacion";
 import { redirect } from "next/navigation";
+import { AdBanner } from "./ui/AdBanner";
+import { LessonCard } from "./ui/LessonCard";
 // import { AdBanner } from "./ui/AdBanner";
 export default async function Lessons() {
   const supabase = await createClient();
@@ -40,6 +42,7 @@ export default async function Lessons() {
   const { data: gramma, error: errorG } = await supabase
     .from("gramma")
     .select("*")
+    .order("fase", { ascending: true })
     .lte("fase", filtroBase);
 
   if (errorG) console.error(errorG);
@@ -72,52 +75,41 @@ export default async function Lessons() {
             </p>
           </div>
         </div>
-        {/* <AdBanner height={150} width={900} data={{title: "Publicidad",image: "https://tse3.mm.bing.net/th/id/OIP.H5uLxJxRhB_dd_6jPkK-kgHaCU?pid=Api&P=0&h=180",url: "https://empresa2.com",}}/> */}
+      
+        <AdBanner height={150} width={900} data={{title: "Publicidad",image: "https://tse3.mm.bing.net/th/id/OIP.H5uLxJxRhB_dd_6jPkK-kgHaCU?pid=Api&P=0&h=180",url: "https://empresa2.com",}}/>
         <div className="space-y-6 mt-3">
           <h3 className="text-2xl md:text-3xl text-foreground">Documentos</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {gramma?.map((g) => (
-              <Link
-                href={{
-                  pathname: `/clases/contenido/${g.slug}`,
-                  query: {
-                    titulo: g.titulo,
-                  },
-                }}
+              <LessonCard
                 key={g.id}
-                className="border px-3 py-5 rounded-xl border-lima text-center text-lg flex justify-center items-center hover:bg-lima/15"
-              >
-                <div>
-                <p className="text-xl">{g.titulo}</p>
-                <p className="text-sm">{g.descripcion}</p>
-
-                </div>
-              </Link>
-            ))}
-          </div>
+                href={`/clases/contenido/${g.slug}?titulo=${g.titulo}`}
+                titulo={g.titulo}
+                descripcion={g.descripcion}
+                tipo="documento"
+              />
+                  ))}
+              </div>
           <div className="space-y-6">
 
-        {/* <AdBanner height={150 } width={900} data={{title: "Publicidad",image: "https://tse3.mm.bing.net/th/id/OIP.H5uLxJxRhB_dd_6jPkK-kgHaCU?pid=Api&P=0&h=180",url: "https://empresa2.com",}}/> */}
+        <AdBanner height={150 } width={900} data={{title: "Publicidad",image: "https://tse3.mm.bing.net/th/id/OIP.H5uLxJxRhB_dd_6jPkK-kgHaCU?pid=Api&P=0&h=180",url: "https://empresa2.com",}}/>
             
 </div>
 
           <h3 className="text-2xl md:text-3xl text-foreground">Videos</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {videos?.map((v) => (
-              <Link
-                href={{
-                  pathname: `/clases/video/${v.slug}`,
-                  query: {
-                    titulo: v.titulo,
-                  },
-                }}
-                key={v.id}
-                className="border px-3 py-5 rounded-xl border-lima text-center text-lg flex justify-center items-center hover:bg-lima/15"
-              >
-                <p>{v.titulo}</p>
-              </Link>
-            ))}
-          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+  {videos?.map((v) => (
+    <LessonCard
+      key={v.id}
+      href={`/clases/video/${v.slug}?titulo=${v.titulo}`}
+      titulo={v.titulo}
+      descripcion={v.descripcion}
+      tipo="video"
+    />
+  ))}
+</div>
         </div>
         <PlanesComparacion planActual={planActual} planSuperior={planSuperior} />
       </main>
