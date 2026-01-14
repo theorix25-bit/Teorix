@@ -15,13 +15,14 @@ async function Contenido({ params, searchParams }: pageProps) {
   const query = await searchParams;
 
   const { data: gamma } = await supabase.from("gramma").select("*").eq("titulo", query.titulo).maybeSingle()
+  
 
-    // if(!gamma.orden) throw new Error("No se cargo el siguiente tema")
-    //   const { data: siguienteTema } = await supabase
-    //   .from("gramma")
-    //   .select("slug, titulo")
-    //   .eq("orden", (gamma.orden + 1))
-    //   .maybeSingle()
+    if(!gamma.orden) throw new Error("No se cargo el siguiente tema")
+      const { data: siguienteTema } = await supabase
+      .from("gramma")
+      .select("slug, titulo")
+      .eq("orden", (gamma.orden + 1))
+      .maybeSingle()
 
     if (!gamma) throw new Error("no se cargo gamma")
 
@@ -93,7 +94,7 @@ async function Contenido({ params, searchParams }: pageProps) {
             url: "https://empresa2.com",
           }}
         />
-        {/* {siguienteTema && (
+        {siguienteTema && (
   <div className="mt-8">
     <Card className="border-lima/40 bg-lima/5 mx-8 md:mx-14">
       <CardContent className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
@@ -121,7 +122,7 @@ async function Contenido({ params, searchParams }: pageProps) {
       </CardContent>
     </Card>
   </div>
-)} */}
+)}
 
       </main>
     </div>

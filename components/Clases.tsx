@@ -9,6 +9,8 @@ import { LessonCard } from "./ui/LessonCard";
 export default async function Lessons() {
   const supabase = await createClient();
 
+
+  
   // Datos de sesión
   const { data: datos } = await supabase.auth.getClaims();
   const user = datos?.claims!;
