@@ -16,15 +16,14 @@ async function Contenido({ params, searchParams }: pageProps) {
 
   const { data: gamma } = await supabase.from("gramma").select("*").eq("titulo", query.titulo).maybeSingle()
 
-    if(!gamma.orden){ console.log(gamma.orden)}
+    if(!gamma.orden) throw new Error("No se cargo el siguiente tema")
       const { data: siguienteTema } = await supabase
       .from("gramma")
       .select("slug, titulo")
       .eq("orden", (gamma.orden + 1))
       .maybeSingle()
-      console.log(siguienteTema)
 
-    if (!gamma) return null
+    if (!gamma) throw new Error("no se cargo gamma")
 
   return (
     <div className="min-h-screen bg-background text-foreground">
