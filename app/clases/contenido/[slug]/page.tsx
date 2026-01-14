@@ -17,7 +17,7 @@ async function Contenido({ params, searchParams }: pageProps) {
   const { data: gamma } = await supabase.from("gramma").select("*").eq("titulo", query.titulo).maybeSingle()
   
 
-    if(!gamma.orden) throw new Error("No se cargo el siguiente tema")
+    if(gamma.orden == null) throw new Error("No se cargo el siguiente tema")
       const { data: siguienteTema } = await supabase
       .from("gramma")
       .select("slug, titulo")
