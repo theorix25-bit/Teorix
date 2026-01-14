@@ -18,19 +18,13 @@ async function Contenido({ params, searchParams }: pageProps) {
     .from("gramma")
     .select("*")
     .eq("titulo", query.titulo)
-    .maybeSingle();
-
-    const ordenSiguiente = gamma.orden + 1
-    
-      
+    .maybeSingle()
+    if (!gamma) return null;
       const { data: siguienteTema } = await supabase
       .from("gramma")
       .select("slug, titulo")
-      .eq("orden", ordenSiguiente)
-      .maybeSingle();
-
-  if (!gamma) return null;
-
+      .eq("orden", gamma.orden + 1)
+      .maybeSingle()
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-6 md:py-10 space-y-6">
