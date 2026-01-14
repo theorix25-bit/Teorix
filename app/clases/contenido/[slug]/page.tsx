@@ -4,7 +4,6 @@ import { createClient } from "@/lib/supabase/server";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { convertSegmentPathToStaticExportFilename } from "next/dist/shared/lib/segment-cache/segment-value-encoding";
 
 interface pageProps {
   params: { slug: string };
@@ -21,12 +20,14 @@ async function Contenido({ params, searchParams }: pageProps) {
     .eq("titulo", query.titulo)
     .maybeSingle();
 
-    const { data: siguienteTema } = await supabase
-  .from("gramma")
-  .select("slug, titulo")
-  .eq("orden", gamma.orden + 1)
-  .maybeSingle();
-  console.log(siguienteTema)
+    const ordenSiguiente = gamma.orden + 1
+    
+      
+      const { data: siguienteTema } = await supabase
+      .from("gramma")
+      .select("slug, titulo")
+      .eq("orden", ordenSiguiente)
+      .maybeSingle();
 
   if (!gamma) return null;
 
