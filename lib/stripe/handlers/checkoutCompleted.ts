@@ -14,22 +14,7 @@ export async function checkoutCompleted(event: Stripe.Event) {
 
   if (!usuario) throw new Error("Usuario no encontrado");
 
-  // // 🔒 VERIFICAR SI YA EXISTE
-  // const { data: existing } = await supabase
-  //   .from("Planes_usuarios")
-  //   .select("id")
-  //   .eq("pago_stripe", session.subscription as string)
-  //   .maybeSingle();
 
-  // if (existing) {
-  //   console.log(
-  //     "checkoutCompleted: subscription ya existe:",
-  //     session.subscription
-  //   );
-  //   return;
-  // }
-
-  // ✅ UPDATE SOLO SI NO EXISTE
   await supabaseAdmin
     .from("Planes_usuarios")
     .update({
@@ -40,13 +25,12 @@ export async function checkoutCompleted(event: Stripe.Event) {
       inicio_periodo: new Date(),
     })
     .eq("usuario_id", usuario.id);
-  console.log(session.customer, "Customer ID");
+
   const { data: result } = await supabaseAdmin
     .from("Usuarios")
     .update({
       stripe_customer_id: session.customer as string,
     })
     .eq("auth_id", session.metadata?.userId);
-  console.log("customer_id", result);
-  console.log("checkoutCompleted handled for user:", usuario.id);
+    
 }

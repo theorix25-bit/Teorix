@@ -13,7 +13,7 @@ export async function invoicePaymentFailed(
   await supabase
     .from("Planes_usuarios")
     .update({
-      estado: true,
+      estado: false,
       actualizado_en: new Date(),
     })
     .eq("pago_stripe", invoice.subscription as string);
