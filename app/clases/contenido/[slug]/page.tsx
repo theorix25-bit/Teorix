@@ -21,13 +21,13 @@ async function Contenido({ params, searchParams }: pageProps) {
     .maybeSingle()
 
     if (!gamma) return null;
-    if(!gamma.orden){ console.log(gamma.orden)}
+    if(!gamma.orden) return null
       const { data: siguienteTema } = await supabase
       .from("gramma")
       .select("slug, titulo")
       .eq("orden", (gamma.orden + 1))
       .maybeSingle()
-    if(!siguienteTema) return null
+    
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-6 md:py-10 space-y-6">
