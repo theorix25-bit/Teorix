@@ -8,18 +8,21 @@ export default function Analytics() {
 
   if (consent !== "accepted") return null;
 
+  const GA_ID = process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID;
+
   return (
     <>
       <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX`}
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
         strategy="afterInteractive"
       />
       <Script id="ga-init" strategy="afterInteractive">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
+
           gtag('js', new Date());
-          gtag('config', 'G-XXXXXXXXXX', {
+          gtag('config', '${GA_ID}', {
             anonymize_ip: true
           });
         `}
