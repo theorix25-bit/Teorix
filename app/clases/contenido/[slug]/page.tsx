@@ -14,20 +14,18 @@ async function Contenido({ params, searchParams }: pageProps) {
   const supabase = await createClient();
   const query = await searchParams;
 
-  const { data: gamma } = await supabase
-    .from("gramma")
-    .select("*")
-    .eq("titulo", query.titulo)
-    .maybeSingle()
+  const { data: gamma } = await supabase.from("gramma").select("*").eq("titulo", query.titulo).maybeSingle()
 
-    if (!gamma) return null;
-    if(!gamma.orden) return null
+    if(!gamma.orden){ console.log(gamma.orden)}
       const { data: siguienteTema } = await supabase
       .from("gramma")
       .select("slug, titulo")
       .eq("orden", (gamma.orden + 1))
       .maybeSingle()
-    
+      console.log(siguienteTema)
+
+    if (!gamma) return null
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <main className="container mx-auto px-4 py-6 md:py-10 space-y-6">
