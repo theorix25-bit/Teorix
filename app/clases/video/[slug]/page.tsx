@@ -59,15 +59,15 @@ export default async function Videos({ searchParams }: PageProps) {
             <div
               className="
                 relative w-full
-                h-[70vh] min-h-[360px]
-                md:h-auto md:aspect-video
+                h-[30vh]  min-h-[230px] md:min-h-[400px]
+                md:h-[50vh] md:aspect-video
               "
             > 
               <iframe
                 src={url}
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
-                className="absolute inset-0 w-full md:w-[80%] h-full mx-auto"
+                className="absolute inset-0 w-full md:w-[90%] h-[230px] md:h-full mx-auto"
               />
             </div>
           </CardContent>
