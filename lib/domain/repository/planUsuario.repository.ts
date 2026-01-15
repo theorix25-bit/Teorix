@@ -1,11 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { PlanUsuarioDB } from "@/types/supaBase/planUsuario";
 
-interface ApiBaseResponse<T> {
-  ok: boolean;
-  data: T | null;
-  error: string | null;
-}
+
 export class PlanUsuarioRepository {
   static async findByAuthId(usuarioId: number): Promise<ApiBaseResponse<PlanUsuarioDB>> {
     const supabase = await createClient();
@@ -15,18 +11,12 @@ export class PlanUsuarioRepository {
       .eq("usuario_id", usuarioId)
       .maybeSingle();
 
-    if (error || !planUsuario) {
-      return {
+    return error || !planUsuario || planUsuario.length === 0
+    ? {
         ok: false,
         data: null,
-        error: error?.message ?? "Plan Usuario no encontrado",
-      };
-    }
-
-    return {
-      ok: true,
-      data: planUsuario,
-      error: null,
-    };
+        error: error?.message ?? "Videos no encontrados",
+      }
+    : { ok: true, data: planUsuario, error: null };
   }
 }

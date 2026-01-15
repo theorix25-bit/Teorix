@@ -1,5 +1,5 @@
 // TYPE PARA LOS PLANES DE LA BASE DE DATOS
-type PlanDB = {
+type PlanDBStripe = {
   actualizado_en: string;
   caracteristicas: string[];
   color: null;

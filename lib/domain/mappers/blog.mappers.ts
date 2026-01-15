@@ -1,0 +1,20 @@
+import { BlogsDB } from "@/types/blog";
+import { BlogsDTO } from "../dto/blogs.dto";
+
+export class BlogMappers {
+  static toDto(row: BlogsDB): BlogsDTO {
+    return {
+      id: row.id,
+      title: row.title,
+      slug: row.slug,
+      content: row.content,
+      imageUrl: row.image_url,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at,
+    };
+  }
+
+  static toDtoList(rows: BlogsDB[]): BlogsDTO[] {
+    return rows.map((row) => BlogMappers.toDto(row));
+  }
+}

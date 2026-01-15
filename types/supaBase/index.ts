@@ -9,6 +9,12 @@ type BenefitPlanDetails = {
   description: string;
 };
 
+interface ApiBaseResponse<T> {
+  ok: boolean;
+  data: T | null;
+  error: string | null;
+}
+
 interface PlanDetails {
   id: number;
   nombre: string;

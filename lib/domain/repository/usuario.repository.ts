@@ -1,10 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 
-interface ApiBaseResponse<T> {
-  ok: boolean;
-  data: T | null;
-  error: string | null;
-}
+
 export class UsuarioRepository {
   static async findByAuthId(authId: string): Promise<ApiBaseResponse<UserDB>> {
     const supabase = await createClient();
@@ -14,18 +10,12 @@ export class UsuarioRepository {
       .eq("auth_id", authId)
       .maybeSingle();
 
-    if (error || !usuario) {
-      return {
+    return error || !usuario || usuario.length === 0
+    ? {
         ok: false,
         data: null,
-        error: error?.message ?? "Usuario no encontrado",
-      };
-    }
-
-    return {
-      ok: true,
-      data: usuario,
-      error: null,
-    };
+        error: error?.message ?? "Videos no encontrados",
+      }
+    : { ok: true, data: usuario, error: null };
   }
 }
