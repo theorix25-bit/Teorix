@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import { fruity } from "./app/fonts";
+import typography from "@tailwindcss/typography";
 
 export default {
   darkMode: ["class"],
@@ -81,5 +82,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"),typography],
 } satisfies Config;
