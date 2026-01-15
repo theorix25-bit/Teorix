@@ -7,6 +7,7 @@ import { PlanesServices } from "@/lib/domain/services/planes.services";
 import { GammaServices } from "@/lib/domain/services/gamma.services";
 import { VideosServices } from "@/lib/domain/services/videos.services";
 import { BlogsServices } from "@/lib/domain/services/blogs.services";
+import { TestsUsuarioServices } from "@/lib/domain/services/testsUsuario.services";
 
 export default async function PageClases() {
   
@@ -20,9 +21,14 @@ export default async function PageClases() {
   // const planes = await PlanesServices.getPlans()
   // const gamma = await GammaServices.getDocs()
   // const videos = await VideosServices.getVideos()
-  const blogs = await BlogsServices.getBlogs()
-  console.log(blogs)
+  // const blogs = await BlogsServices.getBlogs()
+  // console.log(blogs)
+  // const res = await TestsUsuarioServices.CreateTests(auth)
+  // if(res){console.log("todo ok bro")}else{ console.error("ps no funciona")}
+  
+// const supabase = await createClient();
 
+  
 
   let { data: user } = await supabase
     .from("Usuarios")

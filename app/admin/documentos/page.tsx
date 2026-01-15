@@ -10,6 +10,7 @@ async function Documento() {
 
   // const {data:documentos,error:errorDocumentos} = await supabase.from("gramma").select("*")
   // if(errorDocumentos) console.error(errorDocumentos)
+  
 
   return (
     <div>

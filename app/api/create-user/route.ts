@@ -1,3 +1,4 @@
+import { TestsUsuarioServices } from "@/lib/domain/services/testsUsuario.services";
 import { setAdminRole, sigUpUser } from "@/lib/supabase";
 export async function POST(req: Request) {
   const {
@@ -18,6 +19,10 @@ export async function POST(req: Request) {
     },
     password,
   });
+
+  const res = await TestsUsuarioServices.CreateTests(data.user?.id!);
+  if(!res) {console.error("No se logro crear la tabla Tests_Usuarios")}
+
   if (error)
     return Response.json(
       { error, message: "No se logro crear el usuario" },

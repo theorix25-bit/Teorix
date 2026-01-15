@@ -8,6 +8,7 @@ import { useUserStore } from "@/hooks/useUseStore";
 export function RegistroCompletoUsuario() {
   const { authId: userId } = useUserStore();
   const supabase = createClient();
+  if(!userId || userId == undefined) return null
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
