@@ -15,6 +15,18 @@ type UserDB = {
   fecha_de_nacimiento: string;
   stripe_customer_id: string;
 };
+type User = {
+    id: number,
+    auth_id: string ,
+    nombre: string ,
+    apellido: string ,
+    codigo_postal: string ,
+    telefono:string,
+    rol: string ,
+    creado_en: string ,
+    pago_stripe: string ,
+    actualizado_en: string ,
+};
 
 type Role = {
   role: string;
