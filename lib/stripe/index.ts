@@ -1,3 +1,5 @@
+import { PlanDB } from "@/types/supaBase/planes";
+
 export async function getAllPlans() {
   const { createClienteStripe } = await import("@/lib/stripe/client");
   const stripe = createClienteStripe();
@@ -16,7 +18,7 @@ export async function getPlanById(id: string) {
   return plan;
 }
 
-export async function getLinkCheckOut(plan: PlanDB, userId: string) {
+export async function getLinkCheckOut(plan: PlanDBStripe, userId: string) {
 
   const res = await fetch("/api/checkout", {
     method: "POST",

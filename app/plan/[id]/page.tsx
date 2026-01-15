@@ -15,13 +15,14 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { PlanDB } from "@/types/supaBase/planes";
 
 const supabase = createClient();
 
 function Page() {
   const { id } = useParams();
   const { authId } = useUserStore();
-  const [plan, setPlan] = useState<PlanDB[]>([]);
+  const [plan, setPlan] = useState<PlanDBStripe[]>([]);
   const [userId, setUserId] = useState<string>();
 
   const fetchData = async () => {
