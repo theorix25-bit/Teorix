@@ -8,6 +8,7 @@ import EditorBlog from "@/components/editor";
 
 export default function NewBlogPage() {
   const [title, setTitle] = useState<string>("");
+  const [category, setCategory] = useState<string>("");
   const [content, setContent] = useState<string>("");
   const router = useRouter();
 
@@ -16,6 +17,7 @@ export default function NewBlogPage() {
       title,
       slug: slugify(title, { lower: true }),
       content, 
+      category
     });
 
     router.push("/admin/blog");
@@ -31,6 +33,13 @@ export default function NewBlogPage() {
         placeholder="Título del blog"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        type="text"
+        className="border p-2 w-full my-3"
+        placeholder="Título del blog"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
       />
 
       <EditorBlog content={content} onChange={setContent} />

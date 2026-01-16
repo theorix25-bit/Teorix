@@ -7,6 +7,7 @@ export class BlogMappers {
       id: row.id,
       title: row.title,
       slug: row.slug,
+      category: row.category,
       content: row.content,
       imageUrl: row.image_url,
       createdAt: row.created_at,

@@ -1,10 +1,13 @@
+import { BlogsDB } from "@/types/blog";
 import { createClient } from "../supabase/client";
+import { PostgrestError } from "@supabase/supabase-js";
 
 export interface Blog {
   id?: string;
   title: string;
   slug: string;
   content: string;
+  category: string;
   image_url?: string;
   created_at?: string;
   updated_at?: string;
@@ -15,7 +18,8 @@ export async function getAllBlogs() {
     .from("blogs")
     .select("*")
     .order("created_at", { ascending: false });
-
+  if (error || data.length === 0 || data === null)
+    throw new Error("Error al traer los blogs");
   return { data, error };
 }
 
@@ -24,8 +28,23 @@ export async function getBlogBySlug(slug: string) {
     .from("blogs")
     .select("*")
     .eq("slug", slug)
-    .single();
+    .maybeSingle()
+    
+  if (error || data == null) {
+    // throw new Error("error category");
+    return {data:[],error}
+  }
+  return { data, error };
+}
 
+export async function getBlogByCategory(category: string) {
+  const { data, error } = await supabase
+    .from("blogs")
+    .select("*")
+    .eq("category", category);
+  if (error || !data) {
+    throw new Error("error category");
+  }
   return { data, error };
 }
 
@@ -65,4 +84,3 @@ export async function getBlogById(id: string) {
   if (error) throw error;
   return data;
 }
-

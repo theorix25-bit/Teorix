@@ -12,13 +12,13 @@ export default async function HeaderLayout() {
   const navigationAdmin = [
     { name: "Inicio", href: "/" },
     { name: "Clases", href: "/clases" },
-    // { name: "Blog", href: "/blog" },
+    { name: "Blog", href: "/blog" },
     { name: "Admin", href: "/admin" },
   ];
   const navigationUser = [
     { name: "Inicio", href: "/" },
     { name: "Clases", href: "/clases" },
-    // { name: "Blog", href: "/blog" },
+    { name: "Blog", href: "/blog" },
   ];
 
   const navigation = admin ? navigationAdmin: navigationUser

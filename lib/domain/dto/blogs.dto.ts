@@ -3,6 +3,7 @@ export interface BlogsDTO {
   title: string;
   slug: string;
   content: string;
+  category:string;
   imageUrl: string;
   createdAt: string;
   updatedAt: string;

@@ -12,6 +12,7 @@ export default function EditBlogPage() {
   const id = params.id as string;
 
   const [title, setTitle] = useState<string>("");
+  const [category, setCategory] = useState<string>("")
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -32,7 +33,8 @@ export default function EditBlogPage() {
     await updateBlog(id, {
       title,
       slug: slugify(title, { lower: true }),
-      content,
+      content, 
+      category
     });
 
     router.push("/admin/blog");
@@ -50,6 +52,13 @@ export default function EditBlogPage() {
         placeholder="Título del blog"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+      />
+      <input
+        type="text"
+        className="border p-2 w-full my-3"
+        placeholder="Categoria"
+        value={category}
+        onChange={(e) => setCategory(e.target.value)}
       />
 
       <Editor content={content} onChange={setContent} />
