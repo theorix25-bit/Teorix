@@ -50,7 +50,7 @@ export const PlanesComparacion: FC<PlanesComparacionProps> = ({
             <ul className="space-y-2">
               {planActual?.caracteristicas?.map((b: string, index: number) => (
                 <li key={index} className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-primary" /> {b}
+                  <Check className="w-4 h-4 text-primary" />{b}
                 </li>
               ))}
             </ul>
@@ -88,8 +88,9 @@ export const PlanesComparacion: FC<PlanesComparacionProps> = ({
 
             <ul className="space-y-2">
               {beneficiosActual.map((b: string, index: number) => (
-                <li key={index} className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-primary" /> {b}
+                <li key={index} className="flex items-start gap-2"> 
+                  <Check className="w-4 h-4 text-primary flex-shrink-0 mt-1" /> 
+                  <span>{b}</span>
                 </li>
               ))}
             </ul>
@@ -113,9 +114,10 @@ export const PlanesComparacion: FC<PlanesComparacionProps> = ({
             <Separator />
 
             <ul className="space-y-2">
-              {beneficiosSuperior.map((b: string, index: number) => (
-                <li key={index} className="flex items-center gap-2">
-                  <Check className="w-4 h-4 text-lima" /> {b}
+              {beneficiosActual.map((b: string, index: number) => (
+                <li key={index} className="flex items-start gap-2"> 
+                  <Check className="w-4 h-4 text-lima flex-shrink-0 mt-1" /> 
+                  <span>{b}</span>
                 </li>
               ))}
             </ul>

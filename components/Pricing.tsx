@@ -9,52 +9,10 @@ export default function Pricing ({ plan }:PageProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    // <div className="text-center mb-8">
-    //   <h3 className="text-2xl font-black mb-2">{plan.nombre}</h3>
-      
-    //   {/* Contenedor con altura máxima dinámica */}
-    //   <div className={`relative overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-full' : 'max-h-24'}`}>
-    //     <ul className="space-y-4 mb-8 ">
-    //          {plan.caracteristicas.map((feature, idx) => (
-    //            <li key={idx} className="flex items-start gap-3">
-    //              <Check
-    //                className={`w-5 h-5 mt-0.5 ${
-    //                  plan.resaltar ? "text-hoodie" : "text-lima"
-    //                }`}
-    //                strokeWidth={3}
-    //              />
-    //              <span className="text-foreground/90 text-sm leading-tight">
-    //                {feature}
-    //              </span>
-    //            </li>
-    //          ))}
-    //        </ul>
-    //     {/* Degradado para indicar que hay más contenido (solo si no está expandido) */}
-    //     {!isExpanded && (
-    //       <div className="absolute bottom-0 left-0 w-full h-8 bg-gradient-to-t from-white to-transparent" />
-    //     )}
-    //   </div>
-
-    //   {/* Botón para alternar */}
-    //   <button 
-    //     onClick={() => setIsExpanded(!isExpanded)}
-    //     className="text-xs font-bold text-blue-600 hover:underline mb-4"
-    //   >
-    //     {isExpanded ? 'Ver menos' : 'Leer más'}
-    //   </button>
-
-    //   <div className="flex items-baseline justify-center gap-1">
-    //     <span className="text-5xl font-black">{plan.precio}</span>
-    //     {plan.precio !== "0€" && (
-    //       <span className="text-muted-foreground">/mes</span>
-    //     )}
-    //   </div>
-    // </div>
-
-      <div
+        <div
         className={`relative flex flex-col justify-between rounded-3xl p-8 border-2 transition-all duration-300 ${
           plan.resaltar
-            ? "border-hoodie bg-card shadow-[0_0_40px_hsl(var(--neon-red)/0.3)] "
+            ? "border-hoodie bg-card shadow-[0_0_40px_hsl(var(--neon-red)/0.3)] scale-105 "
             : "border bg-card/50 border-lima/50 hover:border-lima"
         }`}
       >
@@ -89,9 +47,9 @@ export default function Pricing ({ plan }:PageProps) {
       <div className={`relative overflow-hidden transition-all duration-300 ${isExpanded ? 'max-h-full' : 'max-h-52'}`}>
         <ul className="space-y-4 mb-8 ">
               {plan.caracteristicas.map((feature, idx) => (
-                <li key={idx} className="flex items-start gap-3">
+                <li key={idx} className="flex items-start gap-2">
                   <Check
-                    className={`w-5 h-5 mt-0.5 ${
+                    className={`w-5 h-5 flex-shrink-0 mt-1 ${
                       plan.resaltar ? "text-hoodie" : "text-lima"
                     }`}
                     strokeWidth={3}
