@@ -7,7 +7,7 @@ const items: NavItem[] = [
   // { url: "/planes", id: "planes", icon: Play, label: "Planes" },
   // { url: "/videos", id: "videos", icon: Video, label: "Videos" },
   { url: "/documentos", id: "Pdf", icon: Archive, label: "Documentos Pdf" },
-  { url: "/blog", id: "blogs", icon: BookOpen, label: "Blogs" },
+  // { url: "/blog", id: "blogs", icon: BookOpen, label: "Blogs" },
 ];
 
 export default function BottomNav() {
