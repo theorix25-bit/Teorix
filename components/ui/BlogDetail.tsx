@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card } from "@/components/ui/card";
 import { BlogsDB } from "@/types/blog";
+import Image from "next/image";
 
 interface PagePros {
   blog:BlogsDB
@@ -50,12 +51,13 @@ export default function BlogDetail({blog,category}:PagePros) {
           </div>
 
           {/* Main Image con Aspect Ratio */}
-          <div className="overflow-hidden rounded-2xl border bg-muted shadow-sm">
+          <div className="overflow-hidden rounded-2xl bg-muted border border-lima/30 shadow-md shadow-lima/40">
             <AspectRatio ratio={21 / 9}>
               {blog.image_url ? (
-                <img 
+                <Image
                   src={blog.image_url} 
                   alt={blog.title} 
+                  fill
                   className="object-cover w-full h-full hover:scale-105 transition-transform duration-500"
                 />
               ) : (
@@ -66,7 +68,6 @@ export default function BlogDetail({blog,category}:PagePros) {
             </AspectRatio>
           </div>
 
-          {/* Text Content con dangerouslySetInnerHTML */}
           <article 
             className="prose
     prose-invert
@@ -190,16 +191,16 @@ export default function BlogDetail({blog,category}:PagePros) {
 function RelatedCard({ post }: { post: BlogsDB }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
-      <Card className="overflow-hidden border-none shadow-none bg-transparent group-hover:bg-muted/50 transition-colors rounded-xl p-2">
+      <Card className="overflow-hidden bg-transparent group-hover:bg-muted/50 transition-colors rounded-xl border-lima shadow-lima ">
         <div className="space-y-3">
           <div className="w-full h-32 bg-muted rounded-lg overflow-hidden relative">
             {post.image_url ? (
-               <img src={post.image_url} className="object-cover w-full h-full" alt="" />
+              <Image src={post.image_url} fill className="object-cover w-full h-full" alt={post.title} />
             ) : (
               <div className="flex items-center justify-center h-full"><ImageIcon className="text-muted-foreground/20" /></div>
             )}
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1 px-2 pb-2">
             <span className="text-[10px] font-bold uppercase tracking-wider text-primary">
               {post.category}
             </span>

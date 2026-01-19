@@ -58,5 +58,7 @@ export default async function BlogPage({ params }:Params) {
   const { data: blog } = await getBlogBySlug(result.id);
   const { data: categorys } = await getBlogByCategory(blog.category);
 
+  
+
   return <BlogDetail blog={blog} category={categorys} />;
 }

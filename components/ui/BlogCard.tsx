@@ -1,39 +1,36 @@
-import { BlogsDTO } from "@/lib/domain/dto/blogs.dto";
-import { Badge } from "lucide-react";
 import Link from "next/link";
 import { Card, CardContent } from "./card";
 import { BlogsDB } from "@/types/blog";
+import Image from "next/image";
 
 interface PageProps {
   blog: BlogsDB;
 }
-
-
-
 export default function BlogCard({ blog }: PageProps) {
-
   return (
     <Link href={`/blog/${blog.slug}`} className="group">
       <Card className="
         h-full 
         overflow-hidden 
         bg-background/80 
-        border border-border 
         transition-all 
         hover:-translate-y-1 
-        hover:shadow-lg
+        border border-lima/20
+        hover:shadow-lg 
+        hover:shadow-lima/40
+        shadow-md shadow-lima/30
       ">
         {/* Imagen */}
-        <div className="relative h-28 sm:h-32 lg:h-40 overflow-hidden">
-          <img
-            src={`${blog.image_url}`}
-            alt={blog.title}
-            className="
-              h-full w-full object-cover 
-              transition-transform duration-300 
-              group-hover:scale-105
-            "
-          />
+        <div className="relative h-44 overflow-hidden">
+        <Image
+        src={blog.image_url}
+        fill
+        className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        sizes="(max-width: 768px) 100vw, 400px"
+        alt={blog.title}
+        placeholder="blur"
+        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD..."
+        />
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent" />
@@ -41,7 +38,6 @@ export default function BlogCard({ blog }: PageProps) {
 
         {/* Contenido */}
         <CardContent className="p-4 space-y-2">
-         
           <h3 className="
             font-semibold 
             leading-snug 

@@ -3,7 +3,6 @@ import { BlogsDB } from "@/types/blog";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import BlogCard from "./BlogCard";
-import { Button } from "./button";
 
 interface PageProps {
   blogs: BlogsDB[];
