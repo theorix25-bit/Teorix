@@ -19,10 +19,10 @@ export default function Success() {
 
         <div className="flex flex-col gap-3">
           <Link
-            href="/clases"
+            href="/formulas"
             className="w-full py-3 rounded-lg bg-lima text-black font-medium hover:bg-lima/70 transition"
           >
-            Ir al clases
+            Ir al fórmulas
           </Link>
         </div>
       </div>

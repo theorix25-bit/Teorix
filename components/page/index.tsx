@@ -23,14 +23,13 @@ export function Profesor247() {
         <div className="flex justify-center items-start mt-0 md:mt-14">
           <div className=" px-4">
             <h2 className=" text-5xl text-lima text-center mt-8">
-              TU PROFE PARTICULAR, <span className="text-6xl block">24/7</span>
+              TU PROFE PARTICULAR <span className="text-6xl block">24/7</span>
             </h2>
-            <p className="text-xl mt-8 text-center mb-2">
-              IA + ACOMPAÑAMIENTO HUMANO REAL + BIG DATA
+            <p className="text-lg mt-8 text-center mb-2">
+              ASISTENTE IA+ PROFE HUMANO (de carne y hueso) + BIG DATA + ACOMPAÑAMIENTO REAL + CONFIANZA = APTO ASEGURADO
             </p>
-            <p className=" px-4">
-              Nuestra misión: ayudar a DGT, autoescuelas y alumnos a bajar el
-              50% de suspensos en España.
+            <p className=" px-4 text-center">
+            <span className="text-hoodie">NUESTRA MISIÓN</span>: ayudar a DGT, autoescuelas y alumnos a mejorar el 50% de los suspensos actuales. 
             </p>
             <div className="mt-4 flex gap-4 px-4 mb-6 justify-center">
               <Link
@@ -39,12 +38,7 @@ export function Profesor247() {
               >
                 Descubre nuestro método
               </Link>
-              <Link
-                href={"/clases"}
-                className="px-3 py-2 rounded-md shadow-inner shadow-lima border-lima/40  border text-white transition-colors duration-100 font-bold text-center"
-              >
-                Manual Gratuito
-              </Link>
+              
             </div>
           </div>
         </div>
@@ -66,19 +60,17 @@ export function Profesor247() {
 export function Exito() {
   const diferencial = [
     {
-      titulo: "Nuestro MÉTODO tiene 85% de aptos",
+      titulo: "BIG DATA DE TEORIX*",
       texto:
-        "No es suerte, es estrategia pura y dura. Hemos analizado miles de exámenes reales para identificar patrones, detectar trampas comunes y entender exactamente qué busca la DGT en cada pregunta.",
+        `¿Por qué nuestro Algoritmo es invencible? Es como tener un "cerebro gigante" que ha visto, analizado y guardado cada fallo y cada acierto de miles de alumnos que han pasado por el examen de la DGT. Mientras el sistema rancio te suelta 3.500 tests y te dice "suerte, máquina", nosotros usamos programas especiales para encontrar los patrones y las trampas que siempre se repiten, como hace Netflix para saber qué serie te
+        va a viciar. Cada clic que haces en un test, cada duda que le escribes a Teox* a las 3 AM y cada pregunta donde la gente suele palmar, genera un pedacito de información valiosísima.`,
     },
     {
-      titulo: "Enseñamos la lógica vial real",
+      titulo: `AQUÍ VIENES A GANAR, NO A ESTUDIAR MÁS`,
       texto:
-        "Olvídate de memorizar respuestas como un loro. Te enseñamos a entender la lógica detrás de cada norma y la técnica de test que realmente funciona. No memorizas mierdas inútiles, aprendes a pensar como un conductor responsable.",
-    },
-    {
-      titulo: "Aquí Vienes a Ganar, No a Estudiar de Más",
-      texto:
-        "Nuestro enfoque es quirúrgico: te mostramos exactamente qué necesitas saber para aprobar, sin relleno, sin pérdidas de tiempo. Maximizamos tu eficiencia para que estudies menos pero mejor, y apruebes rápido.",
+      `Millones de datos moviéndose a toda leche. Ningún profesor humano (por muy bueno que sea) podría analizar a mano los fallos de miles de personas para saber exactamente qué coma han cambiado en la pregunta 402 del examen. 
+      TEOX*, nuestro asistente con IA. Él es quien procesa ese caos de datos para encontrar las conexiones lógicas que a ti te llevarían meses descubrir solo. 
+      • El objetivo es el VALOR: Sacamos provecho de esa montaña de datos para predecir qué te van a preguntar, filtrar la "chapa" que no sirve para nada y darte la Píldora Roja de la lógica vial antes que nadie.`
     },
   ];
   return (
@@ -87,30 +79,36 @@ export function Exito() {
         <div className="absolute bottom-0 left-0 size-52 md:size-96  bg-lima/15 rounded-full blur-3xl animate-pulse"></div>
 
         <div className="px-2 md:w-2/3 mx-auto">
-          <h2 className="text-4xl md:text-5xl text-center">
-            SOMOS EL ORIGEN DEL <span className="text-lima">80%</span>{" "}
+          <h2 className="text-3xl md:text-4xl text-center mb-4">
+            SOMOS EL ORIGEN DEL <span className="text-lima">85%</span> DE APTOS
           </h2>
-          <h3 className="text-xl md:text-2xl  mt-3 mb-3 text-center">
-            LUCHAMOS CONTRA EL <span className="text-hoodie">50%</span> DE
-            SUSPENSOS
+          <h3 className="text-xl mx:text-2xl text-center mb-2">
+            AYUDAMOS A <span className="text-hoodie">AUMENTAR</span>  EL 50% DEL RESTO
           </h3>
-          <p className="mb-2 w-4/5 mx-auto md:text-lg md:text-center">
-            No es magia ni suerte ciega. Es pura estrategia respaldada por
-            análisis de datos, inteligencia artificial y años de experiencia
-            destilados en un sistema que funciona.
+          <p className="mb-2 w-4/5 mx-auto md:text-lg md:text-center ">
+            No es suerte, ni magia ni fé ciega. Es pura ESTRATEGIA. Análisis de datos, inteligencia artificial y años de experiencia de una fórmula que funciona.
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-5 px-4 mt-3">
+        <div className="flex flex-wrap justify-center gap-5 px-2 mt-3">
           {diferencial.map((d, i) => (
             <div
               key={i}
-              className="border py-4 px-4 border-lima bg-zinc-900 rounded-md border-l-4 hover:border-l-8 border-b-2 w-full md:w-1/4 hover:border-hoodie/80 hover:bg-hoodie/15 transition-all duration-300"
+              className="border py-4 px-4 border-lima bg-zinc-900 rounded-md border-l-4 hover:border-l-8 border-b-2 w-full md:w-2/5 hover:border-hoodie/80 hover:bg-hoodie/15 transition-all duration-300"
             >
               <h4 className="text-lg mb-2 ">{d.titulo}</h4>
               <p>{d.texto}</p>
             </div>
           ))}
+        </div>
+
+        <div className="px-2 md:w-2/3 mx-auto mt-5">
+          <h2 className="text-3xl md:text-4xl text-center mb-4">
+            EN LA COMUNIDAD TEORIX*, TODOS APRENDEMOS DE TODOS
+          </h2>
+          <p className="mb-2 mx-auto md:text-lg md:text-center ">
+            En resumen: Manejamos cantidades brutales de datos para descubrir los secretos de la DGT y que tú tomes decisiones más inteligentes en el examen. ¡Es como tener a un detective digital (Teox*) hackeando tu APTO a escala global!
+          </p>
         </div>
       </section>
     </>
@@ -120,7 +118,7 @@ export function Exito() {
 export function Metodo() {
   const metodo = [
     {
-      titulo: "Ingeniería Inversa del Examen",
+      titulo: `INGENIERÍA INVERSA DEL EXAMEN`,
       texto:
         "Hemos analizado miles de exámenes reales de la DGT. El Big Data nos ayuda a identificar exactamente qué necesitas saber, cómo te lo van a preguntar y, lo más importante, los errores que cometen sistemáticamente todos nuestros alumnos.",
       icono: Database,
@@ -147,22 +145,19 @@ export function Metodo() {
       >
         <div className="absolute bottom-0 left-[20%] size-52 md:size-96 bg-lima/15 rounded-full blur-3xl md:hidden animate-pulse"></div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-10">
           <div className="h-fit lg:sticky lg:top-4">
             <h2 className="text-4xl font-bold mb-4 text-lima text-center">
-              MÉTODO TEORIX*
+              FÓRMULA TEORIX*
             </h2>
             <p className=" text-lg mt-3">
-              ¿Por qué otros métodos fallan? te bombardean con información
-              irrelevante y te dejan solo frente a un examen diseñado para
-              pillarte con trampas y preguntas confusas.
+              ¿Por qué otros métodos fallan? te bombardean con información irrelevante y te dejan solo frente a un examen diseñado para pillarte
+con trampas y preguntas confusas.
             </p>
             <p className=" text-lg mt-3">
-              Aquí no te tragas los 3.500 tests de la DGT como si fueras un
-              robot programado para memorizar. Te damos los test que SÍ importan
-              de verdad y la técnica precisa para entender la lógica detrás de
-              cada pregunta. Es la diferencia entre estudiar a ciegas y estudiar
-              con un mapa del tesoro en la mano.
+              Aquí no te tragas los 3.500 tests de la DGT como si fueras un robot programado para memorizar. Te damos los test que SÍ importan
+de verdad y la técnica precisa para entender la lógica detrás de cada pregunta. Es la diferencia entre estudiar a ciegas y estudiar
+acompañado y con la ayuda de un mapa del tesoro en la mano.
             </p>
             <img
               src="bg-2.jpg"
@@ -172,64 +167,62 @@ export function Metodo() {
           </div>
 
           <div className="space-y-8">
-            {metodo.map((m, i) => (
-              <div
-                key={i}
+            <div
                 className="p-6 rounded-xl  bg-zinc-900 shadow-inner border-lima/15 border shadow-lima md:w-[520px] mx-auto relative overflow-hidden"
               >
                 <div className="absolute bottom-0 left-[20%] md:left-[40%] size-52 md:size-70 bg-lima/15 rounded-full blur-3xl  animate-pulse"></div>
 
-                <m.icono className="text-lima mx-auto mb-3 size-14 md:size-24" />
+                <Database className="text-lima mx-auto mb-3 size-14 md:size-24" />
                 <h3 className=" text-xl md:text-3xl  font-semibold text-center mb-2">
-                  {m.titulo}
+                  INGENIERÍA INVERSA DEL EXAMEN
                 </h3>
-                <p className=" mt-3 px-2 md:text-lg text-sm ">{m.texto}</p>
-              </div>
-            ))}
+                <ul className="list-disc ml-5">
+                  <li>Analizamos miles de exámenes reales de la DGT</li>
+
+                  <li>Identificamos lo que necesitas saber.</li>
+
+                  <li>Cómo te lo van a preguntar.</li>
+
+                  <li>Conocemos los errores que cometen sistemáticamente todos nuestros alumnos.</li>
+
+                </ul>
+            </div>
+
+            <div className="p-6 rounded-xl  bg-zinc-900 shadow-inner border-lima/15 border shadow-lima md:w-[520px] mx-auto relative overflow-hidden">
+                <div className="absolute bottom-0 left-[20%] md:left-[40%] size-52 md:size-70 bg-lima/15 rounded-full blur-3xl  animate-pulse"></div>
+                <Brain className="text-lima mx-auto mb-3 size-14 md:size-24" />
+                <h3 className=" text-xl md:text-3xl  font-semibold text-center mb-2">
+                  SIN CONTENIDO DE RELLENO
+                </h3>
+                <p className=" mt-3 px-2 md:text-lg text-sm ">No pierdas el tiempo con información irrelevante.</p>
+                <p className=" mt-3 px-2 md:text-lg text-sm ">Aprendes a detectar patrones, identificar trampas que te confunden y te ayudamos a pensar como la DGT. </p>
+            </div>
+
+            <div className="p-6 rounded-xl  bg-zinc-900 shadow-inner border-lima/15 border shadow-lima md:w-[520px] mx-auto relative overflow-hidden">
+                <div className="absolute bottom-0 left-[20%] md:left-[40%] size-52 md:size-70 bg-lima/15 rounded-full blur-3xl  animate-pulse"></div>
+                <ShieldCheck className="text-lima mx-auto mb-3 size-14 md:size-24" />
+                <h3 className=" text-xl md:text-3xl  font-semibold text-center mb-2">
+                  TEÓRICO BLINDADO
+                </h3>
+                <p className=" mt-3 px-2 md:text-lg text-sm ">Con el algoritmo Teorix* identificamos las áreas dónde cometes más errores y te presenta lo que necesitas para mejorarlas. Es la fórmula blindada contra los suspensos. </p>
+            </div>
+            
           </div>
+        </div>
+        <div className="flex justify-center">
+        <Link
+            href={"https://gamma.app/docs/GUIA-DE-ESTUDIO-TEORIX-EL-CHEATCODE-PARA-TU-APTO-8m90eh7tj6mt267"}
+            className="border px-4 py-3 text-md md:text-2xl text-lima border-lima rounded-xl hover:bg-lima hover:text-black transition-colors duration-200"
+            >
+            Ver cómo funciona en detalle
+          </Link>
         </div>
       </section>
     </>
   );
 }
 
-export function FAQs() {
-  const preguntas = [
-    { pregunta: "Qué es Teorix?", respuesta: "Plataforma de aprendizaje con clases en vídeo, recursos descargables y comunidad para profesionales y estudiantes." },
-    { pregunta: "¿Cómo me registro?", respuesta: "Crea una cuenta con correo, acceso inmediato a contenidos gratuitos tras confirmar email" },
-    { pregunta: "Hay versión gratuita o prueba?", respuesta: "Respuesta" },
-    { pregunta: "¿Cómo me registro?", respuesta: " Sí — acceso limitado gratuito y/o periodo de prueba para evaluar la plataforma." },
-    { pregunta: "¿Hay reembolsos o cancelación?", respuesta: "Política de reembolso dentro de 14 días; puedes cancelar la suscripción en cualquier momento." },
-  ];
-  return (
-    <>
-      {/* Preguntas frecuentes */}
-      <section className="px-4 md:w-[90dvw] mx-auto mt-4  relative " id="faqs">
-        <h2 className="text-5xl text-lima text-center mb-8">
-          Preguntas frecuentes
-        </h2>
 
-        <div className=" md:flex gap-8 w-full">
-          <div className=" md:w-1/2 rounded-md overflow-hidden mb-6">
-            <img src="clasesTeo.webp" alt="" className="object-cover" />
-          </div>
-          <div className="flex justify-center items-center w-full md:w-1/2">
-            <Accordion type="single" className="w-full">
-              {preguntas.map((p, i) => (
-                <AccordionItem key={i} value={String(i)}>
-                  <AccordionTrigger className="font-bold text-xl">
-                    {p.pregunta}
-                  </AccordionTrigger>
-                  <AccordionContent>{p.respuesta}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
 
 export function Datos() {
   const datos = [

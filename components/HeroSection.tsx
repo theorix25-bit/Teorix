@@ -1,7 +1,7 @@
 import Link from "next/link";
 import teo from "@/assets/image-removebg-preview.png"
 
-export const HeroSection = () => {
+export const  HeroSection = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute top-20 left-10 text-6xl text-lima animate-spin-slow opacity-20">
@@ -22,31 +22,28 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        <h1 className="text-6xl md:text-8xl font-black mb-6 leading-tight">
-          <span className="block text-foreground text-white">
-            Estudia menos.
-          </span>
-          <span className="block text-lima neon-glow">Aprueba más.</span>
+        <h1 className="text-6xl md:text-6xl font-black mb-6 leading-tight">
+          LA <span className="text-lima">SOLUCIÓN</span> AL 50% DE <br /> <span className="text-hoodie neon-glow">SUSPENSOS</span> TEÓRICOS EN ESPAÑA
         </h1>
 
         <p className="text-xl md:text-2xl text-white text-muted-foreground max-w-2xl mx-auto mb-12 font-medium">
-          El teórico en modo{" "}
-          <span className="text-hoodie font-bold">speedrun</span>. Tutor real,
-          método probado y cero drama.
+            Estudia menos. Aprueba más.
+        </p>
+        <p className="text-xl md:text-2xl text-white text-muted-foreground max-w-4xl mx-auto mb-12 font-medium">
+          EL TEÓRICO EN MODO {" "}
+          <span className="text-hoodie font-bold">SPEEDRUN.</span>. MÉTODO PROBADO. 85% DE APTOS
+        </p>
+        <p className="text-xl md:text-2xl text-white text-muted-foreground max-w-4xl mx-auto mb-12 font-medium">
+          TUTORES <span className="text-lima">REALES</span> Y CERO DRAMA
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link
-            href={"/clases"}
-            className="border bg-lima border-lima rounded-xl px-2 py-3 text-black font-bold"
-          >
-            Ver lecciones disponibles
-          </Link>
+          
           <Link
             href={"/#modo"}
-            className=" bg-hoodie/80 px-2 py-3 rounded-xl text-white font-bold"
+            className=" bg-lima/80 px-5 py-3 rounded-xl text-black font-bold transition-all hover:bg-lima hover:-translate-y-1"
           >
-            selecciona tu modo
+            SELECCIONA TU FÓRMULA
           </Link>
         </div>
 
@@ -60,7 +57,7 @@ export const HeroSection = () => {
             ))}
           </div>
           <span className="text-sm font-semibold text-foreground">
-            +12.847 aprobados este año <span className="text-lima text-xl ml-2">✓</span>
+            +12.847 aprobados con nuestra formula <span className="text-lima text-xl ml-2">✓</span>
           </span>
         </div>
       </div>

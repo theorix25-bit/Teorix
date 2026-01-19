@@ -1,4 +1,4 @@
-type ViewTypeTemas = "clases"| "temas" | "subtemas"
+type ViewTypeTemas = "formulas"| "temas" | "subtemas"
 
 type NavItem = {
   url:string

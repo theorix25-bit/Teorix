@@ -29,7 +29,7 @@ export const TestimonialsSection = () => {
   const [approvalRate, setApprovalRate] = useState(0);
 
   useEffect(() => {
-    const target = 80;
+    const target = 85;
     const duration = 2000;
     const steps = 60;
     const increment = target / steps;

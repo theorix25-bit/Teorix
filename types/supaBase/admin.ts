@@ -1,4 +1,4 @@
-type Tipo = "clases" | "temas" | "subtema"
+type Tipo = "formulas" | "temas" | "subtema"
 
 interface Contenido {
     id: number,

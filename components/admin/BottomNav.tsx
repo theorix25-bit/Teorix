@@ -2,7 +2,7 @@ import { Home, Users, Play, Video, Archive, BookOpen } from "lucide-react";
 import Link from "next/link";
 
 const items: NavItem[] = [
-  // { url: "", id: "clases", icon: Home, label: "Clases" },
+  // { url: "", id: "formulas", icon: Home, label: "fórmulas" },
   { url: "/usuarios", id: "usuarios", icon: Users, label: "Usuarios" },
   // { url: "/planes", id: "planes", icon: Play, label: "Planes" },
   // { url: "/videos", id: "videos", icon: Video, label: "Videos" },

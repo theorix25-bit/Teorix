@@ -41,7 +41,7 @@ module.exports = {
 
   // Agregar rutas dinámicas basadas en contenido de la base de datos
   additionalPaths: async (config) => {
-    const staticPaths = ["/", "/blog", "/clases"];
+    const staticPaths = ["/", "/blog", "/formulas"];
 
     if (!supabase) {
       return staticPaths.map((p) => ({ loc: p }));
@@ -59,8 +59,7 @@ module.exports = {
       const dynamicPaths = subtemas.map((s) => {
         const tema = byId.get(s.padre_id);
         const clase = tema ? byId.get(tema.padre_id) : null;
-        // Estructura: /clases/[clase]/[tema]/[subtema]
-        const parts = ["/clases"];
+        const parts = ["/formulas"];
         if (clase && clase.slug) parts.push(clase.slug);
         if (tema && tema.slug) parts.push(tema.slug);
         if (s.slug) parts.push(s.slug);

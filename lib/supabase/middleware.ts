@@ -92,5 +92,5 @@ export async function updateSession(request: NextRequest) {
   return supabaseResponse;
 }
 export const config = {
-  matcher: ["/admin/:path*", "/clases/:path*"],
+  matcher: ["/admin/:path*", "/formulas/:path*"],
 };

@@ -9,7 +9,7 @@ export function SignUpForm() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const emailRedirectTo = `https://teorix.es/clases`;
+  const emailRedirectTo = `https://teorix.es/formulas`;
   const [repeatPassword, setRepeatPassword] = useState("");
   const [terminos, setTerminos] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);

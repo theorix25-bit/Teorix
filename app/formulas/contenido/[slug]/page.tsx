@@ -33,11 +33,11 @@ async function Contenido({ params, searchParams }: pageProps) {
         {/* Header */}
         <div className="flex flex-col gap-4">
           <Link
-            href="/clases"
+            href="/formulas"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground w-fit"
           >
             <ArrowLeft className="h-4 w-4" />
-            Volver a clases
+            Volver a fórmulas
           </Link>
 
           <h1 className="text-3xl md:text-4xl font-semibold text-center">
@@ -108,7 +108,7 @@ async function Contenido({ params, searchParams }: pageProps) {
         </div>
 
         <Link
-          href={`/clases/contenido/${siguienteTema.slug}?titulo=${siguienteTema.titulo}`}
+          href={`/formulas/contenido/${siguienteTema.slug}?titulo=${siguienteTema.titulo}`}
           className="w-full sm:w-auto"
         >
           <Button

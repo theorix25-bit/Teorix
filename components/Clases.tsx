@@ -101,7 +101,7 @@ export default async function Lessons() {
     && 
     <div className="flex flex-col sm:flex-row gap-4 pt-2">
       <Button asChild size="lg" className="gap-2">
-        <Link href="/clases/test_dgt">
+        <Link href="/formulas/test_dgt">
           Empezar 
           Test Gratuito DGT
           <ArrowRight size={18} />
@@ -136,7 +136,7 @@ export default async function Lessons() {
             {gramma?.map((g) => (
               <LessonCard
                 key={g.id}
-                href={`/clases/contenido/${g.slug}?titulo=${g.titulo}`}
+                href={`/formulas/contenido/${g.slug}?titulo=${g.titulo}`}
                 titulo={g.titulo}
                 descripcion={g.descripcion}
                 tipo="documento"
@@ -155,7 +155,7 @@ export default async function Lessons() {
   {videos?.map((v) => (
     <LessonCard
       key={v.id}
-      href={`/clases/video/${v.slug}?titulo=${v.titulo}`}
+      href={`/formulas/video/${v.slug}?titulo=${v.titulo}`}
       titulo={v.titulo}
       descripcion={v.descripcion}
       tipo="video"

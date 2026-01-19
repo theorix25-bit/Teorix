@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import Link from "next/link";
 import { getPlansDB } from "@/lib/supabase";
+import Pricing from "./Pricing";
 export const PricingSection = async () => {
   const plans = await getPlansDB();
   {
@@ -15,7 +16,7 @@ export const PricingSection = async () => {
         <div className="mx-auto relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-black  mb-4">
-              Elige tu <span className="text-lima">modo</span>
+              Elige tu <span className="text-lima">fórmula</span>
             </h2>
             <p className="text-xl max-w-2xl mx-auto">
               Todos los planes incluyen el método{" "}
@@ -27,70 +28,71 @@ export const PricingSection = async () => {
             {plans
               .filter((p) => p.id !== 4)
               .map((plan, index) => (
-                <div
-                  key={index}
-                  className={`relative flex flex-col justify-between rounded-3xl p-8 border-2 transition-all duration-300 ${
-                    plan.resaltar
-                      ? "border-hoodie bg-card shadow-[0_0_40px_hsl(var(--neon-red)/0.3)] md:-translate-y-4 md:scale-105"
-                      : "border bg-card/50 border-lima/50 hover:border-lima"
-                  }`}
-                >
-                  {plan.insignia && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <div className="px-4 py-2 rounded-full bg-gradient-to-r from-hoodie to-lima text-lima-foreground text-sm font-black uppercase tracking-wider shadow-lg">
-                        {plan.insignia}
-                      </div>
-                    </div>
-                  )}
+                <Pricing key={index}  plan={plan}/>
+                // <div
+                //   key={index}
+                //   className={`relative flex flex-col justify-between rounded-3xl p-8 border-2 transition-all duration-300 ${
+                //     plan.resaltar
+                //       ? "border-hoodie bg-card shadow-[0_0_40px_hsl(var(--neon-red)/0.3)] "
+                //       : "border bg-card/50 border-lima/50 hover:border-lima"
+                //   }`}
+                // >
+                //   {plan.insignia && (
+                //     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+                //       <div className="px-4 py-2 rounded-full bg-gradient-to-r from-hoodie to-lima text-lima-foreground text-sm font-black uppercase tracking-wider shadow-lg">
+                //         {plan.insignia}
+                //       </div>
+                //     </div>
+                //   )}
 
-                  <div className="text-center mb-8">
-                    <h3 className="text-2xl font-black mb-2">{plan.nombre}</h3>
-                    <p className="text-sm mb-4">{plan.descripción}</p>
-                    <div className="flex items-baseline justify-center gap-1">
-                      <span className="text-5xl font-black ">
-                        {plan.precio}
-                      </span>
-                      {plan.precio !== "0€" && (
-                        <span className="text-muted-foreground">/mes</span>
-                      )}
-                    </div>
-                  </div>
+                //   <div className="text-center mb-8">
+                //     <h3 className="text-2xl font-black mb-2">{plan.nombre}</h3>
+                //     <p className="text-sm mb-4">{plan.descripción}</p>
+                //     <div className="flex items-baseline justify-center gap-1">
+                //       <span className="text-5xl font-black ">
+                //         {plan.precio}
+                //       </span>
+                //       {plan.precio !== "0€" && (
+                //         <span className="text-muted-foreground">/mes</span>
+                //       )}
+                //     </div>
+                //   </div>
 
-                  <ul className="space-y-4 mb-8">
-                    {plan.caracteristicas.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <Check
-                          className={`w-5 h-5 mt-0.5 ${
-                            plan.resaltar ? "text-hoodie" : "text-lima"
-                          }`}
-                          strokeWidth={3}
-                        />
-                        <span className="text-foreground/90 text-sm leading-tight">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                //   <ul className="space-y-4 mb-8 ">
+                //     {plan.caracteristicas.map((feature, idx) => (
+                //       <li key={idx} className="flex items-start gap-3">
+                //         <Check
+                //           className={`w-5 h-5 mt-0.5 ${
+                //             plan.resaltar ? "text-hoodie" : "text-lima"
+                //           }`}
+                //           strokeWidth={3}
+                //         />
+                //         <span className="text-foreground/90 text-sm leading-tight">
+                //           {feature}
+                //         </span>
+                //       </li>
+                //     ))}
+                //   </ul>
 
-                  <Link
-                    href={
-                      plan.slug == "gratuito" ? "/clases" : `/plan/${plan.slug}`
-                    }
-                    className={`w-full  px-3 rounded-md mx-auto block text-center py-2 ${
-                      plan.resaltar
-                        ? "bg-hoodie text-white"
-                        : "bg-lima text-black "
-                    } font-extrabold `}
-                  >
-                    {plan.cta} →
-                  </Link>
+                //   <Link
+                //     href={
+                //       plan.slug == "gratuito" ? "/formulas" : `/plan/${plan.slug}`
+                //     }
+                //     className={`w-full  px-3 rounded-md mx-auto block text-center py-2 ${
+                //       plan.resaltar
+                //         ? "bg-hoodie text-white"
+                //         : "bg-lima text-black "
+                //     } font-extrabold `}
+                //   >
+                //     {plan.cta} →
+                //   </Link>
 
-                  {plan.resaltar && (
-                    <div className="absolute -bottom-2 -right-2 text-6xl opacity-10 text-hoodie">
-                      ⚡
-                    </div>
-                  )}
-                </div>
+                //   {plan.resaltar && (
+                //     <div className="absolute -bottom-2 -right-2 text-6xl opacity-10 text-hoodie">
+                //       ⚡
+                //     </div>
+                //   )}
+                // </div>
               ))}
           </div>
 

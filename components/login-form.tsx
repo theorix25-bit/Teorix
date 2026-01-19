@@ -26,7 +26,7 @@ export function LoginForm() {
       });
       if (error) throw error;
       
-      window.location.href = "/clases";
+      window.location.href = "/formulas";
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {

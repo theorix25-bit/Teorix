@@ -41,7 +41,7 @@ export const CommunitySection = () => {
   return (
     <section className="py-10 px-6 bg-card/20 relative overflow-hidden">
       <div className=" mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-2">
           <div className="inline-block px-4 py-2 rounded-full bg-hoodie/10 border border-hoodie/20 mb-4">
             <span className="text-hoodie font-bold text-sm uppercase tracking-wider">
               Comunidad & Tips
@@ -55,7 +55,7 @@ export const CommunitySection = () => {
             Trucos, consejos y contenido que realmente ayuda
           </p>
         </div>
-
+          <h3 className=" text-3xl text-lima text-center mb-6">CONTENIDO DE VALOR QUE VAS A VER Y RECIBIR</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-5 max-w-5xl md:max-w-4xl mx-auto mb-12">
           {communityPosts.map((post, index) => (
             <div
