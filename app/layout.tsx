@@ -22,7 +22,6 @@ export const metadata: Metadata = {
   description:
     "Aprueba el examen teórico con vídeos, test DGT y tutores reales. Estudia desde el móvil, a tu ritmo y sin aburrirte.",
   keywords: [
-    "autoescuela online",
     "curso online para sacarse el carnet de coche",
     "aprobar el examen teórico DGT",
     "test DGT online",
@@ -46,7 +45,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Autoescuela online para aprobar el teórico | Aprende sin drama",
+    title: "El primer asistente virtual teórico con acompañamiento humano real",
     description:
       "Aprueba el examen teórico con vídeos, test DGT y tutores reales. Estudia desde el móvil, a tu ritmo y sin aburrirte.",
     url: "https://tu-dominio.com",
@@ -57,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Autoescuela online para aprobar el teórico | Aprende sin drama",
+    title: "El primer asistente virtual teórico con acompañamiento humano real",
     description:
       "Aprueba el examen teórico con vídeos, test DGT y tutores reales. Estudia desde el móvil, a tu ritmo y sin aburrirte.",
     images: ["Logo_Theorix.png"],
