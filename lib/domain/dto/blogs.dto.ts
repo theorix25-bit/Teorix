@@ -7,4 +7,6 @@ export interface BlogsDTO {
   imageUrl: string;
   createdAt: string;
   updatedAt: string;
+  metaTitle: string;
+  metaDescription: string;
 }

@@ -12,6 +12,9 @@ export class BlogMappers {
       imageUrl: row.image_url,
       createdAt: row.created_at,
       updatedAt: row.updated_at,
+      metaTitle:row.meta_title,
+      metaDescription: row.meta_description
+      
     };
   }
 

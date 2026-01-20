@@ -9,6 +9,8 @@ export interface Blog {
   content: string;
   category: string;
   image_url?: string;
+  meta_title: string;
+  meta_description: string;
   created_at?: string;
   updated_at?: string;
 }
@@ -52,7 +54,7 @@ export async function createBlog(blog: Blog) {
   const { data, error } = await supabase
     .from("blogs")
     .insert(blog)
-    .select()
+    .select("*")
     .single();
 
   return { data, error };

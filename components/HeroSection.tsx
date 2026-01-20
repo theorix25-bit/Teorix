@@ -31,7 +31,7 @@ export const  HeroSection = () => {
         </p>
         <p className="text-xl md:text-2xl text-white text-muted-foreground max-w-4xl mx-auto mb-12 font-medium">
           EL TEÓRICO EN MODO {" "}
-          <span className="text-hoodie font-bold">SPEEDRUN.</span>. MÉTODO PROBADO. 85% DE APTOS
+          <span className="text-hoodie font-bold">SPEEDRUN.</span>. FÓRMULA PROBADO. 85% DE APTOS
         </p>
         <p className="text-xl md:text-2xl text-white text-muted-foreground max-w-4xl mx-auto mb-12 font-medium">
           TUTORES <span className="text-lima">REALES</span> Y CERO DRAMA
@@ -57,7 +57,7 @@ export const  HeroSection = () => {
             ))}
           </div>
           <span className="text-sm font-semibold text-foreground">
-            +12.847 aprobados con nuestra formula <span className="text-lima text-xl ml-2">✓</span>
+            Miles de aprobados con nuestra fórmula <span className="text-lima text-xl ml-2">✓</span>
           </span>
         </div>
       </div>

@@ -16,6 +16,19 @@ import { ApiResponse } from "@/types";
 import { TestsUsuarioUpdateDTO } from "@/lib/domain/dto/testsUsuario.dto";
 import { createClient } from "@/lib/supabase/client";
 
+
+/* 
+Preguntas para cambiar 
+55,
+54,
+34,
+28,
+9,
+6,
+4,
+
+
+*/
 /* --------------------------------
     DATOS DEL QUIZ
 ---------------------------------*/
