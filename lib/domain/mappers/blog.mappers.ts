@@ -14,7 +14,7 @@ export class BlogMappers {
       updatedAt: row.updated_at,
       metaTitle:row.meta_title,
       metaDescription: row.meta_description
-      
+
     };
   }
 
