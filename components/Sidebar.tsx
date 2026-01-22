@@ -1,13 +1,13 @@
 "use client";
 
-import { Home, Users, Play, Video, Archive, BookOpen, ChevronRight, LogOut } from "lucide-react";
+import { Home, Users, Play, Book, Archive, BookOpen, ChevronRight, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const items = [
   { url: "/admin", id: "inicio", icon: Home, label: "Inicio" },
   { url: "/admin/usuarios", id: "usuarios", icon: Users, label: "Usuarios" },
-  // { url: "/admin/planes", id: "planes", icon: Play, label: "Planes" },
+  { url: "/admin/contenido", id: "contenido", icon: Book, label: "Contenido" },
   // { url: "/admin/videos", id: "videos", icon: Video, label: "Videos" },
   { url: "/admin/documentos", id: "Pdf", icon: Archive, label: "Documentos" },
   { url: "/admin/blog", id: "blogs", icon: BookOpen, label: "Blogs" },

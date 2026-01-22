@@ -38,3 +38,10 @@ export interface HeroContent {
   hero_feature_3: ElementoWeb;
 }
 
+export interface ComoFuncionaContent {
+  cf_main_image: ElementoWeb;
+  cf_title: ElementoWeb;
+  cf_description: ElementoWeb;
+  cf_mission: ElementoWeb;
+  cf_cta_button: ElementoWeb;
+}

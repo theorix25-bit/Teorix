@@ -5,8 +5,6 @@ export default async function Header() {
   // Aquí podrías recibir el correo por props o desde un estado de auth
   const supabase = await createClient()
   const email = (await supabase.auth.getClaims()).data?.claims.email
-  
-  console.log(email)
   const userEmail = email || "admin@teorix.com"; 
 
   return (

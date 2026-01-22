@@ -1,10 +1,3 @@
-import { Brain, Database, ShieldCheck } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "../ui/accordion";
 import {
   Carousel,
   CarouselContent,
@@ -19,7 +12,13 @@ export function Profesor247() {
     <>
       <section className="grid grid-cols-1 md:grid-cols-2 justify-center md:w-6/6 md:px-8 -mt-8 md:mt-12 mx-auto relative">
         <div className="absolute bottom-0 right-[20%] size-52 md:size-96 bg-hoodie/15 md:right-0 rounded-full blur-3xl animate-pulse"></div>
-
+        <div className="flex justify-center w-[85dvw] md:w-full mx-auto ">
+          <img
+            src="bg-1.jpg"
+            alt=""
+            className="rounded-3xl object-cover z-10 "
+          />
+        </div>  
         <div className="flex justify-center items-start mt-0 md:mt-14">
           <div className=" px-4">
             <h2 className=" text-5xl text-lima text-center mt-8">
@@ -45,279 +44,15 @@ export function Profesor247() {
         <div className="absolute bottom-32 left-5 text-8xl md:bottom-0 md:left-0 md:text-9xl text-lima  opacity-30">
           *
         </div>
-        <div className="flex justify-center w-[85dvw] md:w-full mx-auto ">
-          <img
-            src="bg-1.jpg"
-            alt=""
-            className="rounded-3xl object-cover z-10 "
-          />
-        </div>
+        
       </section>
     </>
   );
 }
 
-// export function Exito() {
-//   const diferencial = [
-//     {
-//       titulo: "BIG DATA DE TEORIX*",
-//       texto:
-//         `¿Por qué nuestro Algoritmo es invencible? Es como tener un "cerebro gigante" que ha visto, analizado y guardado cada fallo y cada acierto de miles de alumnos que han pasado por el examen de la DGT. Mientras el sistema rancio te suelta 3.500 tests y te dice "suerte, máquina", nosotros usamos programas especiales para encontrar los patrones y las trampas que siempre se repiten, como hace Netflix para saber qué serie te
-//         va a viciar. Cada clic que haces en un test, cada duda que le escribes a Teox* a las 3 AM y cada pregunta donde la gente suele palmar, genera un pedacito de información valiosísima.`,
-//     },
-//     {
-//       titulo: `AQUÍ VIENES A GANAR, NO A ESTUDIAR MÁS`,
-//       texto:
-//       `Millones de datos moviéndose a toda leche. Ningún profesor humano (por muy bueno que sea) podría analizar a mano los fallos de miles de personas para saber exactamente qué coma han cambiado en la pregunta 402 del examen. 
-//       TEOX*, nuestro asistente con IA. Él es quien procesa ese caos de datos para encontrar las conexiones lógicas que a ti te llevarían meses descubrir solo. 
-//       • El objetivo es el VALOR: Sacamos provecho de esa montaña de datos para predecir qué te van a preguntar, filtrar la "chapa" que no sirve para nada y darte la Píldora Roja de la lógica vial antes que nadie.`
-//     },
-//   ];
-//   return (
-//     <>
-//       <section className="px-4 mt-12 relative">
-//         <div className="absolute bottom-0 left-0 size-52 md:size-96  bg-lima/15 rounded-full blur-3xl animate-pulse"></div>
 
-//         <div className="px-2 md:w-2/3 mx-auto">
-//           <h2 className="text-3xl md:text-4xl text-center mb-4">
-//             SOMOS EL ORIGEN DEL <span className="text-lima">85%</span> DE APTOS
-//           </h2>
-//           <h3 className="text-xl mx:text-2xl text-center mb-2">
-//             AYUDAMOS A <span className="text-hoodie">AUMENTAR</span>  EL 50% DEL RESTO
-//           </h3>
-//           <p className="mb-2 w-4/5 mx-auto md:text-lg md:text-center ">
-//             No es suerte, ni magia ni fé ciega. Es pura ESTRATEGIA. Análisis de datos, inteligencia artificial y años de experiencia de una fórmula que funciona.
-//           </p>
-//         </div>
 
-//         <div className="flex flex-wrap justify-center gap-5 px-2 mt-3">
-//           {diferencial.map((d, i) => (
-//             <div
-//               key={i}
-//               className="border py-4 px-4 border-lima bg-zinc-900 rounded-md border-l-4 hover:border-l-8 border-b-2 w-full md:w-2/5 hover:border-hoodie/80 hover:bg-hoodie/15 transition-all duration-300"
-//             >
-//               <h4 className="text-lg mb-2 ">{d.titulo}</h4>
-//               <p>{d.texto}</p>
-//             </div>
-//           ))}
-//         </div>
 
-//         <div className="px-2 md:w-2/3 mx-auto mt-5">
-//           <h2 className="text-3xl md:text-4xl text-center mb-4">
-//             EN LA COMUNIDAD TEORIX*, TODOS APRENDEMOS DE TODOS
-//           </h2>
-//           <p className="mb-2 mx-auto md:text-lg md:text-center ">
-//             En resumen: Manejamos cantidades brutales de datos para descubrir los secretos de la DGT y que tú tomes decisiones más inteligentes en el examen. ¡Es como tener a un detective digital (Teox*) hackeando tu APTO a escala global!
-//           </p>
-//         </div>
-//       </section>
-//     </>
-//   );
-// }
-import { Zap, Target, Cpu } from "lucide-react";
-
-export function Exito() {
-  const diferencial = [
-    {
-      titulo: "BIG DATA DE TEORIX*",
-      subtitulo: "EL CEREBRO GIGANTE",
-      icono: <Database className="w-6 h-6 text-lima" />,
-      texto:
-      `¿Por qué nuestro Algoritmo es invencible? Es como tener un "cerebro gigante" que ha visto, analizado y guardado cada fallo y cada acierto de miles de alumnos que han pasado por el examen de la DGT. Mientras el sistema rancio te suelta 3.500 tests y te dice "suerte, máquina", nosotros usamos programas especiales para encontrar los patrones y las trampas que siempre se repiten, como hace Netflix para saber qué serie te va a viciar.`,
-      highlight: "Como Netflix, sabemos qué te va a viciar... pero para aprobar."
-    },
-    {
-      titulo: "AQUÍ VIENES A GANAR",
-      subtitulo: "NO A ESTUDIAR MÁS",
-      icono: <Zap className="w-6 h-6 text-hoodie" />,
-      texto:
-      `Millones de datos moviéndose a toda leche. Ningún profesor humano (por muy bueno que sea) podría analizar a mano los fallos de miles de personas para saber exactamente qué coma han cambiado en la pregunta 402 del examen. TEOX*, nuestro asistente con IA. Él es quien procesa ese caos de datos para encontrar las conexiones lógicas que a ti te llevarían meses descubrir solo. `,
-      highlight: "Filtramos la 'chapa' y te damos la Píldora Roja de la lógica vial."
-    },
-  ];
-
-  return (
-    <section className="px-4 py-20 relative overflow-hidden text-white">
-      {/* Glow Decorativo */}
-      <div className="absolute top-0 right-0 size-96 bg-lima/10 rounded-full blur-[120px] -z-10 animate-pulse"></div>
-      
-      <div className="max-w-6xl mx-auto">
-        {/* Cabecera Estratégica */}
-        <div className="text-center mb-16 px-2">
-          <h2 className="text-4xl md:text-6xl font-black mb-4 tracking-tighter">
-            SOMOS EL ORIGEN DEL <span className="text-lima">85%</span> DE APTOS
-          </h2>
-          <h3 className="text-xl md:text-2xl font-bold text-white mb-6 uppercase">
-            AYUDAMOS A <span className="text-hoodie">AUMENTAR</span> EL 50% DEL RESTO
-          </h3>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-4 text-white max-w-3xl mx-auto bg-zinc-800/5 p-4 rounded-2xl border border-lima/10 backdrop-blur-sm">
-             <div className="flex items-center gap-2 text-lima font-bold"><Cpu size={20}/> DATA</div>
-             <div className="hidden md:block text-gray-600">|</div>
-             <div className="flex items-center gap-2 text-hoodie font-bold"><Target size={20}/> IA</div>
-             <div className="hidden md:block text-gray-600">|</div>
-             <p className="text-sm">No es suerte, es pura ESTRATEGIA de datos.</p>
-          </div>
-        </div>
-
-        {/* Tarjetas Mejoradas */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
-          {diferencial.map((d, i) => (
-            <div
-              key={i}
-              className="group relative bg-zinc-900/40 border border-white/10 p-8 rounded-3xl transition-all duration-500 hover:border-lima/50 hover:bg-zinc-900/60 shadow-2xl"
-            >
-              {/* Icono y Título */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-black rounded-xl border border-white/10 group-hover:border-lima/50 group-hover:shadow-[0_0_15px_rgba(190,242,2,0.3)] transition-all">
-                  {d.icono}
-                </div>
-                <div>
-                  <p className="text-xs font-mono text-lima/70 tracking-widest uppercase">{d.subtitulo}</p>
-                  <h4 className="text-2xl font-black italic tracking-tight">{d.titulo}</h4>
-                </div>
-              </div>
-
-              <p className="text-gray-400 leading-relaxed mb-6 text-lg">
-                {d.texto}
-              </p>
-
-              <div className="p-4 bg-black/40 rounded-xl border-l-2 border-lima italic text-sm text-gray-300">
-                "{d.highlight}"
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Footer de Sección */}
-        <div className="relative max-w-4xl mx-auto text-center bg-gradient-to-b from-zinc-900/50 to-carbon p-10 rounded-[3rem] border border-white/5">
-          <h2 className="text-2xl md:text-4xl font-black mb-6 uppercase">
-            EN LA COMUNIDAD TEORIX*, <br />
-            <span className="text-lima">TODOS APRENDEMOS DE TODOS</span>
-          </h2>
-          <p className="text-gray-400 text-lg leading-relaxed">
-            Manejamos cantidades brutales de datos para descubrir los secretos de la DGT. 
-            Es como tener a un <span className="text-white font-bold">detective digital (Teox*)</span> hackeando tu APTO a escala global.
-          </p>
-          
-          {/* Elemento decorativo inferior */}
-          <div className="mt-8 flex justify-center gap-1">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-1 w-8 bg-lima/20 rounded-full overflow-hidden">
-                <div className="h-full bg-lima animate-progress" style={{animationDelay: `${i * 0.2}s`}}></div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-export function Metodo() {
-  const metodo = [
-    {
-      titulo: `INGENIERÍA INVERSA DEL EXAMEN`,
-      texto:
-        "Hemos analizado miles de exámenes reales de la DGT. El Big Data nos ayuda a identificar exactamente qué necesitas saber, cómo te lo van a preguntar y, lo más importante, los errores que cometen sistemáticamente todos nuestros alumnos.",
-      icono: Database,
-    },
-    {
-      titulo: "Sin Contenido Relleno",
-      texto:
-        "No pierdas el tiempo con información irrelevante. Te convertimos en un auténtico hacker del examen: aprendes a detectar patrones, identificar trampas diseñadas para confundirte y pensar exactamente como piensa la DGT.",
-      icono: Brain,
-    },
-    {
-      titulo: "Teórico Blindado",
-      texto:
-        "El algoritmo identifica automáticamente las áreas donde cometes más errores y te presenta ejercicios específicos para reforzarlas. Este es el teórico blindado contra suspensos que estabas buscando.",
-      icono: ShieldCheck,
-    },
-  ];
-  return (
-    <>
-      {/*Metodo teorix */}
-      <section
-        className="max-w-7xl mx-auto p-6 mt-6 md:py-14  relative"
-        id="metodo"
-      >
-        <div className="absolute bottom-0 left-[20%] size-52 md:size-96 bg-lima/15 rounded-full blur-3xl md:hidden animate-pulse"></div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-10">
-          <div className="h-fit lg:sticky lg:top-4">
-            <h2 className="text-4xl font-bold mb-4 text-lima text-center">
-              FÓRMULA TEORIX*
-            </h2>
-            <p className=" text-lg mt-3">
-              ¿Por qué otros métodos fallan? te bombardean con información irrelevante y te dejan solo frente a un examen diseñado para pillarte
-con trampas y preguntas confusas.
-            </p>
-            <p className=" text-lg mt-3">
-              Aquí no te tragas los 3.500 tests de la DGT como si fueras un robot programado para memorizar. Te damos los test que SÍ importan
-de verdad y la técnica precisa para entender la lógica detrás de cada pregunta. Es la diferencia entre estudiar a ciegas y estudiar
-acompañado y con la ayuda de un mapa del tesoro en la mano.
-            </p>
-            <img
-              src="bg-2.jpg"
-              alt=""
-              className=" rounded-xl h-80 w-11/12 object-cover mx-auto mt-5 bg-top "
-            />
-          </div>
-
-          <div className="space-y-8">
-            <div
-                className="p-6 rounded-xl  bg-zinc-900 shadow-inner border-lima/15 border shadow-lima md:w-[520px] mx-auto relative overflow-hidden"
-              >
-                <div className="absolute bottom-0 left-[20%] md:left-[40%] size-52 md:size-70 bg-lima/15 rounded-full blur-3xl  animate-pulse"></div>
-
-                <Database className="text-lima mx-auto mb-3 size-14 md:size-24" />
-                <h3 className=" text-xl md:text-3xl  font-semibold text-center mb-2">
-                  INGENIERÍA INVERSA DEL EXAMEN
-                </h3>
-                <ul className="list-disc ml-5">
-                  <li>Analizamos miles de exámenes reales de la DGT</li>
-
-                  <li>Identificamos lo que necesitas saber.</li>
-
-                  <li>Cómo te lo van a preguntar.</li>
-
-                  <li>Conocemos los errores que cometen sistemáticamente todos nuestros alumnos.</li>
-
-                </ul>
-            </div>
-
-            <div className="p-6 rounded-xl  bg-zinc-900 shadow-inner border-lima/15 border shadow-lima md:w-[520px] mx-auto relative overflow-hidden">
-                <div className="absolute bottom-0 left-[20%] md:left-[40%] size-52 md:size-70 bg-lima/15 rounded-full blur-3xl  animate-pulse"></div>
-                <Brain className="text-lima mx-auto mb-3 size-14 md:size-24" />
-                <h3 className=" text-xl md:text-3xl  font-semibold text-center mb-2">
-                  SIN CONTENIDO DE RELLENO
-                </h3>
-                <p className=" mt-3 px-2 md:text-lg text-sm ">No pierdas el tiempo con información irrelevante.</p>
-                <p className=" mt-3 px-2 md:text-lg text-sm ">Aprendes a detectar patrones, identificar trampas que te confunden y te ayudamos a pensar como la DGT. </p>
-            </div>
-
-            <div className="p-6 rounded-xl  bg-zinc-900 shadow-inner border-lima/15 border shadow-lima md:w-[520px] mx-auto relative overflow-hidden">
-                <div className="absolute bottom-0 left-[20%] md:left-[40%] size-52 md:size-70 bg-lima/15 rounded-full blur-3xl  animate-pulse"></div>
-                <ShieldCheck className="text-lima mx-auto mb-3 size-14 md:size-24" />
-                <h3 className=" text-xl md:text-3xl  font-semibold text-center mb-2">
-                  TEÓRICO BLINDADO
-                </h3>
-                <p className=" mt-3 px-2 md:text-lg text-sm ">Con el algoritmo Teorix* identificamos las áreas dónde cometes más errores y te presenta lo que necesitas para mejorarlas. Es la fórmula blindada contra los suspensos. </p>
-            </div>
-            
-          </div>
-        </div>
-        <div className="flex justify-center">
-        <Link
-            href={"https://gamma.app/docs/GUIA-DE-ESTUDIO-TEORIX-EL-CHEATCODE-PARA-TU-APTO-8m90eh7tj6mt267"}
-            className="border px-4 py-3 text-md md:text-2xl text-lima border-lima rounded-xl hover:bg-lima hover:text-black transition-colors duration-200"
-            >
-            Ver cómo funciona en detalle
-          </Link>
-        </div>
-      </section>
-    </>
-  );
-}
 
 
 

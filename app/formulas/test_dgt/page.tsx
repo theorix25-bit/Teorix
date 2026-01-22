@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -12,22 +12,18 @@ import {
   Star,
 } from "lucide-react";
 import { useQuizSounds } from "@/hooks/useQuizSounds";
-import { ApiResponse } from "@/types";
-import { TestsUsuarioUpdateDTO } from "@/lib/domain/dto/testsUsuario.dto";
 import { createClient } from "@/lib/supabase/client";
 
 
 /* 
 Preguntas para cambiar 
+4,
+6,
+9,
+28,
+34,
 55,
 54,
-34,
-28,
-9,
-6,
-4,
-
-
 */
 /* --------------------------------
     DATOS DEL QUIZ
@@ -68,14 +64,14 @@ const preguntas = [
   },
   {
     "numero": "4",
-    "pregunta": "¿Qué indican las flechas pintadas en la calzada (flechas de retorno)?",
+    "pregunta": "¿Es correcto circular con un vehículo cuyas placas de matrícula están ocultas o deterioradas de tal manera que no se puedan leer correctamente? ",
     "opciones": [
-      "Que el carril en que están situadas termina próximamente.",
-      "Dirección del ramal de la próxima salida.",
-      "Proximidad de línea continua."
+      "Sí, siempre que la placa delantera se lea bien",
+      "No, el conductor debe comprobar que se lean siempre correctamente.",
+      "Sí, siempre que solo circule de día.",
     ],
-    "correcta": 0,
-    "explicacion": "Esas son flechas de retorno, lo que significa que el conductor debe retornar porque el carril termina próximamente."
+    "correcta": 1,
+    "explicacion": ""
   },
   {
     "numero": "5",
@@ -90,14 +86,14 @@ const preguntas = [
   },
   {
     "numero": "6",
-    "pregunta": "¿Puede estacionar su vehículo junto al borde de esta calzada si la línea amarilla pegada al borde es discontinua?",
+    "pregunta": "En vías interurbanas con tres carriles para el mismo sentido, ¿le está permitido circular por el carril izquierdo a un autobús?",
     "opciones": [
-      "No, ya que está prohibido parar y estacionar.",
-      "Sí, ya que no hay ninguna señal vertical que lo prohíba.",
-      "No, ya que está prohibido estacionar."
+      "Sí",
+      "Si, si su longitud supera los siete metros",
+      "No, en ningún caso"
     ],
-    "correcta": 2,
-    "explicacion": "La línea amarilla discontinua prohíbe solo una cosa: el estacionamiento (la maniobra más restrictiva). Si fuera continua, prohibiría parar y estacionar."
+    "correcta": 0,
+    "explicacion": ""
   },
   {
     "numero": "7",
@@ -123,13 +119,13 @@ const preguntas = [
   },
   {
     "numero": "9",
-    "pregunta": "En esta curva, si pisa el freno muy fuerte, ¿hay peligro?",
+    "pregunta": "¿Qué elementos se deben revisar con mayor frecuencia para mantener la seguridad del vehículo en un nivel óptimo?",
     "opciones": [
-      "No, porque el vehículo frena mejor.",
-      "Sí, porque puede reventar alguna rueda.",
-      "Sí, porque el vehículo puede derrapar."
+      "Llantas, batería y líquido lavaparabrisas",
+      "Neumáticos, suspensión (amortiguadores) y frenos (pastillas y zapatas)",
+      "Filtro de aire, dirección, retrovisores y luz interior"
     ],
-    "correcta": 2,
+    "correcta": 1,
     "explicacion": "Si se frena fuerte a mucha velocidad en una curva, el vehículo puede derrapar y salirse de la curva."
   },
   {
@@ -332,14 +328,14 @@ const preguntas = [
   },
   {
     "numero": "28",
-    "pregunta": "¿Qué indica la señal de fin de obligación de alumbrado de corto alcance (con la línea roja diagonal)?",
+    "pregunta": "Es obligatorio encender el alumbrado que corresponda cuando se circule, tanto de día como de noche... ",
     "opciones": [
-      "Fin de obligación de alumbrado de corto alcance.",
-      "Precaución, túnel o tramo de escasa visibilidad.",
-      "Alumbrado de corto alcance obligatorio."
+      "por carreteras convencionales.",
+      "por pasos inferiores o tramos de vía afectados por la señal «Túnel»",
+      "por un carril reservado a vehículos con alta ocupación (VAO)."
     ],
-    "correcta": 0,
-    "explicacion": "La señal redonda y azul es de obligación; la que indica fin de obligación es blanca con banda diagonal."
+    "correcta": 1,
+    "explicacion": ""
   },
   {
     "numero": "29",
@@ -398,13 +394,13 @@ const preguntas = [
   },
   {
     "numero": "34",
-    "pregunta": "¿Qué indica la señal redonda azul con una flecha curvada hacia la derecha?",
+    "pregunta": "Como norma general, un conductor que ha consumido cocaína... ",
     "opciones": [
-      "Indica que solo se debe seguir la dirección marcada por la flecha.",
-      "Permite cambiar el sentido de la marcha (al ser de dirección obligatoria).",
-      "Indica que se debe seguir una dirección y sentido obligatorios."
+      "es competitivo e impulsivo",
+      "es inseguro y conduce con mucha más precaución.",
+      "se concentra mejor, por lo que sus decisiones son más seguras"
     ],
-    "correcta": 2,
+    "correcta": 0,
     "explicacion": "Es una señal de obligación que exige seguir tanto el sentido como la dirección indicada por la flecha."
   },
   {
@@ -618,24 +614,25 @@ const preguntas = [
   },
   {
     "numero": "54",
-    "pregunta": "Esta señal significa...",
+    "pregunta": "Si comienza a haber niebla pero esta no es muy densa, ¿debe encender algún alumbrado? ",
     "opciones": [
-      "Intervalo aconsejado de velocidad, siempre que las condiciones sean favorables.",
-      "Obligatorio circular entre 70 y 90 km/h.",
-      "Prohibido circular a más de 90 km/h."
+      "No, porque todavía no es densa",
+      "Sí, el antiniebla delantero y trasero obligatoriamente",
+      "Sí, el de posición y cruce y, si dispone de él, el antiniebla delantero"
     ],
-    "correcta": 0,
-    "explicacion": "El intervalo es aconsejado. Si las condiciones no son buenas (ej. lluvia intensa), no se debe seguir."
+    "correcta": 2,
+    "explicacion": ""
   },
   {
     "numero": "55",
-    "pregunta": "¿Qué indica el panel situado bajo la señal?",
+    "pregunta": "Cuando la luz de marcha atrás esté averiada, ¿cómo debe indicar que va a realizar la maniobra?",
     "opciones": [
-      "La longitud del tramo con curvas peligrosas hacia la derecha./La distancia al final de un tramo con curvas peligrosas hacia la izquierda.",
-      "La distancia al comienzo de un tramo de la vía con curvas peligrosas hacia la derecha."
+      "Moviendo el brazo de arriba abajo",
+      "Advirtiéndolo con el claxon",
+      "Con el brazo extendido y la palma de la mano hacia atrás"
     ],
-    "correcta": 1,
-    "explicacion": "El panel con metros indica la distancia al peligro, en este caso sucesión de curvas peligrosas la primera a la derecha."
+    "correcta": 2,
+    "explicacion": ""
   },
   {
     "numero": "56",

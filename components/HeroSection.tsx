@@ -23,7 +23,7 @@ const content = data.reduce((acc, item) => {
 
 // console.log(content)
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden mb-6">
       <div className="absolute top-20 left-10 text-6xl text-lima animate-spin-slow opacity-20">
         *
       </div>
@@ -72,7 +72,7 @@ const content = data.reduce((acc, item) => {
           <p className="text-sm">{content.hero_feature_3.texto}</p>
         </div>
 
-        <div className="mt-16 inline-flex items-center gap-2 px-4 py-3 rounded-full bg-card/50 backdrop-blur-sm border border-lima/50">
+        <div className="mt-6 inline-flex items-center gap-2 px-4 py-3 rounded-full bg-card/50 backdrop-blur-sm border border-lima/50">
           <div className="flex -space-x-2">
             {[1, 2, 3].map((i) => (
               <div
