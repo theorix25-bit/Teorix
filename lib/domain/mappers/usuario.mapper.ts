@@ -8,7 +8,7 @@ export class UsuarioMapper {
       nombre: row.nombre,
       apellido: row.apellido,
       telefono: row.telefono,
-      rol: row.rol,
+      role: row.role,
       codigo_postal: row.codigo_postal,
       fecha_de_nacimiento: row.fecha_de_nacimiento,
       stripe_customer_id: row.stripe_customer_id,

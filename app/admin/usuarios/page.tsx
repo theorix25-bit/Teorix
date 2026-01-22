@@ -13,7 +13,6 @@ async function UsersAdminPage() {
     email: u.email || "",
     id: u.id,
   }));
-
   return (
     <div className="min-h-screen bg-[#111111] p-6">
       <div className="max-w-4xl mx-auto">

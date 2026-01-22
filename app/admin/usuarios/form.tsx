@@ -11,6 +11,7 @@ interface TypeUsers {
 
 function UserPlanForm({ users }: { users: TypeUsers[] }) {
   const supabase = createClient();
+  console.log(users)
 
   const [searchUser, setSearchUser] = useState("");
   const [user, setUser] = useState<any>(null);

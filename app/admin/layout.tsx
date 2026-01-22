@@ -1,12 +1,16 @@
 import BottomNav from "@/components/admin/BottomNav";
 import Header from "@/components/admin/header";
 import Sidebar from "@/components/Sidebar";
+import { createClient } from "@/lib/supabase/server";
 
-function layoutAdmin({ children }: { children: React.ReactNode }) {
+async function layoutAdmin({ children }: { children: React.ReactNode }) {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  const role = data?.claims?.app_metadata?.role || "user";
   return (
     <div className="flex min-h-screen bg-[#111111] text-white">
       {/* Menu Lateral (Solo Desktop) */}
-      <Sidebar />
+      <Sidebar role={role} />
 
       {/* Contenedor Principal */}
       <div className="flex flex-col flex-1 h-screen overflow-hidden">
@@ -20,7 +24,7 @@ function layoutAdmin({ children }: { children: React.ReactNode }) {
         </main>
 
         {/* Menu Inferior (Solo Móvil) */}
-        <BottomNav />
+        <BottomNav role={role} />
       </div>
     </div>
   );

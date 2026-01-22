@@ -26,7 +26,7 @@ export const PricingSection = async () => {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {plans
-              .filter((p) => p.id !== 4)
+              .filter((p) => p.id == 1|| p.id == 2)
               .map((plan, index) => (
                 <Pricing key={index}  plan={plan}/>
                 // <div

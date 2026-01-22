@@ -6,7 +6,7 @@ export interface UsuarioDTO {
   codigo_postal: string;
   creado_en: string;
   pago_stripe: string;
-  rol: string;
+  role: string;
   actualizado_en: string;
   telefono: string;
   fecha_de_nacimiento: string;
