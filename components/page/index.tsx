@@ -1,3 +1,4 @@
+import { createClient } from "@/lib/supabase/server";
 import {
   Carousel,
   CarouselContent,
@@ -7,14 +8,25 @@ import {
 } from "../ui/carousel";
 import Link from "next/link";
 
-export function Profesor247() {
+export async function Profesor247() {
+
+  const supabase = await createClient();
+  const { data: rawContent } = await supabase
+    .from("elementos_web")
+    .select("*")
+    .eq("seccion", "garantia");
+
+  const content = rawContent?.reduce((acc: any, item) => {
+    acc[item.llave] = { texto: item.contenido, meta: item.metadata };
+    return acc;
+  }, {}) || {};
   return (
     <>
-      <section className="grid grid-cols-1 md:grid-cols-2 justify-center md:w-6/6 md:px-8 -mt-8 md:mt-12 mx-auto relative">
+      <section className="grid grid-cols-1 md:grid-cols-2 justify-center md:w-6/6 md:px-8 -mt-8 md:mt-12 mx-auto relative mb-8">
         <div className="absolute bottom-0 right-[20%] size-52 md:size-96 bg-hoodie/15 md:right-0 rounded-full blur-3xl animate-pulse"></div>
         <div className="flex justify-center w-[85dvw] md:w-full mx-auto ">
           <img
-            src="bg-1.jpg"
+            src={content.imagen_principal.texto}
             alt=""
             className="rounded-3xl object-cover z-10 "
           />
@@ -22,20 +34,23 @@ export function Profesor247() {
         <div className="flex justify-center items-start mt-0 md:mt-14">
           <div className=" px-4">
             <h2 className=" text-5xl text-lima text-center mt-8">
-              TU PROFE PARTICULAR <span className="text-6xl block">24/7</span>
+              {content.titulo_garantia?.texto}
             </h2>
+            <h3 className=" text-4xl text-lima text-center mt-8">
+              {content.regalo_promesa?.texto}
+            </h3>
+            
             <p className="text-lg mt-8 text-center mb-2">
-              ASISTENTE IA+ PROFE HUMANO (de carne y hueso) + BIG DATA + ACOMPAÑAMIENTO REAL + CONFIANZA = APTO ASEGURADO
             </p>
             <p className=" px-4 text-center">
-            <span className="text-hoodie">NUESTRA MISIÓN</span>: ayudar a DGT, autoescuelas y alumnos a mejorar el 50% de los suspensos actuales. 
+              {content.regalo_promesa?.meta?.subtext}
             </p>
             <div className="mt-4 flex gap-4 px-4 mb-6 justify-center">
               <Link
                 href={"/#metodo"}
                 className="px-3 py-2 border rounded-md bg-lima text-black border-lima hover:bg-lima/95 transition-colors duration-100 font-bold  text-center"
               >
-                Descubre nuestro método
+                {content.cta_garantia?.texto}
               </Link>
               
             </div>

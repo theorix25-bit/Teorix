@@ -1,53 +1,40 @@
-"use client"
-import { useEffect, useState } from "react";
+import { createClient } from "@/lib/supabase/server";
 
-const testimonials = [
-  {
-    name: "Laura M.",
-    age: 19,
-    result: "APTO ✅",
-    text: "Aprobé a la primera sin estudiar mil páginas. El método es brutal.",
-    streak: "Racha x5",
-  },
-  {
-    name: "Carlos R.",
-    age: 21,
-    result: "APTO ✅",
-    text: "Mi tutor me salvó. Llevaba 3 suspensos y con THEORIX aprobé directo.",
-    streak: "Boss final ✓",
-  },
-  {
-    name: "Ana S.",
-    age: 18,
-    result: "APTO ✅",
-    text: "Estudiar con vídeos es otro nivel. Nada que ver con leer PDFs aburridos.",
-    streak: "Speedrun mode",
-  },
-];
+export const TestimonialsSection = async () => {
+const supabase = await createClient();
+// Traemos solo los datos de esta sección
+  const { data: rawContent } = await supabase
+    .from("elementos_web")
+    .select("*")
+    .eq("seccion", "prueba_social");
 
-export const TestimonialsSection = () => {
-  const [approvalRate, setApprovalRate] = useState(0);
+  // Transformamos el array plano en un objeto estructurado
+  const content = rawContent?.reduce((acc: any, item) => {
+    acc[item.llave] = {
+      texto: item.contenido,
+      meta: item.metadata,
+      tipo: item.tipo,
+    };
+    return acc;
+  }, {}) || {};
 
-  useEffect(() => {
-    const target = 85;
-    const duration = 2000;
-    const steps = 60;
-    const increment = target / steps;
-    const stepDuration = duration / steps;
+  // Extraemos datos principales
+  const titulo = content.titulo_principal?.texto 
+  const highlight = content.titulo_principal?.meta?.highlight 
+  const subtitulo = content.subtitulo?.texto 
 
-    let current = 0;
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        setApprovalRate(target);
-        clearInterval(timer);
-      } else {
-        setApprovalRate(Math.floor(current));
-      }
-    }, stepDuration);
+  // Mapeamos los testimonios
+  const testimonios = Object.keys(content)
+    .filter((key) => key.startsWith("testimonio_"))
+    .map((key) => ({
+      name: content[key].meta?.nombre,
+      age: content[key].meta?.edad,
+      result: content[key].meta?.badge || "APTO ✅",
+      text: content[key].texto,
+      streak: content[key].meta?.footer_tag,
+    }));  
 
-    return () => clearInterval(timer);
-  }, []);
+  const achievement = content.achievement_unlocked;
 
   return (
     <section className="py-24 px-6 bg-card/30 relative overflow-hidden">
@@ -59,20 +46,18 @@ export const TestimonialsSection = () => {
       <div className="mx-auto relative z-10">
         <div className="text-center mb-20">
           <div className="inline-flex items-baseline gap-3 mb-6">
-            <span className="text-8xl md:text-9xl font-extrabold text-lima neon-glow font-adumu tracking-widest">
-              +{approvalRate}%
-            </span>
+          <h2 className="text-6xl text-lima ">{titulo}</h2>
           </div>
-          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">
-            de alumnos aprueban a la primera
-          </h2>
-          <p className="text-xl text-muted-foreground font-adumu">
-            Y tú serás el siguiente. Sin drama. <span className="text-lima">✓</span>
+          <h3 className="text-3xl md:text-5xl font-black text-foreground mb-4">
+            {highlight} 
+          </h3>
+          <p className="text-xl text-muted-foreground ">
+            {subtitulo} <span className="text-lima">✓</span>
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
+          {testimonios.map((testimonial, index) => (
             <div
               key={index}
               className="bg-background rounded-3xl p-8 border-2 border-lima/20 hover:border-hoodie/30 transition-all duration-300 hover:shadow-[0_0_30px_hsl(var(--neon-glow)/0.2)] hover:-translate-y-1 group"
@@ -111,8 +96,8 @@ export const TestimonialsSection = () => {
           <div className="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-muted/50 border border-border">
             <span className="text-4xl">🎯</span>
             <div className="text-left">
-              <p className="text-sm font-bold text-lima uppercase tracking-wider">Achievement Unlocked</p>
-              <p className="text-foreground font-semibold">Tu APTO está más cerca de lo que piensas</p>
+              <p className="text-sm font-bold text-lima uppercase tracking-wider">{achievement.meta?.label}</p>
+              <p className="text-foreground font-semibold">{achievement.texto}</p>
             </div>
           </div>
         </div>

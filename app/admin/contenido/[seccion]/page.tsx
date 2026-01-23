@@ -21,7 +21,7 @@ export default async function page({ params }: { params: { seccion: string } }) 
     };
     return acc;
   }, {} as any) as HeroContent;
-
+  console.log(initialContent)
   return (
     <main className="container max-w-4xl py-10">
       <header className="mb-10 text-center">

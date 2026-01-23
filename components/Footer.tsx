@@ -16,7 +16,7 @@ export const Footer = () => {
         <div className=" flex flex-row justify-between items-top gap-4 md:px-9 px-2 md:py-7 py-2">
           <div className="col">
             <h3 className="text-3xl font-bold mb-3">
-              THEORIX<span className="text-lima"> *</span>
+              TEORIX<span className="text-lima"> *</span>
             </h3>
             <p className=" mb-4">No enseñamos más. Enseñamos mejor.</p>
 

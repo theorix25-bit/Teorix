@@ -1,9 +1,11 @@
 import ChatAssistant from "@/components/ChatAssistant";
 import { CommunitySection } from "@/components/CommunitySection";
 import Exito from "@/components/Exito";
+import FinalCTASection from "@/components/FinalCTASection";
 import { Footer } from "@/components/Footer";
 import { HeroSection } from "@/components/HeroSection";
 import Metodo from "@/components/Metodo";
+import Objeciones from "@/components/Objeciones";
 import {
   Algoritmo,
   Datos,
@@ -16,30 +18,57 @@ import PuntosDeDolor from "@/components/PuntosDeDolor";
 import  TeorixFAQs  from "@/components/Teorix";
 import Teox from "@/components/Teox";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { WhatsappButton } from "@/components/WhatsappButton";
 const urlAsistente = process.env.NEXT_URL_ASISTENTE!;
 export default async function Home() {
   return (
     <>
       <div className=" text-white">
-        <HeroSection />
-        <PuntosDeDolor />
-        <Metodo />
-        <CommunitySection />
-        <Exito />
+        {/* hero */}
+        {/* <HeroSection /> */}
+
+        {/* puntos_dolor */}
+        {/* <PuntosDeDolor /> */}
+
+        {/* metodo */}
+        {/* <Metodo /> */}
+
+        {/* community_sc */}
+        {/* <CommunitySection /> */}
+
+        {/* exito_sc */}
+        {/* <Exito /> */}
+
+        {/* prueba_social */}
+        {/* <TestimonialsSection /> */}
+
+        {/* garantia */}
+        {/* <Profesor247 /> */}
+
+        {/* objeciones */}
+        {/* <Objeciones /> */}
+
+        {/* final_cta */}
+        {/* <FinalCTASection /> */}
+
         {/* Listos */}
-        <ParaQuein />
-        <Teox />
-        <PricingSection />
-        <Pasos />
+        {/* <ParaQuein /> */}
+
+        {/* who_is_teox */}
+        {/* <Teox /> */}
+        {/* <PricingSection /> */}
+        {/* p_p */}
+        {/* <Pasos /> */}
+
         <TeorixFAQs />
-        <section className=" mt-10 px-2">
+        {/* <section className=" mt-10 px-2">
           <img
             src="bg-3.jpg"
             alt=""
             className="rounded-2xl md:w-[79vw] md:h-96  md:object-cover object-bottom  mx-auto"
           />
-        </section>
-        <TestimonialsSection />
+        </section> */}
+        <WhatsappButton />
         <Footer />
         <ChatAssistant urlAsistente={urlAsistente} />
       </div>

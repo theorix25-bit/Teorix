@@ -12,7 +12,11 @@ import {
   BookOpen,
   Sparkles,
   LayoutGrid,
-  TrendingUp
+  TrendingUp,
+  MessageSquare,
+  Zap,
+  User,
+  ListOrdered
 } from 'lucide-react';
 import { createClient } from '@/lib/supabase/server';
 
@@ -65,6 +69,62 @@ const SECCIONES_MENU = [
   icon: TrendingUp, 
   color: 'text-lima', 
   url: 'exito_sc' 
+},
+{ 
+  id: 'prueba_social', 
+  label: 'Prueba Social', 
+  desc: 'Testimonios, racha de aprobados y logros', 
+  icon: MessageSquare, // O puedes usar Users o Star de lucide-react
+  color: 'text-lima', 
+  url: 'prueba_social' 
+},
+{ 
+  id: 'garantia', 
+  label: 'Garantía y Confianza', 
+  desc: 'Promesa de aprobado, devoluciones y regalos', 
+  icon: ShieldCheck, // Importar de lucide-react
+  color: 'text-lima', 
+  url: 'garantia' 
+},
+{ 
+  id: 'objeciones', 
+  label: 'Preguntas y Dudas', 
+  desc: 'Gestión de FAQs, respuestas y el comparador visual', 
+  icon: HelpCircle, 
+  color: 'text-lima', 
+  url: 'objeciones' 
+},
+{ 
+  id: 'final_cta', 
+  label: 'Cierre y Conversión', 
+  desc: 'Sección "¿Listx para dejar de estudiar a ciegas?"', 
+  icon: Zap, 
+  color: 'text-lima', 
+  url: 'final_cta' 
+},
+{ 
+  id: 'who_is_teox', 
+  label: 'Identidad (Teox)', 
+  desc: 'Historia del asistente y características clave', 
+  icon: User, 
+  color: 'text-hoodie',
+  url: 'who_is_teox' 
+},
+{ 
+  id: 'p_p', 
+  label: 'Protocolo Registro', 
+  desc: 'Configuración de los 6 pasos (Onboarding de usuario)', 
+  icon: ListOrdered,
+  color: 'text-lima', 
+  url: 'p_p' 
+},
+{ 
+  id: 'faqs', 
+  label: 'Preguntas Frecuentes', 
+  desc: 'Resolución de dudas generales con acordeón', 
+  icon: HelpCircle, 
+  color: 'text-lima', 
+  url: 'faqs'
 },
 ];
 
