@@ -20,9 +20,8 @@ const supabase = await createClient();
 
   // Extraemos datos principales
   const titulo = content.titulo_principal?.texto 
-  const highlight = content.titulo_principal?.meta?.highlight 
+  const highlight = content.highlight.texto
   const subtitulo = content.subtitulo?.texto 
-
   // Mapeamos los testimonios
   const testimonios = Object.keys(content)
     .filter((key) => key.startsWith("testimonio_"))

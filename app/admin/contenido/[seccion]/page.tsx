@@ -29,7 +29,7 @@ export default async function page({ params }: { params: { seccion: string } }) 
         <p className="text-muted-foreground mt-2">Edita el contenido visual y textual de la sección de misión.</p>
       </header>
       
-      <DynamicAdminForm sectionName="como_funciona" initialData={initialContent} />
+      <DynamicAdminForm sectionName={res.seccion} initialData={initialContent} />
     </main>
   );
   }

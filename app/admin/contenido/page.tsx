@@ -16,9 +16,10 @@ import {
   MessageSquare,
   Zap,
   User,
-  ListOrdered
+  ListOrdered,
+  ShieldQuestion
 } from 'lucide-react';
-import { createClient } from '@/lib/supabase/server';
+import { createClient } from '@/lib/supabase/client';
 
 // Definimos el mapa de secciones con su estilo visual
 const SECCIONES_MENU = [
@@ -29,14 +30,6 @@ const SECCIONES_MENU = [
     icon: LayoutDashboard, 
     color: 'text-blue-400',
     url: 'hero' 
-  },
-  { 
-    id: 'como_funciona', 
-    label: 'Cómo Funciona', 
-    desc: 'Sección de misión e imagen de la App', 
-    icon: MousePointerClick, 
-    color: 'text-[#C6FF5B]',
-    url: 'como_funciona' 
   },
   { 
     id: 'puntos_dolor', 
@@ -53,93 +46,97 @@ const SECCIONES_MENU = [
   icon: Sparkles, // O BookOpen
   color: 'text-yellow-400',
   url: 'metodo' 
-},
-{ 
+  },
+  { 
   id: 'community_sc', 
-  label: 'Comunidad Teorix', 
+  label: 'Comunidad y tips', 
   desc: 'Cards de beneficios, emojis y métricas de visualización', 
   icon: LayoutGrid, // También puedes usar Users si prefieres un enfoque social
   color: 'text-lima', 
   url: 'community_sc' 
-},
-{ 
-  id: 'exito_sc', 
-  label: 'Estrategia y Éxito', 
-  desc: 'Big Data, IA y métricas de aprobados (85%)', 
-  icon: TrendingUp, 
-  color: 'text-lima', 
-  url: 'exito_sc' 
-},
-{ 
-  id: 'prueba_social', 
-  label: 'Prueba Social', 
-  desc: 'Testimonios, racha de aprobados y logros', 
-  icon: MessageSquare, // O puedes usar Users o Star de lucide-react
-  color: 'text-lima', 
-  url: 'prueba_social' 
-},
-{ 
-  id: 'garantia', 
-  label: 'Garantía y Confianza', 
-  desc: 'Promesa de aprobado, devoluciones y regalos', 
-  icon: ShieldCheck, // Importar de lucide-react
-  color: 'text-lima', 
-  url: 'garantia' 
-},
-{ 
-  id: 'objeciones', 
-  label: 'Preguntas y Dudas', 
-  desc: 'Gestión de FAQs, respuestas y el comparador visual', 
-  icon: HelpCircle, 
-  color: 'text-lima', 
-  url: 'objeciones' 
-},
-{ 
+  },
+  { 
+    id: 'exito_sc', 
+    label: 'Origen del 85% de aptos', 
+    desc: 'Big Data, IA y métricas de aprobados (85%)', 
+    icon: TrendingUp, 
+    color: 'text-lima', 
+    url: 'exito_sc' 
+  },
+  { 
+    id: 'prueba_social', 
+    label: 'Testimonio', 
+    desc: 'Testimonios, racha de aprobados y logros', 
+    icon: MessageSquare, // O puedes usar Users o Star de lucide-react
+    color: 'text-lima', 
+    url: 'prueba_social' 
+  },
+  { 
+    id: 'garantia', 
+    label: 'Garantía y Confianza', 
+    desc: 'Promesa de aprobado, devoluciones y regalos', 
+    icon: ShieldCheck, // Importar de lucide-react
+    color: 'text-lima', 
+    url: 'garantia' 
+  },
+  { 
   id: 'final_cta', 
   label: 'Cierre y Conversión', 
   desc: 'Sección "¿Listx para dejar de estudiar a ciegas?"', 
   icon: Zap, 
   color: 'text-lima', 
   url: 'final_cta' 
-},
-{ 
+  },
+  { 
+  id: 'como_funciona', 
+  label: 'Cómo Funciona', 
+  desc: 'Sección de misión e imagen de la App', 
+  icon: MousePointerClick, 
+  color: 'text-[#C6FF5B]',
+  url: 'como_funciona' 
+  },
+  { 
   id: 'who_is_teox', 
   label: 'Identidad (Teox)', 
   desc: 'Historia del asistente y características clave', 
   icon: User, 
   color: 'text-hoodie',
   url: 'who_is_teox' 
-},
-{ 
+  },
+  { 
   id: 'p_p', 
   label: 'Protocolo Registro', 
   desc: 'Configuración de los 6 pasos (Onboarding de usuario)', 
   icon: ListOrdered,
   color: 'text-lima', 
   url: 'p_p' 
-},
-{ 
+  },
+  { 
   id: 'faqs', 
   label: 'Preguntas Frecuentes', 
   desc: 'Resolución de dudas generales con acordeón', 
   icon: HelpCircle, 
   color: 'text-lima', 
   url: 'faqs'
-},
+  },
+  { 
+  id: 'para_quien', 
+  label: 'Para quien', 
+  desc: 'A quien va dirigido', 
+  icon: ShieldQuestion,
+  color: 'text-lima', 
+  url: 'para_quien' 
+  },
 ];
 
-const supabase = await createClient();
+const supabase = createClient();
 const { data } = await supabase.from("elementos_web").select("seccion");
 
-// 1. Extraemos solo los nombres únicos de las secciones que vienen de la DB
-// Esto transforma [{seccion: 'hero'}, {seccion: 'hero'}] en ['hero']
 const seccionesExistentes = Array.from(new Set(data?.map(item => item.seccion)));
 
-// 2. Filtramos tu menú para que solo aparezcan las que tienen datos en la DB
-const seccionesAMostrar = SECCIONES_MENU.filter(item => 
-  seccionesExistentes.includes(item.id)
-);
+const seccionesAMostrar = SECCIONES_MENU.filter(item => seccionesExistentes.includes(item.id));
 export default function AdminDashboard() {
+
   return (
     <div className="min-h-screen text-white p-8">
       <header className="max-w-5xl mx-auto mb-12">
@@ -172,7 +169,6 @@ export default function AdminDashboard() {
                   {item.desc}
                 </p>
               </div>
-
               {/* Efecto de resplandor al hacer hover */}
               <div className="absolute inset-0 bg-gradient-to-br from-[#C6FF5B]/5 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity pointer-events-none" />
             </Link>

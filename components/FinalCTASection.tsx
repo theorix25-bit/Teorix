@@ -19,7 +19,7 @@ export default async function FinalCTASection() {
       texto: content[key].texto,
       icon: content[key].meta?.icon
     }));
-    // console.log(content)
+    console.log(content)
   return (
     <section className="py-24 px-6 overflow-hidden">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -58,14 +58,16 @@ export default async function FinalCTASection() {
                 href="/#ruta"
                 className="px-8 py-4 bg-lima/10 border-2 border-lima text-lima rounded-xl font-black text-sm md:text-base hover:bg-lima hover:text-black transition-all flex items-center gap-2"
               >
-                <span className="text-xl">🟢</span> QUIERO MI RUTA 80/20
+                <span className="text-xl">{content.fcta_btn_primary?.meta?.icon}</span> 
+                {content.fcta_btn_primary?.texto}
               </Link>
               
               <Link
                 href="/auth/sign-up"
                 className="px-8 py-4 bg-lima text-black rounded-xl font-black text-sm md:text-base hover:shadow-[0_0_30px_rgba(191,255,0,0.4)] transition-all flex items-center gap-2"
               >
-                <span className="text-xl">⚡</span> CREAR CUENTA GRATIS
+                <span className="text-xl">{content.fcta_btn_secondary?.meta?.icon}</span> 
+                {content.fcta_btn_secondary?.texto}
               </Link>
             </div>
           </div>

@@ -42,12 +42,12 @@ export async function Objeciones() {
   .from("elementos_web")
   .select("*")
   .eq("seccion", "objeciones");
-
-const content = rawContent?.reduce((acc: any, item) => {
-  acc[item.llave] = { texto: item.contenido, meta: item.metadata };
-  return acc;
-}, {}) || {};
-const preguntasDinamicas = Object.keys(content)
+  
+  const content = rawContent?.reduce((acc: any, item) => {
+    acc[item.llave] = { texto: item.contenido, meta: item.metadata };
+    return acc;
+  }, {}) || {};
+  const preguntasDinamicas = Object.keys(content)
   .filter(key => key.startsWith('obj_faq_'))
   .map(key => ({
     pregunta: content[key].meta?.pregunta,

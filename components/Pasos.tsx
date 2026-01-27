@@ -13,7 +13,6 @@ export default async function ProtocoloRegistro() {
   acc[item.llave] = { texto: item.contenido, meta: item.metadata };
   return acc;
 }, {}) || {};
-    console.log(content)
   // Procesar los pasos y mapear iconos
   const pasosDinamicos = Object.keys(content)
   .filter(key => key.startsWith('pp_paso_')) // Filtro actualizado

@@ -89,7 +89,7 @@ export default async function Metodo() {
 
                 {/* Subtítulo desde metadata */}
                 {paso.meta?.subtitle && (
-                  <p className="text-center text-lima/80 text-sm mb-4 font-medium italic">
+                  <p className="text-center text-lima/80 text-sm mb-4 font-medium ">
                     {paso.meta.subtitle}
                   </p>
                 )}
@@ -103,7 +103,7 @@ export default async function Metodo() {
 
                 {/* Footer text opcional (ej: "A las 3 AM también") */}
                 {paso.meta?.footer_text && (
-                  <p className="mt-4 text-center text-xs text-white/40 italic">
+                  <p className="mt-4 text-center text-xs text-white/40 ">
                     {paso.meta.footer_text}
                   </p>
                 )}
@@ -120,7 +120,7 @@ export default async function Metodo() {
           className="border px-4 py-3 text-md md:text-2xl text-lima border-lima rounded-xl hover:bg-lima hover:text-black transition-colors duration-200 font-bold"
         >
           {content.met_cta.texto}
-        </Link>
+        </Link> 
       </div>
     </section>
   );

@@ -24,50 +24,50 @@ export default async function Home() {
   return (
     <>
       <div className=" text-white">
-        {/* hero */}
-        {/* <HeroSection /> */}
+        {/* hero comprobado*/}
+        <HeroSection />
 
-        {/* puntos_dolor */}
-        {/* <PuntosDeDolor /> */}
+        {/* puntos_dolor comprobado */}
+        <PuntosDeDolor />
 
-        {/* metodo */}
-        {/* <Metodo /> */}
+        {/* metodo comprobado */}
+        <Metodo />
 
         {/* community_sc */}
-        {/* <CommunitySection /> */}
+        <CommunitySection />
 
-        {/* exito_sc */}
-        {/* <Exito /> */}
+        {/* exito_sc comprobado */}
+        <Exito />
 
         {/* prueba_social */}
-        {/* <TestimonialsSection /> */}
+        <TestimonialsSection />
 
-        {/* garantia */}
-        {/* <Profesor247 /> */}
+        {/* garantia  aprobado */}
+        <Profesor247 />
 
-        {/* objeciones */}
-        {/* <Objeciones /> */}
+        {/* objeciones aprobado */}
+        <Objeciones />
 
         {/* final_cta */}
-        {/* <FinalCTASection /> */}
+        <FinalCTASection />
 
         {/* Listos */}
-        {/* <ParaQuein /> */}
+        <ParaQuein />
 
         {/* who_is_teox */}
-        {/* <Teox /> */}
-        {/* <PricingSection /> */}
+        <Teox />
+        <PricingSection />
         {/* p_p */}
-        {/* <Pasos /> */}
+        <Pasos />
 
         <TeorixFAQs />
-        {/* <section className=" mt-10 px-2">
+        <section className=" mt-10 px-2">
           <img
             src="bg-3.jpg"
             alt=""
             className="rounded-2xl md:w-[79vw] md:h-96  md:object-cover object-bottom  mx-auto"
           />
-        </section> */}
+        </section>
         <WhatsappButton />
         <Footer />
         <ChatAssistant urlAsistente={urlAsistente} />

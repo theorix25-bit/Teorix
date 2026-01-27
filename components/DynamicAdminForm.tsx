@@ -46,6 +46,12 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
       setIsPending(false)
     }
   }
+  const tiposConDisenoPropio = [
+    'button', 'card_pq',
+  'benefit', 'faq_item', 'imagen', 'lista', 'card_paso', 
+  'lista_iconos', 'post_cs', 'card_exito', 'card_testimonio', 
+  'button', 'badge_list', 'feature_item', 'step_item'
+];
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
@@ -86,29 +92,28 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
               
               <AccordionContent className="pt-4 pb-6 space-y-6">
                 <Separator />
-                
-                {/* Campo Principal */}
-                <FormField
-                  control={form.control}
-                  name={`${llave}.texto`}
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="flex items-center gap-2">
-                        <Sparkles size={14} className="text-blue-500" />
-                        Contenido Principal
-                      </FormLabel>
-                      <FormControl>
-                        {initialData[llave].tipo === 'titulo' || initialData[llave].tipo === 'subtitulo' ? (
-                          <Input {...field} className="text-lg font-medium" />
-                        ) : (
-                          <Textarea {...field} className="min-h-[120px] leading-relaxed" />
-                        )}
-                      </FormControl>
-                      <FormDescription>Este es el texto que se mostrará directamente en la web.</FormDescription>
-                    </FormItem>
-                  )}
-                />
-
+                {!tiposConDisenoPropio.includes(initialData[llave].tipo) && (
+                    <FormField
+                      control={form.control}
+                      name={`${llave}.texto`}
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="flex items-center gap-2">
+                            <Sparkles size={14} className="text-blue-500" />
+                            Contenido Principal
+                          </FormLabel>
+                          <FormControl>
+                            {initialData[llave].tipo === 'titulo' || initialData[llave].tipo === 'subtitulo' ? (
+                              <Input {...field} className="text-lg font-medium" />
+                            ) : (
+                              <Textarea {...field} className="min-h-[120px] leading-relaxed" />
+                            )}
+                          </FormControl>
+                          <FormDescription>Este es el texto que se mostrará directamente en la web.</FormDescription>
+                        </FormItem>
+                      )}
+                    />
+                )}
                 {initialData[llave].tipo === 'imagen' && (
                   <div className="flex flex-col gap-4 mb-6 p-4 rounded-lg bg-slate-950/50 border border-dashed border-primary/30">
                     <FormLabel className="flex items-center gap-2">
@@ -138,7 +143,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
     />
   </div>
                 )} 
-                
                 {initialData[llave].tipo === 'lista' && (
                   <div className="space-y-4 bg-slate-900/30 p-4 rounded-xl border border-white/5">
                     <FormLabel className="text-blue-400">Editor de Lista de Puntos</FormLabel>
@@ -157,7 +161,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     <FormDescription>Cambia los iconos (emojis) y los textos de la lista de frustraciones.</FormDescription>
                   </div>
                 )}
-                
                 {initialData[llave].tipo === 'card_paso' && (
                   <div className="space-y-4 p-6 bg-slate-900/50 border border-[#C6FF5B]/20 rounded-2xl">
                     <div className="flex items-center gap-2 mb-2">
@@ -214,7 +217,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                       />
                   </div>
                 )} 
-                
                 {initialData[llave].tipo === 'lista_iconos' && (
                   <div className="space-y-3 p-4 bg-slate-900/40 border border-blue-500/20 rounded-xl">
                     <FormLabel className="text-blue-400 text-xs font-bold flex items-center gap-2">
@@ -247,7 +249,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     </FormDescription>
                   </div>
                 )}  
-
                 {initialData[llave].tipo === 'post_cs' && (
                 <div className="space-y-4 p-6 bg-slate-900/50 border border-[#C6FF5B]/20 rounded-2xl">
                   <div className="flex items-center gap-2 mb-2">
@@ -306,7 +307,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                   </div>
                 </div>
                 )}
-
                 {initialData[llave].tipo === 'card_exito' && (
                 <div className="space-y-4 p-6 bg-zinc-900/50 border border-lima/20 rounded-2xl">
                   <div className="flex items-center gap-2 mb-2">
@@ -396,27 +396,71 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     </FormItem>
                   </div>
                 )}
-                {/* --- TIPO: BOTÓN CON SUBTEXTO --- */}
+
                 {initialData[llave].tipo === 'button' && (
-                  <div className="p-4 bg-zinc-900/50 border border-white/10 rounded-xl space-y-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <FormItem>
-                        <FormLabel className="text-[10px] uppercase text-lima">Texto Principal</FormLabel>
-                        <Input {...form.register(`${llave}.texto`)} className="bg-background text-black" />
+                  <div className="p-6 bg-zinc-900/50 border border-lima/20 rounded-2xl space-y-6">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge className="bg-lima text-black font-bold uppercase">Configuración de Botón</Badge>
+                      <span className="text-[10px] text-muted-foreground uppercase tracking-widest">
+                        {llave.includes('primary') ? 'Estilo Principal (Borde)' : 'Estilo Secundario (Sólido)'}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      {/* ICONO / EMOJI */}
+                      <FormItem className="col-span-1">
+                        <FormLabel className="text-[10px] uppercase opacity-50 font-bold">Emoji / Icono</FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...form.register(`${llave}.meta.icon`)} 
+                            placeholder="Ej: ⚡" 
+                            className="bg-background text-black text-center text-xl h-12" 
+                          />
+                        </FormControl>
                       </FormItem>
-                      <FormItem>
-                        <FormLabel className="text-[10px] uppercase opacity-50">Subtexto (Pequeño)</FormLabel>
-                        <Input {...form.register(`${llave}.meta.subtext`)} className="bg-background text-black" />
+
+                      {/* TEXTO DEL BOTÓN */}
+                      <FormItem className="col-span-3">
+                        <FormLabel className="text-[10px] uppercase opacity-50 font-bold">Texto del Botón</FormLabel>
+                        <FormControl>
+                          <Input 
+                            {...form.register(`${llave}.texto`)} 
+                            placeholder="Ej: CREAR CUENTA GRATIS" 
+                            className="bg-background text-black h-12 font-bold uppercase" 
+                          />
+                        </FormControl>
                       </FormItem>
                     </div>
+
+                    {/* URL DE DESTINO */}
                     <FormItem>
-                      <FormLabel className="text-[10px] uppercase opacity-50">URL / Link de destino</FormLabel>
-                      <Input {...form.register(`${llave}.meta.href`)} className="bg-background font-mono text-xs text-black" />
+                      <FormLabel className="text-[10px] uppercase opacity-50 font-bold text-blue-400">URL / Link de destino (href)</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500 text-xs">🔗</span>
+                          <Input 
+                            {...form.register(`${llave}.meta.href`)} 
+                            placeholder="/auth/sign-up" 
+                            className="bg-background text-black pl-8 font-mono text-xs" 
+                          />
+                        </div>
+                      </FormControl>
+                      <FormDescription className="text-[9px]">Usa rutas relativas (ej: /#ruta) o enlaces externos completos.</FormDescription>
+                    </FormItem>
+
+                    {/* SUBTEXTO OPCIONAL (Si lo usas en otros botones) */}
+                    <FormItem>
+                      <FormLabel className="text-[10px] uppercase opacity-50 font-bold">Subtexto (Opcional)</FormLabel>
+                      <FormControl>
+                        <Input 
+                          {...form.register(`${llave}.meta.subtext`)} 
+                          placeholder="Ej: No requiere tarjeta" 
+                          className="bg-background text-black text-sm italic" 
+                        />
+                      </FormControl>
                     </FormItem>
                   </div>
                 )}
-
-                {/* --- TIPO: LISTA DE BADGES (Iconos + Texto) --- */}
                 {initialData[llave].tipo === 'badge_list' && (
                   <div className="p-4 bg-zinc-900/50 border border-white/10 rounded-xl space-y-6">
                     <p className="text-[10px] font-black uppercase tracking-widest text-lima">Configuración de Mini Beneficios</p>
@@ -444,7 +488,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     ))}
                   </div>
                 )}
-                
                 {initialData[llave].tipo === 'feature_item' && (
                   <div className="space-y-4 p-4 bg-zinc-800/40 rounded-xl border border-white/5">
                     <div className="grid grid-cols-4 gap-4">
@@ -463,7 +506,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     </FormItem>
                   </div>
                 )}
-
                 {initialData[llave].tipo === 'step_item' && (
                   <div className="space-y-4 p-4 bg-zinc-800/40 rounded-xl border border-white/5">
                     <div className="grid grid-cols-4 gap-4">
@@ -479,6 +521,119 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     <FormItem>
                       <FormLabel className="text-[10px] uppercase opacity-50">Descripción / Acción</FormLabel>
                       <Textarea {...form.register(`${llave}.texto`)} className="bg-background h-20" />
+                    </FormItem>
+                  </div>
+                )}
+                {initialData[llave].tipo === 'faq_item' && (
+                  <div className="p-5 bg-zinc-900/60 border border-white/10 rounded-2xl space-y-4 shadow-xl">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="h-2 w-2 rounded-full bg-lima shadow-[0_0_8px_rgba(191,255,0,0.8)]" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-lima">Editor de Objeciones</span>
+                    </div>
+
+                    {/* Pregunta Principal */}
+                    <FormItem>
+                      <FormLabel className="text-[10px] uppercase opacity-50 font-bold">La Duda / Pregunta</FormLabel>
+                      <Input 
+                        {...form.register(`${llave}.meta.pregunta`)} 
+                        placeholder="Ej: ¿Esto vale si ya estoy en una autoescuela?"
+                        className="bg-background/50 border-white/5 text-black focus:border-lima/50 transition-colors font-bold"
+                      />
+                    </FormItem>
+
+                    {/* Respuesta (Contenido principal) */}
+                    <FormItem>
+                      <FormLabel className="text-[10px] uppercase opacity-50 font-bold">La Respuesta / Argumento</FormLabel>
+                      <Textarea 
+                        {...form.register(`${llave}.texto`)} 
+                        placeholder="Explica por qué Teorix es la solución..."
+                        className="bg-background/50 border-white/5 text-black focus:border-lima/50 transition-colors min-h-[80px] resize-none"
+                      />
+                    </FormItem>
+
+                    {/* Configuración del CTA (Link) */}
+                    <div className="grid grid-cols-2 gap-4 pt-2 border-t border-white/5">
+                      <FormItem>
+                        <FormLabel className="text-[10px] uppercase opacity-30 font-bold">Texto del Botón</FormLabel>
+                        <Input 
+                          {...form.register(`${llave}.meta.linkText`)} 
+                          placeholder="Ej: Hacer test (2 min)"
+                          className="bg-background/30 border-white/5 text-xs h-8 text-black"
+                        />
+                      </FormItem>
+                      <FormItem>
+                        <FormLabel className="text-[10px] uppercase opacity-30 font-bold">URL de destino</FormLabel>
+                        <Input 
+                          {...form.register(`${llave}.meta.href`)} 
+                          placeholder="Ej: /#test"
+                          className="bg-background/30 border-white/5 text-xs h-8 font-mono text-black"
+                        />
+                      </FormItem>
+                    </div>
+                  </div>
+                )}
+                {initialData[llave].tipo === 'benefit' && (
+                  <div className="flex flex-col md:flex-row gap-4 p-4 bg-zinc-900/40 border border-white/5 rounded-xl items-end group transition-colors hover:border-lima/20">
+                    {/* Editor de Icono (Emoji o Lucide) */}
+                    <FormItem className="w-full md:w-20">
+                      <FormLabel className="text-[10px] uppercase opacity-50 font-bold">Icono</FormLabel>
+                      <FormControl>
+                        <Input 
+                          {...form.register(`${llave}.meta.icon`)} 
+                          placeholder="🎯" 
+                          className="text-center text-xl bg-background border-white/5 text-black focus:border-lima/50"
+                        />
+                      </FormControl>
+                    </FormItem>
+                    {/* Texto del Beneficio */}
+                    <FormItem className="flex-1 w-full">
+                      <FormLabel className="text-[10px] uppercase opacity-50 font-bold">Texto del Beneficio</FormLabel>
+                      <FormControl>
+                        <Input 
+                          {...form.register(`${llave}.texto`)} 
+                          placeholder="Ej: Entrena lo que cae"
+                          className="bg-background border-white/5 focus:border-lima/50 font-medium text-black"
+                        />
+                      </FormControl>
+                    </FormItem>
+                  </div>
+                )}
+                {initialData[llave].tipo === 'card_pq' && (
+                  <div className="space-y-4 p-6 bg-zinc-900/80 border border-lima/30 rounded-2xl relative overflow-hidden">
+                    {/* Badge de Previsualización estilo Web */}
+                    <div className="flex justify-between items-center mb-4">
+                      <span className="text-lima font-black text-xs tracking-tighter uppercase">PARA QUIÉN</span>
+                      {/* <div className="bg-lima text-black text-[10px] px-2 py-0.5 rounded font-bold">APTO ✓</div> */}
+                    </div>
+                    {/* 
+                    Miguel Hola, Quedaste en crear esta sección para que se edite en el admin
+                    y verificar que funcione
+                    */}
+                    <div className="grid grid-cols-2 gap-4">
+                      <FormItem>
+                        <FormLabel className="text-[10px] uppercase opacity-50">icon</FormLabel>
+                        <Input {...form.register(`${llave}.meta.icon`)} className="bg-background text-black border-white/10" />
+                      </FormItem>
+                      <FormItem>
+                        <FormLabel className="text-[10px] uppercase opacity-50">badge</FormLabel>
+                        <Input {...form.register(`${llave}.meta.badge`)} className="bg-background text-black border-white/10" />
+                      </FormItem>
+                    </div>
+                    <div className="grid grid-cols-2 gap-4">
+                      <FormItem>
+                        <FormLabel className="text-[10px] uppercase opacity-50">Titulo</FormLabel>
+                        <Input {...form.register(`${llave}.meta.card_title`)} className="bg-background text-black border-white/10" />
+                      </FormItem>
+                      <FormItem>
+                        <FormLabel className="text-[10px] uppercase opacity-50">subTitulo</FormLabel>
+                        <Input {...form.register(`${llave}.meta.card_subtitle`)} className="bg-background text-black border-white/10" />
+                      </FormItem>
+                    </div>
+                    <FormItem>
+                      <FormLabel className="text-[10px] uppercase opacity-50">lista Descripción</FormLabel>
+                      <Textarea {...form.register(`${llave}.meta.list[0]`)} className="bg-background text-black " />
+                      <Textarea {...form.register(`${llave}.meta.list[1]`)} className="bg-background text-black " />
+                      <Textarea {...form.register(`${llave}.meta.list[2]`)} className="bg-background text-black " />
                     </FormItem>
                   </div>
                 )}
