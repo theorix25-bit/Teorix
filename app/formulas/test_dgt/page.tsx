@@ -17,8 +17,8 @@ import { createClient } from "@/lib/supabase/client";
 
 /* 
 Preguntas para cambiar 
-4,
-6,
+4-,
+6-,
 9,
 28,
 34,
@@ -71,7 +71,7 @@ const preguntas = [
       "Sí, siempre que solo circule de día.",
     ],
     "correcta": 1,
-    "explicacion": ""
+    "explicacion": "Está terminantemente prohibido circular con placas que presenten obstáculos o estén sucias o deterioradas, dificultando su lectura e identificación."
   },
   {
     "numero": "5",
@@ -93,7 +93,7 @@ const preguntas = [
       "No, en ningún caso"
     ],
     "correcta": 0,
-    "explicacion": ""
+    "explicacion": "Los vehículos que sean conjuntos de vehículos de más de siete metros de longitud solo pueden utilizar el carril derecho y el inmediato a su izquierda, quedando prohibido el uso del carril izquierdo (tercero o más a la izquierda)"
   },
   {
     "numero": "7",
@@ -126,7 +126,7 @@ const preguntas = [
       "Filtro de aire, dirección, retrovisores y luz interior"
     ],
     "correcta": 1,
-    "explicacion": "Si se frena fuerte a mucha velocidad en una curva, el vehículo puede derrapar y salirse de la curva."
+    "explicacion": 'los elementos que se deben revisar con mayor frecuencia son los neumáticos, la suspensión (amortiguadores) y los frenos (pastillas y zapatas). Estos componentes forman el "triángulo de seguridad activa" del vehículo y su correcto estado es vital para garantizar la estabilidad, el agarre y la capacidad de frenado. De hecho, el fallo mecánico que más accidentes producen está relacionado con los neumáticos'
   },
   {
     "numero": "10",
@@ -335,7 +335,7 @@ const preguntas = [
       "por un carril reservado a vehículos con alta ocupación (VAO)."
     ],
     "correcta": 1,
-    "explicacion": ""
+    "explicacion": "Dentro de los túneles la iluminación sea similar a la nocturna y es necesario garantizar la visibilidad y seguridad. No es obligatorio encender luces solo por circular en carreteras convencionales durante el día ni en carriles reservados a vehículos con alta ocupación (VAO), salvo que existan condiciones que disminuyan la visibilidad."
   },
   {
     "numero": "29",
@@ -401,7 +401,7 @@ const preguntas = [
       "se concentra mejor, por lo que sus decisiones son más seguras"
     ],
     "correcta": 0,
-    "explicacion": "Es una señal de obligación que exige seguir tanto el sentido como la dirección indicada por la flecha."
+    "explicacion": "bajo los efectos de esta droga, disminuye la capacidad de concentración, se altera la percepción del entorno y es fácil que se exceda en velocidad e incumpla las normas de circulación. Recuerda que conducir bajo los efectos de cualquier droga es extremadamente peligroso y está prohibido por la ley."
   },
   {
     "numero": "35",
@@ -621,7 +621,7 @@ const preguntas = [
       "Sí, el de posición y cruce y, si dispone de él, el antiniebla delantero"
     ],
     "correcta": 2,
-    "explicacion": ""
+    "explicacion": "No es obligatorio encender el antiniebla trasero en niebla ligera, ya que este se reserva para condiciones muy desfavorables como niebla espesa. Este alumbrado mejora la visibilidad y la seguridad sin deslumbrar a otros conductores."
   },
   {
     "numero": "55",
@@ -632,7 +632,7 @@ const preguntas = [
       "Con el brazo extendido y la palma de la mano hacia atrás"
     ],
     "correcta": 2,
-    "explicacion": ""
+    "explicacion": "Esta señal manual es la forma reglamentaria de anunciar a los demás usuarios de la vía que el vehículo va a marcha circular atrás en ausencia de la luz correspondiente. ¡Recuerda que señalizar correctamente tus maniobras es fundamental para la seguridad vial!"
   },
   {
     "numero": "56",
