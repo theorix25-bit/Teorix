@@ -25,7 +25,7 @@ import { createClient } from '@/lib/supabase/client';
 const SECCIONES_MENU = [
   { 
     id: 'hero', 
-    label: 'Hero Principal', 
+    label: '( 1 ) Hero', 
     desc: 'Título, eslogan y botones de entrada', 
     icon: LayoutDashboard, 
     color: 'text-blue-400',
@@ -33,71 +33,79 @@ const SECCIONES_MENU = [
   },
   { 
     id: 'puntos_dolor', 
-    label: 'Puntos de Dolor', 
+    label: '( 2 ) LA INDIGNACIÓN. PUNTOS DE DOLOR', 
     desc: 'Problemas del sistema vs Solución Teorix', 
     icon: ShieldCheck, // Importa ShieldCheck de lucide-react
     color: 'text-red-400',
     url: 'puntos_dolor' 
   },
   { 
-  id: 'metodo', 
-  label: 'El Método', 
-  desc: 'Los 3 pasos: Calibración, Ruta y Soporte', 
-  icon: Sparkles, // O BookOpen
-  color: 'text-yellow-400',
-  url: 'metodo' 
-  },
-  { 
-  id: 'community_sc', 
-  label: 'Comunidad y tips', 
-  desc: 'Cards de beneficios, emojis y métricas de visualización', 
-  icon: LayoutGrid, // También puedes usar Users si prefieres un enfoque social
-  color: 'text-lima', 
-  url: 'community_sc' 
-  },
-  { 
-    id: 'exito_sc', 
-    label: 'Origen del 85% de aptos', 
-    desc: 'Big Data, IA y métricas de aprobados (85%)', 
-    icon: TrendingUp, 
-    color: 'text-lima', 
-    url: 'exito_sc' 
-  },
-  { 
-    id: 'prueba_social', 
-    label: 'Testimonio', 
-    desc: 'Testimonios, racha de aprobados y logros', 
-    icon: MessageSquare, // O puedes usar Users o Star de lucide-react
-    color: 'text-lima', 
-    url: 'prueba_social' 
-  },
-  { 
-    id: 'garantia', 
-    label: 'Garantía y Confianza', 
-    desc: 'Promesa de aprobado, devoluciones y regalos', 
-    icon: ShieldCheck, // Importar de lucide-react
-    color: 'text-lima', 
-    url: 'garantia' 
-  },
-  { 
-  id: 'final_cta', 
-  label: 'Cierre y Conversión', 
-  desc: 'Sección "¿Listx para dejar de estudiar a ciegas?"', 
-  icon: Zap, 
-  color: 'text-lima', 
-  url: 'final_cta' 
-  },
-  { 
   id: 'como_funciona', 
-  label: 'Cómo Funciona', 
+  label: '( 3 ) CÓMO FUNCIONA', 
   desc: 'Sección de misión e imagen de la App', 
   icon: MousePointerClick, 
   color: 'text-[#C6FF5B]',
   url: 'como_funciona' 
   },
   { 
+  id: 'metodo', 
+  label: '( 4 ) QUÉ TE LLEVAS', 
+  desc: 'Los 3 pasos: Calibración, Ruta y Soporte', 
+  icon: Sparkles,
+  color: 'text-yellow-400',
+  url: 'metodo' 
+  },
+  { 
+  id: 'community_sc', 
+  label: '( 5 ) PRUEBA SOCIAL', 
+  desc: 'Cards de beneficios, emojis y métricas de visualización', 
+  icon: LayoutGrid, // También puedes usar Users si prefieres un enfoque social
+  color: 'text-lima', 
+  url: 'community_sc' 
+  },  
+  { 
+    id: 'exito_sc', 
+    label: '( 6 ) GARANTÍA', 
+    desc: 'Big Data, IA y métricas de aprobados (85%)', 
+    icon: TrendingUp, 
+    color: 'text-lima', 
+    url: 'exito_sc' 
+  },
+  { 
+  id: 'objeciones', 
+  label: '( 7 ) objeciones', 
+  desc: 'A quien va dirigido', 
+  icon: ShieldQuestion,
+  color: 'text-lima', 
+  url: 'objeciones' 
+  },
+  { 
+  id: 'final_cta', 
+  label: '( 8 ) CTA FINAL', 
+  desc: 'Sección "¿Listx para dejar de estudiar a ciegas?"', 
+  icon: Zap, 
+  color: 'text-lima', 
+  url: 'final_cta' 
+  },
+  { 
+    id: 'prueba_social', 
+    label: '( 9 ) Testimonio', 
+    desc: 'Testimonios, racha de aprobados y logros', 
+    icon: MessageSquare, 
+    color: 'text-lima', 
+    url: 'prueba_social' 
+  },
+  { 
+    id: 'garantia', 
+    label: '( 10 ) Garantía y Confianza', 
+    desc: 'Promesa de aprobado, devoluciones y regalos', 
+    icon: ShieldCheck, 
+    color: 'text-lima', 
+    url: 'garantia' 
+  },
+  { 
   id: 'who_is_teox', 
-  label: 'Identidad (Teox)', 
+  label: '( 11 ) Identidad (Teox)', 
   desc: 'Historia del asistente y características clave', 
   icon: User, 
   color: 'text-hoodie',
@@ -105,7 +113,7 @@ const SECCIONES_MENU = [
   },
   { 
   id: 'p_p', 
-  label: 'Protocolo Registro', 
+  label: ' ( 12 ) Protocolo Registro', 
   desc: 'Configuración de los 6 pasos (Onboarding de usuario)', 
   icon: ListOrdered,
   color: 'text-lima', 
@@ -113,7 +121,7 @@ const SECCIONES_MENU = [
   },
   { 
   id: 'faqs', 
-  label: 'Preguntas Frecuentes', 
+  label: ' ( 13 ) Preguntas Frecuentes', 
   desc: 'Resolución de dudas generales con acordeón', 
   icon: HelpCircle, 
   color: 'text-lima', 
@@ -121,12 +129,13 @@ const SECCIONES_MENU = [
   },
   { 
   id: 'para_quien', 
-  label: 'Para quien', 
+  label: ' ( 14 ) Para quien', 
   desc: 'A quien va dirigido', 
   icon: ShieldQuestion,
   color: 'text-lima', 
   url: 'para_quien' 
   },
+  
 ];
 
 const supabase = createClient();

@@ -36,14 +36,14 @@ export default async function Home() {
         {/* community_sc */}
         <CommunitySection />
 
-        {/* exito_sc comprobado */}
-        <Exito />
-
         {/* prueba_social */}
         <TestimonialsSection />
 
         {/* garantia  aprobado */}
         <Profesor247 />
+
+        {/* exito_sc comprobado */}
+        <Exito />
 
         {/* objeciones aprobado */}
         <Objeciones />

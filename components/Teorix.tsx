@@ -32,11 +32,9 @@ export default async function TeorixFAQs() {
       <div className="absolute top-0 right-0 w-64 h-64 bg-lima/5 blur-[100px] -z-10" />
 
       <h2 className="text-3xl md:text-5xl font-black text-lima text-center mb-12 italic uppercase tracking-tighter">
-        {content.fq_titulo?.texto?.split(' ').slice(0, -1).join(' ')} <span className="text-white neon-glow">{content.fq_titulo?.texto?.split(' ').pop()}</span>
+        {content.fq_titulo?.texto}
       </h2>
-
       <div className="flex flex-col md:flex-row gap-12 items-center">
-        {/* IMAGEN LATERAL */}
         <div className="w-full md:w-1/2 relative group">
           <div className="absolute -inset-1 bg-gradient-to-r from-lima to-red-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
           <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-video md:aspect-square">

@@ -26,17 +26,16 @@ export default async function ProtocoloRegistro() {
       Icon: IconComponent
     };
   });
-
   return (
-    <section className="w-full py-20 overflow-hidden bg-black">
+    <section className="w-full py-20 overflow-hidden ">
       <div className="max-w-6xl mx-auto px-6 relative">
         
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter text-white">
-            {content.titulo_principal?.texto?.split(' ')[0]} <span className="text-lima">{content.titulo_principal?.texto?.split(' ').slice(1).join(' ')}</span>
+          <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tighter text-lima">
+            {content.pp_titulo_principal?.texto} 
           </h2>
           <p className="text-gray-400 font-mono text-sm uppercase tracking-[0.3em]">
-            {content.subtitulo?.texto}
+            {content.pp_subtitulo?.texto} 
           </p>
         </div>
 

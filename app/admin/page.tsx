@@ -4,7 +4,8 @@ import {
   Archive, 
   BookOpen, 
   ArrowUpRight, 
-  ShieldCheck
+  ShieldCheck,
+  Book
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 
@@ -16,7 +17,16 @@ const menuCards = [
     label: "Usuarios", 
     desc: "Control de miembros", 
     color: "text-purple-400",
-    roles: ["admin", "asistente"] // Quién puede verlo
+    roles: ["admin", "asistente"] 
+  },
+  { 
+    url: "/admin/contenido", 
+    id: "contenido", 
+    icon: Book, 
+    label: "Contenido", 
+    desc: "Control de texto", 
+    color: "text-lima",
+    roles: ["admin"] 
   },
   { 
     url: "/admin/documentos", 

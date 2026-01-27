@@ -13,6 +13,7 @@ import { Separator } from "@/components/ui/separator"
 import { Loader2, Save, Type, Link as LinkIcon, Sparkles, ImageIcon, ListChecks } from "lucide-react"
 import toast from "react-hot-toast"
 import { refreshContent } from "@/app/admin/actions/refreshContent"
+import { Content } from "@radix-ui/react-accordion"
 
 interface DynamicAdminFormProps {
   sectionName: string;
@@ -89,7 +90,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                   </div>
                 </div>
               </AccordionTrigger>
-              
               <AccordionContent className="pt-4 pb-6 space-y-6">
                 <Separator />
                 {!tiposConDisenoPropio.includes(initialData[llave].tipo) && (
@@ -396,7 +396,6 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     </FormItem>
                   </div>
                 )}
-
                 {initialData[llave].tipo === 'button' && (
                   <div className="p-6 bg-zinc-900/50 border border-lima/20 rounded-2xl space-y-6">
                     <div className="flex items-center gap-2 mb-2">
@@ -509,18 +508,14 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                 {initialData[llave].tipo === 'step_item' && (
                   <div className="space-y-4 p-4 bg-zinc-800/40 rounded-xl border border-white/5">
                     <div className="grid grid-cols-4 gap-4">
-                      <FormItem className="col-span-1">
-                        <FormLabel className="text-[10px] uppercase opacity-50">Icono Lucide</FormLabel>
-                        <Input {...form.register(`${llave}.meta.icon`)} placeholder="Ej: UserPlus" className="bg-background text-center" />
-                      </FormItem>
-                      <FormItem className="col-span-3">
+                      <FormItem className="col-span-4">
                         <FormLabel className="text-[10px] uppercase opacity-50">Título del Paso</FormLabel>
-                        <Input {...form.register(`${llave}.meta.titulo`)} className="bg-background" />
+                        <Input {...form.register(`${llave}.meta.titulo`)} className="bg-background text-black" />
                       </FormItem>
                     </div>
                     <FormItem>
                       <FormLabel className="text-[10px] uppercase opacity-50">Descripción / Acción</FormLabel>
-                      <Textarea {...form.register(`${llave}.texto`)} className="bg-background h-20" />
+                      <Textarea {...form.register(`${llave}.texto`)} className="bg-background h-20 text-black" />
                     </FormItem>
                   </div>
                 )}
@@ -552,6 +547,7 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                     </FormItem>
 
                     {/* Configuración del CTA (Link) */}
+                    {initialData[llave].meta.linkText && 
                     <div className="grid grid-cols-2 gap-4 pt-2 border-t border-white/5">
                       <FormItem>
                         <FormLabel className="text-[10px] uppercase opacity-30 font-bold">Texto del Botón</FormLabel>
@@ -569,7 +565,9 @@ export function DynamicAdminForm({ sectionName, initialData }: DynamicAdminFormP
                           className="bg-background/30 border-white/5 text-xs h-8 font-mono text-black"
                         />
                       </FormItem>
-                    </div>
+                    </div> }
+                    
+                    
                   </div>
                 )}
                 {initialData[llave].tipo === 'benefit' && (
